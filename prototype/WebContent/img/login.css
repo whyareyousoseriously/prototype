@@ -1,0 +1,17 @@
+body{background:#FBFBFB url("bg.png") repeat-x 0 0;}
+#login {margin: auto;padding: 114px 0 0;width: 320px;}
+#login h1 {display:block; }
+#login h1 a {background-image: url("logo.gif");background-position: center top;background-repeat: no-repeat;display: block;height: 67px;overflow: hidden;padding-bottom: 15px;text-indent: -9999px;width: 320px;}
+#login form {background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #E5E5E5;box-shadow: 0 4px 10px -1px rgba(200, 200, 200, 0.7);font-weight: normal;padding: 26px 24px 46px;}
+#login label {color: #777777; font-size: 14px; cursor: pointer;}
+#login form input.inpu {background: none repeat scroll 0 0 #FBFBFB;border: 1px solid #E5E5E5;box-shadow: 1px 1px 2px rgba(200, 200, 200, 0.2) inset;color: #555555;font-size: 24px; margin-bottom: 16px; margin-top: 2px;outline: 0 none;padding: 3px; width: 100%; overflow:hidden; }
+#login form input.inpu:focus {border-color:#BBBBBB;}
+#login form .forgetmenot {float:left; display:inline;}
+#login form .forgetmenot label {font-size: 12px;line-height: 19px;}
+input[type="checkbox"], input[type="radio"] {margin: 1px 0 0;padding: 0; vertical-align: text-top;}
+#login form .nore {float:right; display:inline;font-size: 12px;line-height: 19px;}
+#login form .nore a {color:#0082CB; text-decoration: none;}
+#login form .nore a:hover {text-decoration: underline;}
+.login_btn {background:url("login_btn.png");background-repeat: no-repeat; background-position:0 0; width:272px; height:40px; margin:0 auto; clear:both; display:inline-block; margin-top:20px; font:normal 20px/40px "Microsoft Yahei"; color:#FFFFFF; text-decoration: none; text-align:center; text-shadow: 0 -1px 0 #005B99; }
+.login_btn:active {background-position:0 -40px;}
+
