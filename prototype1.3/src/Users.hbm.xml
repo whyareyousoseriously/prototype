@@ -9,6 +9,6 @@
         </id>
         <property name="username"   type="java.lang.String" />
         <property name="password"   type="java.lang.String" />
- 
+ 		<property name="power" type="java.lang.Integer"/>
     </class>
 </hibernate-mapping>
