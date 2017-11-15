@@ -13,6 +13,7 @@
  * 例如：showDiv('div3,div1,div2','2,3')为显示第二个(div1)和第三个层(div2)，第一个层(div3)将被隐藏。
  * ========================
  */
+
 function showDiv(divId_array, showLocality_array) {
 	var div_array = new Array();
 	var locality_array = new Array();

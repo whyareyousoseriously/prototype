@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%><!-- 启用EL语言 -->
 <%
@@ -9,9 +9,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=GBK">
-<script src="<%=path%> /js/showAndHidden.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<script src="<%=path%>/js/showAndHidden.js"></script>
 <title>prototype1.3</title>
+<script   type="text/javascript">  
+
+/* showDiv('authority0,authority1,authority2','1'); */
+
+</script>  
 </head>
 <body>
 	<div>
@@ -26,18 +31,7 @@
 	<hr>
 	<div>
 		<div>
-			<!-- test the limit of authority 测试权限显示 的div 等界面正式设计出来可以替换-->
-			<%
-				if (session.getAttribute("loginPower").equals("0")) {
-					out.println("<script>showDiv('authority0,authority1,authority2','1')</script>");
-				}
-				if (session.getAttribute("loginPower") == "1") {
-					out.println("<script>showDiv('authority0,authority1,authority2','2')</script>");
-				}
-				if (session.getAttribute("loginPower") == "2") {
-					out.println("<script>showDiv('authority0,authority1,authority2','3')</script>");
-				}
-			%>
+			
 			<div id="authority0">
 				<label>权限0</label>
 			</div>
@@ -47,6 +41,29 @@
 			<div id="authority2">
 				<label>权限2</label>
 			</div>
+			
+			<!-- test the limit of authority 测试权限显示 的div 等界面正式设计出来可以替换-->
+			<%
+				System.out.println("test the limit of authority!");
+				if (((Integer)session.getAttribute("loginPower")).equals(new Integer(0))) {
+					System.out.println("loginPower==0");
+					out.write("<script type='text/javascript'>");
+					out.write("showDiv('authority0,authority1,authority2','1')");
+					out.write("</script");
+				}
+				if (((Integer)session.getAttribute("loginPower")).equals(new Integer(1))) {
+					System.out.println("loginPower==1");
+					out.write("<script type='text/javascript'>");
+					out.write("showDiv('authority0,authority1,authority2','2')");
+					out.write("</script");
+				}
+				if (((Integer)session.getAttribute("loginPower")).equals(new Integer(2))) {
+					System.out.println("loginPower==0");
+					out.write("<script type='text/javascript'>");
+					out.write("showDiv('authority0,authority1,authority2','3')");
+					out.write("</script");
+				}
+			%>
 		</div>
 		<div>
 			<label>选择你要缴费的项目</label>
