@@ -23,6 +23,8 @@
 <link rel="stylesheet" type="text/css" href="<%=basePath %>/loginIn_files/style.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=basePath %>/loginIn_files/animate-custom.css">
+<script src="https://static.geetest.com/static/tools/gt.js"></script>
+<script src="https://api.geetest.com/get.php"></script>
 </head>
 <body>
 	<div class="container">
@@ -35,6 +37,9 @@
 				<div id="login" class="animate form">
 					<form action="<%=path%>/users/Users_login.action" method="post"
 						autocomplete="on">
+						
+						
+						
 						<h1>XX缴费系统登陆</h1>
 						<p>
 							<label for="username" class="uname" data-icon="u">邮箱或用户名</label>
@@ -60,6 +65,9 @@
 						<p class="change_link">
 							还没有账号？<a href="#toregister" class="to_register">注册</a>
 						</p>
+					
+					
+					
 					</form>
 				</div>
 
