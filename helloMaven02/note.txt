@@ -1,0 +1,8 @@
+src
+	-main
+		-java
+			-package
+	-test
+		-java
+			-package
+	resurces
