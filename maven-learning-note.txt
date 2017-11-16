@@ -70,5 +70,131 @@ mvn -v 查看maven版本
 		　　只有JVM还不能成class的执行，因为在解释class的时候JVM需要调用解释所需要的类库lib，而jre包含lib类库。
 		　　JVM屏蔽了与具体操作系统平台相关的信息，使得Java程序只需生成在Java虚拟机上运行的目标代码（字节码），就可以在多种平台上不加修改地运行。
 
+完整的项目构建过程包括：
+	清理，编译，测试，打包，集成测试，验证，部署
+	maven生命周期
+		clean	清理项目
+			pre-clean	执行清理前的工作
+			clean		清理上一次构建生成的所有文件
+			post-clean	执行清理后的文件
+		default	构建项目
+			compile test package install.
+		site	生成项目站点
+			pre-site	在生成项目站点前要完成的工作
+			site		生成项目的站点文档
+			post-site	在生成项目站点后要完成的工作
+			site-deploy	发布生成的站点到服务器上
+	maven生命周期
+	clean compile test package install.
+
+pom.xml常用元素介绍
+	<project></project>
+	<modelVestion></modelVestion> 指定了当前pom的版本
 	
-		
+	<groupId>反写的公司网址+项目名</groupId>
+	<artifactId>项目名+模块名</artifactId>
+	<!-- 第一个0表示大版本号 第二个0表示分支版本号 第三个0表示小版本号
+			0.0.1
+			snapshot快照
+			alpha 内部测试
+			beta 公测
+			Release 稳定
+			GA 正式发布
+	-->
+	<vesion>当前项目的版本号</version> 
+	<!-- 表示maven的打包方式，默认的jar。还可以是war zip pom-->
+	<packaging></packaging>
+	<!--项目描述名-->
+	<name></name>
+	<!--项目地址-->
+	<url></url>
+	<!--项目描述名-->
+	<description></description>
+	<developers></developers>
+	<licenses></licenses>
+	<organization></organization>
+	<!--依赖列表-->
+	<dependencies>
+		<!--依赖项-->
+			<dependency>
+				<!-- 指定坐标-->
+				<groupId></groupId>
+				<artifactId></artifactId>
+				<version></version>
+				<!--指定类型-->
+				<type></type>
+				<!--指定依赖范围-->
+				<!--表示jar只在测试的范围有用，在主代码没用，会报错-->
+				<scope>test</scope>
+				<!--设置依赖是否可选，默认是false -->
+				<optional></optional>
+				<!--排除依赖传递列表-->
+				<exclusions>
+					<exclusion></exclusion>
+				</exclusions>
+			</dependency>
+	</dependencies>
+	
+	<!-- 依赖的管理-->
+	<dependencyManagement>
+		<dependencies>
+			<dependency></dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<build>
+		<!--插件列表-->
+		<plugins>
+			<plugin>
+				<groupId></groupId>
+				<artifactId></artifactId>
+				<version></version>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<!-- -->
+	<parent></parent>
+	<!-- -->
+	<modules>
+		<module>
+		</module>
+	</modules>
+
+依赖的范围
+	maven中提供了三种范围
+		compile:默认的范围，变异测试运行都有效
+		provided:只在编译和测试时有效
+		runtime:在测试和运行时有效
+		test:只会在测试范围有效
+		system:在编译和测试时有效，系统相关 不可移植性
+		import:导入的范围，它只使用在dependencyManagement中,表示从其他的pom中导入（继承）dependency的配置
+	<scope></scope>
+依赖传递
+	例：古惑仔中山鸡依赖南哥，南哥依赖逼哥。
+	创建三个maven工程，hongxing-bge hongxing-nage hongxing-shanji
+	先将hongxing-bge package install到本地仓库中
+	然后在hongxing-nage的pom.xml中加入对bge的依赖
+	之后在将hongxing-nage package install到本地仓库中
+	然后在hongxing-shanji的pom.xml中加入对nage的依赖
+	之后hongxing-shanji自动依赖于hongxing-bge
+依赖的排除
+	那么问题来了有一天山鸡为表忠心对南哥说我只听你的，这时就要排除对逼哥的依赖了
+	在hongxing-shanji的pom.xml中加入exclusion标签。
+依赖的冲突
+	1.短路优先
+		A->b->c->x
+		A->d-x
+		优先解析依赖短的第二条。
+	2.长度相同的情况下先声明先优先
+聚合和继承
+	例如：将逼哥和南哥和山鸡聚合。
+			新建一个maven工程hongxingaggration修改pom.xml
+				加入
+					<modules>
+						<module>../hongxing-bge</module>
+						<module>../hongxing-nage</module>
+						<module>../hongxing-shanji</module>
+					</modules>
+			之后clean install
+	继承：
