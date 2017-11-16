@@ -1,0 +1,47 @@
+src
+	-main
+		-java
+			-package
+	-test
+		-java
+			-package
+	resurces
+
+	
+mvn -v 查看maven版本
+	compile 编译
+	test    测试
+	package 打包
+	
+	clean	删除target
+	install	安装jar包到本地仓库中
+	
+	创建目录的两种方式：
+	1.archetype:generate 按照提示进行选择
+	2.archetype:generate	-DgroupId=组织名.公司网址的反写+项目名
+							-DartifactId=项目名-模块名
+							-Dversion=版本号
+							-Dpackage=代码所存在的包名
+	
+	坐标
+		构件
+	仓库
+		本地仓库和远程仓库（全球中央仓库）
+	镜像仓库
+		原
+		<mirror>
+			<id>mirrorId</id>
+			<mirrorOf>repositoryId</mirrorOf>
+			<name>Human Readable Name for this Mirror.</name>
+			<url>http://my.repository.com/repo/path</url>
+		</mirror>
+		改成阿里云的
+		<mirrors>
+			<mirror>
+				<id>alimaven</id>
+				<name>aliyun maven</name>
+				<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+				<mirrorOf>central</mirrorOf>
+			</mirror>
+		</mirrors>
+		
