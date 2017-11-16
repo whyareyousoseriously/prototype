@@ -1,6 +1,7 @@
 package service;
 
 import entity.Users;
+import imageVerification.ImageResult;
 
 //用户业务逻辑接口
 public interface UsersDAO {
@@ -14,4 +15,11 @@ public interface UsersDAO {
 	 * 返回：用户的权限，404代表登陆失败
 	 * */
 	public int usersLogin(Users u);
+	
+	/*
+	 * The method of imageVerification
+	 * 图片验证码
+	 * */
+
+	public boolean imageVerification(String locationString, ImageResult imageResult);
 }
