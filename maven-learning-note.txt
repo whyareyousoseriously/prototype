@@ -44,4 +44,31 @@ mvn -v 查看maven版本
 				<mirrorOf>central</mirrorOf>
 			</mirror>
 		</mirrors>
+	更改本地仓库位置
+		默认放在用户的.m2文件夹里
+		
+	在Eclipse中安装maven插件
+	Window > Preferences > Java > Installed JREs > 选择你的jdk安装路径（记得是jdk，不是jre）
+	Window > Preferences > Java > Installed JREs > 选择你的jdk安装路径（记得是jdk，不是jre）
+	在此解释一下jdk,jre,jvm
+		JDK（Java Development Kit）
+		　　JDK是Java开发工具包，是Sun Microsystems针对Java开发员的产品。
+		　　JDK中包含JRE，在JDK的安装目录下有一个名为jre的目录，里面有两个文件夹bin和lib，在这里可以认为bin里的就是jvm，lib中则是jvm工作所需要的类库，而jvm和 lib和起来就称为jre。
+		　　JDK是整个JAVA的核心，包括了Java运行环境JRE（Java Runtime Envirnment）、一堆Java工具（javac/java/jdb等）和Java基础的类库（即Java API 包括rt.jar）。
+		　　①SE(J2SE)，standard edition，标准版，是我们通常用的一个版本，从JDK 5.0开始，改名为Java SE。
+		　　②EE(J2EE)，enterprise edition，企业版，使用这种JDK开发J2EE应用程序，从JDK 5.0开始，改名为Java EE。
+		　　③ME(J2ME)，micro edition，主要用于移动设备、嵌入式设备上的java应用程序，从JDK 5.0开始，改名为Java ME。
+			金字塔结构 JDK=JRE+JVM+其它 运行Java程序一般都要求用户的电脑安装JRE环境（Java Runtime Environment）；
+			没有jre，java程序无法运行；而没有java程序，jre就没有用武之地。
+		Java Runtime Environment（JRE）
+		　　是运行基于Java语言编写的程序所不可缺少的运行环境。也是通过它，Java的开发者才得以将自己开发的程序发布到用户手中，让用户使用。
+		　　RE中包含了Java virtual machine（JVM），runtime class libraries和Java application launcher，这些是运行Java程序的必要组件。
+		　　与大家熟知的JDK不同，JRE是Java运行环境，并不是一个开发环境，所以没有包含任何开发工具（如编译器和调试器），只是针对于使用Java程序的用户。
+　　	JVM（java virtual machine）
+		　　就是我们常说的java虚拟机，它是整个java实现跨平台的最核心的部分，所有的java程序会首先被编译为.class的类文件，这种类文件可以在虚拟机上执行。
+		　　也就是说class并不直接与机器的操作系统相对应，而是经过虚拟机间接与操作系统交互，由虚拟机将程序解释给本地系统执行。
+		　　只有JVM还不能成class的执行，因为在解释class的时候JVM需要调用解释所需要的类库lib，而jre包含lib类库。
+		　　JVM屏蔽了与具体操作系统平台相关的信息，使得Java程序只需生成在Java虚拟机上运行的目标代码（字节码），就可以在多种平台上不加修改地运行。
+
+	
 		
