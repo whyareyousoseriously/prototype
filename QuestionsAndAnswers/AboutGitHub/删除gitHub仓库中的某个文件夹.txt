@@ -1,0 +1,35 @@
+|---Repository
+      |--- React单页面音乐播放器
+并且git push到了github上。
+后来在本地把文件夹rename改成英文名：
+   |---Repository
+      |--- React SPA Music Player
+再进行commit，push到github，突然发现，目录结构不对：
+   |---Repository
+       |--- React单页面音乐播放器
+       |--- React SPA Music Player
+居然有两个目录，rename之前的目录居然也存在。（一脸懵逼.jpg）
+后来度娘下，从网师（网友都是老师啊）得到了解决方法，实施了下完美解决问题，mark下：
+ 
+   $ git rm -h
+   用法：git rm [<选项>] [--] <文件>...
+         -n, --dry-run                 演习
+         -q, --quiet                    不列出删除的文件
+         --cached                      只从索引区删除
+         -f, --force                     忽略文件更新状态检查
+         -r                                  允许递归删除
+         --ignore-unmatch      即使没有匹配，也以零状态退出
+ 
+
+我的操作历史：
+
+1     git rm -r --cached  "React版单页面音乐播放器"
+2     git commit -m "remove new gitignore directory"
+3     git push origin master   
+
+ 
+再查看github仓库的目录结构：
+   |---Repository
+      |--- React SPA Music Player
+
+感觉世界终于清净了。

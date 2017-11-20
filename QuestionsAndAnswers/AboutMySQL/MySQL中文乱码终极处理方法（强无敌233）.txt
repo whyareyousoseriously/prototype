@@ -1,0 +1,17 @@
+ MySQL数据库出现中文乱码的原因，往往是以下以下客户端、服务器、结果集、数据库的字符集不统一造成的，可以通过：show variables like "%char%"; 语句查询自己数据库当前字符集的配置，显式结果如下：
+
+[html] view plain copy
+
+    character_set_client      | utf8                       |   
+    | character_set_connection | utf8                       |   
+    | character_set_database   | utf8                       |   
+    | character_set_filesystem | binary                     |   
+    | character_set_results     | utf8                       |   
+    | character_set_server     | utf8                       |   
+    | character_set_system    | utf8  
+
+      对于数据库字符集，可以通过这个命令更改：ALTER DATABASE `db_name` CHARACTER SET utf8; 其他的也可以通过这条语句修改：set character_set_client='utf8'; 但是，character_set_server如果默认为latin1,要永久更改，用set命令是行不通的，而更改my.ini文件，也没有效果。 
+
+      正解是：在MySQL的安装文件中进入bin目录下，双击MySQLInstanceConfig.exe，重新走一遍server的配置，但需要注意的是，在Character Set环节，可选择第三项，character选择utf8，(第一项是默认server字符集为latin1，第二项是默认server字符集为utf8的多语言)。
+
+      完成配置后，重启MySQL，写入的数据到MySQL中就是中文啦。

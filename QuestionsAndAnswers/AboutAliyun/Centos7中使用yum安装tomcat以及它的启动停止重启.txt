@@ -1,0 +1,119 @@
+原文：http://www.cnblogs.com/qianzf/p/6986962.html
+
+ centos7中使用yum安装tomcat以及它的启动、停止、重启
+
+ centos7中使用yum安装tomcat
+介绍
+
+Apache Tomcat是用于提供Java应用程序的Web服务器和servlet容器。 Tomcat是Apache Software Foundation发布的Java Servlet和JavaServer Pages技术的开源实现。
+
+本教程介绍在CentOS 7服务器上使用yum进行Tomcat 7的基本安装和一些配置。请注意，这将安装在官方Ubuntu存储库中的最新版本的Tomcat，它可能是或不是最新版本的Tomcat。如果你想保证你安装的是最新版的Tomcat，你可以随时下载最新的二进制分发 。
+
+注：Tomcat的可以自动在你的Droplet通过添加安装这个脚本启动时，它的用户数据。查看本教程以了解更多有关Droplet的用户数据。
+先决条件
+
+在开始使用本指南之前，您应该在服务器上设置一个单独的非root用户帐户。 你可以学习如何通过完成做这个初始服务器设置为CentOS 7教程。 我们将使用demo本教程的其余部分用户。
+安装Tomcat
+
+现在您已准备好安装Tomcat 7.运行以下命令安装Tomcat软件包：
+
+sudo yum install tomcat
+
+答y在确认提示安装Tomcat。 这将安装Tomcat 7及其相关项，比如Java，它也将创建tomcat用户。
+
+最重要的Tomcat的文件将位于/usr/share/tomcat 。 如果你已经有了，你想运行一个Tomcat应用程序，你可以将它放在/usr/share/tomcat/webapps的目录，配置Tomcat，并重新启动Tomcat服务。但在本教程中，我们将安装一些其他软件包，帮助您管理Tomcat应用程序和虚拟主机。
+
+让我们快速更改Tomcat在启动时使用的Java选项。打开Tomcat配置文件：
+
+sudo vi /usr/share/tomcat/conf/tomcat.conf
+
+下面添加JAVA_OPTS行添加到文件。 随意改变Xmx和MaxPermSize值，这些设置会影响Tomcat会使用多少内存：
+/ etc / default / tomcat7 – JAVA_OPTS
+
+JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Djava.awt.headless=true -Xmx512m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC"
+
+保存并退出。
+
+请注意，Tomcat服务将不会运行。
+安装管理包
+
+如果您刚开始使用Apache Tomcat，您很可能想要安装一些管理工具，这些工具将帮助您部署Java应用程序和管理虚拟主机。幸运的是，有一些软件包将这些工具作为Web应用程序。
+
+要安装默认Tomcat根页面（tomcat-webapps）和Tomcat Web应用程序管理器和Virtual Host Manager（tomcat-admin-webapps），请运行以下命令：
+
+sudo yum install tomcat-webapps tomcat-admin-webapps 
+
+答y在确认提示。
+
+这增加了ROOT ， examples ， sample ， manager和host-manager Web应用到tomcat/webapps的目录。
+安装在线文档（可选）
+
+如果要安装Tomcat文档，以便默认Tomcat页面上的所有链接都可以运行，请运行以下命令：
+
+sudo yum install tomcat-docs-webapp tomcat-javadoc
+
+答y在提示安装文档软件包。
+配置Tomcat Web管理界面
+
+为了使用在上一步安装的manager webapp，我们必须添加一个登录到我们的Tomcat服务器。我们将通过编辑这样做tomcat-users.xml的文件：
+
+sudo vi /usr/share/tomcat/conf/tomcat-users.xml
+
+此文件填充有描述如何配置文件的注释。您可能需要以下字里行间删除所有的评论，或者你可能会离开他们，如果你要引用的例子：
+tomcat-users.xml摘录
+
+<tomcat-users>
+...
+</tomcat-users>
+
+您将要新增谁可以访问用户manager-gui和admin-gui （前面我们安装了管理接口）。您可以通过定义类似于以下示例的用户来执行此操作。请务必将用户名和密码更改为安全：
+tomcat-users.xml – 管理用户
+
+<tomcat-users>
+    <user username="admin" password="password" roles="manager-gui,admin-gui"/>
+</tomcat-users>
+
+保存并退出tomcat-users.xml的文件。
+
+现在我们准备好启动Tomcat服务。
+启动Tomcat
+
+要使更改生效，请重新启动Tomcat服务：
+
+sudo systemctl start tomcat
+
+如果由于某种原因而提前启动服务，请改用以下命令运行restart命令：
+
+sudo systemctl restart tomcat
+
+启用Tomcat服务
+
+如果您希望Tomcat在每次启动服务器时运行，则需要启用服务：
+
+sudo systemctl enable tomcat
+
+现在我们准备好访问Web界面。
+访问Web界面
+
+现在Tomcat已经启动并运行，让我们在Web浏览器中访问Web管理界面。您可以通过访问服务器的公共IP地址，在端口8080上：
+
+Open in web browser:
+http://server_IP_address:8080
+
+你会看到类似下面的图像：
+
+Tomcat根
+
+正如你可以看到，有一些链接到您之前安装的管理webapps。
+
+让我们来看看管理器应用程序，通过该链接或访问http:// server_IP_address :8080/manager/html ：
+
+Tomcat Web应用程序管理器
+
+Web应用程序管理器用于管理Java应用程序。您可以在此处开始，停止，重新加载，部署和取消部署。您还可以对应用程序运行一些诊断（即查找内存泄漏）。最后，有关您的服务器的信息位于此页面的最下方。
+
+现在，让我们来看看主机管理，通过链接或访问http:// server_IP_address :8080/host-manager/html/ ：
+
+Tomcat虚拟主机管理器
+
+从Virtual Host Manager页面，您可以添加要从中提供应用程序的虚拟主机

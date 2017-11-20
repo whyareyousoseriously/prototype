@@ -1,0 +1,24 @@
+作者：木女孩
+链接：https://www.zhihu.com/question/56949122/answer/151025345
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+Maven默认用的是JDK1.5去编译diamond运算符，有的书翻译为菱形，有的书写的是钻石语法，指的是JDK1.7的一个新特性List<String> list = new ArrayList<String>(); // 老版本写法
+List<String> list = new ArrayList<>(); // JDK1.7写法
+所以Maven默认使用JDK1.5去编译肯定是不认识这个东西的你可以在pom.xml中加入下面的东西即可<properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+</properties>
+或者你直接在pom.xml中配置Maven的编译插件也是可以的，类似下面这样<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.5.1</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
