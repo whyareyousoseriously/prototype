@@ -8,6 +8,10 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;Complete the refactor about the prototype.<br>
 &emsp;&emsp;&emsp;&emsp;Complete the limit of authority in back-end.<br>
 &emsp;&emsp;&emsp;&emsp;Submit the questions and answers before.<br>
+&emsp;&emsp;2017-11-21<br>
+&emsp;&emsp;&emsp;&emsp;submit the questions and answers before.<br>
+&emsp;&emsp;2017-11-22<br>
+&emsp;&emsp;&emsp;&emsp;submit the questions and answers about why use utf8mb in mysql;<br>
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -18,3 +22,7 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;完成maven对prototype项目的代码结构重构<br>
 &emsp;&emsp;&emsp;&emsp;完成权限验证后台的初步实现。<br>
 &emsp;&emsp;&emsp;&emsp;提交之前积攒的问题和答案。<br>
+&emsp;&emsp;2017-11-21<br>
+&emsp;&emsp;&emsp;&emsp;进一步提交之前积攒的问题和答案;<br>
+&emsp;&emsp;2017-11-22<br>
+&emsp;&emsp;&emsp;&emsp;提交问题和答案关于为什么要在mysql中使用utf8mb4;<br>
