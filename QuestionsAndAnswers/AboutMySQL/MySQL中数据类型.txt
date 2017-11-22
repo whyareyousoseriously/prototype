@@ -29,4 +29,13 @@
 		3.DATA		存储需求	3
 		4.DATATIME	存储需求	8
 		5.TIMESTAMP	存储需求	4
-	4.
+	4.字符型
+		1.CHAR(M)		M个字节,0<=M<=255,定长
+		2.VARCHAR(M)	L+1个字节,其中L<=M且0<=M<=65535
+		3.TINYTEXT		L+1个字节,其中L<2^8
+		4.TEXT			L+2个字节,其中L<2^16
+		5.MEDIUMTEXT	L+3个字节,其中L<2^24
+		6.LONGTEXT		L+4个字节,其中L<2^32
+		7.ENUM('value1','value2',...)	1或2个字节,取决于枚举值的个数(最多65535)
+		8.SET('value1','value2',...)	1,2,3,4或者8个字节,取决于set成员的数目(最多64个成员(
+		
