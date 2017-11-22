@@ -28,5 +28,5 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;进一步提交之前积攒的问题和答案;<br>
 &emsp;&emsp;2017-11-22<br>
 &emsp;&emsp;&emsp;&emsp;提交问题和答案关于为什么要在mysql中使用utf8mb4;<br>
-&emsp;&emsp;&emsp;&emsp;提交问题和答案关于mysql的基本操作复习
+&emsp;&emsp;&emsp;&emsp;提交问题和答案关于mysql的基本操作复习<br>
 &emsp;&emsp;&emsp;&emsp;***关于学习日志的更新以后将转移至**QuestionsAndAnswers**目录下***<br>
