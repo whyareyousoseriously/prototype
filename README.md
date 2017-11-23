@@ -18,6 +18,7 @@ a javaWeb prototype<br>
 &emsp;&emsp;2017-11-23<br>
 &emsp;&emsp;&emsp;&emsp;the method of tomcat charset.<br>
 &emsp;&emsp;&emsp;&emsp;solve the question about garbled Chinese character in jsp;<br>
+&emsp;&emsp;&emsp;&emsp;only one servlet can work in verificationCode project(unsolve)<br>
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -38,3 +39,4 @@ a javaWeb prototype<br>
 &emsp;&emsp;2017-11-23<br>
 &emsp;&emsp;&emsp;&emsp;tomcat中更改字符集<br>
 &emsp;&emsp;&emsp;&emsp;index.jsp文件中文乱码显示问题<br>
+&emsp;&emsp;&emsp;&emsp;在verificationCode工程中只有一个servlet起作用(未解决,配置无误检查无数遍吐血啊)<br>
