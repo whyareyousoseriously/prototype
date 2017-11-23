@@ -15,6 +15,9 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;submit the questions and answers about review basic opration of mysql;<br>
 &emsp;&emsp;&emsp;&emsp;***The update of learning-log will be transferred to **QuestionsAndAnswers** directory***<br>
 &emsp;&emsp;&emsp;&emsp;update QuestionsAndAnswers about the data type of mysql;<br>
+&emsp;&emsp;2017-11-23<br>
+&emsp;&emsp;&emsp;&emsp;the method of tomcat charset.<br>
+&emsp;&emsp;&emsp;&emsp;solve the question about garbled Chinese character in jsp;<br>
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -32,3 +35,6 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;提交问题和答案关于mysql的基本操作复习<br>
 &emsp;&emsp;&emsp;&emsp;***关于学习日志的更新以后将转移至QuestionsAndAnswers目录下***<br>
 &emsp;&emsp;&emsp;&emsp;更新QuestionsAndAnswers关于mysql的数据类型;<br>
+&emsp;&emsp;2017-11-23<br>
+&emsp;&emsp;&emsp;&emsp;tomcat中更改字符集<br>
+&emsp;&emsp;&emsp;&emsp;index.jsp文件中文乱码显示问题<br>
