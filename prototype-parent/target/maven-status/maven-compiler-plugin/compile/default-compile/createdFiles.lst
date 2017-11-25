@@ -1,11 +1,6 @@
-action\UsersAction.class
-imageVerification\ImageGroup.class
-imageVerification\GenerateImageGroup.class
-imageVerification\BufferedImageWrap.class
-db\MyHibernateSessionFactory.class
-action\SuperAction.class
-imageVerification\ImageResult.class
 service\impl\UsersDAOImpl.class
 entity\Users.class
 service\UsersDAO.class
-imageVerification\Image.class
+action\UsersAction.class
+db\MyHibernateSessionFactory.class
+action\SuperAction.class

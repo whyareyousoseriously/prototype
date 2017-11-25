@@ -19,17 +19,17 @@ public class UsersAction extends SuperAction implements ModelDriven<Users> {
 	// 用户登陆
 	public String login() {
 		UsersDAO udao = new UsersDAOImpl();
-		if (udao.usersLogin(user) == 404) {// 登陆失败
+		if (udao.usersLogin(user) == 404&&imageVerification()) {// 登陆失败
 			return "login_failure";
 		}
-		if (udao.usersLogin(user) == 0) {// 若用户权限为0
+		if (udao.usersLogin(user) == 0&&imageVerification()) {// 若用户权限为0
 			// 在session中保存登陆成功的用户名
 			session.setAttribute("loginUserName", user.getUsername());
 			// 在session中保存用户权限
 			session.setAttribute("loginPower", 0);
 			return "login_success";
 		}
-		if (udao.usersLogin(user) == 1) {
+		if (udao.usersLogin(user) == 1&&imageVerification()) {
 			// 若用户权限为1
 			// 在session中保存登陆成功的用户名
 			session.setAttribute("loginUserName", user.getUsername());
@@ -37,7 +37,7 @@ public class UsersAction extends SuperAction implements ModelDriven<Users> {
 			session.setAttribute("loginPower", 1);
 			return "login_success";
 		}
-		if (udao.usersLogin(user) == 2) {
+		if (udao.usersLogin(user) == 2&&imageVerification()) {
 			// 若用户权限为2
 			// 在session中保存登陆成功的用户名
 			session.setAttribute("loginUserName", user.getUsername());
@@ -67,11 +67,25 @@ public class UsersAction extends SuperAction implements ModelDriven<Users> {
 	 * if(user.getPassword().length()<6) { this.addFieldError("passwordError",
 	 * "密码长度不少于6位"); } }
 	 */
+	/*
+	 * 图片验证码
+	 * */
+	public boolean imageVerification() {
+        //从session中取服务器中的验证码
+        String kaptchaServer = (String)request.getSession().getAttribute
+        (com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
+        String kaptchaClient = request.getParameter("checkCode");
+        if (kaptchaServer.equals(kaptchaClient))
+        	return true;
+        else
+        	return false;
+	}
+
 	@Override
 	public Users getModel() {
 		// TODO Auto-generated method stub
 		return this.user;
 	}
-
+	
 }
 
