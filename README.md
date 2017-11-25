@@ -19,6 +19,10 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;the method of tomcat charset.<br>
 &emsp;&emsp;&emsp;&emsp;solve the question about garbled Chinese character in jsp;<br>
 &emsp;&emsp;&emsp;&emsp;only one servlet can work in verificationCode project(unsolve)<br>
+&emsp;&emsp;2017-11-25<br>
+&emsp;&emsp;&emsp;&emsp;use maven to refactor the verificationCode and solve the servlet cann't work<br>
+&emsp;&emsp;&emsp;&emsp;maybe it is the problem about the running time environment. <br>
+&emsp;&emsp;&emsp;&emsp;try the method that use kaptcha to complete the verificationCode;<br>
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -40,3 +44,7 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;tomcat中更改字符集<br>
 &emsp;&emsp;&emsp;&emsp;index.jsp文件中文乱码显示问题<br>
 &emsp;&emsp;&emsp;&emsp;在verificationCode工程中只有一个servlet起作用(未解决,配置无误检查无数遍吐血啊)<br>
+&emsp;&emsp;2017-11-25<br>
+&emsp;&emsp;&emsp;&emsp;使用maven对verificationCode工程进行重构解决了servlet的问题，但是这个依旧是没有发现原因，知其然不知其所以然<br>
+&emsp;&emsp;&emsp;&emsp;或许是与tomcat运行时环境有关<br>
+&emsp;&emsp;&emsp;&emsp;尝试了用kaptcha实现验证码<br>
