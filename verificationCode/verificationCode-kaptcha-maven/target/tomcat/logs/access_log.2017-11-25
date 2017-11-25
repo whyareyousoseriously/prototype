@@ -1,0 +1,2 @@
+0:0:0:0:0:0:0:1 - - [25/Nov/2017:22:47:20 +0800] "GET /verificationCode-kaptcha-maven/ HTTP/1.1" 200 779 http-bio-8080-exec-1 820
+0:0:0:0:0:0:0:1 - - [25/Nov/2017:22:47:22 +0800] "GET /verificationCode-kaptcha-maven/randomcode.jpg HTTP/1.1" 200 3507 http-bio-8080-exec-4 1467
