@@ -27,6 +27,7 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;add verificationCode into prototype-parent;<br>
 &emsp;&emsp;&emsp;&emsp;a more particular knowledge of Hibernate;<br>
 &emsp;&emsp;&emsp;&emsp;and other mainsteram ORM framwork--MyBatis,Toplink,EJB;<br>
+&emsp;&emsp;&emsp;&emsp;Understand the method chaining.<br>
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -56,3 +57,4 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;初步添加verificationCode到prototype-parent;<br>
 &emsp;&emsp;&emsp;&emsp;进一步了解Hibernate<br>
 &emsp;&emsp;&emsp;&emsp;和其他主流的ORM框架技术MyBatis,Toplink,EJB.<br>
+&emsp;&emsp;&emsp;&emsp;了解方法链的编程风格<br>
