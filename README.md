@@ -25,6 +25,8 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;try the method that use kaptcha to complete the verificationCode;<br>
 &emsp;&emsp;2017-11-26<br>
 &emsp;&emsp;&emsp;&emsp;add verificationCode into prototype-parent;<br>
+&emsp;&emsp;&emsp;&emsp;a more particular knowledge of Hibernate;<br>
+&emsp;&emsp;&emsp;&emsp;and other mainsteram ORM framwork--MyBatis,Toplink,EJB;<br>
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -52,3 +54,5 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;尝试了用kaptcha实现验证码<br>
 &emsp;&emsp;2017-11-26<br>
 &emsp;&emsp;&emsp;&emsp;初步添加verificationCode到prototype-parent;<br>
+&emsp;&emsp;&emsp;&emsp;进一步了解Hibernate<br>
+&emsp;&emsp;&emsp;&emsp;和其他主流的ORM框架技术MyBatis,Toplink,EJB.<br>
