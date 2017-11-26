@@ -1,0 +1,5 @@
+HQL定义
+	1.Hibernate Query Language, Hibernate查询语言
+	2.HQL是面向对象的查询语言
+初学HQL注意的问题
+	HQL是面向对象的查询语言，对java类与属性大小写敏感
