@@ -1,5 +1,24 @@
+什么是QRM--对象关系映射
+ORM（Object Relationship Mapping)
+Hibernate就是一种可行的ORM技术。
+Hibernate对JDBC进行了非常轻量级的封装
+其他主流的ORM框架技术
+	1.MyBatis:前身就是著名的iBatis
+	2.Toplink:后被Oracle收购，并重新包装为Oracle As Toplink
+	3.EJB:重量级的框架
 HQL定义
 	1.Hibernate Query Language, Hibernate查询语言
 	2.HQL是面向对象的查询语言
 初学HQL注意的问题
 	HQL是面向对象的查询语言，对java类与属性大小写敏感
+	HQL对关键字不区分大小写
+org.hibernate.Query接口
+	1.Query接口定义有执行查询的方法
+	2.Query接口支持方法链编程风格，使程序代码更为简洁
+Query实例的创建
+	1.Session的createQuery()方法创建Query实例
+	2.createQuery方法包含一个HQL语句参数，createQuery(hql);
+Query执行查询
+	1.Query接口的list()方法执行HQL查询
+	2.list()方法返回结果数据类型为java.util.List,List集合中存放符合查询条件的持久化对象
+	
