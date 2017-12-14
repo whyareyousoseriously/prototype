@@ -31,6 +31,7 @@ a javaWeb prototype<br>
 &emsp;&emsp;2017-12-14<br>
 &emsp;&emsp;&emsp;&emsp;JavaMail;<br>
 &emsp;&emsp;&emsp;&emsp;Incomplete implementation of registration;<br>
+&emsp;&emsp;&emsp;&emsp;Three ways to get the form data in struts2;<br>
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -64,3 +65,4 @@ a javaWeb prototype<br>
 &emsp;&emsp;2017-12-14<br>
 &emsp;&emsp;&emsp;&emsp;JavaMail的使用;<br>
 &emsp;&emsp;&emsp;&emsp;register的初步实现;<br>
+&emsp;&emsp;&emsp;&emsp;struts2获取表单数据的三种方式;<br>
