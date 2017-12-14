@@ -30,6 +30,7 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;Understand the method chaining.<br>
 &emsp;&emsp;2017-12-14<br>
 &emsp;&emsp;&emsp;&emsp;JavaMail;<br>
+&emsp;&emsp;&emsp;&emsp;Incomplete implementation of registration;<br>
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -62,3 +63,4 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;了解方法链的编程风格<br>
 &emsp;&emsp;2017-12-14<br>
 &emsp;&emsp;&emsp;&emsp;JavaMail的使用;<br>
+&emsp;&emsp;&emsp;&emsp;register的初步实现;<br>

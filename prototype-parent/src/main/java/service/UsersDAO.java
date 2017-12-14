@@ -15,6 +15,15 @@ public interface UsersDAO {
 	 * 返回：用户的权限，404代表登陆失败
 	 * */
 	public int usersLogin(Users u);
-	
+	/*
+	 * The method of userRegister
+	 * @param u{Users};
+	 * @return the result
+	 * 
+	 * 用户注册的方法
+	 * 输入：用户u
+	 * 返回：结果，成功或失败的原因
+	 * */
+	public int usersRegister(Users u);
 	
 }

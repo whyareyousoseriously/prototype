@@ -9,6 +9,7 @@
         </id>
         <property name="username"   type="java.lang.String" />
         <property name="password"   type="java.lang.String" />
+        <property name="email" type="java.lang.String"></property>
  		<property name="power" type="java.lang.Integer"/>
     </class>
 </hibernate-mapping>

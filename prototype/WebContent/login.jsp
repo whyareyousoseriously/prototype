@@ -18,11 +18,11 @@
 <meta name="keywords"
 	content="html5, css3, form, switch, animation, :target, pseudo-class">
 <meta name="author" content="Codrops">
-<link rel="shortcut icon" href="<%=basePath %>/loginIn_files/favicon.ico">
-<link rel="stylesheet" type="text/css" href="<%=basePath %>/loginIn_files/demo.css">
-<link rel="stylesheet" type="text/css" href="<%=basePath %>/loginIn_files/style.css">
+<link rel="shortcut icon" href="<%=basePath %>/login_files/favicon.ico">
+<link rel="stylesheet" type="text/css" href="<%=basePath %>/login_files/demo.css">
+<link rel="stylesheet" type="text/css" href="<%=basePath %>/login_files/style.css">
 <link rel="stylesheet" type="text/css"
-	href="<%=basePath %>/loginIn_files/animate-custom.css">
+	href="<%=basePath %>/login_files/animate-custom.css">
 <script src="https://static.geetest.com/static/tools/gt.js"></script>
 <script src="https://api.geetest.com/get.php"></script>
 </head>

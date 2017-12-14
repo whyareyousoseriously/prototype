@@ -38,7 +38,7 @@
 				<div id="login" class="animate form">
 					<form action="<%=path%>/users/Users_login.action" method="post"
 						autocomplete="on">
-						<h1>XX缴费系统登陆</h1>
+						<h1>登陆</h1>
 						<p>
 							<label for="username" class="uname" data-icon="u">邮箱或用户名</label>
 							<input id="username" name="username" required="required"
@@ -71,27 +71,27 @@
 				</div>
 
 				<div id="register" class="animate form">
-					<form action="servlet/RegisterServlet" autocomplete="on">
-						<h1>Sign up</h1>
+					<form action="<%=path%>/users/Users_register.action" method="post" autocomplete="on">
+						<h1>注册</h1>
 						<p>
-							<label for="usernamesignup" class="uname" data-icon="u">你的用户名</label> <input id="usernamesignup" name="usernamesignup"
+							<label for="usernamesignup" class="uname" data-icon="u">你的用户名</label> <input id="usernamesignup" name="username"
 								required="required" placeholder="mysuperusername690" type="text">
 						</p>
 						<p>
 							<label for="emailsignup" class="youmail" data-icon="e">
-								你的邮箱</label> <input id="emailsignup" name="emailsignup"
+								你的邮箱</label> <input id="emailsignup" name="email"
 								required="required" placeholder="mysupermail@mail.com"
 								type="email">
 						</p>
 						<p>
-							<label for="passwordsignup" class="youpasswd" data-icon="p">你的密码 </label> <input id="passwordsignup" name="passwordsignup"
+							<label for="passwordsignup" class="youpasswd" data-icon="p">你的密码 </label> <input id="passwordsignup" name="password"
 								required="required" placeholder="eg. X8df!90EO" type="password">
 						</p>
 						<p>
 							<label for="passwordsignup_confirm" class="youpasswd"
 								data-icon="p">重复输入你的密码</label> <input
 								id="passwordsignup_confirm" name="passwordsignup_confirm"
-								required="required" placeholder="eg. X8df!90EO" type="password">
+								required="required" placeholder="eg. X8df!9	0EO" type="password">
 						</p>
 						<p class="signin button">
 							<input value="注册" type="submit">

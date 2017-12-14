@@ -57,7 +57,18 @@ public class UsersAction extends SuperAction implements ModelDriven<Users> {
 		}
 		return "logout_success";
 	}
-
+	/*
+	 * 用户注册
+	 * */
+	public String register() {
+		UsersDAO udao = new UsersDAOImpl();
+		if(udao.usersRegister(user)==0) {
+			return "register_success";
+		}else {
+			return "register_failure";
+		}
+		
+	}
 	/*
 	 * //表单验证
 	 * 
