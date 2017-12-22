@@ -1,0 +1,2 @@
+出现这个问题，我在网上查了说有以下几种原因造成：1.端口被占用，2.tomcat启动时间不够，3.eclipse在管理tomcat时出现了问题。我试过这些方法都无法解决,后来在书上发现Servlet3.0中出现了新增注释@WebServlet ，在Eclipse生成一个新的Servlet类时会自动增加@WebServlet注释，改注释会自动为我们配置web.xml，所以这时候我们再去配置web.xml就会产生冲突，tomcat就不能启动。
+这个时候我们只需要删除 @WebServlet或者删除web.xml配置就能正常启动tomcat了。

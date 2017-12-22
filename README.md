@@ -32,6 +32,11 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;JavaMail;<br>
 &emsp;&emsp;&emsp;&emsp;Incomplete implementation of registration;<br>
 &emsp;&emsp;&emsp;&emsp;Three ways to get the form data in struts2;<br>
+&emsp;&emsp;2017-12-15<br>
+&emsp;&emsp;&emsp;&emsp;QuestionsAndAnswers:Could not get constructor for org.hibernate.persister.entity.SingleTableEntityPersister;<br>
+&emsp;&emsp;2017-12-22<br>
+&emsp;&emsp;&emsp;&emsp;The problem that has plagued me for two days about the web page in the JSF framework dones not display various tags has be sloved.
+&emsp;&emsp;&emsp;&emsp;happy! ^.^! By the way, a new folder on JSF framework issues is created. <br>
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -66,3 +71,8 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;JavaMail的使用;<br>
 &emsp;&emsp;&emsp;&emsp;register的初步实现;<br>
 &emsp;&emsp;&emsp;&emsp;struts2获取表单数据的三种方式;<br>
+&emsp;&emsp;2017-12-15<br>
+&emsp;&emsp;&emsp;&emsp;问题与解决，关于Struts2中模型驱动错误，Could not get constructor for org.hibernate.persister.entity.SingleTableEntityPersister;<br>
+&emsp;&emsp;2017-12-22<br>
+&emsp;&emsp;&emsp;&emsp;困扰我两天的关于在JSF框架中网页无法显示各种标签的问题已经解决<br>
+&emsp;&emsp;&emsp;&emsp;另外新开了关于jsf相关问题的解决记录，文件夹为AboutJSF<br>

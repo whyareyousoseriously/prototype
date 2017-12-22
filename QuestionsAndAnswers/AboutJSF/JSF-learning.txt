@@ -1,0 +1,4 @@
+//困扰了我两天的问题终于解决了
+//jsf框架，但是在xhtml中无法显示各种标签，例如<h:inputText />
+//解决方法是：因为web.xml中的过滤，所以访问的时候直接输入
+//例如 index.xhtml是不行的，要根据web.xml中的设定来，输入如：index.jsf
