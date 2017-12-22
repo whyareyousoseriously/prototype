@@ -37,6 +37,9 @@ a javaWeb prototype<br>
 &emsp;&emsp;2017-12-22<br>
 &emsp;&emsp;&emsp;&emsp;The problem that has plagued me for two days about the web page in the JSF framework dones not display various tags has be sloved.
 &emsp;&emsp;&emsp;&emsp;happy! ^.^! By the way, a new folder on JSF framework issues is created. <br>
+&emsp;&emsp;2017-12-23<br>
+&emsp;&emsp;&emsp;&emsp;begin a simple example about JSF framework which is about student information mangement.<br>
+
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -76,3 +79,5 @@ a javaWeb prototype<br>
 &emsp;&emsp;2017-12-22<br>
 &emsp;&emsp;&emsp;&emsp;困扰我两天的关于在JSF框架中网页无法显示各种标签的问题已经解决<br>
 &emsp;&emsp;&emsp;&emsp;另外新开了关于jsf相关问题的解决记录，文件夹为AboutJSF<br>
+&emsp;&emsp;2017-12-23<br>
+&emsp;&emsp;&emsp;&emsp;新开了一个关于jsf框架的小例子，学生信息管理<br>
