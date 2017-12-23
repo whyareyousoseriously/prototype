@@ -15,14 +15,14 @@
 			<h:panelGrid columns="2" styleClass="formTable">
 			
 					<h:outputLabel>学号(studentID):</h:outputLabel>
-					<h:inputText value="#{registrationBean.studentID}"></h:inputText>
+					<h:inputText value="#{loginBean.studentID}"></h:inputText>
 					
 					<h:outputLabel>密码(password):</h:outputLabel>
-					<h:inputText value="#{registrationBean.password}"></h:inputText>
+					<h:inputText value="#{loginBean.password}"></h:inputText>
 				
 			</h:panelGrid>
-			<h:commandButton 	value="Register"
-								action="#{registrationBean.doRegistration}"/>
+			<h:commandButton 	value="login"
+								action="#{loginBean.doLogin}"/>
 			</h:form>
 		</fieldset>
 		
