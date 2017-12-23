@@ -39,6 +39,9 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;happy! ^.^! By the way, a new folder on JSF framework issues is created. <br>
 &emsp;&emsp;2017-12-23<br>
 &emsp;&emsp;&emsp;&emsp;begin a simple example about JSF framework which is about student information mangement.<br>
+&emsp;&emsp;&emsp;&emsp;update AboutHibernation sloved a problem about org.hibernate.MappingException: <br>
+&emsp;&emsp;&emsp;&emsp;Could not get constructor for org.hibernate.persister.entity.SingleT
+&emsp;&emsp;&emsp;&emsp;use jsf+hibernte4 to complete function about register and login in studentInformationManagement;<br>
 
 # 原型  
 一个javaWeb项目的原型<br>
@@ -81,3 +84,5 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;另外新开了关于jsf相关问题的解决记录，文件夹为AboutJSF<br>
 &emsp;&emsp;2017-12-23<br>
 &emsp;&emsp;&emsp;&emsp;新开了一个关于jsf框架的小例子，学生信息管理<br>
+&emsp;&emsp;&emsp;&emsp;更新日志解决了org.hibernate.MappingException: Could not get constructor for org.hibernate.persister.entity.SingleT...<br>
+&emsp;&emsp;&emsp;&emsp;用jsf+hibernate4完成学生信息管理功能中的登陆和注册功能<br>
