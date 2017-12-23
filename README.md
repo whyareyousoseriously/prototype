@@ -42,7 +42,7 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;update AboutHibernation sloved a problem about org.hibernate.MappingException: <br>
 &emsp;&emsp;&emsp;&emsp;Could not get constructor for org.hibernate.persister.entity.SingleT
 &emsp;&emsp;&emsp;&emsp;use jsf+hibernte4 to complete function about register and login in studentInformationManagement;<br>
-
+&emsp;&emsp;&emsp;&emsp;solve the problem that <f:selectItem/> donn't work.<br>
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -86,3 +86,4 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;新开了一个关于jsf框架的小例子，学生信息管理<br>
 &emsp;&emsp;&emsp;&emsp;更新日志解决了org.hibernate.MappingException: Could not get constructor for org.hibernate.persister.entity.SingleT...<br>
 &emsp;&emsp;&emsp;&emsp;用jsf+hibernate4完成学生信息管理功能中的登陆和注册功能<br>
+&emsp;&emsp;&emsp;&emsp;解决了.xhtml中<f:selectItem/>不起作用的问题<br>
