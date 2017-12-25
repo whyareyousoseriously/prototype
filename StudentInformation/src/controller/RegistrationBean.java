@@ -1,6 +1,10 @@
 package controller;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.event.ActionEvent;
 
 import utils.FormUtils;
 
@@ -9,19 +13,19 @@ import utils.FormUtils;
  * @author cz
  * 2017-12-22
  * */
-@ManagedBean
+
 public class RegistrationBean {
 	private String name;
 	private String studentID;
 	private String password;
 	private String gender;
-	private String brithday;
+	private Date brithday;
 	private String grade;
 	private String department;
 	private String major;
 	private String email;
 	private String address;
-	private String hobby;
+	private List<String> hobby;
 	public String getName() {
 		return name;
 	}
@@ -46,10 +50,11 @@ public class RegistrationBean {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getBrithday() {
+	
+	public Date getBrithday() {
 		return brithday;
 	}
-	public void setBrithday(String brithday) {
+	public void setBrithday(Date brithday) {
 		this.brithday = brithday;
 	}
 	public String getGrade() {
@@ -82,17 +87,30 @@ public class RegistrationBean {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getHobby() {
+	
+	public List<String> getHobby() {
 		return hobby;
 	}
-	public void setHobby(String hobby) {
+	public void setHobby(List<String> hobby) {
 		this.hobby = hobby;
 	}
-	public String doRegistration() {
-		if(FormUtils.isAnyMissing(name,studentID,password,gender,brithday,grade,department,major,email,address,hobby)) {
+	public String doRegistration(ActionEvent actionEvent) {
+		/*if(FormUtils.isAnyMissing(name,studentID,password,gender,grade,department,major,email,address)) {
 			return "registration-error";
 		}else {
 			return "registration-success";
-		}
+		}*/
+		return "registration-success";
+	}
+	public String doRegistration() {
+		/*if(FormUtils.isAnyMissing(name,studentID,password,gender,grade,department,major,email,address)) {
+			return "registration-error";
+		}else {
+			return "registration-success";
+		}*/
+		return "registration-success";
+	}
+	public String make() {
+		return "index";
 	}
 }
