@@ -1,6 +1,8 @@
 package controller;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 import dao.UsersDAO;
 import dao.impl.UsersDAOImpl;
@@ -12,8 +14,8 @@ import model.Users;
  * @author cz
  * 2017-12-22
  * */
-@ManagedBean
-public class loginBean {
+
+public class LoginBean {
 	private String studentID;
 	private String password;
 	public String getStudentID() {
@@ -43,8 +45,11 @@ public class loginBean {
 		//将页面上的Users对象传递，然后数据库进行查询
 		
 		if(usersDAO.usersLogin(users)==1) {
+			System.out.println(users.getStudentID()+"登录成功");
 			return "login-success";
 		}else {
+			System.out.println(users.getStudentID()+"登录失败");
+			
 			return "login-error";
 		}
 	}
