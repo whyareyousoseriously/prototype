@@ -6,6 +6,9 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.event.ActionEvent;
 
+import dao.UsersDAO;
+import dao.impl.UsersDAOImpl;
+import model.Users;
 import utils.FormUtils;
 
 /*
@@ -26,6 +29,14 @@ public class RegistrationBean {
 	private String email;
 	private String address;
 	private List<String> hobby;
+	private String otherHobby;
+	
+	public String getOtherHobby() {
+		return otherHobby;
+	}
+	public void setOtherHobby(String otherHobby) {
+		this.otherHobby = otherHobby;
+	}
 	public String getName() {
 		return name;
 	}
@@ -50,6 +61,8 @@ public class RegistrationBean {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+	
+	
 	
 	public Date getBrithday() {
 		return brithday;
@@ -94,23 +107,44 @@ public class RegistrationBean {
 	public void setHobby(List<String> hobby) {
 		this.hobby = hobby;
 	}
-	public String doRegistration(ActionEvent actionEvent) {
-		/*if(FormUtils.isAnyMissing(name,studentID,password,gender,grade,department,major,email,address)) {
-			return "registration-error";
-		}else {
-			return "registration-success";
-		}*/
-		return "registration-success";
+	
+	@Override
+	public String toString() {
+		return "RegistrationBean [name=" + name + ", studentID=" + studentID + ", password=" + password + ", gender="
+				+ gender + ", brithday=" + brithday + ", grade=" + grade + ", department=" + department + ", major="
+				+ major + ", email=" + email + ", address=" + address + ", hobby=" + hobby + ", otherHobby="
+				+ otherHobby + "]";
 	}
 	public String doRegistration() {
-		/*if(FormUtils.isAnyMissing(name,studentID,password,gender,grade,department,major,email,address)) {
-			return "registration-error";
-		}else {
+		System.out.println(this.toString());
+		
+		//将页面上的注册信息封装成Users对象
+		//The information of registration on the page are encapsulated into users objects.
+		Users users= new Users();
+		users.setName(name);
+		users.setStudentID(studentID);
+		users.setPassword(password);
+		users.setGender(gender);
+		users.setBrithday(brithday);
+		users.setGrade(grade);
+		users.setDepartment(department);
+		users.setMajor(major);
+		users.setEmail(email);
+		users.setAddress(address);
+		users.setHobby(hobby);
+		
+		UsersDAO udao = new UsersDAOImpl();
+		if(udao.usersRegister(users)==1)
 			return "registration-success";
-		}*/
-		return "registration-success";
+		else
+			return "registration-error";
 	}
-	public String make() {
-		return "index";
+	/*
+	 * 用来检测sturndenID是否合法
+	 * 1.类型是否合法
+	 * 2.数据库中是否已经存在
+	 * */
+	public void validatorStudentID() {
+		
 	}
 }

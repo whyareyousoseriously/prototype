@@ -1,21 +1,24 @@
 package model;
 
+import java.util.Date;
+import java.util.List;
+
 public class Users {
 	private int uid;
 	private String name;
 	private String studentID;
 	private String password;
 	private String gender;
-	private String brithday;
+	private Date brithday;
 	private String grade;
 	private String department;
 	private String major;
 	private String email;
 	private String address;
-	private String hobby;
+	private List<String> hobby;
 	public Users() {}
-	public Users(int uid, String name, String studentID, String password, String gender, String brithday, String grade,
-			String department, String major, String email, String address, String hobby) {
+	public Users(int uid, String name, String studentID, String password, String gender, Date brithday, String grade,
+			String department, String major, String email, String address, List<String> hobby) {
 		super();
 		this.uid = uid;
 		this.name = name;
@@ -60,12 +63,7 @@ public class Users {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getBrithday() {
-		return brithday;
-	}
-	public void setBrithday(String brithday) {
-		this.brithday = brithday;
-	}
+	
 	public String getGrade() {
 		return grade;
 	}
@@ -96,10 +94,19 @@ public class Users {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getHobby() {
+	
+	
+	public Date getBrithday() {
+		return brithday;
+	}
+	public void setBrithday(Date brithday) {
+		this.brithday = brithday;
+	}
+	public List<String> getHobby() {
 		return hobby;
 	}
-	public void setHobby(String hobby) {
+	public void setHobby(List<String> hobby) {
 		this.hobby = hobby;
 	}
+	
 }

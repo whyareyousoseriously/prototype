@@ -41,4 +41,28 @@ public class UsersDAOImpl implements UsersDAO{
 		}
 	}
 
+	@Override
+	public int usersRegister(Users users) {
+		// TODO Auto-generated method stub
+		
+		//创建一个事务对象
+		Transaction tx = null;
+		String sql = "";
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			tx = session.beginTransaction();
+			session.save(users);
+			tx.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return 404;
+		}finally {
+			if(tx!=null) {
+				tx=null;
+			}
+		}
+		
+		return 1;
+	}
+
 }
