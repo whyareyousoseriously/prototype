@@ -47,6 +47,8 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;Notice: pay attention to the tag of <p:commandButton /> which has a attribute named "process";
 &emsp;&emsp;2017-12-26<br>
 &emsp;&emsp;&emsp;&emsp;validation of studentInformationManagement project.<br>
+&emsp;&emsp;2017-12-27<br>
+&emsp;&emsp;&emsp;&emsp;About lazy loadding in hibernate.
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -96,3 +98,5 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;注意<p:commandButton />中的process属性，处理的范围，否则可能造成可以对数据验证，但是无法执行跳转，具体的例子看今天提交的JAVAEE作业<br>
 &emsp;&emsp;2017-12-26<br>
 &emsp;&emsp;&emsp;&emsp;完善了学生信息管理的项目的注册界面，登录界面表单的各属性合法性验证<br>
+&emsp;&emsp;2017-12-27<br>
+&emsp;&emsp;&emsp;&emsp;解决数据库多表关联时，懒加载的问题,记录于QuestionsAndAnswers/AboutHibernate<br>

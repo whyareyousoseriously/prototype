@@ -10,39 +10,60 @@
 </h:head>
 <h:body>
 	<div align="center">
-		<h1 class="ui-widget-header ui-corner-all">登录</h1>
+		<h1 class="ui-widget-header ui-corner-all">学生信息管理</h1>
 		<p:fieldset legend="Welcome to login">
-			
 			<h:form>
-			<p:panelGrid columns="3" styleClass="formTable">
-			
-					<p:outputLabel>学号(studentID):</p:outputLabel>
-					<p:inputText value="#{LoginBean.studentID}"
-								 required="true"
-								 id="studentID"
-								 requiredMessage="学号不能为空">
-							
-							<p:ajax update="studentID-error" event="blur"/>
-					</p:inputText>
-					<p:message for="studentID" id="studentID-error"/>
-					
-					<p:outputLabel>密码(password):</p:outputLabel>
-					<p:password value="#{LoginBean.password}"
-								 required="true"
-								 id="password"
-								 requiredMessage="密码不能为空">
-							<p:ajax update="studentID-error" event="blur"/>
-					</p:password>
-					<p:message for="password" id="password-error"/>
-				
-			</p:panelGrid>
-			<p:commandButton	value="登录(login)"
-								process="@form"
+				<p:panelGrid>
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="3">登陆(login)</p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column>
+							<p:outputLabel>学号(studentID):</p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:inputText value="#{UsersBean.studentID}" required="true"
+								id="studentID" requiredMessage="学号不能为空">
+
+								<p:ajax update="studentID-error" event="blur" />
+							</p:inputText>
+						</p:column>
+						<p:column>
+							<p:message for="studentID" id="studentID-error" />
+						</p:column>
+
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel>密码(password):</p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:password value="#{UsersBean.password}" required="true"
+								id="password" requiredMessage="密码不能为空">
+								<p:ajax update="studentID-error" event="blur" />
+							</p:password>
+						</p:column>
+						<p:column>
+							<p:message for="password" id="password-error" />
+						</p:column>
+
+					</p:row>
+
+					<p:row>
+						<p:column colspan="3" style="text-align:center">
+							<p:commandButton value="登录(login)" process="@form"
 								update="studentID-error password-error"
-								action="#{LoginBean.doLogin}">
-			</p:commandButton>
-			<!-- 带弹窗的登录 -->
-			<!-- <p:commandButton	value="登录(login)"
+								action="#{UsersBean.doLogin}">
+							</p:commandButton>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+
+				<!-- 带弹窗的登录 -->
+				<!-- <p:commandButton	value="登录(login)"
 								onclick="PF('dialog_login').show()">
 				<p:confirmDialog header="登录"
 									message="你确定要登录吗？"
@@ -59,10 +80,11 @@
 					</p:commandButton>
 				</p:confirmDialog>
 			</p:commandButton> -->
-			
+
 			</h:form>
 		</p:fieldset>
-		
+
+
 	</div>
 </h:body>
 </html>

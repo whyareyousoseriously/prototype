@@ -21,7 +21,7 @@ public class testUtils {
 		
 		UsersDAO udao = new UsersDAOImpl();
 		
-		if(udao.usersLogin(users)==1) {
+		if(udao.usersLogin(users)!=null) {
 			System.out.println("µÇÂ¼³É¹¦");
 		}else {
 			System.out.println("µÇÂ¼Ê§°Ü");

@@ -1,28 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>StudentInformationMangement</title>
 	<link href="./css/styles.css" rel="stylesheet" type="text/css" />
 </h:head>
 <h:body>
 	<div align="center">
-		<h1 class ="title">成功注册(Successfully Registered)</h1>
-		<ul>
-			<li>姓名(name): #{RegistrationBean.name}</li>			
-			<li>学号(studentID): #{RegistrationBean.studentID}</li>
-			<li>密码(password): #{RegistrationBean.password}</li>
-			<li>性别(gender): #{RegistrationBean.gender}</li>
-			<li>生日(brithday): #{RegistrationBean.brithday}</li>
-			<li>年级(grade): #{RegistrationBean.grade}</li>
-			<li>院系(department): #{RegistrationBean.department}</li>
-			<li>专业(major): #{RegistrationBean.major}</li>
-			<li>邮箱(email): #{RegistrationBean.email}</li>
-			<li>地址(address): #{RegistrationBean.address}</li>
-			<li>爱好(hobby): #{RegistrationBean.hobby}</li>
-		</ul>
-		<a href="index.jsf">返回主页登陆(back to login)</a>
+		<h2 class ="ui-widget-header ui-corner-all">成功注册</h2>
+		<p:fieldset legend="Successfully Registered">
+			<h1>恭喜你 #{UsersBean.name},成功注册</h1>
+			<p:outputLabel>学号即登录账号为:#{UsersBean.studentID}</p:outputLabel>
+			<a href="login.jsf">返回去登陆(back to login)</a>
+		</p:fieldset>
+		
 	</div>
 </h:body>
 </html>

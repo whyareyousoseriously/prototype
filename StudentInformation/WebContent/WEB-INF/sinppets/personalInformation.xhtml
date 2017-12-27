@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+<p:panelGrid columns="2"  >
+  <f:facet name="header">
+    	个人基本信息
+  </f:facet>
+  <p:panelGrid columns="2" styleClass="formTable">
+  	
+  	<p:outputLabel>姓名:</p:outputLabel>
+  	<p:outputLabel>#{UsersBean.name}</p:outputLabel>
+  	
+  	<p:outputLabel>学号:</p:outputLabel>
+  	<p:outputLabel>#{UsersBean.studentID}</p:outputLabel>
+  	
+  	<p:outputLabel>性别:</p:outputLabel>
+  	<p:outputLabel>#{UsersBean.gender}</p:outputLabel>
+  	
+  	<p:outputLabel>生日(brithday):</p:outputLabel>
+  	<p:outputLabel>#{UsersBean.brithday}</p:outputLabel>
+  	
+  	<p:outputLabel>年级(grade):</p:outputLabel>
+  	<p:outputLabel>#{UsersBean.grade}</p:outputLabel>
+  	
+  	<p:outputLabel>院系(department):</p:outputLabel>
+  	<p:outputLabel>#{UsersBean.department}</p:outputLabel>
+  	
+  	<p:outputLabel>专业(major):</p:outputLabel>
+  	<p:outputLabel>#{UsersBean.major}</p:outputLabel>
+  	
+  	<p:outputLabel>邮箱(email):</p:outputLabel>
+  	<p:outputLabel>#{UsersBean.email}</p:outputLabel>
+  	
+  	<p:outputLabel>地址(address):</p:outputLabel>
+  	<p:outputLabel>#{UsersBean.address}</p:outputLabel>
+  	
+  	<p:outputLabel>爱好(hobbys):</p:outputLabel>
+  	<p:outputLabel>#{UsersBean.hobbys}</p:outputLabel>
+  </p:panelGrid>
+</p:panelGrid>
+
+</ui:composition>

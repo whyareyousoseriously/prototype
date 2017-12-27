@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,10 +16,10 @@ public class Users {
 	private String major;
 	private String email;
 	private String address;
-	private List<String> hobby;
+	private List<String> hobbys;
 	public Users() {}
 	public Users(int uid, String name, String studentID, String password, String gender, Date brithday, String grade,
-			String department, String major, String email, String address, List<String> hobby) {
+			String department, String major, String email, String address,List<String> hobbys) {
 		super();
 		this.uid = uid;
 		this.name = name;
@@ -31,7 +32,7 @@ public class Users {
 		this.major = major;
 		this.email = email;
 		this.address = address;
-		this.hobby = hobby;
+		this.hobbys = hobbys;
 	}
 	public int getUid() {
 		return uid;
@@ -102,11 +103,18 @@ public class Users {
 	public void setBrithday(Date brithday) {
 		this.brithday = brithday;
 	}
-	public List<String> getHobby() {
-		return hobby;
+	public List<String> getHobbys() {
+		return hobbys;
 	}
-	public void setHobby(List<String> hobby) {
-		this.hobby = hobby;
+	public void setHobbys(List<String> hobbys) {
+		this.hobbys = hobbys;
 	}
+	@Override
+	public String toString() {
+		return "Users [uid=" + uid + ", name=" + name + ", studentID=" + studentID + ", password=" + password
+				+ ", gender=" + gender + ", brithday=" + brithday + ", grade=" + grade + ", department=" + department
+				+ ", major=" + major + ", email=" + email + ", address=" + address + ", hobbys=" + hobbys + "]";
+	}
+	
 	
 }

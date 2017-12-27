@@ -16,14 +16,14 @@
 			<h:form>
 				<p:panelGrid columns="3" styleClass="formTable"> 
 					<p:outputLabel>姓名(name):</p:outputLabel>
-					<p:inputText value="#{RegistrationBean.name}"
+					<p:inputText value="#{UsersBean.name}"
 								 required="true" id="name"
 								 requiredMessage="姓名不能为空">
 					</p:inputText>
 					<p:message for="name" id="name-error"/>
 					
 					<p:outputLabel>学号(studentID):</p:outputLabel>
-					<p:inputText value="#{RegistrationBean.studentID}"
+					<p:inputText value="#{UsersBean.studentID}"
 								 required="true"
 								 id="studentID"
 								 requiredMessage="学号不能为空">
@@ -33,7 +33,7 @@
 					<p:message for="studentID" id="studentID-error"/>
 					 
 					<p:outputLabel>密码(password):</p:outputLabel>
-					<p:password value="#{RegistrationBean.password}"
+					<p:password value="#{UsersBean.password}"
 								feedback="true"
 								id="password"
 								required="true"
@@ -44,7 +44,7 @@
 					<p:message for="password" id="password-error"/>
 						
 					<p:outputLabel>性别(gender):</p:outputLabel>
-					<p:selectOneRadio value="#{RegistrationBean.gender}"
+					<p:selectOneRadio value="#{UsersBean.gender}"
 									  id="gender"
 									  required="true"
 									  requiredMessage="性别忘记选了">
@@ -54,7 +54,7 @@
 					<p:message for="gender" id="gender-error"/>
 					
 					<p:outputLabel>生日(brithday):</p:outputLabel>
-					<p:calendar value="#{RegistrationBean.brithday}" 
+					<p:calendar value="#{UsersBean.brithday}" 
 								id="brithday"
 								required="true"
 								requiredMessage="生日不能为空"
@@ -62,37 +62,40 @@
 					<p:message for="brithday" id="brithday-error"/>
 					
 					<p:outputLabel>年级(grade):</p:outputLabel>
-					<p:selectOneMenu value="#{RegistrationBean.grade}">
+					<p:selectOneMenu value="#{UsersBean.grade}"
+									 id="grade">
 						<f:selectItem itemValue="2014级" itemLabel="2014级"></f:selectItem>
 						<f:selectItem itemValue="2015级" itemLabel="2015级"></f:selectItem>
 						<f:selectItem itemValue="2016级" itemLabel="2016级"></f:selectItem>
 						<f:selectItem itemValue="2017级" itemLabel="2017级"></f:selectItem>
 					</p:selectOneMenu>
-					<p:message for="hobby"/>
+					<p:message for="grade" id="grade-error"/>
 					
 					<p:outputLabel>院系(department):</p:outputLabel>
-					<p:selectOneMenu value="#{RegistrationBean.department}" size = "1">
+					<p:selectOneMenu value="#{UsersBean.department}" size = "1"
+									 id="department">
 						<f:selectItem itemValue="信息院" itemLabel="信息院"></f:selectItem>
 						<f:selectItem itemValue="物理院" itemLabel="物理院"></f:selectItem>
 						<f:selectItem itemValue="化工院" itemLabel="化工院"></f:selectItem>
 						<f:selectItem itemValue="数学院" itemLabel="数学院"></f:selectItem>
 						<f:selectItem itemValue="文学院" itemLabel="文学院"></f:selectItem>
 					</p:selectOneMenu>
-					<p:message for="hobby"/>
+					<p:message for="department" id="department-error"/>
 					
 					<p:outputLabel>专业(major):</p:outputLabel>
-					<p:selectOneMenu value="#{RegistrationBean.major}" size = "1">
+					<p:selectOneMenu value="#{UsersBean.major}" size = "1"
+									 id="major">
 						<f:selectItem itemValue="计算机" itemLabel="计算机"></f:selectItem>
 						<f:selectItem itemValue="物理" itemLabel="物理"></f:selectItem>
 						<f:selectItem itemValue="化学" itemLabel="化学"></f:selectItem>
 						<f:selectItem itemValue="数学" itemLabel="数学"></f:selectItem>
 						<f:selectItem itemValue="中文" itemLabel="中文"></f:selectItem>
 					</p:selectOneMenu>
-					<p:message for="hobby"/>
+					<p:message for="major" id="major-error"/>
 					
 					<p:outputLabel>邮箱(email):</p:outputLabel>
 					<p:inputText validatorMessage="邮箱不合法"
-								 value="#{RegistrationBean.email}"
+								 value="#{UsersBean.email}"
 								 id="email"
 								 required="true"
 								 requiredMessage="邮箱不能为空"
@@ -102,12 +105,13 @@
 					<p:message for="email"    id="eamil-error" />
 					
 					<p:outputLabel>地址(address):</p:outputLabel>
-					<p:inputText value="#{RegistrationBean.address}"></p:inputText>
-					<p:message for="hobby"/>
+					<p:inputText value="#{UsersBean.address}"
+								 id="address"></p:inputText>
+					<p:message for="address" id="address-error"/>
 					
-					<p:outputLabel>爱好(hobby):</p:outputLabel>
-					<p:selectManyCheckbox value="#{RegistrationBean.hobby}"
-										  id="hobby"
+					<p:outputLabel>爱好(hobbys):</p:outputLabel>
+					<p:selectManyCheckbox value="#{UsersBean.hobbys}"
+										  id="hobbys"
 										  required="true"
 										  requiredMessage="爱好至少选一个">
 						<f:selectItem itemValue="爱好1" itemLabel="爱好1"></f:selectItem>
@@ -115,7 +119,7 @@
 						<f:selectItem itemValue="爱好3" itemLabel="爱好3"></f:selectItem>
 						<f:selectItem itemValue="爱好3" itemLabel="爱好3"></f:selectItem>
 					</p:selectManyCheckbox>
-					<p:message for="hobby" id="hobby-error" />
+					<p:message for="hobbys" id="hobby-error" />
 				</p:panelGrid>
 				
 				
@@ -126,7 +130,7 @@
 				
 				
 				<p:commandButton value="注册(Register)"
-					action="#{RegistrationBean.doRegistration}"
+					action="#{UsersBean.doRegistration}"
 					process="@form"
 					update="name-error studentID-error brithday-error password-error eamil-error hobby-error gender-error"  /> 
 				

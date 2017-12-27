@@ -48,10 +48,7 @@ public class testdb {
 		users.setGender("男");
 		Date date = new Date();
 		users.setBrithday(date);
-		List<String> list = new ArrayList<String>();
-		list.add("爱好1");
-		list.add("爱好2");
-		users.setHobby(list);
+		
 		UsersDAO udao = new UsersDAOImpl();
 		if(udao.usersRegister(users)==1) {
 			System.out.println("信息录入数据库成功");

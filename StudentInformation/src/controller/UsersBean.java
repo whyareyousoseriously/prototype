@@ -3,21 +3,11 @@ package controller;
 import java.util.Date;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.event.ActionEvent;
-
 import dao.UsersDAO;
 import dao.impl.UsersDAOImpl;
 import model.Users;
-import utils.FormUtils;
 
-/*
- * registerationBean
- * @author cz
- * 2017-12-22
- * */
-
-public class RegistrationBean {
+public class UsersBean {
 	private String name;
 	private String studentID;
 	private String password;
@@ -28,15 +18,7 @@ public class RegistrationBean {
 	private String major;
 	private String email;
 	private String address;
-	private List<String> hobby;
-	private String otherHobby;
-	
-	public String getOtherHobby() {
-		return otherHobby;
-	}
-	public void setOtherHobby(String otherHobby) {
-		this.otherHobby = otherHobby;
-	}
+	private List<String> hobbys;
 	public String getName() {
 		return name;
 	}
@@ -61,9 +43,6 @@ public class RegistrationBean {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	
-	
-	
 	public Date getBrithday() {
 		return brithday;
 	}
@@ -101,19 +80,57 @@ public class RegistrationBean {
 		this.address = address;
 	}
 	
-	public List<String> getHobby() {
-		return hobby;
-	}
-	public void setHobby(List<String> hobby) {
-		this.hobby = hobby;
-	}
 	
+	public List<String> getHobbys() {
+		return hobbys;
+	}
+	public void setHobbys(List<String> hobbys) {
+		this.hobbys = hobbys;
+	}
 	@Override
 	public String toString() {
-		return "RegistrationBean [name=" + name + ", studentID=" + studentID + ", password=" + password + ", gender="
-				+ gender + ", brithday=" + brithday + ", grade=" + grade + ", department=" + department + ", major="
-				+ major + ", email=" + email + ", address=" + address + ", hobby=" + hobby + ", otherHobby="
-				+ otherHobby + "]";
+		return "UsersBean [name=" + name + ", studentID=" + studentID + ", password=" + password + ", gender=" + gender
+				+ ", brithday=" + brithday + ", grade=" + grade + ", department=" + department + ", major=" + major
+				+ ", email=" + email + ", address=" + address + "";
+	}
+	public String doLogin() {
+		System.out.println(studentID);
+		System.out.println(password);
+		
+		//将页面上的学号和密码封装成Users对象
+		//The studentID and password on the page are encapsulated into users objects.
+		Users users= new Users();
+		users.setStudentID(studentID);
+		users.setPassword(password);
+		
+		//面向接口编程WCF Interface oriented programming
+		UsersDAO usersDAO = new UsersDAOImpl();
+		//将页面上的Users对象传递，然后数据库进行查询
+		
+		//从数据库返回的信息
+		Users users_feedback = usersDAO.usersLogin(users);
+		
+		
+		if(users_feedback!=null) {	
+			System.out.println(users_feedback.toString()+"登录成功");
+			
+			this.setAddress(users_feedback.getAddress());
+			this.setBrithday(users_feedback.getBrithday());
+			this.setDepartment(users_feedback.getDepartment());
+			this.setEmail(users_feedback.getEmail());
+			this.setGender(users_feedback.getGender());
+			this.setGrade(users_feedback.getGrade());
+			this.setHobbys(users_feedback.getHobbys());
+			this.setMajor(users_feedback.getMajor());
+			this.setName(users_feedback.getName());
+			this.setStudentID(users_feedback.getStudentID());
+			
+			return "home?facesRedirect=true";
+		}else {
+			System.out.println(users.getStudentID()+"登录失败");
+			
+			return "login-error";
+		}
 	}
 	public String doRegistration() {
 		System.out.println(this.toString());
@@ -131,20 +148,12 @@ public class RegistrationBean {
 		users.setMajor(major);
 		users.setEmail(email);
 		users.setAddress(address);
-		users.setHobby(hobby);
+		users.setHobbys(hobbys);
 		
 		UsersDAO udao = new UsersDAOImpl();
 		if(udao.usersRegister(users)==1)
 			return "registration-success";
 		else
 			return "registration-error";
-	}
-	/*
-	 * 用来检测sturndenID是否合法
-	 * 1.类型是否合法
-	 * 2.数据库中是否已经存在
-	 * */
-	public void validatorStudentID() {
-		
 	}
 }

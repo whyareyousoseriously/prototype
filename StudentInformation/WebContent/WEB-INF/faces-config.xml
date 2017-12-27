@@ -4,6 +4,20 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
+	<navigation-rule>
+	    <from-view-id>/login.xhtml</from-view-id>
+	    <navigation-case>
+	        <from-outcome>login-success</from-outcome>
+	        <to-view-id>/page/home.xhtml</to-view-id>
+	    </navigation-case>
+	</navigation-rule>
+	<managed-bean>
+	    <managed-bean-name>UsersBean</managed-bean-name>
+	    <managed-bean-class>
+	        controller.UsersBean
+	    </managed-bean-class>
+	    <managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
 	<managed-bean>
 	    <managed-bean-name>RegistrationBean</managed-bean-name>
 	    <managed-bean-class>
