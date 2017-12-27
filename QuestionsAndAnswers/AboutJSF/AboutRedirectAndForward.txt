@@ -1,0 +1,28 @@
+I often use this way to redirect it directly from Java Bean: 
+FacesContext.getCurrentInstance().getExternalContext().redirect(Url);
+
+
+
+
+The proper way of redirecting pages on JSF specially in JSF 2 is returning
+ the name of the view from the method call:
+
+For example:
+
+public String doLogin() {
+    //apply the login logic.
+    return "name/of/the/view?facesRedirect=true"
+}
+
+
+
+Your filter is redirecting HTTP requests to JSF resources as well. You need to change your filter logic to add a check if the current request isn't a JSF resource request. You can do that by checking if the request URI does not start with ResourceHandler.RESOURCE_IDENTIFIER after the context path.
+
+if (request.getRequestURI().startsWith(request.getContextPath() + ResourceHandler.RESOURCE_IDENTIFIER)) {
+    chain.doFilter(request, response);
+}
+else {
+    response.sendRedirect(request.getContextPath() + "/login.xhtml");
+}
+
+原文链接https://stackoverflow.com/questions/10261023/how-to-redirect-on-jsf-using-primefaces
