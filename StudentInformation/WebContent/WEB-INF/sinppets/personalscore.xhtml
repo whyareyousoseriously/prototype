@@ -2,24 +2,12 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-<p:panel id="sports" header="Sports">  
-  Sports info...  
-</p:panel>  
-  
-<p:panel id="finance" header="Finance">  
-  Finance info...  
-</p:panel>  
-  
-<p:panel id="lifestyle" header="Lifestyle">  
-  Lifestyle info...  
-</p:panel>  
-  
-<p:panel id="weather" header="Weather">  
-  Weather info...   
-</p:panel>  
-  
-<p:panel id="politics" header="Politics">  
-  Politics info...   
-</p:panel> 
-
+<p:fieldset legend="测试dataTable">
+	
+	<p:dataTable var="test"
+				 value="#{RootsBean.allUsers}">
+		<p:column>#{test.name}</p:column>
+	
+	</p:dataTable>
+</p:fieldset>
 </ui:composition>

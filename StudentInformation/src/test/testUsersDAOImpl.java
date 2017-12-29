@@ -1,6 +1,6 @@
 package test;
 
-import java.util.List;
+
 
 import org.junit.Test;
 
@@ -30,20 +30,5 @@ public class testUsersDAOImpl {
 			System.out.println("登陆失败");
 		}
 	}
-	@Test
-	public void testUsersDAOImpl_getAllUsers() {
-		/*
-		 * 测试dao.impl.UsersDAOImpl.getAllUsers()
-		 * */
-		UsersDAO udao = new UsersDAOImpl();
-		List<Users> list = udao.getAllUsers();
-		if(list.size()>0) {
-			System.out.println("遍历所有成功");
-			for(Users u : list)
-				System.out.println(u);
-			
-		}	
-		else
-			System.out.println("遍历所有失败");
-	}
+	
 }

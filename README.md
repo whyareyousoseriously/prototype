@@ -50,6 +50,8 @@ a javaWeb prototype<br>
 &emsp;&emsp;2017-12-27<br>
 &emsp;&emsp;&emsp;&emsp;About lazy loadding in hibernate. Record it in QuestionsAndAnswers/AboutHibernate<br>
 &emsp;&emsp;&emsp;&emsp;The use of redirect and forward in jsf2.2(primefaces5.1).Record it in QuestionsAndAnswers/AboutJSF<br>
+&emsp;&emsp;2017-12-29<br>
+&emsp;&emsp;&emsp;&emsp;add a RootsBean in StudentInformationManagement<br>
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -102,3 +104,5 @@ a javaWeb prototype<br>
 &emsp;&emsp;2017-12-27<br>
 &emsp;&emsp;&emsp;&emsp;解决数据库多表关联时，懒加载的问题,记录于QuestionsAndAnswers/AboutHibernate<br>
 &emsp;&emsp;&emsp;&emsp;在jsf2.2(primefaces5.1)下尝试重定向和跳转,记录于QuestionsAndAnswers/AboutJSF<br>
+&emsp;&emsp;2017-12-29<br>
+&emsp;&emsp;&emsp;&emsp;添加了超级管理员bean在StudentInformation<br>

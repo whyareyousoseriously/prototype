@@ -80,30 +80,6 @@ public class UsersDAOImpl implements UsersDAO{
 		return 1;
 	}
 
-	@Override
-	public List<Users> getAllUsers() {
-		// TODO Auto-generated method stub
-		/*
-		 * 获得数据库中所有用户信息的方法
-		 * */
-		Transaction tx = null;
-		String hql = "";
-		try {
-			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
-			tx = session.beginTransaction();
-			hql = "from Users";
-			Query query = session.createQuery(hql);
-			List<Users> list = query.list();
-			tx.commit();
-			return list;
-		}catch(Exception e) {
-			e.printStackTrace();
-			return null;
-		}finally {
-			if(tx!=null) {
-				tx = null;
-			}
-		}
-	}
+	
 
 }

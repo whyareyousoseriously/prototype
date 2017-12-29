@@ -1,0 +1,344 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<p:fieldset legend="测试dataTable">
+	<h:form id="testForm">
+		<p:dataTable var="test"
+					 value="#{RootsBean.allUsers}"
+					 rows="10"
+					 paginator="true"
+					 id="testTable1">
+				<p:column headerText="姓名(name)">#{test.name}</p:column>
+				<p:column headerText="学号(studentID)">
+					 #{test.studentID}
+				</p:column>
+				<p:column headerText="性别(gender)">#{test.gender}</p:column>
+				<p:column headerText="生日(brithday)">#{test.brithday}</p:column>
+				<p:column headerText="年纪(grade)">#{test.grade}</p:column>
+				<p:column headerText="院系(department)">#{test.department}</p:column>
+				<p:column headerText="专业(major)">#{test.major}</p:column>
+				<p:column headerText="邮箱">#{test.email}</p:column>
+				<p:column headerText="地址">#{test.address}</p:column>
+				<p:column headerText="爱好">#{test.hobbys}</p:column>
+				
+		</p:dataTable>
+	</h:form>
+	<p:commandButton value="条件更新"
+					 id="conditionUpdte"
+					 onclick="PF('conditionUpdateDialog').show()">
+	
+	</p:commandButton>
+	<p:dialog header="conditionUpdate" widgetVar="conditionUpdateDialog" modal="true">
+	<h:form id="updateForm">
+			<p:panelGrid columns="3" styleClass="formTable"> 
+					<p:outputLabel>姓名(name):</p:outputLabel>
+					<p:inputText value="#{RootsBean.selected.name}"
+								 required="true" id="name"
+								 requiredMessage="姓名不能为空">
+					</p:inputText>
+					<p:message for="name" id="name-error"/>
+					
+					<p:outputLabel>学号(studentID):</p:outputLabel>
+					<p:inputText value="#{RootsBean.selected.studentID}"
+								 required="true"
+								 id="studentID"
+								 requiredMessage="学号不能为空">
+							<f:validator validatorId="existStudentID"></f:validator>
+							<p:ajax update="studentID-error" event="blur"/>
+					</p:inputText>
+					<p:message for="studentID" id="studentID-error"/>
+					 
+					<p:outputLabel>密码(password):</p:outputLabel>
+					<p:password value="#{RootsBean.selected.password}"
+								feedback="true"
+								id="password"
+								required="true"
+								requiredMessage="需要密码"
+								validatorMessage="密码必须是2个或者更多的字符">
+					<f:validateLength minimum="2"/>
+					</p:password>
+					<p:message for="password" id="password-error"/>
+						
+					<p:outputLabel>性别(gender):</p:outputLabel>
+					<p:selectOneRadio value="#{RootsBean.selected.gender}"
+									  id="gender"
+									  required="true"
+									  requiredMessage="性别忘记选了">
+						<f:selectItem itemValue="男" itemLabel="男(male)"></f:selectItem>
+						<f:selectItem itemValue="女" itemLabel="女(female)"></f:selectItem>
+					</p:selectOneRadio>
+					<p:message for="gender" id="gender-error"/>
+					
+					<p:outputLabel>生日(brithday):</p:outputLabel>
+					<p:calendar value="#{RootsBean.selected.brithday}" 
+								id="brithday"
+								required="true"
+								requiredMessage="生日不能为空"
+								navigator="true"></p:calendar>
+					<p:message for="brithday" id="brithday-error"/>
+					
+					<p:outputLabel>年级(grade):</p:outputLabel>
+					<p:selectOneMenu value="#{RootsBean.selected.grade}"
+									 id="grade">
+						<f:selectItem itemValue="2014级" itemLabel="2014级"></f:selectItem>
+						<f:selectItem itemValue="2015级" itemLabel="2015级"></f:selectItem>
+						<f:selectItem itemValue="2016级" itemLabel="2016级"></f:selectItem>
+						<f:selectItem itemValue="2017级" itemLabel="2017级"></f:selectItem>
+					</p:selectOneMenu>
+					<p:message for="grade" id="grade-error"/>
+					
+					<p:outputLabel>院系(department):</p:outputLabel>
+					<p:selectOneMenu value="#{RootsBean.selected.department}" size = "1"
+									 id="department">
+						<f:selectItem itemValue="信息院" itemLabel="信息院"></f:selectItem>
+						<f:selectItem itemValue="物理院" itemLabel="物理院"></f:selectItem>
+						<f:selectItem itemValue="化工院" itemLabel="化工院"></f:selectItem>
+						<f:selectItem itemValue="数学院" itemLabel="数学院"></f:selectItem>
+						<f:selectItem itemValue="文学院" itemLabel="文学院"></f:selectItem>
+					</p:selectOneMenu>
+					<p:message for="department" id="department-error"/>
+					
+					<p:outputLabel>专业(major):</p:outputLabel>
+					<p:selectOneMenu value="#{RootsBean.selected.major}" size = "1"
+									 id="major">
+						<f:selectItem itemValue="计算机" itemLabel="计算机"></f:selectItem>
+						<f:selectItem itemValue="物理" itemLabel="物理"></f:selectItem>
+						<f:selectItem itemValue="化学" itemLabel="化学"></f:selectItem>
+						<f:selectItem itemValue="数学" itemLabel="数学"></f:selectItem>
+						<f:selectItem itemValue="中文" itemLabel="中文"></f:selectItem>
+					</p:selectOneMenu>
+					<p:message for="major" id="major-error"/>
+					
+					<p:outputLabel>邮箱(email):</p:outputLabel>
+					<p:inputText validatorMessage="邮箱不合法"
+								 value="#{RootsBean.selected.email}"
+								 id="email"
+								 required="true"
+								 requiredMessage="邮箱不能为空"
+								 >
+						<f:validateRegex pattern="^\w+([-_.]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$"></f:validateRegex>
+					</p:inputText>
+					<p:message for="email"    id="eamil-error" />
+					
+					<p:outputLabel>地址(address):</p:outputLabel>
+					<p:inputText value="#{RootsBean.selected.address}"
+								 id="address"></p:inputText>
+					<p:message for="address" id="address-error"/>
+					
+					<p:outputLabel>爱好(hobbys):</p:outputLabel>
+					<p:selectManyCheckbox value="#{RootsBean.selected.hobbys}"
+										  id="hobbys"
+										  required="true"
+										  requiredMessage="爱好至少选一个">
+						<f:selectItem itemValue="爱好1" itemLabel="爱好1"></f:selectItem>
+						<f:selectItem itemValue="爱好2" itemLabel="爱好2"></f:selectItem>
+						<f:selectItem itemValue="爱好3" itemLabel="爱好3"></f:selectItem>
+						<f:selectItem itemValue="爱好3" itemLabel="爱好3"></f:selectItem>
+					</p:selectManyCheckbox>
+					<p:message for="hobbys" id="hobby-error" />
+				</p:panelGrid>
+				
+				<p:commandButton value="更新(update)"
+					actionListener="#{RootsBean.updateByCondition}"
+					process="@form"
+					update=":#{p:component('testForm')} name-error studentID-error brithday-error password-error eamil-error hobby-error gender-error updateForm "
+					oncomplete="PF('conditionUpdateDialog').hide()"/>
+	
+	</h:form>
+	</p:dialog>
+	<p:commandButton value="条件删除"
+					 id="conditionDelete"
+					 onclick="PF('conditionDeleteDialog').show()">
+	
+	</p:commandButton>
+	<p:dialog header="conditionDelete" widgetVar="conditionDeleteDialog" modal="true">
+		<h:form id = "conditionDeleteForm">
+			<p:panelGrid columns="3" styleClass="formTable">
+				<p:outputLabel>学号(studentID):</p:outputLabel>
+					<p:inputText value="#{RootsBean.selected.studentID}"
+								 required="true"
+								 id="studentID"
+								 requiredMessage="学号不能为空">
+							<f:validator validatorId="existStudentID"></f:validator>
+							<p:ajax update="studentID-error" event="blur"/>
+					</p:inputText>
+					<p:message for="studentID" id="studentID-error"/>
+			</p:panelGrid>
+			<p:commandButton value ="conditionDelete(条件删除)"
+							 actionListener="#{RootsBean.deleteByCondition}"
+							 process="@form"
+							 update="studentID-error :#{p:component('testForm')}"
+							 oncomplete="PF('conditionDeleteDialog').hide()">
+			</p:commandButton>
+		</h:form>
+	</p:dialog>
+	<p:commandButton value="条件查询"
+					 id="conditionSearch"
+					 onclick="PF('conditionSearchDialog').show()">
+	</p:commandButton>
+	<p:dialog header="conditionSearch" widgetVar="conditionSearchDialog" modal="true">
+		<h:form id="conditionSearchForm">
+			<p:panelGrid columns="3" styleClass="formTable">
+				<p:outputLabel>姓名(name):</p:outputLabel>
+				<p:inputText value="#{RootsBean.selected.name}"
+								 required="true" id="name"
+								 requiredMessage="姓名不能为空">
+					</p:inputText>
+					<p:message for="name" id="name-error"/>
+			</p:panelGrid>
+			<p:commandButton value ="conditionSearch(条件查询)"
+							 actionListener="#{RootsBean.searchManyByName}"
+							 process="@form"
+							 update="name-error :#{p:component('selectForm')}"
+							 oncomplete="PF('conditionSearchDialog').hide()">
+			</p:commandButton>
+		</h:form>
+	</p:dialog>
+	<p:commandButton value="添加"
+					 id="add"
+					 onclick="PF('addDialog').show()">
+	</p:commandButton>
+	<p:dialog header="add" widgetVar="addDialog" modal="true">
+		<h:form id="addForm">
+			<p:panelGrid columns="3" styleClass="formTable"> 
+					<p:outputLabel>姓名(name):</p:outputLabel>
+					<p:inputText value="#{RootsBean.selected.name}"
+								 required="true" id="name"
+								 requiredMessage="姓名不能为空">
+					</p:inputText>
+					<p:message for="name" id="name-error"/>
+					
+					<p:outputLabel>学号(studentID):</p:outputLabel>
+					<p:inputText value="#{RootsBean.selected.studentID}"
+								 required="true"
+								 id="studentID"
+								 requiredMessage="学号不能为空">
+							<f:validator validatorId="validatorStudentID"></f:validator>
+							<p:ajax update="studentID-error" event="blur"/>
+					</p:inputText>
+					<p:message for="studentID" id="studentID-error"/>
+					 
+					<p:outputLabel>密码(password):</p:outputLabel>
+					<p:password value="#{RootsBean.selected.password}"
+								feedback="true"
+								id="password"
+								required="true"
+								requiredMessage="需要密码"
+								validatorMessage="密码必须是2个或者更多的字符">
+					<f:validateLength minimum="2"/>
+					</p:password>
+					<p:message for="password" id="password-error"/>
+						
+					<p:outputLabel>性别(gender):</p:outputLabel>
+					<p:selectOneRadio value="#{RootsBean.selected.gender}"
+									  id="gender"
+									  required="true"
+									  requiredMessage="性别忘记选了">
+						<f:selectItem itemValue="男" itemLabel="男(male)"></f:selectItem>
+						<f:selectItem itemValue="女" itemLabel="女(female)"></f:selectItem>
+					</p:selectOneRadio>
+					<p:message for="gender" id="gender-error"/>
+					
+					<p:outputLabel>生日(brithday):</p:outputLabel>
+					<p:calendar value="#{RootsBean.selected.brithday}" 
+								id="brithday"
+								required="true"
+								requiredMessage="生日不能为空"
+								navigator="true"></p:calendar>
+					<p:message for="brithday" id="brithday-error"/>
+					
+					<p:outputLabel>年级(grade):</p:outputLabel>
+					<p:selectOneMenu value="#{RootsBean.selected.grade}"
+									 id="grade">
+						<f:selectItem itemValue="2014级" itemLabel="2014级"></f:selectItem>
+						<f:selectItem itemValue="2015级" itemLabel="2015级"></f:selectItem>
+						<f:selectItem itemValue="2016级" itemLabel="2016级"></f:selectItem>
+						<f:selectItem itemValue="2017级" itemLabel="2017级"></f:selectItem>
+					</p:selectOneMenu>
+					<p:message for="grade" id="grade-error"/>
+					
+					<p:outputLabel>院系(department):</p:outputLabel>
+					<p:selectOneMenu value="#{RootsBean.selected.department}" size = "1"
+									 id="department">
+						<f:selectItem itemValue="信息院" itemLabel="信息院"></f:selectItem>
+						<f:selectItem itemValue="物理院" itemLabel="物理院"></f:selectItem>
+						<f:selectItem itemValue="化工院" itemLabel="化工院"></f:selectItem>
+						<f:selectItem itemValue="数学院" itemLabel="数学院"></f:selectItem>
+						<f:selectItem itemValue="文学院" itemLabel="文学院"></f:selectItem>
+					</p:selectOneMenu>
+					<p:message for="department" id="department-error"/>
+					
+					<p:outputLabel>专业(major):</p:outputLabel>
+					<p:selectOneMenu value="#{RootsBean.selected.major}" size = "1"
+									 id="major">
+						<f:selectItem itemValue="计算机" itemLabel="计算机"></f:selectItem>
+						<f:selectItem itemValue="物理" itemLabel="物理"></f:selectItem>
+						<f:selectItem itemValue="化学" itemLabel="化学"></f:selectItem>
+						<f:selectItem itemValue="数学" itemLabel="数学"></f:selectItem>
+						<f:selectItem itemValue="中文" itemLabel="中文"></f:selectItem>
+					</p:selectOneMenu>
+					<p:message for="major" id="major-error"/>
+					
+					<p:outputLabel>邮箱(email):</p:outputLabel>
+					<p:inputText validatorMessage="邮箱不合法"
+								 value="#{RootsBean.selected.email}"
+								 id="email"
+								 required="true"
+								 requiredMessage="邮箱不能为空"
+								 >
+						<f:validateRegex pattern="^\w+([-_.]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$"></f:validateRegex>
+					</p:inputText>
+					<p:message for="email"    id="eamil-error" />
+					
+					<p:outputLabel>地址(address):</p:outputLabel>
+					<p:inputText value="#{RootsBean.selected.address}"
+								 id="address"></p:inputText>
+					<p:message for="address" id="address-error"/>
+					
+					<p:outputLabel>爱好(hobbys):</p:outputLabel>
+					<p:selectManyCheckbox value="#{RootsBean.selected.hobbys}"
+										  id="hobbys"
+										  required="true"
+										  requiredMessage="爱好至少选一个">
+						<f:selectItem itemValue="爱好1" itemLabel="爱好1"></f:selectItem>
+						<f:selectItem itemValue="爱好2" itemLabel="爱好2"></f:selectItem>
+						<f:selectItem itemValue="爱好3" itemLabel="爱好3"></f:selectItem>
+						<f:selectItem itemValue="爱好3" itemLabel="爱好3"></f:selectItem>
+					</p:selectManyCheckbox>
+					<p:message for="hobbys" id="hobby-error" />
+				</p:panelGrid>
+				
+				<p:commandButton value="添加(add)"
+					actionListener="#{RootsBean.addUsers}"
+					process="@form"
+					update=":#{p:component('testForm')} name-error studentID-error brithday-error password-error eamil-error hobby-error gender-error addForm "
+					oncomplete="PF('addDialog').hide()"/> 
+					
+		</h:form>
+	</p:dialog>
+</p:fieldset>
+<p:fieldset legend="筛选dataTable">
+	<h:form id="selectForm">
+		<p:dataTable var="conditionUsers"
+					 value="#{RootsBean.conditionUsers}"
+					 id="selectTable">
+				<p:column headerText="姓名(name)">#{conditionUsers.name}</p:column>
+				<p:column headerText="学号(studentID)">
+					 #{conditionUsers.studentID}
+				</p:column>
+				<p:column headerText="性别(gender)">#{conditionUsers.gender}</p:column>
+				<p:column headerText="生日(brithday)">#{conditionUsers.brithday}</p:column>
+				<p:column headerText="年纪(grade)">#{conditionUsers.grade}</p:column>
+				<p:column headerText="院系(department)">#{conditionUsers.department}</p:column>
+				<p:column headerText="专业(major)">#{conditionUsers.major}</p:column>
+				<p:column headerText="邮箱">#{conditionUsers.email}</p:column>
+				<p:column headerText="地址">#{conditionUsers.address}</p:column>
+				<p:column headerText="爱好">#{conditionUsers.hobbys}</p:column>
+				
+		</p:dataTable>
+	</h:form>
+</p:fieldset>
+</ui:composition>
