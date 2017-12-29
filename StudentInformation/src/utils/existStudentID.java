@@ -34,7 +34,7 @@ public class existStudentID implements Validator, ClientValidator {
 	@Override
 	public String getValidatorId() {
 		// TODO Auto-generated method stub
-		return "validatorStudentID";
+		return "existStudentID";
 	}
 
 	@Override

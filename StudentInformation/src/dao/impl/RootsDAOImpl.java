@@ -219,7 +219,18 @@ public class RootsDAOImpl implements RootsDAO{
 				//执行更新操作
 				for(Users u:list) {
 					if(u!=null) {
-						u=user;
+						//u=user;//测试是不是赋值的问题影响的merge的执行
+						u.setAddress(user.getAddress());
+						u.setBrithday(user.getBrithday());
+						u.setDepartment(user.getDepartment());
+						u.setEmail(user.getEmail());
+						u.setGender(user.getGender());
+						u.setGrade(user.getGrade());
+						u.setHobbys(user.getHobbys());
+						u.setMajor(user.getMajor());
+						u.setName(user.getName());
+						u.setPassword(user.getPassword());
+						u.setStudentID(user.getStudentID());
 						session.merge(u);
 					}
 				}
