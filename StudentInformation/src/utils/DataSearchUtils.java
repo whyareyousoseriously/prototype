@@ -49,10 +49,11 @@ public class DataSearchUtils {
 		}
 	}*/
 	
-	public static boolean duplicateCheckingData(String table,String condition) {
+	public static boolean duplicateCheckingData(String table,String condition,String conditionValue) {
 		/*
 		 * 数据查重
 		 * @参数：待查重的一个条件 condition
+		 * @参数：待查的一个条件的值conditionValue
 		 * @参数：待查重的数据库中的表table
 		 * @返回：布尔型值，反应重复或者不重复
 		 * */
@@ -61,9 +62,9 @@ public class DataSearchUtils {
 		try {
 			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
 			tx = session.beginTransaction();
-			hql = "from "+table+" where studentID=:studentID";
+			hql = "from "+table+" where "+condition+"=:studentID";
 			Query query = session.createQuery(hql);
-			query.setParameter("studentID", condition);
+			query.setParameter("studentID", conditionValue);
 			List<Scores> list = query.list();
 			tx.commit();
 			if(list.size()>0) {

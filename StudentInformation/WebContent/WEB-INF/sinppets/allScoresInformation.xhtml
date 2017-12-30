@@ -32,6 +32,8 @@
 					<p:outputLabel>姓名(name):</p:outputLabel>
 					<p:inputText value="#{RootsBean.selectedScores.name}"
 						required="true" id="name" requiredMessage="姓名不能为空">
+						<f:validator validatorId="validatorScoresName"></f:validator>
+						<p:ajax update="name-error" event="blur" />
 					</p:inputText>
 					<p:message for="name" id="name-error" />
 
@@ -78,9 +80,9 @@
 						validatorMessage="成绩不合法，只能输入100以内的正整数或者正小数(小数的精度为小数点后2位)"
 						value="#{RootsBean.selectedScores.math}" id="math" required="true"
 						requiredMessage="成绩不能为空">
-						<p:ajax update="math-error" event="blur" />
-						<f:validateRegex pattern="^[0-9]{1,2}[.]{0,1}[0-9]{1,2}$"></f:validateRegex>
 
+						<f:validateRegex pattern="^[0-9]{1,2}[.]{0,1}[0-9]{1,2}$"></f:validateRegex>
+						<p:ajax update="math-error" event="blur" />
 					</p:inputText>
 					<p:message for="math" id="math-error" />
 
@@ -90,6 +92,7 @@
 						value="#{RootsBean.selectedScores.english}" id="english"
 						required="true" requiredMessage="成绩不能为空">
 						<f:validateRegex pattern="^[0-9]{1,2}[.]{0,1}[0-9]{1,2}$"></f:validateRegex>
+						<p:ajax update="english-error" event="blur" />
 					</p:inputText>
 					<p:message for="english" id="english-error" />
 
@@ -99,6 +102,7 @@
 						value="#{RootsBean.selectedScores.java}" id="java" required="true"
 						requiredMessage="成绩不能为空">
 						<f:validateRegex pattern="^[0-9]{1,2}[.]{0,1}[0-9]{1,2}$"></f:validateRegex>
+						<p:ajax update="java-error" event="blur" />
 					</p:inputText>
 					<p:message for="java" id="java-error" />
 
@@ -108,6 +112,7 @@
 						value="#{RootsBean.selectedScores.c}" id="c" required="true"
 						requiredMessage="成绩不能为空">
 						<f:validateRegex pattern="^[0-9]{1,2}[.]{0,1}[0-9]{1,2}$"></f:validateRegex>
+						<p:ajax update="c-error" event="blur" />
 					</p:inputText>
 					<p:message for="c" id="c-error" />
 
@@ -117,6 +122,7 @@
 						value="#{RootsBean.selectedScores.os}" id="os" required="true"
 						requiredMessage="成绩不能为空">
 						<f:validateRegex pattern="^[0-9]{1,2}[.]{0,1}[0-9]{1,2}$"></f:validateRegex>
+						<p:ajax update="os-error" event="blur" />
 					</p:inputText>
 					<p:message for="os" id="os-error" />
 
@@ -126,17 +132,19 @@
 						value="#{RootsBean.selectedScores.javaEE}" id="javaEE"
 						required="true" requiredMessage="成绩不能为空">
 						<f:validateRegex pattern="^[0-9]{1,2}[.]{0,1}[0-9]{1,2}$"></f:validateRegex>
+						<p:ajax update="javaEE-error" event="blur" />
 					</p:inputText>
 					<p:message for="javaEE" id="javaEE-error" />
-					<p:commandButton value="添加成绩(addScores)"
-						actionListener="#{RootsBean.addScores}" process="@form"
-						update=":#{p:component('showForm')} 
+
+				</p:panelGrid>
+				<p:commandButton value="添加成绩(addScores)"
+					actionListener="#{RootsBean.addScores}" process="@form"
+					update=":#{p:component('showForm')} 
 							name-error studentID-error gender-error 
 							department-error major-error math-error
 							english-error java-error c-error
 							os-error javaEE-error addScoresForm "
-						oncomplete="PF('addScoresDialog').hide()" />
-				</p:panelGrid>
+					oncomplete="PF('addScoresDialog').hide()" />
 			</h:form>
 		</p:dialog>
 
@@ -161,15 +169,15 @@
 					</p:inputText>
 					<p:message for="conditionValue" id="conditionValue-error" />
 				</p:panelGrid>
-
-			</h:form>
-			<p:commandButton value="conditionSearchScores(条件查询)"
-				actionListener="#{RootsBean.searchScoresByCondition}"
-				process="@form"
-				update="condition-error conditionValue-error conditionSearchScoresForm
+				<p:commandButton value="conditionSearchScores(条件查询)"
+					actionListener="#{RootsBean.searchScoresByCondition}"
+					process="@form"
+					update="condition-error conditionValue-error conditionSearchScoresForm
 							:#{p:component('selectScoresForm')}"
-				oncomplete="PF('conditionSearchScoresDialog').hide()">
-			</p:commandButton>
+					oncomplete="PF('conditionSearchScoresDialog').hide()">
+				</p:commandButton>
+			</h:form>
+
 		</p:dialog>
 		<p:commandButton value="条件删除" id="conditionDeleteScores"
 			onclick="PF('conditionDeleteScoresDialog').show()">
@@ -192,15 +200,143 @@
 					</p:inputText>
 					<p:message for="conditionValue" id="conditionValue-error" />
 				</p:panelGrid>
-
-			</h:form>
-			<p:commandButton value="conditionDeleteScores(条件删除)"
-				actionListener="#{RootsBean.deleteScoresByCondition}"
-				process="@form"
-				update="condition-error conditionValue-error conditionDeleteScoresForm
+				<p:commandButton value="conditionDeleteScores(条件删除)"
+					actionListener="#{RootsBean.deleteScoresByCondition}"
+					process="@form"
+					update="condition-error conditionValue-error conditionDeleteScoresForm
 							:#{p:component('showForm')}"
-				oncomplete="PF('conditionDeleteScoresDialog').hide()">
-			</p:commandButton>
+					oncomplete="PF('conditionDeleteScoresDialog').hide()">
+				</p:commandButton>
+			</h:form>
+
+		</p:dialog>
+
+
+		<p:commandButton value="更新" id="updateScores"
+			onclick="PF('updateScoresDialog').show()">
+		</p:commandButton>
+		<p:dialog header="updateScores(更新)" widgetVar="updateScoresDialog"
+			modal="true">
+			<h:form id="updateScoresForm">
+				<p:panelGrid columns="3" styleClass="formTable">
+					<p:outputLabel>姓名(name):</p:outputLabel>
+					<p:inputText value="#{RootsBean.selectedScores.name}"
+						required="true" id="name" requiredMessage="姓名不能为空">
+						<f:validator validatorId="validatorScoresName"></f:validator>
+						<p:ajax update="name-error" event="blur" />
+					</p:inputText>
+					<p:message for="name" id="name-error" />
+
+					<p:outputLabel>学号(studentID):</p:outputLabel>
+					<p:inputText value="#{RootsBean.selectedScores.studentID}"
+						required="true" id="studentID" requiredMessage="学号不能为空">
+						<f:validator validatorId="existScoresStudentID"></f:validator>
+						<p:ajax update="studentID-error" event="blur" />
+					</p:inputText>
+					<p:message for="studentID" id="studentID-error" />
+
+					<p:outputLabel>性别(gender):</p:outputLabel>
+					<p:selectOneRadio value="#{RootsBean.selectedScores.gender}"
+						id="gender" required="true" requiredMessage="性别忘记选了">
+						<f:selectItem itemValue="男" itemLabel="男(male)"></f:selectItem>
+						<f:selectItem itemValue="女" itemLabel="女(female)"></f:selectItem>
+					</p:selectOneRadio>
+					<p:message for="gender" id="gender-error" />
+
+					<p:outputLabel>院系(department):</p:outputLabel>
+					<p:selectOneMenu value="#{RootsBean.selectedScores.department}"
+						size="1" id="department">
+						<f:selectItem itemValue="信息院" itemLabel="信息院"></f:selectItem>
+						<f:selectItem itemValue="物理院" itemLabel="物理院"></f:selectItem>
+						<f:selectItem itemValue="化工院" itemLabel="化工院"></f:selectItem>
+						<f:selectItem itemValue="数学院" itemLabel="数学院"></f:selectItem>
+						<f:selectItem itemValue="文学院" itemLabel="文学院"></f:selectItem>
+					</p:selectOneMenu>
+					<p:message for="department" id="department-error" />
+
+					<p:outputLabel>专业(major):</p:outputLabel>
+					<p:selectOneMenu value="#{RootsBean.selectedScores.major}" size="1"
+						id="major">
+						<f:selectItem itemValue="计算机" itemLabel="计算机"></f:selectItem>
+						<f:selectItem itemValue="物理" itemLabel="物理"></f:selectItem>
+						<f:selectItem itemValue="化学" itemLabel="化学"></f:selectItem>
+						<f:selectItem itemValue="数学" itemLabel="数学"></f:selectItem>
+						<f:selectItem itemValue="中文" itemLabel="中文"></f:selectItem>
+					</p:selectOneMenu>
+					<p:message for="major" id="major-error" />
+
+					<p:outputLabel>数学(math):</p:outputLabel>
+					<p:inputText
+						validatorMessage="成绩不合法，只能输入100以内的正整数或者正小数(小数的精度为小数点后2位)"
+						value="#{RootsBean.selectedScores.math}" id="math" required="true"
+						requiredMessage="成绩不能为空">
+
+						<f:validateRegex pattern="^[0-9]{1,2}[.]{0,1}[0-9]{1,2}$"></f:validateRegex>
+						<p:ajax update="math-error" event="blur" />
+					</p:inputText>
+					<p:message for="math" id="math-error" />
+
+					<p:outputLabel>英语(english):</p:outputLabel>
+					<p:inputText
+						validatorMessage="成绩不合法，只能输入100以内的正整数或者正小数(小数的精度为小数点后2位)"
+						value="#{RootsBean.selectedScores.english}" id="english"
+						required="true" requiredMessage="成绩不能为空">
+						<f:validateRegex pattern="^[0-9]{1,2}[.]{0,1}[0-9]{1,2}$"></f:validateRegex>
+						<p:ajax update="english-error" event="blur" />
+					</p:inputText>
+					<p:message for="english" id="english-error" />
+
+					<p:outputLabel>java语言(java):</p:outputLabel>
+					<p:inputText
+						validatorMessage="成绩不合法，只能输入100以内的正整数或者正小数(小数的精度为小数点后2位)"
+						value="#{RootsBean.selectedScores.java}" id="java" required="true"
+						requiredMessage="成绩不能为空">
+						<f:validateRegex pattern="^[0-9]{1,2}[.]{0,1}[0-9]{1,2}$"></f:validateRegex>
+						<p:ajax update="java-error" event="blur" />
+					</p:inputText>
+					<p:message for="java" id="java-error" />
+
+					<p:outputLabel>c语言(c):</p:outputLabel>
+					<p:inputText
+						validatorMessage="成绩不合法，只能输入100以内的正整数或者正小数(小数的精度为小数点后2位)"
+						value="#{RootsBean.selectedScores.c}" id="c" required="true"
+						requiredMessage="成绩不能为空">
+						<f:validateRegex pattern="^[0-9]{1,2}[.]{0,1}[0-9]{1,2}$"></f:validateRegex>
+						<p:ajax update="c-error" event="blur" />
+					</p:inputText>
+					<p:message for="c" id="c-error" />
+
+					<p:outputLabel>os(os操作系统):</p:outputLabel>
+					<p:inputText
+						validatorMessage="成绩不合法，只能输入100以内的正整数或者正小数(小数的精度为小数点后2位)"
+						value="#{RootsBean.selectedScores.os}" id="os" required="true"
+						requiredMessage="成绩不能为空">
+						<f:validateRegex pattern="^[0-9]{1,2}[.]{0,1}[0-9]{1,2}$"></f:validateRegex>
+						<p:ajax update="os-error" event="blur" />
+					</p:inputText>
+					<p:message for="os" id="os-error" />
+
+					<p:outputLabel>javaEE(javaEE):</p:outputLabel>
+					<p:inputText
+						validatorMessage="成绩不合法，只能输入100以内的正整数或者正小数(小数的精度为小数点后2位)"
+						value="#{RootsBean.selectedScores.javaEE}" id="javaEE"
+						required="true" requiredMessage="成绩不能为空">
+						<f:validateRegex pattern="^[0-9]{1,2}[.]{0,1}[0-9]{1,2}$"></f:validateRegex>
+						<p:ajax update="javaEE-error" event="blur" />
+					</p:inputText>
+					<p:message for="javaEE" id="javaEE-error" />
+				</p:panelGrid>
+				<p:commandButton value="updateScores(更新)"
+					actionListener="#{RootsBean.updateScores}" process="@form"
+					update=":#{p:component('showForm')} 
+							name-error studentID-error gender-error 
+							department-error major-error math-error
+							english-error java-error c-error
+							os-error javaEE-error updateScoresForm "
+					oncomplete="PF('updateScoresDialog').hide()">
+				</p:commandButton>
+			</h:form>
+
 		</p:dialog>
 	</p:fieldset>
 	<p:fieldset legend="筛选dataTable">

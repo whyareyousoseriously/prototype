@@ -1,4 +1,4 @@
-package utils;
+package utils.validatorRoots;
 
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -12,17 +12,19 @@ import javax.faces.validator.ValidatorException;
 
 import org.primefaces.validate.ClientValidator;
 
-@FacesValidator("validatorStudentID")
-public class validatorStudentID implements Validator, ClientValidator {
+import utils.DataSearchUtils;
+
+@FacesValidator("existRootID")
+public class existRootID implements Validator, ClientValidator {
 	/*
-	 * 对注册表StudentID提供验证
-	 * 1.学号形式是否合法
-	 * 2.数据库中是否已存在
+	 * 给表Root的登录操作提供支持
+	 * 1.学号是否存在
 	 * @author cz
+	 * 2017-12-30
 	 * */
 	private Pattern pattern;
-	private static final String STUDENTID_PATTERN ="^[0-9]{12}$";
-	public validatorStudentID() {
+	private static final String STUDENTID_PATTERN ="^[0-9]{6}$";
+	public existRootID() {
 		pattern = Pattern.compile(STUDENTID_PATTERN);
 	}
 	@Override
@@ -34,7 +36,7 @@ public class validatorStudentID implements Validator, ClientValidator {
 	@Override
 	public String getValidatorId() {
 		// TODO Auto-generated method stub
-		return "validatorStudentID";
+		return "existRootID";
 	}
 
 	@Override
@@ -45,9 +47,9 @@ public class validatorStudentID implements Validator, ClientValidator {
 			return;
 		}
 		if(!pattern.matcher(value.toString()).matches()) {
-			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Validation Error",value+"不合法必须为12位数字"));
-		}else if(DataSearchUtils.duplicateCheckingData("Users",value.toString())) {
-			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Validation Error",value+"已存在"));
+			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Validation Error",value+"不合法必须为6位数字"));
+		}else if(!DataSearchUtils.duplicateCheckingData("Roots","rootID",value.toString())) {
+			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Validation Error",value+"不存在"));
 		}
 	}
 

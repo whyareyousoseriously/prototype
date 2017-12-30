@@ -54,8 +54,8 @@ public class testScoresDAOImpl {
 		 * @author cz
 		 * @time 2017-12-30
 		 * */
-		sdao_feedback=sdao.deleteScores("name","诚实小郎君");
-		sdao_feedback=sdao.deleteScores("studentID", "320140938321");
+		sdao_feedback=sdao.deleteScoresByCondition("name","诚实小郎君");
+		sdao_feedback=sdao.deleteScoresByCondition("studentID", "000001");
 		
 	}
 	@Test
@@ -67,47 +67,56 @@ public class testScoresDAOImpl {
 		ScoresDAO sdao = new ScoresDAOImpl();
 		List<Scores> sdao_feedback;
 		sdao_feedback = sdao.searchByCondition("name", "诚实小郎君");
-		sdao_feedback = sdao.searchByCondition("studentID", "320140938321");
+		sdao_feedback = sdao.searchByCondition("studentID", "000001");
 		
 	}
 	@Test
-	public void testScoresDAOImpl_updateScores() {
+	public void testScoresDAOImpl_updateScoresByCondition() {
 		/*
 		 * 测试dao.impl.ScoresDAOImpl.updateScores
 		 * 2017-12-30
 		 * */
 		Scores scores = new Scores();
-		scores.setStudentID("320140938322");
+		scores.setStudentID("000001");
 		ScoresDAO sdao = new ScoresDAOImpl();
 		//更新学号320140938322的名字为翠花
 		scores.setName("翠花");
-		sdao.updateScores(scores, "studentID", "name");
+		sdao.updateScoresByCondition(scores, "studentID", "name");
 		//更新学号320140938322的性别为男
 		scores.setGender("男");
-		sdao.updateScores(scores, "studentID", "gender");
+		sdao.updateScoresByCondition(scores, "studentID", "gender");
 		//更新学号320140938322的院系为物理院
 		scores.setDepartment("物理院");
-		sdao.updateScores(scores, "studentID", "department");
+		sdao.updateScoresByCondition(scores, "studentID", "department");
 		//更新学号320140938322的专业为物理
 		scores.setMajor("物理");
-		sdao.updateScores(scores, "studentID", "major");
+		sdao.updateScoresByCondition(scores, "studentID", "major");
 		//更新学号320140938322的数学为70
 		scores.setMath("70");
-		sdao.updateScores(scores, "studentID", "math");
+		sdao.updateScoresByCondition(scores, "studentID", "math");
 		//更新学号320140938322的英语为40
 		scores.setEnglish("40");
-		sdao.updateScores(scores, "studentID", "english");
+		sdao.updateScoresByCondition(scores, "studentID", "english");
 		//更新学号320140938322的java为40
 		scores.setJava("40");
-		sdao.updateScores(scores, "studentID", "java");
+		sdao.updateScoresByCondition(scores, "studentID", "java");
 		//更新学号320140938322的c为34
 		scores.setC("34");
-		sdao.updateScores(scores, "studentID", "c");
+		sdao.updateScoresByCondition(scores, "studentID", "c");
 		//更新学号320140938322的os为55
 		scores.setOs("55");
-		sdao.updateScores(scores, "studentID", "os");
+		sdao.updateScoresByCondition(scores, "studentID", "os");
 		//更新学号320140938322的javaEE为55
 		scores.setJavaEE("55");
-		sdao.updateScores(scores, "studentID", "javaEE");
+		sdao.updateScoresByCondition(scores, "studentID", "javaEE");
+	}
+	@Test
+	public void testScoresDAOImpl_updateScores() {
+		Scores scores = new Scores();
+		scores.setStudentID("000001");
+		ScoresDAO sdao = new ScoresDAOImpl();scores.setName("翠花");scores.setGender("男");scores.setDepartment("物理院");
+		scores.setMajor("物理");scores.setMath("70");scores.setEnglish("40");scores.setJava("40");scores.setC("34");
+		scores.setOs("55");scores.setJavaEE("55");
+		sdao.updateScores(scores);
 	}
 }

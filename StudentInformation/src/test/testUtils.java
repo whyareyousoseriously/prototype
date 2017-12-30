@@ -22,10 +22,10 @@ public class testUtils {
 		 * 2017-12-30
 		 * */
 		Scores scores = new Scores();
-		scores.setStudentID("320140938322");
+		scores.setStudentID("123456");
 		String table = "Scores";
 		
-		if(DataSearchUtils.duplicateCheckingData(table, scores.getStudentID())) {
+		if(DataSearchUtils.duplicateCheckingData(table,"studentID", scores.getStudentID())) {
 			System.out.println("该学号已存在");
 		}else {
 			System.out.println("该学号不存在");

@@ -1,8 +1,8 @@
-package utils;
+package utils.validatorScores;
 
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.regex.Pattern;
+
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;

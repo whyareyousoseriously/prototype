@@ -19,6 +19,8 @@
 					<p:inputText value="#{UsersBean.name}"
 								 required="true" id="name"
 								 requiredMessage="姓名不能为空">
+						<f:validator validatorId="validatorName"></f:validator>
+							<p:ajax update="name-error" event="blur"/>
 					</p:inputText>
 					<p:message for="name" id="name-error"/>
 					
@@ -37,9 +39,9 @@
 								feedback="true"
 								id="password"
 								required="true"
-								requiredMessage="需要密码"
-								validatorMessage="密码必须是2个或者更多的字符">
-					<f:validateLength minimum="2"/>
+								requiredMessage="需要密码">
+						<f:validator validatorId="validatorPassword"></f:validator>
+							<p:ajax update="password-error" event="blur"/>
 					</p:password>
 					<p:message for="password" id="password-error"/>
 						
@@ -101,8 +103,9 @@
 								 requiredMessage="邮箱不能为空"
 								 >
 						<f:validateRegex pattern="^\w+([-_.]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$"></f:validateRegex>
+						<p:ajax update="email-error" event="blur"/>
 					</p:inputText>
-					<p:message for="email"    id="eamil-error" />
+					<p:message for="email"    id="email-error" />
 					
 					<p:outputLabel>地址(address):</p:outputLabel>
 					<p:inputText value="#{UsersBean.address}"
@@ -132,7 +135,7 @@
 				<p:commandButton value="注册(Register)"
 					action="#{UsersBean.doRegistration}"
 					process="@form"
-					update="name-error studentID-error brithday-error password-error eamil-error hobby-error gender-error"  /> 
+					update="name-error studentID-error brithday-error password-error email-error hobby-error gender-error"  /> 
 				
 			</h:form> 
 				

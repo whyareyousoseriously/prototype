@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import dao.ScoresDAO;
 import db.MyHibernateSessionFactory;
 import model.Scores;
+import model.Users;
 
 public class ScoresDAOImpl implements ScoresDAO {
 	/*
@@ -121,7 +122,7 @@ public class ScoresDAOImpl implements ScoresDAO {
 	}
 
 	@Override
-	public String updateScores(Scores scores, String which, String what) {
+	public String updateScoresByCondition(Scores scores, String which, String what) {
 		// TODO Auto-generated method stub
 		/*
 		 * 分数更新
@@ -475,7 +476,7 @@ public class ScoresDAOImpl implements ScoresDAO {
 	}
 
 	@Override
-	public String deleteScores(String condition, String conditionValue) {
+	public String deleteScoresByCondition(String condition, String conditionValue) {
 		// TODO Auto-generated method stub
 		/*
 		 * 分数删除
@@ -607,6 +608,59 @@ public class ScoresDAOImpl implements ScoresDAO {
 		}catch(Exception e) {
 			e.printStackTrace();
 			return null;
+		}finally {
+			if(tx!=null) {
+				tx = null;
+			}
+		}
+	}
+
+	@Override
+	public String updateScores(Scores scores) {
+		// TODO Auto-generated method stub
+		Transaction tx =null;
+		try{
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			tx = session.beginTransaction();
+			String hql="from Scores where studentID=:studentID";
+			Query query = session.createQuery(hql);
+			System.out.println(scores.getStudentID());
+			query.setParameter("studentID", scores.getStudentID());
+			List<Scores> list = query.list();
+			if(list.size()>0) {
+				//list不为空
+				System.out.println("找到数据");
+				System.out.println(list.toString());
+				System.out.println("执行更新操作");
+				//执行更新操作
+				for(Scores s:list) {
+					if(s!=null) {
+						//u=user;//测试是不是赋值的问题影响的merge的执行
+						
+						s.setDepartment(scores.getDepartment());
+						s.setGender(scores.getGender());
+						s.setMajor(scores.getMajor());
+						s.setName(scores.getName());
+						s.setStudentID(scores.getStudentID());
+						s.setC(scores.getC());
+						s.setJava(scores.getJava());
+						s.setJavaEE(scores.getJavaEE());
+						s.setMath(scores.getMath());
+						s.setOs(scores.getOs());
+						s.setEnglish(scores.getEnglish());
+						session.merge(s);
+					}
+				}
+				tx.commit();
+				return "update-success";
+			}else {
+				System.out.println("未找到数据");
+				tx.commit();
+				return "no-data";
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			return "update-error";
 		}finally {
 			if(tx!=null) {
 				tx = null;

@@ -28,7 +28,7 @@ public interface ScoresDAO {
 	
 	
 	/*
-	 * 分数查询,
+	 * 条件分数查询,
 	 * 参数：查询对象的属性之一condition 
 	 * 参数：查询的条件的属性值conditonValue
 	 * 返回：一个存有所有满足条件的List
@@ -36,25 +36,29 @@ public interface ScoresDAO {
 	 * */
 	public List<Scores> searchByCondition(String condition,String conditionValue);
 	
-	
 	/*
-	 * 分数更新
-	 * 参数：更新对象的所有属性Scores
-	 * 参数：更新那一个条记录which
-	 * 参数：更新一条记录的什么，初步设定，all代表更新所有属性，
-	 * 返回：函数的执行的结果
-	 * */
-	public String updateScores(Scores scores,String which,String what);
-	
-	
-	
-	/*
-	 * 分数删除
+	 * 条件分数删除
 	 * 参数：删除的条件的属性conditon
 	 * 参数：删除的条件的属性的值conditionValue
 	 * 返回：函数执行的结果
 	 * @author cz
 	 * 更新日期:2017-12-30
 	 * */
-	public String deleteScores(String condition,String conditionValue);
+	public String deleteScoresByCondition(String condition,String conditionValue);
+	
+	/*
+	 * 分数更新
+	 * 参数：删除的对象scores
+	 * */
+	public String updateScores(Scores scores);
+	
+	/*
+	 * 条件分数更新
+	 * 参数：更新对象的所有属性Scores
+	 * 参数：更新那一个条记录which
+	 * 参数：更新一条记录的什么，初步设定，all代表更新所有属性，
+	 * 返回：函数的执行的结果
+	 * */
+	public String updateScoresByCondition(Scores scores,String which,String what);
+	
 }

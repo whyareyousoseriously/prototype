@@ -7,7 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import dao.RootsDAO;
+import dao.UsersDAO;
 import db.MyHibernateSessionFactory;
+import model.Roots;
 import model.Users;
 
 public class RootsDAOImpl implements RootsDAO{
@@ -248,4 +250,66 @@ public class RootsDAOImpl implements RootsDAO{
 			}
 		}
 	}
+
+	@Override
+	public Roots RootsLogin(Roots root) {
+		// TODO Auto-generated method stub
+		/*
+		 * root用户登录方法
+		 * */
+		Transaction tx = null;
+		String hql = "";
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			tx = session.beginTransaction();
+			hql = "from Roots where rootID=:rootID and password=:password";
+			Query query = session.createQuery(hql);
+			query.setParameter("rootID", root.getRootID());
+			query.setParameter("password", root.getPassword());
+			List<Roots> list = query.list();
+			System.out.println(list.toString());
+			tx.commit();//提交事务
+			if(list.size()>0) {
+				Roots r = (Roots)(list.get(0));
+				
+				return r;
+			}else {
+				return null;
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}finally {
+			if(tx!=null) {
+				tx = null;
+			}
+		}
+	}
+
+	@Override
+	public Roots RootsRegister(Roots root) {
+		// TODO Auto-generated method stub
+		/*
+		 * root用户注册方法
+		 * */
+		//创建一个事务对象
+		Transaction tx = null;
+	
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			tx = session.beginTransaction();
+			session.save(root);
+			tx.commit();
+			return root;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			if(tx!=null) {
+				tx=null;
+			}
+		}
+		
+	}
+
 }

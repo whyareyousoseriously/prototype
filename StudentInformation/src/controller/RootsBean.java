@@ -8,8 +8,11 @@ import javax.faces.event.ActionEvent;
 
 import dao.RootsDAO;
 import dao.ScoresDAO;
+import dao.UsersDAO;
 import dao.impl.RootsDAOImpl;
 import dao.impl.ScoresDAOImpl;
+import dao.impl.UsersDAOImpl;
+import model.Roots;
 import model.Scores;
 import model.Users;
 
@@ -158,7 +161,57 @@ public class RootsBean {
 		this.conditionValue = conditionValue;
 	}
 
-
+	public String doLogin() {
+		//超级管理员登陆方法
+		System.out.println(rootID);
+		System.out.println(password);
+		
+		//将页面上的学号和密码封装成Users对象
+		//The rootID and password on the page are encapsulated into users objects.
+		Roots root= new Roots();
+		root.setRootID(rootID);
+		root.setPassword(password);
+		
+		//面向接口编程WCF Interface oriented programming
+		RootsDAO rdao = new RootsDAOImpl();
+		//将页面上的Root对象传递，然后数据库进行查询
+		
+		//从数据库返回的信息
+		Roots root_feedback = rdao.RootsLogin(root);
+		
+		
+		if(root_feedback!=null) {	
+			System.out.println(root_feedback.toString()+"登录成功");
+			this.setRootID(root_feedback.getRootID());
+			
+			return "root-home?facesRedirect=true";
+		}else {
+			System.out.println(root.getRootID()+"登录失败");
+			
+			return "rootLogin-error?facesRedirect=true";
+		}
+	}
+	public String doRegistration() {
+		/*
+		 * 超级管理员的注册方法
+		 * @author cz
+		 * 2017-12-30
+		 * */
+		System.out.println(this.toString());
+		
+		//将页面上的注册信息封装成Roots对象
+		//The information of registration on the page are encapsulated into Roots objects.
+		Roots root= new Roots();
+		root.setRootID(rootID);
+		root.setPassword(password);
+		
+		
+		RootsDAO rdao = new RootsDAOImpl();
+		if((rdao.RootsRegister(root))!=null)
+			return "rootRegistration-success?facesRedirect=true";
+		else
+			return "rootRegistration-error?facesRedirect=true";
+	}
 	public void addScores(ActionEvent e) {
 		//将页面上的添加信息
 		Scores scores = new Scores();
@@ -168,6 +221,7 @@ public class RootsBean {
 		scores.setGender(selectedScores.getGender());
 		scores.setJava(selectedScores.getJava());
 		scores.setJavaEE(selectedScores.getJavaEE());
+		scores.setOs(selectedScores.getOs());
 		scores.setMajor(selectedScores.getMajor());
 		scores.setMath(selectedScores.getMath());
 		scores.setName(selectedScores.getName());
@@ -212,8 +266,36 @@ public class RootsBean {
 		Scores scores = new Scores();
 		ScoresDAO sdao = new ScoresDAOImpl();
 		
-		String sdao_feedback=sdao.deleteScores(condition, conditionValue);
+		String sdao_feedback=sdao.deleteScoresByCondition(condition, conditionValue);
 		if(sdao_feedback.equals("delete-success")){
+			
+		}else {
+			
+		}
+	}
+	
+	public void updateScores(ActionEvent e) {
+		/*
+		 * 更新数据
+		 * 从页面传入一个selectedScores
+		 * */
+		//将页面上的更新信息封装入scores
+		Scores scores = new Scores();
+		scores.setC(selectedScores.getC());
+		scores.setDepartment(selectedScores.getDepartment());
+		scores.setEnglish(selectedScores.getEnglish());
+		scores.setGender(selectedScores.getGender());
+		scores.setJava(selectedScores.getJava());
+		scores.setJavaEE(selectedScores.getJavaEE());
+		scores.setMajor(selectedScores.getMajor());
+		scores.setMath(selectedScores.getMath());
+		scores.setName(selectedScores.getName());
+		scores.setOs(selectedScores.getOs());
+		scores.setStudentID(selectedScores.getStudentID());
+		
+		ScoresDAO sdao = new ScoresDAOImpl();
+		String sdao_feedback = sdao.updateScores(scores);
+		if(sdao_feedback.equals("update-success")){
 			
 		}else {
 			

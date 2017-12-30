@@ -6,8 +6,16 @@ public class Roots {
 	 * @author cz
 	 * 2017-12-26
 	 * */
+	private int uid;
 	private String rootID;
 	private String password;
+	
+	public int getUid() {
+		return uid;
+	}
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
 	public String getRootID() {
 		return rootID;
 	}
@@ -22,7 +30,7 @@ public class Roots {
 	}
 	@Override
 	public String toString() {
-		return "Roots [rootID=" + rootID + ", password=" + password + "]";
+		return "Roots [uid=" + uid + ", rootID=" + rootID + ", password=" + password + "]";
 	}
 	
 }

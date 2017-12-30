@@ -3,8 +3,11 @@ package controller;
 import java.util.Date;
 import java.util.List;
 
+import dao.ScoresDAO;
 import dao.UsersDAO;
+import dao.impl.ScoresDAOImpl;
 import dao.impl.UsersDAOImpl;
+import model.Scores;
 import model.Users;
 
 public class UsersBean {
@@ -19,6 +22,7 @@ public class UsersBean {
 	private String email;
 	private String address;
 	private List<String> hobbys;
+	private Scores personalScores;
 	public String getName() {
 		return name;
 	}
@@ -87,11 +91,27 @@ public class UsersBean {
 	public void setHobbys(List<String> hobbys) {
 		this.hobbys = hobbys;
 	}
+	
+	public Scores getPersonalScores() {
+		/*
+		 * 调用ScoresDAO的方法来获得自己的成绩
+		 * */
+		ScoresDAO sdao = new ScoresDAOImpl();
+		//通过查询Scores表中studentID来获得成绩
+		List<Scores> sdao_feedback= sdao.searchByCondition("studentID", studentID);
+		personalScores = sdao_feedback.get(0);
+		return personalScores;
+	}
+	public void setPersonalScores(Scores personalScores) {
+		this.personalScores = personalScores;
+	}
+	
 	@Override
 	public String toString() {
 		return "UsersBean [name=" + name + ", studentID=" + studentID + ", password=" + password + ", gender=" + gender
 				+ ", brithday=" + brithday + ", grade=" + grade + ", department=" + department + ", major=" + major
-				+ ", email=" + email + ", address=" + address + "";
+				+ ", email=" + email + ", address=" + address + ", hobbys=" + hobbys + ", personalScores="
+				+ personalScores + "]";
 	}
 	public String doLogin() {
 		System.out.println(studentID);
@@ -129,7 +149,7 @@ public class UsersBean {
 		}else {
 			System.out.println(users.getStudentID()+"登录失败");
 			
-			return "login-error";
+			return "login-error?facesRedirect=true";
 		}
 	}
 	public String doRegistration() {
@@ -152,8 +172,8 @@ public class UsersBean {
 		
 		UsersDAO udao = new UsersDAOImpl();
 		if(udao.usersRegister(users)==1)
-			return "registration-success";
+			return "registration-success?facesRedirect=true";
 		else
-			return "registration-error";
+			return "registration-error?facesRedirect=true";
 	}
 }

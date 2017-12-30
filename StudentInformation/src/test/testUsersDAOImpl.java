@@ -20,8 +20,8 @@ public class testUsersDAOImpl {
 		 * ≤‚ ‘controller.UsersBean.doLogin
 		 * */
 		Users u = new Users();
-		u.setStudentID("320140938321");
-		u.setPassword("1231231");
+		u.setStudentID("000001");
+		u.setPassword("1231231c");
 		UsersDAO udao = new UsersDAOImpl();
 		Users u_feedback = udao.usersLogin(u);
 		if(u_feedback!=null) {
