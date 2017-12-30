@@ -12,17 +12,18 @@ import javax.faces.validator.ValidatorException;
 
 import org.primefaces.validate.ClientValidator;
 
-@FacesValidator("validatorStudentID")
-public class validatorStudentID implements Validator, ClientValidator {
+@FacesValidator("validatorScoresStudentID")
+public class validatorScoresStudentID implements Validator, ClientValidator {
 	/*
-	 * 对注册表StudentID提供验证
+	 * 对Scores表StudentID提供验证
 	 * 1.学号形式是否合法
 	 * 2.数据库中是否已存在
 	 * @author cz
+	 * 2017-12-30
 	 * */
 	private Pattern pattern;
 	private static final String STUDENTID_PATTERN ="^[0-9]{12}$";
-	public validatorStudentID() {
+	public validatorScoresStudentID() {
 		pattern = Pattern.compile(STUDENTID_PATTERN);
 	}
 	@Override
@@ -34,7 +35,7 @@ public class validatorStudentID implements Validator, ClientValidator {
 	@Override
 	public String getValidatorId() {
 		// TODO Auto-generated method stub
-		return "validatorStudentID";
+		return "validatorScoresStudentID";
 	}
 
 	@Override
@@ -46,7 +47,7 @@ public class validatorStudentID implements Validator, ClientValidator {
 		}
 		if(!pattern.matcher(value.toString()).matches()) {
 			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Validation Error",value+"不合法必须为12位数字"));
-		}else if(DataSearchUtils.duplicateCheckingData("Users",value.toString())) {
+		}else if(DataSearchUtils.duplicateCheckingData("Scores",value.toString())) {
 			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Validation Error",value+"已存在"));
 		}
 	}

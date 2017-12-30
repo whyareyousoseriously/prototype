@@ -7,7 +7,10 @@ import java.util.List;
 import javax.faces.event.ActionEvent;
 
 import dao.RootsDAO;
+import dao.ScoresDAO;
 import dao.impl.RootsDAOImpl;
+import dao.impl.ScoresDAOImpl;
+import model.Scores;
 import model.Users;
 
 public class RootsBean {
@@ -23,6 +26,9 @@ public class RootsBean {
 	private List<Users> conditionUsers;
 	private Users selected = new Users();
 	
+	private List<Scores> allScores;
+	private List<Users> conditionScores;
+	private Scores selectedScores = new Scores();
 	public String getRootID() {
 		return rootID;
 	}
@@ -91,10 +97,73 @@ public class RootsBean {
 		this.conditionUsers = conditionUsers;
 	}
 
+	
+	public List<Scores> getAllScores() {
+		/*
+		 * 遍历得到所有的scores;
+		 * 
+		 * */
+		ScoresDAO sdao = new ScoresDAOImpl();
+		allScores = sdao.getAllScores();
+		
+		return allScores;
+	}
 
+
+	public void setAllScores(List<Scores> allScores) {
+		this.allScores = allScores;
+	}
+
+
+	public List<Users> getConditionScores() {
+		return conditionScores;
+	}
+
+
+	public void setConditionScores(List<Users> conditionScores) {
+		this.conditionScores = conditionScores;
+	}
+
+
+	public Scores getSelectedScores() {
+		return selectedScores;
+	}
+
+
+	public void setSelectedScores(Scores selectedScores) {
+		this.selectedScores = selectedScores;
+	}
+
+	public void addScores(ActionEvent e) {
+		//将页面上的添加信息
+		Scores scores = new Scores();
+		scores.setC(Double.toString(selectedScores.getC()));
+		scores.setDepartment(selectedScores.getDepartment());
+		scores.setEnglish(Double.toString(selectedScores.getEnglish()));
+		scores.setGender(selectedScores.getGender());
+		scores.setJava(selectedScores.getJava());
+		scores.setJavaEE(selectedScores.getJavaEE());
+		scores.setMajor(selectedScores.getMajor());
+		scores.setMath(selectedScores.getMath());
+		scores.setName(selectedScores.getName());
+		scores.setStudentID(selectedScores.getStudentID());
+		
+		ScoresDAO sdao = new ScoresDAOImpl();
+		String sdao_feedback = sdao.addScores(scores);
+		if(sdao_feedback.equals("add-success")){
+			
+		}else {
+			
+		}
+	}
+	
+	public void searchByCondition(ActionEvent e) {
+		//查找根据条件
+		
+	}
 	public void addUsers(ActionEvent e) {
-		//将页面上的注册信息封装成Users对象
-		//The information of registration on the page are encapsulated into users objects.
+		//将页面上的信息封装成Users对象
+		//The information of the page are encapsulated into users objects.
 		Users users= new Users();
 		users.setName(selected.getName());
 		users.setStudentID(selected.getStudentID());

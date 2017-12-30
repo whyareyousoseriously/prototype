@@ -8,28 +8,27 @@ import org.junit.Test;
 
 import dao.UsersDAO;
 import dao.impl.UsersDAOImpl;
+import model.Scores;
 import model.Users;
 import utils.DataSearchUtils;
 
 public class testUtils {
 	@Test
-	public void testDuplicateChecking() {
-		Users users = new Users();
-		users.setName("张三");
-		users.setStudentID("320140938321");
-		users.setPassword("1231231");
+	public void testDuplicateCheckingData() {
 		
-		UsersDAO udao = new UsersDAOImpl();
+		/*
+		 * 测试util.DataSearchUtils.duplicateCheckingData;
+		 * @author cz
+		 * 2017-12-30
+		 * */
+		Scores scores = new Scores();
+		scores.setStudentID("320140938322");
+		String table = "Scores";
 		
-		if(udao.usersLogin(users)!=null) {
-			System.out.println("登录成功");
+		if(DataSearchUtils.duplicateCheckingData(table, scores.getStudentID())) {
+			System.out.println("该学号已存在");
 		}else {
-			System.out.println("登录失败");
+			System.out.println("该学号不存在");
 		}
-		
-		if(DataSearchUtils.duplicateChecking(users.getStudentID()))
-			System.out.println("该学生已存在");
-		else
-			System.out.println("该学生不存在");
 	}
 }

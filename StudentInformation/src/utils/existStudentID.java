@@ -46,7 +46,7 @@ public class existStudentID implements Validator, ClientValidator {
 		}
 		if(!pattern.matcher(value.toString()).matches()) {
 			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Validation Error",value+"不合法必须为12位数字"));
-		}else if(!DataSearchUtils.duplicateChecking(value.toString())) {
+		}else if(!DataSearchUtils.duplicateCheckingData("Users",value.toString())) {
 			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Validation Error",value+"不存在"));
 		}
 	}
