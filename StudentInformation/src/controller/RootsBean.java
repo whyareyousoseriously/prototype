@@ -27,8 +27,10 @@ public class RootsBean {
 	private Users selected = new Users();
 	
 	private List<Scores> allScores;
-	private List<Users> conditionScores;
+	private List<Scores> conditionScores;
 	private Scores selectedScores = new Scores();
+	private String condition;
+	private String conditionValue;
 	public String getRootID() {
 		return rootID;
 	}
@@ -115,12 +117,15 @@ public class RootsBean {
 	}
 
 
-	public List<Users> getConditionScores() {
+	
+
+
+	public List<Scores> getConditionScores() {
 		return conditionScores;
 	}
 
 
-	public void setConditionScores(List<Users> conditionScores) {
+	public void setConditionScores(List<Scores> conditionScores) {
 		this.conditionScores = conditionScores;
 	}
 
@@ -133,6 +138,26 @@ public class RootsBean {
 	public void setSelectedScores(Scores selectedScores) {
 		this.selectedScores = selectedScores;
 	}
+	
+	public String getCondition() {
+		return condition;
+	}
+
+
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+	
+
+	public String getConditionValue() {
+		return conditionValue;
+	}
+
+
+	public void setConditionValue(String conditionValue) {
+		this.conditionValue = conditionValue;
+	}
+
 
 	public void addScores(ActionEvent e) {
 		//将页面上的添加信息
@@ -157,8 +182,22 @@ public class RootsBean {
 		}
 	}
 	
-	public void searchByCondition(ActionEvent e) {
-		//查找根据条件
+	public void searchScoresByCondition(ActionEvent e) {
+		/*
+		 * 根据查询条件查询
+		 * 从页面来的查询条件的种类的值condition
+		 * 从页面来的查询条件的值conditionValue
+		 * */
+		Scores scores = new Scores();
+		ScoresDAO sdao = new ScoresDAOImpl();
+		
+		
+		List<Scores> sdao_feedback = sdao.searchByCondition(condition, conditionValue);
+		if(sdao_feedback!=null) {
+			this.setConditionScores(sdao_feedback);
+		}else {
+			
+		}
 		
 	}
 	public void addUsers(ActionEvent e) {

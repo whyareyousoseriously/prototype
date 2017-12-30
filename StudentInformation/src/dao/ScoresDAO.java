@@ -29,12 +29,12 @@ public interface ScoresDAO {
 	
 	/*
 	 * 分数查询,
-	 * 参数：查询对象的大概特征scores（scores中属性 不一定全满） 
-	 * 参数：查询的条件conditon（从scores中选取那个属性作为查询条件）
+	 * 参数：查询对象的属性之一condition 
+	 * 参数：查询的条件的属性值conditonValue
 	 * 返回：一个存有所有满足条件的List
 	 * 补充：这样设计是为了查询的多样化。
 	 * */
-	public List<Scores> searchByCondition(Scores scores,String condition);
+	public List<Scores> searchByCondition(String condition,String conditionValue);
 	
 	
 	/*

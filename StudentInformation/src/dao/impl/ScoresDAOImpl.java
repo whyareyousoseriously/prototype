@@ -45,14 +45,15 @@ public class ScoresDAOImpl implements ScoresDAO {
 	}
 
 	@Override
-	public List<Scores> searchByCondition(Scores scores, String condition) {
+	public List<Scores> searchByCondition(String condition, String conditionValue) {
 		// TODO Auto-generated method stub
+
 		/*
 		 * 分数查询,
-		 * 参数：查询对象的大概特征scores（scores中属性 不一定全满） 
-		 * 参数：查询的条件conditon（从scores中选取那个属性作为查询条件）
+		 * 参数：查询对象的属性之一condition 
+		 * 参数：查询的条件的属性值conditonValue
 		 * 返回：一个存有所有满足条件的List
-		 * 补充：这样设计是为了查询的多样化,目前只设计了根据scores中学号和姓名进行查找
+		 * 补充：这样设计是为了查询的多样化。
 		 * */
 		Transaction tx = null;
 		try {
@@ -60,7 +61,20 @@ public class ScoresDAOImpl implements ScoresDAO {
 			tx = session.beginTransaction();
 			String hql ="";
 			
-			if("name".equals(condition)) {
+			hql ="from Scores where "+condition+"=:conditionValue";
+			Query query =session.createQuery(hql);
+			query.setParameter("conditionValue", conditionValue);
+			List<Scores> list = query.list();
+			tx.commit();
+			if(list.size()>0) {
+				System.out.println("根据"+condition+"="+conditionValue+"查询成功");
+				System.out.println(list.toString());
+				return list;
+			}else {
+				System.out.println("根据"+condition+"="+conditionValue+"查询失败");
+				return null;
+			}
+			/*if("name".equals(condition)) {
 				hql = "from Scores where name=:name";
 				Query query = session.createQuery(hql);
 				query.setParameter("name", scores.getName());
@@ -93,8 +107,8 @@ public class ScoresDAOImpl implements ScoresDAO {
 					
 					return null;
 				}
-			}
-			tx.commit();
+			}*/
+			
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
@@ -103,7 +117,7 @@ public class ScoresDAOImpl implements ScoresDAO {
 				tx = null;
 			}
 		}
-		return null;
+	
 	}
 
 	@Override

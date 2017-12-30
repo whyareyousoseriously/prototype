@@ -62,14 +62,10 @@ public class testScoresDAOImpl {
 		 * 测试dao.impl.ScoresDAOImpl.searchByCondition
 		 * 2017-12-30
 		 * */
-		Scores scores = new Scores();
-		scores.setName("张山");
-		scores.setStudentID("320140938321");
-		scores.setJava("100");
 		ScoresDAO sdao = new ScoresDAOImpl();
 		List<Scores> sdao_feedback;
-		sdao_feedback = sdao.searchByCondition(scores, "name");
-		sdao_feedback = sdao.searchByCondition(scores, "studentID");
+		sdao_feedback = sdao.searchByCondition("name", "诚实小郎君");
+		sdao_feedback = sdao.searchByCondition("studentID", "320140938321");
 		
 	}
 	@Test
