@@ -1,9 +1,0 @@
-在做Hibernate框架数据库的关联关系映射练习中出现了Could not get constructor for org.hibernate.persister.entity.SingleTableEntityPersister错误。
-
-在百度上搜了很多答案，检查了自己的映射配置文件，都没有发现错误，最后在CSDN的一篇博客上找到了答案，博客地址：http://blog.csdn.net/weixin_36380516/article/details/52876204
-
-看了文章好检查了自己的实体类，也没有发现什么问题，后来就把有关的实体类中的get和set方法都删除，重新生成一次，错误就没有了。
-
-总结了一下，出现这种问题的原因可能是自己的实体类中的属性对应的get和set方法没有按照规范去写，所以才造成了这个问题。
-
- 

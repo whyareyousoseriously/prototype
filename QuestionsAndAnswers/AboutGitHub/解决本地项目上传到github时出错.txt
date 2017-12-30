@@ -1,7 +1,0 @@
-出现错误的主要原因是github中的README.md文件不在本地代码目录中
-可以通过以下命令解决上面的错误【注：pull=fetch+merge】
-
-git pull --rebase origin master
-再执行语句 git push -u origin master即可完成代码上传到github
-
-
