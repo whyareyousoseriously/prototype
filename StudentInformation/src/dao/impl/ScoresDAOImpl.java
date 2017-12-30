@@ -138,16 +138,16 @@ public class ScoresDAOImpl implements ScoresDAO {
 						System.out.println("更新开始");
 						for(Scores s:list) {
 							//设定所有值
-							s.setC(Double.toString(scores.getC()));
+							s.setC(scores.getC());
 							s.setDepartment(scores.getDepartment());
-							s.setEnglish(Double.toString(scores.getEnglish()));
+							s.setEnglish(scores.getEnglish());
 							s.setGender(scores.getGender());
-							s.setJava(Double.toString(scores.getJava()));
-							s.setJavaEE(Double.toString(scores.getJavaEE()));
+							s.setJava(scores.getJava());
+							s.setJavaEE(scores.getJavaEE());
 							s.setMajor(scores.getMajor());
-							s.setMath(Double.toString(scores.getMath()));
+							s.setMath(scores.getMath());
 							s.setName(scores.getName());
-							s.setOs(Double.toString(scores.getOs()));
+							s.setOs(scores.getOs());
 							s.setStudentID(scores.getStudentID());
 							session.merge(s);
 						}
@@ -176,7 +176,7 @@ public class ScoresDAOImpl implements ScoresDAO {
 						System.out.println("更新开始");
 						for(Scores s:list) {
 							//只设定属性c
-							s.setC(Double.toString(scores.getC()));
+							s.setC(scores.getC());
 							
 							session.merge(s);
 						}
@@ -234,7 +234,7 @@ public class ScoresDAOImpl implements ScoresDAO {
 						System.out.println("更新开始");
 						for(Scores s:list) {
 							//只设定属性english;
-							s.setEnglish(Double.toString(scores.getEnglish()));
+							s.setEnglish(scores.getEnglish());
 							
 							session.merge(s);
 						}
@@ -292,7 +292,7 @@ public class ScoresDAOImpl implements ScoresDAO {
 						System.out.println("更新开始");
 						for(Scores s:list) {
 							//只设定属性java
-							s.setJava(Double.toString(scores.getJava()));
+							s.setJava(scores.getJava());
 							
 							session.merge(s);
 						}

@@ -137,9 +137,9 @@ public class RootsBean {
 	public void addScores(ActionEvent e) {
 		//将页面上的添加信息
 		Scores scores = new Scores();
-		scores.setC(Double.toString(selectedScores.getC()));
+		scores.setC(selectedScores.getC());
 		scores.setDepartment(selectedScores.getDepartment());
-		scores.setEnglish(Double.toString(selectedScores.getEnglish()));
+		scores.setEnglish(selectedScores.getEnglish());
 		scores.setGender(selectedScores.getGender());
 		scores.setJava(selectedScores.getJava());
 		scores.setJavaEE(selectedScores.getJavaEE());

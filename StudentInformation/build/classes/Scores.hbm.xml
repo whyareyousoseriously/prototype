@@ -13,11 +13,11 @@
  		
  		<property name="department"   type="java.lang.String" />
  		<property name="major"   type="java.lang.String" />
- 		<property name="math" type="java.lang.Double"/>
- 		<property name="english" type="java.lang.Double"/>
- 		<property name="java" type="java.lang.Double"/>
- 		<property name="c" type="java.lang.Double"/>
- 		<property name="os" type="java.lang.Double"/>
- 		<property name="javaEE" type="java.lang.Double"/>
+ 		<property name="math" type="java.lang.String"/>
+ 		<property name="english" type="java.lang.String"/>
+ 		<property name="java" type="java.lang.String"/>
+ 		<property name="c" type="java.lang.String"/>
+ 		<property name="os" type="java.lang.String"/>
+ 		<property name="javaEE" type="java.lang.String"/>
     </class>
 </hibernate-mapping>
