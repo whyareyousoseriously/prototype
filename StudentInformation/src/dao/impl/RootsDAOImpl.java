@@ -287,7 +287,7 @@ public class RootsDAOImpl implements RootsDAO{
 	}
 
 	@Override
-	public Roots RootsRegister(Roots root) {
+	public String RootsRegister(Roots root) {
 		// TODO Auto-generated method stub
 		/*
 		 * root用户注册方法
@@ -300,10 +300,10 @@ public class RootsDAOImpl implements RootsDAO{
 			tx = session.beginTransaction();
 			session.save(root);
 			tx.commit();
-			return root;
+			return "register-success";
 		}catch(Exception e) {
 			e.printStackTrace();
-			return null;
+			return "regsiter-error";
 		}finally {
 			if(tx!=null) {
 				tx=null;

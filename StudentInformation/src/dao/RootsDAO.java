@@ -15,7 +15,7 @@ public interface RootsDAO {
 	public Roots RootsLogin(Roots root);
 	
 	//超级管理员注册
-	public Roots RootsRegister(Roots root);
+	public String RootsRegister(Roots root);
 	
 	
 	//首先是查询数据库中所有用户的接口

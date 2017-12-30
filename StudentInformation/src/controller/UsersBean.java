@@ -149,7 +149,7 @@ public class UsersBean {
 		}else {
 			System.out.println(users.getStudentID()+"µÇÂ¼Ê§°Ü");
 			
-			return "login-error?facesRedirect=true";
+			return "/WEB-INF/userPage/login-error?facesRedirect=true";
 		}
 	}
 	public String doRegistration() {
@@ -172,8 +172,8 @@ public class UsersBean {
 		
 		UsersDAO udao = new UsersDAOImpl();
 		if(udao.usersRegister(users)==1)
-			return "registration-success?facesRedirect=true";
+			return "/WEB-INF/userPage/registration-success?facesRedirect=true";
 		else
-			return "registration-error?facesRedirect=true";
+			return "/WEB-INF/userPage/registration-error?facesRedirect=true";
 	}
 }

@@ -188,7 +188,7 @@ public class RootsBean {
 		}else {
 			System.out.println(root.getRootID()+"登录失败");
 			
-			return "rootLogin-error?facesRedirect=true";
+			return "/WEB-INF/rootPage/rootLogin-error?facesRedirect=true";
 		}
 	}
 	public String doRegistration() {
@@ -207,10 +207,11 @@ public class RootsBean {
 		
 		
 		RootsDAO rdao = new RootsDAOImpl();
-		if((rdao.RootsRegister(root))!=null)
-			return "rootRegistration-success?facesRedirect=true";
+		String rdao_feedback = rdao.RootsRegister(root);
+		if(rdao_feedback.equals("register-success"))
+			return "/WEB-INF/rootPage/rootRegistration-success?facesRedirect=true";
 		else
-			return "rootRegistration-error?facesRedirect=true";
+			return "/WEB_INF/rootPage/rootRegistration-error?facesRedirect=true";
 	}
 	public void addScores(ActionEvent e) {
 		//将页面上的添加信息
