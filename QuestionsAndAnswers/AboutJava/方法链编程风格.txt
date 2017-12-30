@@ -1,0 +1,19 @@
+setXXX()方法返回的不是void，而是对象本身。
+	class Student{
+	  private String name;
+	  private int age;
+	  private String telphone;
+	  public Student setName(String name){
+		  this.name=name;
+	  }
+	  public Student setAge(int age){
+		  this.age=age;
+	  }
+	  public Student setTelphone(String telphone){
+		  this.telphone=telphone;
+	  }
+	}
+创建对象并赋值：
+	Studnt st=new Student();
+	st.setName("李芬").setAge(100).setTelPhone("110");
+这种风格的编程方式：连贯，语意集中，增强代码可读性。

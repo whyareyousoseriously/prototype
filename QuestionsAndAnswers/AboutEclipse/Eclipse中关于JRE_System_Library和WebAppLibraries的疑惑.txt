@@ -1,0 +1,25 @@
+当我们在Eclipse中建立java的web工程时，会产生JRE System Library和Referenced Libraries，Web App Libraries不生成，下面会
+
+简要说明一下。
+
+   其实，这三个都是jar包的存放集合。
+
+   JRE System Library主要存放J2SE的标准jar，一般不需要调整。
+
+  
+
+   Referenced Libraries是存放第三方的jar包，也就是自己导入的jar包。在项目属性的Java Build Path中的Libraries中配置。本人理解，
+
+这里导入和配置jar包，都是为了让web工程能够在eclipse开发环境可以正常编译，不报错而已。。如果该web工程利用eclipse生成war包，
+
+是不会导出其jar包到WEB-INF/lib文件夹下的。
+
+ 
+
+  Web App Libraries的主要作用是让eclipse导出war包的时候，会把其目录下的所有jar或者项目中的工程引用都导出到WEB-INF/lib文件
+
+夹下。Web App Libraries中的jar包在eclipse中项目属性的Java EE Module Dependencies配置的。如果你勾上了，或者添加了外部jar
+
+包，都会在WEB-INF/lib文件夹下生成。当然，如果你直接在WEB-INF/lib文件夹下，copy一个jar进入，刷新一下，Web App Libraries
+
+也会自动增加一个jar的引用。简单说，Java EE Module Dependencies的配置只针对Web App Libraries的。

@@ -1,0 +1,13 @@
+//困扰了我两天的问题终于解决了
+//jsf框架，但是在xhtml中无法显示各种标签，例如<h:inputText />
+//解决方法是：因为web.xml中的过滤，所以访问的时候直接输入
+//例如 index.xhtml是不行的，要根据web.xml中的设定来，输入如：index.jsf
+
+//jsf元素的前缀未绑定，f:selectItem不起作用
+//文件头加上xmlns:f="http://xmlns.jcp.org/jsf/core">
+//如：
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">

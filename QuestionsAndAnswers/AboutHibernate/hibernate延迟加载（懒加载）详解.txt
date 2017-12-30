@@ -1,0 +1,65 @@
+
+
+延迟加载
+
+一．什么是懒加载？他的作用？
+
+延迟加载，也叫懒加载，它是Hibernate为提高程序执行效率而提供的一种机制，即只有真正使用该对象的数据时才会创建。
+
+Hibernate中主要是通过代理（proxy）机制来实现延迟加载。它的具体过程：Hibernate丛数据库获取某一个对象数据时、获取某一个对象的集合属性值时，或获取某一个对象所关联的另一个对象时，由于没有使用该对象的数据，hibernate并不是数据库加载真正的数据，而只是为该对象创建一个代理对象来代表这个对象，这个对象上的所有属性都是默认值；只有在真正需要使用该对象的数据时才创建这个真实对象，真正从数据库中加载它的数据，这样在某些情况下，就可以提高查询效率。
+
+有如下程序代码：
+
+User user=(User)session.load(clazz, id);//直接返回的是代理对象
+
+System.out.println(user.getId());//没有发送sql语句到数据库加载
+
+user.getName();//创建真实的User实例，并发送sql语句到数据库中
+
+注意：1.不能判断User=null；代理对象不可能为空
+
+代理对象的限制：和代理关联的session对象，如果session关闭后访问代理则抛异常。session关闭之前访问数据库
+
+2.getId()方法不行因为参数为ID，getClass（）方法不用访问数据库就可以得到的数据
+
+Hibernate中默认采用延迟加载的情况主要有以下几种
+
+1,当调用session上的load()加载一个实体时，会采用延迟加载。
+
+2，当session加载某个实体时，会对这个实体中的集合属性值采用延迟加载
+
+3当session加载某个实体时，会对这个实体所有单端关联的另一个实体对象采用延迟加载。
+
+二．关闭延迟加载
+
+       延迟加载确实会给程序的查询效率带来好处，但有时明确知道数据需要立即加载，如果Hibernate先默认使用延迟加载，而后又必须去数据库加载，反而会降低效率
+
+1.     加载单个实体，如果不需要延迟加载，就可以使用session的get()方法。
+
+2.     当session加载某个实体时，不需要对这个实体中的集合属性值延迟加载，而是要立即加载。这是可以在映射文件中这个集合的配置元素（set bag list）添加属性lazy=false；
+
+3.     当session加载某个实体时，不需要对这个实体所单端关联的另一个实体对象延迟加载，就可以在影射文件中针对这个单端关联的配置元素（<one-to-one><many-to-one>）添加lazy=false；
+
+三．抓取策略
+
+   通过asm和cglib二个包实现；Domain是非final的。
+
+1.session.load懒加载。
+
+2.one-to-one(元素)懒加载：
+
+       必需同时满足下面三个条件时才能实现懒加载
+
+       (主表不能有constrained=true,所以主表没有懒加载)
+
+       lazy!=false 2)constrained=true3)fetch=select
+
+3.one-to-many (元素)懒加载：1)lazy!=false 2)fetch=select
+
+4.many-to-one (元素) ：1)lazy!=false 2)fetch=select
+
+5.many-to-many (元素) ：1)lazy!=false 2)fetch=select
+
+6.能够懒加载的对象都是被改写过的代理对象，当相关联的session没有关闭时，访问这些懒加载对象（代理对象）的属性（getId和getClass除外）hibernate会初始化这些代理，或用Hibernate.initialize(proxy)来初始化代理对象；当相关联的session关闭后，再访问懒加载的对象将出现异常。
+
+ 

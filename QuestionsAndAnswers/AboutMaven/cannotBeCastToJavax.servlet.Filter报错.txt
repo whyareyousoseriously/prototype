@@ -1,0 +1,32 @@
+使用maven开发web应用程序, 启动的时候报错:
+
+jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+
+然后输出错误:
+
+严重: Exception starting filter encodingFilter
+java.lang.ClassCastException: org.springframework.web.filter.CharacterEncodingFilter cannot be cast to javax.servlet.Filter
+
+问题的原因是server-:
+
+tomcat 启动后先将tomcat/lib目录下的jar包全部读入内存，如果webapps目录里的应用程序中WEB-INF/lib目录下有相同的包，将无法加载，
+
+不同版本的包之间也会造成类似问题
+
+解决这个问题的方法就是对于servlet-ap.jar 使用 <scope>标签，编译的时候用到servlet-api和jsp-api，但在打包的时候不用这两个依赖
+
+如下
+
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>servlet-api</artifactId>
+    <version>2.4</version>
+    <scope>provided</scope>
+   </dependency>
+
+<dependency>中<scope>，它主要管理依赖的部署。目前<scope>可以使用5个值： 
+    * compile，缺省值，适用于所有阶段，会随着项目一起发布。 
+    * provided，类似compile，期望JDK、容器或使用者会提供这个依赖。如servlet.jar。 
+    * runtime，只在运行时使用，如JDBC驱动，适用运行和测试阶段。 
+    * test，只在测试时使用，用于编译和运行测试代码。不会随项目发布。 
+    * system，类似provided，需要显式提供包含依赖的jar，Maven不会在Repository中查找它。

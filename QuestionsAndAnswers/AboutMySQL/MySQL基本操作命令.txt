@@ -1,0 +1,57 @@
+1.数据库的登陆和退出
+	mysql	-u root -p 123456 -h 127.0.0.1 -P 3306
+			-u, --user=name 用户名
+			-p, --password	密码
+			-h, --host=name 服务器名称
+			-P, --port=#	端口号,大写的P
+			-v	--version	输出版本信息并退出
+	mysql退出
+		mysql>exit;
+		mysql>quit;
+		mysql>\q;
+2.修改MySQL提示符
+	1.链接客户端时通过参数指定
+		mysql -uroot -p123456 --prompt 提示符
+	2.链接上客户端后，通过prompt命令修改
+		mysql>prompt 提示符
+3.常用命令
+	1.显示当前服务器版本
+		SELECT VERSION();
+	2.显示当前日期信息
+		SELECT NOW();
+	3.显示当前用户
+		SELECT USER();
+4.MySQL语句的规范
+	1.关键字与函数名称全部大写
+	2.数据库名称，表名称，字段名称小写
+	3.SQL语句必须以分号结尾
+5.创建数据库的操作
+	1.创建数据库
+		create {database| schema} [if not exists] db_name [default] character set [=] charset_name
+		花括号必选项，中括号可选项
+		例如：create database t1;
+	2.展示数据库
+		证明：查看当前服务器下有多少数据库 show databases;
+			show {databases |schemas} [like 'pattern'| where expr]
+	3.删除数据库
+		drop database t1;
+	4.更新数据库
+		ALTER {DATABASE|SCHEMA} [db_name]
+		[DEFAULT] CHARACTER SET [=] charset_name;
+		例：alter database t1 character set = utf8;
+6.创建数据表
+	1.打开数据库
+		use 数据库名称
+	2.create table [if not exits] table_name(
+			column_name data_type,
+			...
+		);
+7.查看数据表
+	show tables [from db_name]
+	[like 'pattern' |where expr];
+8.查看数据表结构
+	show columns from table_name;
+9.MySQL记录的插入和查找
+	insert [into] table_name [(column_name,...)] values(val,..)
+	select expr,...from table_name
+	
