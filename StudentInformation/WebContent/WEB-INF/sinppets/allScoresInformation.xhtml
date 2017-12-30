@@ -143,38 +143,70 @@
 		<p:commandButton value="条件查询" id="conditionSearchScores"
 			onclick="PF('conditionSearchScoresDialog').show()">
 		</p:commandButton>
-		<p:dialog header="conditionSearchScores" widgetVar="conditionSearchScoresDialog"
-			modal="true">
+		<p:dialog header="conditionSearchScores(条件查询)"
+			widgetVar="conditionSearchScoresDialog" modal="true">
 			<h:form id="conditionSearchScoresForm">
 				<p:panelGrid columns="3" styleClass="formTable">
-					<p:outputLabel>查询条件(condition):</p:outputLabel>
+					<p:outputLabel>条件(condition):</p:outputLabel>
 					<p:inputText value="#{RootsBean.condition}" required="true"
 						id="condition" requiredMessage="不能为空">
 						<f:validator validatorId="validatorSearchScoresCondition"></f:validator>
 						<p:ajax update="condition-error" event="blur" />
 					</p:inputText>
 					<p:message for="condition" id="condition-error" />
-					
-					<p:outputLabel>查询条件的值(conditionValue):</p:outputLabel>
+
+					<p:outputLabel>条件的值(conditionValue):</p:outputLabel>
 					<p:inputText value="#{RootsBean.conditionValue}" required="true"
 						id="conditionValue" requiredMessage="不能空">
 					</p:inputText>
 					<p:message for="conditionValue" id="conditionValue-error" />
 				</p:panelGrid>
-				<p:commandButton value="conditionSearchScores(条件查询)"
-					actionListener="#{RootsBean.searchScoresByCondition}" process="@form"
-					update="condition-error conditionValue-error conditionSearchScoresForm
-							:#{p:component('selectScoresForm')}"
-					oncomplete="PF('conditionSearchScoresDialog').hide()">
-				</p:commandButton>
+
 			</h:form>
+			<p:commandButton value="conditionSearchScores(条件查询)"
+				actionListener="#{RootsBean.searchScoresByCondition}"
+				process="@form"
+				update="condition-error conditionValue-error conditionSearchScoresForm
+							:#{p:component('selectScoresForm')}"
+				oncomplete="PF('conditionSearchScoresDialog').hide()">
+			</p:commandButton>
+		</p:dialog>
+		<p:commandButton value="条件删除" id="conditionDeleteScores"
+			onclick="PF('conditionDeleteScoresDialog').show()">
+		</p:commandButton>
+		<p:dialog header="conditionDeleteScores(条件删除)"
+			widgetVar="conditionDeleteScoresDialog" modal="true">
+			<h:form id="conditionDeleteScoresForm">
+				<p:panelGrid columns="3" styleClass="formTable">
+					<p:outputLabel>条件(condition):</p:outputLabel>
+					<p:inputText value="#{RootsBean.condition}" required="true"
+						id="condition" requiredMessage="不能为空">
+						<f:validator validatorId="validatorSearchScoresCondition"></f:validator>
+						<p:ajax update="condition-error" event="blur" />
+					</p:inputText>
+					<p:message for="condition" id="condition-error" />
+
+					<p:outputLabel>条件的值(conditionValue):</p:outputLabel>
+					<p:inputText value="#{RootsBean.conditionValue}" required="true"
+						id="conditionValue" requiredMessage="不能空">
+					</p:inputText>
+					<p:message for="conditionValue" id="conditionValue-error" />
+				</p:panelGrid>
+
+			</h:form>
+			<p:commandButton value="conditionDeleteScores(条件删除)"
+				actionListener="#{RootsBean.deleteScoresByCondition}"
+				process="@form"
+				update="condition-error conditionValue-error conditionDeleteScoresForm
+							:#{p:component('showForm')}"
+				oncomplete="PF('conditionDeleteScoresDialog').hide()">
+			</p:commandButton>
 		</p:dialog>
 	</p:fieldset>
 	<p:fieldset legend="筛选dataTable">
-	<h:form id="selectScoresForm">
-		<p:dataTable var="conditionScores"
-					 value="#{RootsBean.conditionScores}"
-					 id="selectTable">
+		<h:form id="selectScoresForm">
+			<p:dataTable var="conditionScores"
+				value="#{RootsBean.conditionScores}" id="selectTable">
 				<p:column headerText="姓名(name)">#{conditionScores.name}</p:column>
 				<p:column headerText="学号(studentID)">
 					 #{conditionScores.studentID}
@@ -188,10 +220,10 @@
 				<p:column headerText="c语言">#{conditionScores.c}</p:column>
 				<p:column headerText="os操作系统">#{conditionScores.os}</p:column>
 				<p:column headerText="javaEE">#{conditionScores.javaEE}</p:column>
-				
-		</p:dataTable>
-	</h:form>
-</p:fieldset>
+
+			</p:dataTable>
+		</h:form>
+	</p:fieldset>
 
 </ui:composition>
 

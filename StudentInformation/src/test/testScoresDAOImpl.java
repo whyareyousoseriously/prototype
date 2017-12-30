@@ -45,15 +45,17 @@ public class testScoresDAOImpl {
 		 * 测试dao.impl.ScoresDAOImpl.deleteScores;
 		 * 2017-12-30
 		 * */
-		Scores scores = new Scores();
-		scores.setName("张山");
-		scores.setStudentID("320140938321");
-		scores.setJava("100");
+		
 		ScoresDAO sdao = new ScoresDAOImpl();
 		String sdao_feedback;
 		//更新升级，后台输出信息在dao实现方法内部，这里不在提示
-		sdao_feedback=sdao.deleteScores(scores, "name");
-		sdao_feedback=sdao.deleteScores(scores, "studentID");
+		/*
+		 * 更新升级:修改基础接口，使接口功能更人性化
+		 * @author cz
+		 * @time 2017-12-30
+		 * */
+		sdao_feedback=sdao.deleteScores("name","诚实小郎君");
+		sdao_feedback=sdao.deleteScores("studentID", "320140938321");
 		
 	}
 	@Test

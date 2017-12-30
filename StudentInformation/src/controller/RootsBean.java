@@ -180,6 +180,8 @@ public class RootsBean {
 		}else {
 			
 		}
+		//清空selectedScores
+		selectedScores = new Scores();
 	}
 	
 	public void searchScoresByCondition(ActionEvent e) {
@@ -199,6 +201,23 @@ public class RootsBean {
 			
 		}
 		
+	}
+	
+	public void deleteScoresByCondition(ActionEvent e) {
+		/*
+		 * 根据删除条件查询
+		 * 从页面来的删除条件的种类的值condition
+		 * 从页面来的查询条件的值conditionValue
+		 * */
+		Scores scores = new Scores();
+		ScoresDAO sdao = new ScoresDAOImpl();
+		
+		String sdao_feedback=sdao.deleteScores(condition, conditionValue);
+		if(sdao_feedback.equals("delete-success")){
+			
+		}else {
+			
+		}
 	}
 	public void addUsers(ActionEvent e) {
 		//将页面上的信息封装成Users对象

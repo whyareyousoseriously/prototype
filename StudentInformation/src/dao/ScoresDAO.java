@@ -50,9 +50,11 @@ public interface ScoresDAO {
 	
 	/*
 	 * 分数删除
-	 * 参数：删除的对象的大概特征scores（scores中属性不一定全满）
-	 * 参数：删除的条件condition(从scores中选取那一个属性作为删除条件）
+	 * 参数：删除的条件的属性conditon
+	 * 参数：删除的条件的属性的值conditionValue
 	 * 返回：函数执行的结果
+	 * @author cz
+	 * 更新日期:2017-12-30
 	 * */
-	public String deleteScores(Scores scores,String condition);
+	public String deleteScores(String condition,String conditionValue);
 }

@@ -475,17 +475,53 @@ public class ScoresDAOImpl implements ScoresDAO {
 	}
 
 	@Override
-	public String deleteScores(Scores scores, String condition) {
+	public String deleteScores(String condition, String conditionValue) {
 		// TODO Auto-generated method stub
 		/*
 		 * 分数删除
-		 * 参数：删除的对象的大概特征scores（scores中属性不一定全满）
-		 * 参数：删除的条件condition(从scores中选取那一个属性作为删除条件）
+		 * 参数：删除的条件的属性conditon
+		 * 参数：删除的条件的属性的值conditionValue
 		 * 返回：函数执行的结果
-		 * 补充：目前只实现根据名字和学号删除学生，其他的都差不多，就不写了
+		 * @author cz
+		 * 更新日期:2017-12-30
+		 * 更新内容：修改基础接口，使接口功能更加人性化
 		 * */
 		Transaction tx = null;
 		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			tx = session.beginTransaction();
+			String hql ="";
+			
+			hql ="from Scores where "+condition+"=:conditionValue";
+			Query query =session.createQuery(hql);
+			query.setParameter("conditionValue", conditionValue);
+			List<Scores> list = query.list();
+			
+			if(list.size()>0) {
+				System.out.println("根据"+condition+"="+conditionValue+"查询成功");
+				System.out.println(list.toString());
+				System.out.println("开始执行删除");
+				for(Scores s:list) {
+					session.delete(s);
+				}
+				System.out.println("删除成功");
+				tx.commit();
+				return "delete-success";
+			}else {
+				System.out.println("根据"+condition+"="+conditionValue+"查询失败");
+				System.out.println("未找到无法执行删除操作");
+				tx.commit();
+				return "delete-error";
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			return "delete-error";
+		}finally {
+			if(tx!=null) {
+				tx = null;
+			}
+		}
+		/*try {
 			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
 			tx = session.beginTransaction();
 			String hql = "";
@@ -545,7 +581,7 @@ public class ScoresDAOImpl implements ScoresDAO {
 			}
 		}
 		
-		return "delete-error";
+		return "delete-error";*/
 	}
 
 	@Override
