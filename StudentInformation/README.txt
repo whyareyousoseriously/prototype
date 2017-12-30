@@ -1,0 +1,9 @@
+这是studentInformation的一个分支
+由于时间关系，暂时上传它，有个关于primeface数据和后台DB数据转换的问题，
+首先考虑用函数的多态来解决，但是出现了问题，个人觉得应该不会出现这个问题
+主要是inputText接受的String 而数据库中相关字段为Double.
+
+以后有时间来解决这个问题，但是现在还是回到主分支上，
+采用String字段，
+继续完成StudenInformation,
+因为时间紧迫啊
