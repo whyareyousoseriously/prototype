@@ -54,6 +54,8 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;add a RootsBean in StudentInformationManagement<br>
 &emsp;&emsp;2017-12-30<br>
 &emsp;&emsp;&emsp;&emsp;StudentInformationManagement almost completed, but a question about page jump under folder make a crazy..<br>
+&emsp;&emsp;2018-1-23<br>
+&emsp;&emsp;&emsp;&emsp;back to work; refactor prototype-parent according to studentInformationManagement,and rename it to paymentSystem.<br>
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -109,4 +111,6 @@ a javaWeb prototype<br>
 &emsp;&emsp;2017-12-29<br>
 &emsp;&emsp;&emsp;&emsp;添加了超级管理员bean在StudentInformation<br>
 &emsp;&emsp;2017-12-30<br>
-&emsp;&emsp;&emsp;&emsp;差不多完成studentInfromation,WebContent各文件夹里路径跳转问题搞得人头大,没时间了索性全部放在WebContent下，加个过滤器。
+&emsp;&emsp;&emsp;&emsp;差不多完成studentInformation,WebContent各文件夹里路径跳转问题搞得人头大,没时间了索性全部放在WebContent下，加个过滤器。
+&emsp;&emsp;2018-1-23<br>
+&emsp;&emsp;&emsp;&emsp;开始工作，将studentInformation的工作转移到paymentSystem.<br>
