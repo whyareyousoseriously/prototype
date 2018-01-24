@@ -1,0 +1,9 @@
+entity\User.class
+utils\dataValidator\user\PasswordValidator.class
+controller\UserBean.class
+dao\UserDAO.class
+db\MyHibernateSessionFactory.class
+dao\impl\UserDAOImpl.class
+utils\DataSearchUtil.class
+utils\dataValidator\user\LoginUsernameValidator.class
+utils\dataValidator\user\RegisterUsernameValidator.class
