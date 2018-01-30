@@ -12,6 +12,7 @@
 		<h1 class="ui-widget-header ui-corner-all">支付管理</h1>
 		<p:fieldset legend="Welcome to login">
 			<h:form>
+				
 				<p:panelGrid>
 					<f:facet name="header">
 						<p:row>
@@ -58,7 +59,8 @@
 								value="登录(login)" 
 								process="@form"
 								update="username-error password-error"
-								action="#{UserBean.doLogin}">
+								action="#{UserBean.doLogin}"
+								>
 							</p:commandButton>
 						</p:column>
 					</p:row>

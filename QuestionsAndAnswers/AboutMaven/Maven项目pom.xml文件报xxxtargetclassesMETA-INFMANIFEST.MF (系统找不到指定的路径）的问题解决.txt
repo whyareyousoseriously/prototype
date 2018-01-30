@@ -1,0 +1,9 @@
+昨天关闭eclipse之前项目一切正常，今天打开的时候maven的pom.xml文件报错...\taotao-manager\taotao-manager-web\target\m2e-wtp\web-resources\META-INF\MANIFEST.MF (系统找不到指定的路径。)
+
+项目环境是Tomcat7 + Eclipse + Maven + Spring + SpringMvc + Mybatis
+
+经过查找解决方法如下
+
+eclipse-project-clean-clean all projects.
+
+.等着progress视图里的build完成就可以。

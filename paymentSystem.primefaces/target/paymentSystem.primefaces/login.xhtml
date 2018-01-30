@@ -12,6 +12,7 @@
 		<h1 class="ui-widget-header ui-corner-all">支付管理</h1>
 		<p:fieldset legend="Welcome to login">
 			<h:form>
+				
 				<p:panelGrid>
 					<f:facet name="header">
 						<p:row>
@@ -58,30 +59,14 @@
 								value="登录(login)" 
 								process="@form"
 								update="username-error password-error"
-								action="#{UserBean.doLogin}">
+								action="#{UserBean.doLogin}"
+								>
 							</p:commandButton>
 						</p:column>
 					</p:row>
-					<p:commandButton	value="登录(login)"
-								onclick="PF('dialog_login').show()">
-				<p:confirmDialog header="登录"
-									message="你确定要登录吗？"
-									widgetVar="dialog_login"
-									style="width:300px">
-					<p:commandButton	value="确认"
-										process="@form"
-										update="username-error password-error"
-										action="#{UserBean.doLogin}"
-										oncomplete="PF('dialog_login').hide();">
-					</p:commandButton>
-	
-					<p:commandButton	value="取消"
-										oncomplete="PF('dialog_login').hide();">
-					</p:commandButton>
-				</p:confirmDialog>
-			</p:commandButton>
+					
 				</p:panelGrid>
-				<!-- 带弹窗的登录  -->
+				
 				
 
 			</h:form>

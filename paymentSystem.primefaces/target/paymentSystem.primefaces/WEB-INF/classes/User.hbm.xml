@@ -20,5 +20,8 @@
         <property name="type" type="java.lang.String">
             <column name="TYPE" />
         </property>
+        <property name="active" type="java.lang.String">
+            <column name="ACTIVE"></column>
+        </property>
     </class>
 </hibernate-mapping>

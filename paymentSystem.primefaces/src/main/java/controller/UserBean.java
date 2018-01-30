@@ -1,7 +1,9 @@
 package controller;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import dao.UserDAO;
 import dao.impl.UserDAOImpl;
@@ -13,16 +15,17 @@ public class UserBean {
 	private String password;
 	private String email;
 	private String type;
-	
+	private String active;
 	public UserBean() {
 		super();
 	}
-	public UserBean(String username, String password, String email, String type) {
+	public UserBean(String username, String password, String email, String type, String active) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.type = type;
+		this.active = active;
 	}
 	public String getUsername() {
 		return username;
@@ -48,10 +51,24 @@ public class UserBean {
 	public void setType(String type) {
 		this.type = type;
 	}
+	public String getActive() {
+		return active;
+	}
+	public void setActive(String active) {
+		this.active = active;
+	}
+	public void showActive() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		
+		context.addMessage(null, new FacesMessage("登陆中","账号状态："+this.active));
+		if(active.equals("未激活"))
+			context.addMessage(null, new FacesMessage("提示","您的账号状态未激活，请尽快激活，以免影响您的使用"));
+	}
+	
 	@Override
 	public String toString() {
 		return "UserBean [username=" + username + ", password=" + password + ", email=" + email + ", type=" + type
-				+ "]";
+				+ ", active=" + active + "]";
 	}
 	
 	public String doLogin() {
@@ -76,9 +93,12 @@ public class UserBean {
 			this.setPassword(user_feedback.getPassword());
 			this.setEmail(user_feedback.getEmail());
 			this.setType(user_feedback.getType());
+			this.setActive(user_feedback.getActive());
+			this.showActive(); //将账号状态加入FacesMessage
 			return "home?facesRedirect=true";
 		}else {
 			System.out.println(user.getUsername()+"login faliure!");
+			
 			return "/WEB-INF/userPage/login-error?facesRedirect=true";
 		}
 	}
@@ -92,7 +112,7 @@ public class UserBean {
 		user.setPassword(this.getPassword());
 		user.setEmail(this.getEmail());
 		user.setType(this.getType());
-		
+		user.setActive("未激活");; //置激活状态为0，未激活。
 		UserDAO udao = new UserDAOImpl();
 		if(udao.userRegister(user))
 			return "/WEB-INF/userPage/registration-success?facesRedirect=true";
