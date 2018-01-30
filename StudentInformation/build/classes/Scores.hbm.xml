@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="model.Scores" table="SCORES">
+        <id name="uid" type="int">
+            <generator class="native"/>
+        </id>
+        <property name="name"   type="java.lang.String" />
+        <property name="studentID"   type="java.lang.String" />
+ 		<property name="gender"   type="java.lang.String" />
+ 		
+ 		<property name="department"   type="java.lang.String" />
+ 		<property name="major"   type="java.lang.String" />
+ 		<property name="math" type="java.lang.String"/>
+ 		<property name="english" type="java.lang.String"/>
+ 		<property name="java" type="java.lang.String"/>
+ 		<property name="c" type="java.lang.String"/>
+ 		<property name="os" type="java.lang.String"/>
+ 		<property name="javaEE" type="java.lang.String"/>
+    </class>
+</hibernate-mapping>

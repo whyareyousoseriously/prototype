@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import model.Roots;
 import model.Users;
 
 public interface RootsDAO {
@@ -10,6 +11,12 @@ public interface RootsDAO {
 	 * @author cz
 	 * 2017-12-26
 	 * */
+	//超级管理员登陆
+	public Roots RootsLogin(Roots root);
+	
+	//超级管理员注册
+	public String RootsRegister(Roots root);
+	
 	
 	//首先是查询数据库中所有用户的接口
 	public List<Users> getAllUsers();

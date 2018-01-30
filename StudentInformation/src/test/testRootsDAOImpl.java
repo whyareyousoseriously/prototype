@@ -37,7 +37,7 @@ public class testRootsDAOImpl {
 		 * */
 		//给定一个users
 		Users user = new Users();
-		user.setStudentID("320140938321");
+		user.setStudentID("000001");
 		RootsDAO rdao = new RootsDAOImpl();
 		String rdao_feedback = rdao.deleteUser(user,"studentID");
 		if(rdao_feedback.equals("delete-success")){
@@ -90,7 +90,7 @@ public class testRootsDAOImpl {
 		 * 测试dao.impl.RootsDAOImpl.searchManyByStudentID
 		 * */
 		Users user = new Users();
-		user.setStudentID("320140938322");
+		user.setStudentID("000005");
 		RootsDAO rdao = new RootsDAOImpl();
 		List<Users> rdao_feedback = rdao.searchManyByStudentID(user);
 		if(rdao_feedback!=null) {
@@ -115,7 +115,7 @@ public class testRootsDAOImpl {
 		//修改名字为更新者
 		user.setName("更新者");
 		RootsDAO rdao = new RootsDAOImpl();
-		String rdao_feedback = rdao.updateUser(user,"320140938322");
+		String rdao_feedback = rdao.updateUser(user,"000006");
 		if(rdao_feedback.equals("update-success")) {
 			System.out.println("更新成功");
 		}else {

@@ -1,0 +1,12 @@
+2018-1-30
+碰见问题
+xhtml页面如何用弹窗，如何在primefaces环境下，在xhtml页面中使用javaScript语法给变量赋值
+并且判断值是否相等。
+<script>
+	var activeState;
+	if(#{UserBean.active}=='0')
+		activeState = '账号状态：未激活';
+	else
+		activeState = '账号状态：已激活';
+	alert(activeState);
+</script>

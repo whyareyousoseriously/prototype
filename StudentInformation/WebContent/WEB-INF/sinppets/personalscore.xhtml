@@ -1,13 +1,28 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
 <p:fieldset legend="测试dataTable">
 	
-	<p:dataTable var="test"
-				 value="#{RootsBean.allUsers}">
-		<p:column>#{test.name}</p:column>
-	
-	</p:dataTable>
+	<h:form id="personalScoretForm">
+		<p:dataTable >
+				<p:column headerText="姓名(name)">#{UsersBean.personalScores.name}</p:column>
+				<p:column headerText="学号(studentID)">
+					 #{UsersBean.personalScores.studentID}
+				</p:column>
+				<p:column headerText="性别(gender)">#{UsersBean.personalScores.gender}</p:column>
+				<p:column headerText="院系(department)">#{UsersBean.personalScores.department}</p:column>
+				<p:column headerText="专业(major)">#{UsersBean.personalScores.major}</p:column>
+				<p:column headerText="数学">#{UsersBean.personalScores.math}</p:column>
+				<p:column headerText="英语">#{UsersBean.personalScores.english}</p:column>
+				<p:column headerText="java语言">#{UsersBean.personalScores.java}</p:column>
+				<p:column headerText="c语言">#{UsersBean.personalScores.c}</p:column>
+				<p:column headerText="os操作系统">#{UsersBean.personalScores.os}</p:column>
+				<p:column headerText="javaEE">#{UsersBean.personalScores.javaEE}</p:column>
+
+			</p:dataTable>
+	</h:form>
 </p:fieldset>
 </ui:composition>

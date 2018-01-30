@@ -43,8 +43,8 @@ public class testdb {
 	public void testUsersDAOImpl() {
 		Users users = new Users();
 		users.setName("ÕÅÈı");
-		users.setStudentID("320140938321");
-		users.setPassword("1231231");
+		users.setStudentID("000001");
+		users.setPassword("1231231c");
 		users.setGender("ÄĞ");
 		Date date = new Date();
 		users.setBrithday(date);

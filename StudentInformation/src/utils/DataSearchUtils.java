@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import db.MyHibernateSessionFactory;
+import model.Scores;
 import model.Users;
 
 public class DataSearchUtils {
@@ -18,7 +19,7 @@ public class DataSearchUtils {
 	/*
 	 * 查重数据
 	 * @author cz
-	 * */
+	 * 补充：该方法已被淘汰
 	public static boolean duplicateChecking(String s) {
 		//创建事务
 		Transaction tx = null;
@@ -38,6 +39,39 @@ public class DataSearchUtils {
 				return false;
 			}
 			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return true;
+		}finally {
+			if(tx!=null) {
+				tx = null;
+			}
+		}
+	}*/
+	
+	public static boolean duplicateCheckingData(String table,String condition,String conditionValue) {
+		/*
+		 * 数据查重
+		 * @参数：待查重的一个条件 condition
+		 * @参数：待查的一个条件的值conditionValue
+		 * @参数：待查重的数据库中的表table
+		 * @返回：布尔型值，反应重复或者不重复
+		 * */
+		Transaction tx = null;
+		String hql = "";
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			tx = session.beginTransaction();
+			hql = "from "+table+" where "+condition+"=:studentID";
+			Query query = session.createQuery(hql);
+			query.setParameter("studentID", conditionValue);
+			List<Scores> list = query.list();
+			tx.commit();
+			if(list.size()>0) {
+				return true;
+			}else {
+				return false;
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			return true;

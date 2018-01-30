@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>StudentInformationMangement</title>
+	<link href="./css/styles.css" rel="stylesheet" type="text/css" />
+</h:head>
+<h:body>
+	<div align="center">
+		<h1 class="ui-widget-header ui-corner-all">学生信息管理超级管理员登陆</h1>
+		<p:fieldset legend="Welcome to login（root）">
+			<h:form>
+				<p:panelGrid>
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="3">root登陆(rootlogin)</p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column>
+							<p:outputLabel>超级管理员账号(rootID):</p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:inputText value="#{RootsBean.rootID}" required="true"
+								id="rootID" requiredMessage="不能为空">
+								<f:validator validatorId="existRootID"></f:validator>
+								<p:ajax update="rootID-error" event="blur" />
+							</p:inputText>
+						</p:column>
+						<p:column>
+							<p:message for="rootID" id="rootID-error" />
+						</p:column>
+
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel>密码(password):</p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:password value="#{RootsBean.password}" required="true"
+								id="password" requiredMessage="密码不能为空">
+								<f:validator validatorId="validatorPassword"></f:validator>
+								<p:ajax update="password-error" event="blur" />
+							</p:password>
+						</p:column>
+						<p:column>
+							<p:message for="password" id="password-error" />
+						</p:column>
+
+					</p:row>
+
+					<p:row>
+						<p:column colspan="3" style="text-align:center">
+							<p:commandButton value="root登录(login)" process="@form"
+								update="rootID-error password-error"
+								action="#{RootsBean.doLogin}">
+							</p:commandButton>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</h:form>
+		</p:fieldset>
+
+
+	</div>
+</h:body>
+</html>

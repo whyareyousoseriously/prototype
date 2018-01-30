@@ -26,7 +26,7 @@
 						<p:column>
 							<p:inputText value="#{UsersBean.studentID}" required="true"
 								id="studentID" requiredMessage="学号不能为空">
-
+								<f:validator validatorId="existStudentID"></f:validator>
 								<p:ajax update="studentID-error" event="blur" />
 							</p:inputText>
 						</p:column>
@@ -43,7 +43,8 @@
 						<p:column>
 							<p:password value="#{UsersBean.password}" required="true"
 								id="password" requiredMessage="密码不能为空">
-								<p:ajax update="studentID-error" event="blur" />
+								<f:validator validatorId="validatorPassword"></f:validator>
+								<p:ajax update="password-error" event="blur" />
 							</p:password>
 						</p:column>
 						<p:column>
