@@ -9,7 +9,11 @@ import dao.UserDAO;
 import dao.impl.UserDAOImpl;
 import entity.User;
 
-
+/*
+ * 加入激活状态的属性
+ * @author
+ * @data 2018-1-30
+ * */
 public class UserBean {
 	private String username;
 	private String password;
