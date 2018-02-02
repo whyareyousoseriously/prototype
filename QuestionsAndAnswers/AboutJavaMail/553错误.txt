@@ -1,0 +1,58 @@
+ 刚开始发送都很正常，今天用一个新注册的163发送时，虽然显示发送成功，但是并没有发送，就从网上找资料，
+
+都说网易新注册的邮箱，是不能使用SMTP协议发送邮件的，必须经常使用的邮箱才可以。汗。就在界面里又重新输入了原有的163邮箱，点击发送后的结果，不在意料之中，返回了一个这样的异常错误：
+
+com.sun.mail.smtp.SMTPSendFailedException: 553 Mail from must equal authorized user
+
+at com.sun.mail.smtp.SMTPTransport.issueSendCommand(SMTPTransport.java:1515)
+
+at com.sun.mail.smtp.SMTPTransport.mailFrom(SMTPTransport.java:1054)
+
+at com.sun.mail.smtp.SMTPTransport.sendMessage(SMTPTransport.java:634)
+
+at javax.mail.Transport.send0(Transport.java:189)
+
+...
+
+        本来对JavaMail就还很模糊，这时就更不知道是哪里的问题，按字面理解，是说验证的用户和发信人不相同，我仔细看了看代码里的验证用户和发信人，莫非我赋值的验证用户和发信人的值不一样，我就用Log日志打印出这两个变量，发现虽然不是用的同一个变量，但是他们的输出值都一样的呀。
+
+        这让我冒出一个疑问，为什么第一次输入邮箱用户名和密码的时候，没有这样的提示，当第二次重新输入其他邮箱用户名和密码的时候，就会出现这样的异常？真是代码里验证用户和发信人不相同吗？那为什么第一次输入的邮箱账号，登录时没有这样的异常？
+
+        带着这个疑问，我就一直在想，莫非是有什么资源没有释放，让第二次和第一次使用的验证用户名一样，这样第二次的发信人就和第二次的验证用户不相同，就会出现553异常。
+
+        经过反复的代码跟踪和输出跟踪，我发现在第二次重新输入的邮箱用户名登录时，会在输出发信人之后，就抛出了553异常，而第一次在输出发信人之后，还会继续输出收信人和主题，内容。是有什么资源没有释放吗？就开始看代码，也没发现有全局变量，而且每次执行发送时，所有的对象都是最新创建的，难道Session要关闭，在Eclipse里输入Session对象的变量之后，也没找到相关的释放方法，从网上查了一下，也没有看到有说还要关闭Session的。
+
+       我就继续从网上找资料，结果找到了一篇CSDN上问题跟我差不多的帖子：
+
+http://bbs.csdn.net/topics/230015026。他的问题也是第一次发送成功，第二次发送不出去，我就接着往下看，看看有什么解决方法没，在第三层，果然让我找到了，居然是发帖者自己解决的。乖乖，发帖者的解决速度蛮快的，刚贴出问题，就解决了，怪不得跟帖者就一个呢。废话少说，回到正题，原来他是这样解决的：
+
+问题解决，
+将 Session session = Session.getDefaultInstance(props, myauth);
+改成
+ Session session = Session.getInstance(props, myauth);
+即可
+
+在这里赞一下发帖者，不像某些人，提出问题，自己解决了，也不说怎么解决的。
+
+我就按照他的方法把代码里的方法替换了一下，重新运行，输入第一个邮箱账号和密码，成功发送，第二次输入其他的邮箱账号和密码，点发送，ok，成功了。
+
+好了，到这里问题也解决了，但是还不明白Session.getDefaultInstance和 Session.getInstance有什么区别呢？又找了一下资料，结果找到了也是遇到过553异常的人写的一篇blog，他的blog标题居然是：
+”JavaMail中Session.getDefaultInstance的应用“，
+不是吧，这样太难找了，一般都是搜索问题名称，谁会搜索这个。如果发帖者能把标题改成问题，那我也就不用找这么就了。不过还是要感谢这个人，他在这篇帖子里详细的说明了为什么用Session.getDefaultInstance方法会出现在第二次输入其他邮箱账号登录时出现553异常。
+以下内容都这摘自这个帖子：
+http://muder2007.blog.163.com/blog/static/45933070200872025130613/
+
+何谓getDefaultInstance？ 
+从处理流程中可以看出，首先是从缓存中查找是否有properties存在 
+如果存在，则加载默认的properties 
+如果不存在才加载用户自己定义的properties， 
+所以当一个应用为每个用户独立创建properties的时候，还是应该调用getInstance， 
+除非你希望有一个默认的properties让用户使用
+
+问题找到了,因为它会首先去内存和系统文件中去找properties,所以不管我在页面改几次数据,其实在后台中生成session时都和系统启动时的一样,所以在MailUtil.sendTextMessage(mailSession,RptTaskMailConfig.Sender,
+receiver,null,mail_subject,mail_content,"GB2312",null);时session里的sender和传入的sender不一致,因此出错,修改Session.getDefaultInstance(props, authentic);为Session.getInstance(props, authentic);后,可以正确发送修改帐号,密码等资料后的邮件.OK
+
+最后再补充一下,session.getdefaultinstance和getinstance的区别 :
+
+ 如果想要同时使用两个帐号发送javamail，比如使用1@a.com发送1#邮件，使用2@a.com发送2#邮件，这时候，你就需要同时创建两个java.mail.Session对象。但是如果你仍然使用Session.getDefaultInstance创建session对象的话，你会发现，第二个username：2@a.com创建的session永远都和第一个一样，这是为什么呢？因为，getDefaultInstance是真正单例模式，而且，里面的username和password属性是final型的，无法更改。所以，你会发现两封email都是由1@a.com发出来的。所以这个时候你要使用javax.mail.Session.getInstance()方法来创建session对象。
+感谢遇到同样问题的前辈，你们都是巨人。
