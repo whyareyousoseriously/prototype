@@ -56,3 +56,5 @@ receiver,null,mail_subject,mail_content,"GB2312",null);时session里的sender和
 
  如果想要同时使用两个帐号发送javamail，比如使用1@a.com发送1#邮件，使用2@a.com发送2#邮件，这时候，你就需要同时创建两个java.mail.Session对象。但是如果你仍然使用Session.getDefaultInstance创建session对象的话，你会发现，第二个username：2@a.com创建的session永远都和第一个一样，这是为什么呢？因为，getDefaultInstance是真正单例模式，而且，里面的username和password属性是final型的，无法更改。所以，你会发现两封email都是由1@a.com发出来的。所以这个时候你要使用javax.mail.Session.getInstance()方法来创建session对象。
 感谢遇到同样问题的前辈，你们都是巨人。
+
+重要:一定要设置发件人。
