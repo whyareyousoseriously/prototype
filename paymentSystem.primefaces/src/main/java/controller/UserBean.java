@@ -82,7 +82,10 @@ public class UserBean {
 		if(active.equals("未激活"))
 			context.addMessage(null, new FacesMessage("提示","您的账号状态未激活，请尽快激活，以免影响您的使用"));
 	}
-
+	public void showNotice() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("注册成功","激活邮件已发送到您的注册邮箱"+this.email+"请尽快登陆激活"));
+	}
 	
 	@Override
 	public String toString() {
@@ -132,6 +135,7 @@ public class UserBean {
 		user.setType(this.getType());
 		user.setActive("未激活");; //置激活状态为0，未激活。
 		user.setMailCode(MailUtil.getUUID());
+		this.showNotice();//将提示信息加入FacesMessage;
 		//调用业务层处理数据
 		UserDAO udao = new UserDAOImpl();
 		if(udao.userRegister(user))
