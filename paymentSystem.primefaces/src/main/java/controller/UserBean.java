@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import dao.UserDAO;
 import dao.impl.UserDAOImpl;
 import entity.User;
+import utils.MailUtil;
 
 /*
  * 加入激活状态的属性
@@ -20,6 +21,7 @@ public class UserBean {
 	private String email;
 	private String type;
 	private String active;
+	private String mailCode;
 	public UserBean() {
 		super();
 	}
@@ -61,6 +63,18 @@ public class UserBean {
 	public void setActive(String active) {
 		this.active = active;
 	}
+	/**
+	 * @return the mailCode
+	 */
+	public String getMailCode() {
+		return mailCode;
+	}
+	/**
+	 * @param mailCode the mailCode to set
+	 */
+	public void setMailCode(String mailCode) {
+		this.mailCode = mailCode;
+	}
 	public void showActive() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		
@@ -68,13 +82,13 @@ public class UserBean {
 		if(active.equals("未激活"))
 			context.addMessage(null, new FacesMessage("提示","您的账号状态未激活，请尽快激活，以免影响您的使用"));
 	}
+
 	
 	@Override
 	public String toString() {
 		return "UserBean [username=" + username + ", password=" + password + ", email=" + email + ", type=" + type
-				+ ", active=" + active + "]";
+				+ ", active=" + active + ", mailCode=" + mailCode + "]";
 	}
-	
 	public String doLogin() {
 		System.out.println(username);
 		System.out.println(password);
@@ -117,11 +131,14 @@ public class UserBean {
 		user.setEmail(this.getEmail());
 		user.setType(this.getType());
 		user.setActive("未激活");; //置激活状态为0，未激活。
+		user.setMailCode(MailUtil.getUUID());
+		//调用业务层处理数据
 		UserDAO udao = new UserDAOImpl();
 		if(udao.userRegister(user))
 			return "/WEB-INF/userPage/registration-success?facesRedirect=true";
 		else
 			return "/WEB-INF/userPage/registration-error?facesRedirect=true";
 	}
+	
 	
 }

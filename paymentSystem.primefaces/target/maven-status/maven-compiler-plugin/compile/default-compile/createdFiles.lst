@@ -1,8 +1,12 @@
-entity\User.class
 utils\dataValidator\user\PasswordValidator.class
+controller\OriginBean.class
 controller\UserBean.class
-dao\UserDAO.class
 db\MyHibernateSessionFactory.class
+utils\MailUtil.class
+web\servlet\ActiveServlet.class
+entity\User.class
+dao\UserDAO.class
+utils\MailUtil$1.class
 dao\impl\UserDAOImpl.class
 utils\DataSearchUtil.class
 utils\dataValidator\user\LoginUsernameValidator.class
