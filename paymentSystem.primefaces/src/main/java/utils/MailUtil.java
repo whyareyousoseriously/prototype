@@ -24,7 +24,16 @@ import javax.mail.internet.MimeMessage.RecipientType;
  */
 public class MailUtil {
 	public static String getUUID() {
-		return UUID.randomUUID().toString().replace("-","");
+		/*
+		 * 2018-2-4
+		 * 增加代码的健壮性，防止库内激活码重复，造成错误，进一步完善代码。
+		 * */
+		String uuid;
+		//进行库内查重操作
+		do {
+			uuid = UUID.randomUUID().toString().replace("-", "");
+		}while(DataSearchUtil.duplicateCheckingData("User", "mailCode", uuid));
+		return uuid;
 	}
 	public static void sendMail(String to,String mailCode) {
 		
