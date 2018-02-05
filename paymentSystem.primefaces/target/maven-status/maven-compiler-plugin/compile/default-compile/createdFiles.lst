@@ -2,6 +2,7 @@ utils\dataValidator\user\PasswordValidator.class
 controller\OriginBean.class
 controller\UserBean.class
 db\MyHibernateSessionFactory.class
+utils\dataValidator\user\PasswordConfirmation.class
 utils\MailUtil.class
 web\servlet\ActiveServlet.class
 entity\User.class

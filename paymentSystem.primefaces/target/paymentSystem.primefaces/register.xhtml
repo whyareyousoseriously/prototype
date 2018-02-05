@@ -24,13 +24,22 @@
 
 
 					<p:outputLabel>密码(password):</p:outputLabel>
-					<p:password value="#{UserBean.password}" feedback="true"
+					<p:password value="#{UserBean.password}" match="password2" feedback="true"
 						id="password" required="true" requiredMessage="需要密码">
 						<f:validator validatorId="PasswordValidator"></f:validator>
 						<p:ajax update="password-error" event="blur" />
 					</p:password>
-					<p:message for="password" id="password-error" />
-
+					<p:message for="password" id="password-error" /> 
+					
+					
+					<p:outputLabel>重复密码(password):</p:outputLabel>
+					<p:password feedback="true" 
+						id="password2" required="true" requiredMessage="重复输入密码不能为空" >
+						
+						<p:ajax update="password2-error" event="blur" />
+					</p:password>
+					<p:message for="password2" id="password2-error" />
+					
 					<p:outputLabel>类型(type):</p:outputLabel>
 					<p:selectOneMenu value="#{UserBean.type}" size="1" id="type">
 						<f:selectItem itemValue="0" itemLabel="一般用户"></f:selectItem>
@@ -51,6 +60,9 @@
 
 				<p:commandButton value="注册(Register)"
 					action="#{UserBean.doRegister}" process="@form"
+					update="username-error password-error email-error type-error" />
+				<p:commandButton value="查重("
+					action="#{UserBean.passwordConfirmation}" process="@form"
 					update="username-error password-error email-error type-error" />
 
 			</h:form>

@@ -4,6 +4,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import dao.UserDAO;
 import dao.impl.UserDAOImpl;
@@ -18,6 +19,7 @@ import utils.MailUtil;
 public class UserBean {
 	private String username;
 	private String password;
+	
 	private String email;
 	private String type;
 	private String active;
@@ -45,6 +47,7 @@ public class UserBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -86,6 +89,8 @@ public class UserBean {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage("注册成功","激活邮件已发送到您的注册邮箱"+this.email+"请尽快登陆激活"));
 	}
+	
+	
 	
 	@Override
 	public String toString() {

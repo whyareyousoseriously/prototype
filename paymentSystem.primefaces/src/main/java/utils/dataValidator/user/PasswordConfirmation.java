@@ -1,5 +1,13 @@
+/**
+ *暂时不用 
+ */
 package utils.dataValidator.user;
 
+/**
+ * @author cz
+ *
+ * 2018年2月5日下午3:50:28
+ */
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -12,8 +20,8 @@ import javax.faces.validator.ValidatorException;
 
 import org.primefaces.validate.ClientValidator;
 
-@FacesValidator("PasswordValidator")
-public class PasswordValidator implements Validator, ClientValidator {
+@FacesValidator("passwordConfirmation")
+public class PasswordConfirmation implements Validator, ClientValidator {
 
 	/*
 	 * 用户密码规范性检查֤
@@ -25,7 +33,7 @@ public class PasswordValidator implements Validator, ClientValidator {
 	private Pattern pattern;
 	private static final String STUDENTID_PATTERN = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$";
 
-	public PasswordValidator() {
+	public PasswordConfirmation() {
 		pattern = Pattern.compile(STUDENTID_PATTERN);
 	}
 
@@ -36,7 +44,7 @@ public class PasswordValidator implements Validator, ClientValidator {
 
 	public String getValidatorId() {
 		// TODO Auto-generated method stub
-		return "PasswordValidator";
+		return "passwordConfirmation";
 	}
 
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
@@ -52,3 +60,4 @@ public class PasswordValidator implements Validator, ClientValidator {
 	}
 
 }
+
