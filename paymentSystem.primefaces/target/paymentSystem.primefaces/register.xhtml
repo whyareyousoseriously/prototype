@@ -8,6 +8,8 @@
 	<title>paymentSystem</title>
 </h:head>
 <h:body>
+	
+	<p:growl id="growl" showDetail="true" sticky = "true"></p:growl>
 	<div align="center">
 		<h1 class="ui-widget-header ui-corner-all">注册</h1>
 		<p:fieldset legend="Wlcome to register">
@@ -25,18 +27,19 @@
 
 					<p:outputLabel>密码(password):</p:outputLabel>
 					<p:password value="#{UserBean.password}" match="password2" feedback="true"
-						id="password" required="true" requiredMessage="需要密码">
+						id="password" required="true" requiredMessage="需要密码" >
 						<f:validator validatorId="PasswordValidator"></f:validator>
 						<p:ajax update="password-error" event="blur" />
 					</p:password>
 					<p:message for="password" id="password-error" /> 
 					
 					
-					<p:outputLabel>重复密码(password):</p:outputLabel>
+					<p:outputLabel>再次输入密码(password2):</p:outputLabel>
 					<p:password feedback="true" 
-						id="password2" required="true" requiredMessage="重复输入密码不能为空" >
-						
-						<p:ajax update="password2-error" event="blur" />
+						id="password2" required="true" requiredMessage="重复输入密码不能为空"
+						>
+					
+						<p:ajax process="password password2" update=" password-error password2-error" event="blur" />
 					</p:password>
 					<p:message for="password2" id="password2-error" />
 					
@@ -48,10 +51,9 @@
 					<p:message for="type" id="type-error" />
 
 					<p:outputLabel>邮箱(email):</p:outputLabel>
-					<p:inputText validatorMessage="邮箱不合法" value="#{UserBean.email}"
+					<p:inputText  value="#{UserBean.email}"
 						id="email" required="true" requiredMessage="邮箱不能为空">
-						<f:validateRegex
-							pattern="^\w+([-_.]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$"></f:validateRegex>
+						<f:validator validatorId="EmailDuplicateCheckingValidator"></f:validator>
 						<p:ajax update="email-error" event="blur" />
 					</p:inputText>
 					<p:message for="email" id="email-error" />
@@ -61,9 +63,7 @@
 				<p:commandButton value="注册(Register)"
 					action="#{UserBean.doRegister}" process="@form"
 					update="username-error password-error email-error type-error" />
-				<p:commandButton value="查重("
-					action="#{UserBean.passwordConfirmation}" process="@form"
-					update="username-error password-error email-error type-error" />
+				
 
 			</h:form>
 

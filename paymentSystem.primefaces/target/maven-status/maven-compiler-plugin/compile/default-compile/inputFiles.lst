@@ -10,4 +10,5 @@ H:\imoocLearningCode\JavaEE\prototype\paymentSystem.primefaces\src\main\java\db\
 H:\imoocLearningCode\JavaEE\prototype\paymentSystem.primefaces\src\main\java\utils\DataSearchUtil.java
 H:\imoocLearningCode\JavaEE\prototype\paymentSystem.primefaces\src\main\java\utils\dataValidator\user\RegisterUsernameValidator.java
 H:\imoocLearningCode\JavaEE\prototype\paymentSystem.primefaces\src\main\java\dao\UserDAO.java
+H:\imoocLearningCode\JavaEE\prototype\paymentSystem.primefaces\src\main\java\utils\dataValidator\user\EmailDuplicateChecking.java
 H:\imoocLearningCode\JavaEE\prototype\paymentSystem.primefaces\src\main\java\utils\dataValidator\user\LoginUsernameValidator.java

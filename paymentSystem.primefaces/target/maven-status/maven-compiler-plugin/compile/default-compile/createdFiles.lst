@@ -9,6 +9,7 @@ entity\User.class
 dao\UserDAO.class
 utils\MailUtil$1.class
 dao\impl\UserDAOImpl.class
+utils\dataValidator\user\EmailDuplicateChecking.class
 utils\DataSearchUtil.class
 utils\dataValidator\user\LoginUsernameValidator.class
 utils\dataValidator\user\RegisterUsernameValidator.class

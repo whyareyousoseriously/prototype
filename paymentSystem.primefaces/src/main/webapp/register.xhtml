@@ -51,10 +51,9 @@
 					<p:message for="type" id="type-error" />
 
 					<p:outputLabel>邮箱(email):</p:outputLabel>
-					<p:inputText validatorMessage="邮箱不合法" value="#{UserBean.email}"
+					<p:inputText  value="#{UserBean.email}"
 						id="email" required="true" requiredMessage="邮箱不能为空">
-						<f:validateRegex
-							pattern="^\w+([-_.]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$"></f:validateRegex>
+						<f:validator validatorId="EmailDuplicateCheckingValidator"></f:validator>
 						<p:ajax update="email-error" event="blur" />
 					</p:inputText>
 					<p:message for="email" id="email-error" />
