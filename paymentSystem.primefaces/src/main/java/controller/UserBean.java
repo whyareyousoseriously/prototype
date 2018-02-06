@@ -24,16 +24,18 @@ public class UserBean {
 	private String type;
 	private String active;
 	private String mailCode;
+	private String certificationState;
 	public UserBean() {
 		super();
 	}
-	public UserBean(String username, String password, String email, String type, String active) {
+	public UserBean(String username, String password, String email, String type, String active, String certificationState) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.type = type;
 		this.active = active;
+		this.certificationState = certificationState;
 	}
 	public String getUsername() {
 		return username;
@@ -78,6 +80,13 @@ public class UserBean {
 	public void setMailCode(String mailCode) {
 		this.mailCode = mailCode;
 	}
+	
+	public String getCertificationState() {
+		return certificationState;
+	}
+	public void setCertificationState(String certificationState) {
+		this.certificationState = certificationState;
+	}
 	public void showActive() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		
@@ -92,10 +101,11 @@ public class UserBean {
 	
 	
 	
+	
 	@Override
 	public String toString() {
 		return "UserBean [username=" + username + ", password=" + password + ", email=" + email + ", type=" + type
-				+ ", active=" + active + ", mailCode=" + mailCode + "]";
+				+ ", active=" + active + ", mailCode=" + mailCode + ", certificationState=" + certificationState + "]";
 	}
 	public String doLogin() {
 		System.out.println(username);
@@ -120,6 +130,7 @@ public class UserBean {
 			this.setEmail(user_feedback.getEmail());
 			this.setType(user_feedback.getType());
 			this.setActive(user_feedback.getActive());
+			this.setCertificationState(user_feedback.getCertificationState());
 			this.showActive(); //将账号状态加入FacesMessage
 			return "home?facesRedirect=true";
 		}else {
@@ -138,7 +149,8 @@ public class UserBean {
 		user.setPassword(this.getPassword());
 		user.setEmail(this.getEmail());
 		user.setType(this.getType());
-		user.setActive("未激活");; //置激活状态为0，未激活。
+		user.setActive("未激活");; //置激活状态为未激活。
+		user.setCertificationState("未认证");//置实名认证为未认证
 		user.setMailCode(MailUtil.getUUID());
 		this.showNotice();//将提示信息加入FacesMessage;
 		//调用业务层处理数据

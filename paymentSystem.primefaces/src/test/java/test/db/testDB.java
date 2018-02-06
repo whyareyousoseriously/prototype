@@ -21,6 +21,7 @@ import org.junit.Test;
         TYPE varchar(255),
         ACTIVE varchar(255),
         MAILCODE varchar(255),
+        CERTIFICATIONSTATE varchar(255),
         primary key (UID)
     )
  *@author cz

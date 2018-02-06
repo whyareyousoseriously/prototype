@@ -26,5 +26,8 @@
         <property name="mailCode" type="java.lang.String">
             <column name="MAILCODE"></column>
         </property>
+        <property name="certificationState" type="java.lang.String">
+            <column name="CERTIFICATIONSTATE"></column>
+        </property>
     </class>
 </hibernate-mapping>

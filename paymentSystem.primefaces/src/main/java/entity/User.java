@@ -12,10 +12,11 @@ public class User {
 	private String type;
 	private String active;
 	private String mailCode;
+	private String certificationState;
 	public User() {
 		super();
 	}
-	public User(int uid, String username, String password, String email, String type, String active,String mailCode) {
+	public User(int uid, String username, String password, String email, String type, String active,String mailCode,String certificationState) {
 		super();
 		this.uid = uid;
 		this.username = username;
@@ -24,6 +25,7 @@ public class User {
 		this.type = type;
 		this.active = active;
 		this.mailCode = mailCode;
+		this.certificationState=certificationState;
 	}
 	public int getUid() {
 		return uid;
@@ -62,6 +64,13 @@ public class User {
 	public void setActive(String active) {
 		this.active = active;
 	}
+	
+	public String getCertificationState() {
+		return certificationState;
+	}
+	public void setCertificationState(String certificationState) {
+		this.certificationState = certificationState;
+	}
 	/**
 	 * @return the mailCode
 	 */
@@ -77,7 +86,8 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [uid=" + uid + ", username=" + username + ", password=" + password + ", email=" + email + ", type="
-				+ type + ", active=" + active + ", mailCode=" + mailCode + "]";
+				+ type + ", active=" + active + ", mailCode=" + mailCode + ", certificationState=" + certificationState
+				+ "]";
 	}
 	
 	
