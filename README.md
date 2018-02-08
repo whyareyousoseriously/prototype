@@ -58,6 +58,10 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;back to work; refactor prototype-parent according to studentInformationManagement,and rename it to paymentSystem.<br>
 &emsp;&emsp;2018-1-30<br>
 &emsp;&emsp;&emsp;&emsp;mark~! add email feedback!<br>
+&emsp;&emsp;2018-2-2<br>
+&emsp;&emsp;&emsp;&emsp;solve the problem about the javaMail(553 Mail from must equal authorized user)<br>
+&emsp;&emsp;2018-2-4<br>
+&emsp;&emsp;&emsp;&emsp;delete the part of struts2 in paymentSystem.primefaces. add the eamil activation function.<br>
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -118,3 +122,7 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;开始工作，将studentInformation的工作转移到paymentSystem.<br>
 &emsp;&emsp;2018-1-30<br>
 &emsp;&emsp;&emsp;&emsp继续完善开始加入邮箱验证。<br>
+&emsp;&emsp;2018-2-2<br>
+&emsp;&emsp;&emsp;&emsp;解决了邮箱验证过程中出现的，553，550等错误<br>
+&emsp;&emsp;2018-2-4<br>
+&emsp;&emsp;&emsp;&emsp;删除了paymentSystem.primefaces中struts2部分，目前貌似用不到，将邮箱激活账号功能完善。

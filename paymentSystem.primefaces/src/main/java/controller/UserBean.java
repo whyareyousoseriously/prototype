@@ -4,28 +4,38 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import dao.UserDAO;
 import dao.impl.UserDAOImpl;
 import entity.User;
+import utils.MailUtil;
 
-
+/*
+ * 加入激活状态的属性
+ * @author
+ * @data 2018-1-30
+ * */
 public class UserBean {
 	private String username;
 	private String password;
+	
 	private String email;
 	private String type;
 	private String active;
+	private String mailCode;
+	private String certificationState;
 	public UserBean() {
 		super();
 	}
-	public UserBean(String username, String password, String email, String type, String active) {
+	public UserBean(String username, String password, String email, String type, String active, String certificationState) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.type = type;
 		this.active = active;
+		this.certificationState = certificationState;
 	}
 	public String getUsername() {
 		return username;
@@ -39,6 +49,7 @@ public class UserBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -57,6 +68,25 @@ public class UserBean {
 	public void setActive(String active) {
 		this.active = active;
 	}
+	/**
+	 * @return the mailCode
+	 */
+	public String getMailCode() {
+		return mailCode;
+	}
+	/**
+	 * @param mailCode the mailCode to set
+	 */
+	public void setMailCode(String mailCode) {
+		this.mailCode = mailCode;
+	}
+	
+	public String getCertificationState() {
+		return certificationState;
+	}
+	public void setCertificationState(String certificationState) {
+		this.certificationState = certificationState;
+	}
 	public void showActive() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		
@@ -64,13 +94,19 @@ public class UserBean {
 		if(active.equals("未激活"))
 			context.addMessage(null, new FacesMessage("提示","您的账号状态未激活，请尽快激活，以免影响您的使用"));
 	}
+	public void showNotice() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("注册成功","激活邮件已发送到您的注册邮箱"+this.email+"请尽快登陆激活"));
+	}
+	
+	
+	
 	
 	@Override
 	public String toString() {
 		return "UserBean [username=" + username + ", password=" + password + ", email=" + email + ", type=" + type
-				+ ", active=" + active + "]";
+				+ ", active=" + active + ", mailCode=" + mailCode + ", certificationState=" + certificationState + "]";
 	}
-	
 	public String doLogin() {
 		System.out.println(username);
 		System.out.println(password);
@@ -94,6 +130,7 @@ public class UserBean {
 			this.setEmail(user_feedback.getEmail());
 			this.setType(user_feedback.getType());
 			this.setActive(user_feedback.getActive());
+			this.setCertificationState(user_feedback.getCertificationState());
 			this.showActive(); //将账号状态加入FacesMessage
 			return "home?facesRedirect=true";
 		}else {
@@ -112,12 +149,17 @@ public class UserBean {
 		user.setPassword(this.getPassword());
 		user.setEmail(this.getEmail());
 		user.setType(this.getType());
-		user.setActive("未激活");; //置激活状态为0，未激活。
+		user.setActive("未激活");; //置激活状态为未激活。
+		user.setCertificationState("未认证");//置实名认证为未认证
+		user.setMailCode(MailUtil.getUUID());
+		this.showNotice();//将提示信息加入FacesMessage;
+		//调用业务层处理数据
 		UserDAO udao = new UserDAOImpl();
 		if(udao.userRegister(user))
 			return "/WEB-INF/userPage/registration-success?facesRedirect=true";
 		else
 			return "/WEB-INF/userPage/registration-error?facesRedirect=true";
 	}
+	
 	
 }

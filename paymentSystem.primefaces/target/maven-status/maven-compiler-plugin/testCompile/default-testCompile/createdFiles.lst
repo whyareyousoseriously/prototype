@@ -1,1 +1,3 @@
 test\db\testDB.class
+test\mailUtil\testMailUtil.class
+test\UserDAOImpl\testUserDAOImpl.class

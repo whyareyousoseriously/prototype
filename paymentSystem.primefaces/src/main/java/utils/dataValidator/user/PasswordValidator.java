@@ -36,7 +36,7 @@ public class PasswordValidator implements Validator, ClientValidator {
 
 	public String getValidatorId() {
 		// TODO Auto-generated method stub
-		return "validatorPassword";
+		return "PasswordValidator";
 	}
 
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
