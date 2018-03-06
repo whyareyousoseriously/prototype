@@ -62,6 +62,9 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;solve the problem about the javaMail(553 Mail from must equal authorized user)<br>
 &emsp;&emsp;2018-2-4<br>
 &emsp;&emsp;&emsp;&emsp;delete the part of struts2 in paymentSystem.primefaces. add the eamil activation function.<br>
+&emsp;&emsp;2018-3-6<br>
+&emsp;&emsp;&emsp;&emsp;project: paymentSystem.primefaces
+&emsp;&emsp;&emsp;&emsp;&emsp;action: the design of payment page.
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -126,3 +129,6 @@ a javaWeb prototype<br>
 &emsp;&emsp;&emsp;&emsp;解决了邮箱验证过程中出现的，553，550等错误<br>
 &emsp;&emsp;2018-2-4<br>
 &emsp;&emsp;&emsp;&emsp;删除了paymentSystem.primefaces中struts2部分，目前貌似用不到，将邮箱激活账号功能完善。
+&emsp;&emsp;2018-3-6<br>
+&emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces
+&emsp;&emsp;&emsp;&emsp;&emsp;操作:支付界面的设计。
