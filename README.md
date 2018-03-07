@@ -65,6 +65,9 @@ a javaWeb prototype<br>
 &emsp;&emsp;2018-3-6<br>
 &emsp;&emsp;&emsp;&emsp;project: paymentSystem.primefaces<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;action: the design of payment page.<br>
+&emsp;&emsp;2018-3-7<br>
+&emsp;&emsp;&emsp;&emsp;project:message<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;annotation:previous project about mybatis<br>
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -132,3 +135,6 @@ a javaWeb prototype<br>
 &emsp;&emsp;2018-3-6<br>
 &emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;操作:支付界面的设计。<br>
+&emsp;&emsp;2018-3-7<br>
+&emsp;&emsp;&emsp;&emsp;项目:message<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;注释:归整以前的关于mybatis的一个小项目<br>
