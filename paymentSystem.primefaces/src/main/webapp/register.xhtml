@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>paymentSystem</title>
 </h:head>
@@ -11,62 +12,16 @@
 	
 	<p:growl id="growl" showDetail="true" sticky = "true"></p:growl>
 	<div align="center">
-		<h1 class="ui-widget-header ui-corner-all">注册</h1>
-		<p:fieldset legend="Wlcome to register">
-
-			<h:form>
-				<p:panelGrid columns="3" styleClass="formTable">
-					<p:outputLabel>用户名(username):</p:outputLabel>
-					<p:inputText value="#{UserBean.username}" required="true"
-						id="username" requiredMessage="用户名不能为空">
-						<f:validator validatorId="RegisterUsernameValidator"></f:validator>
-						<p:ajax update="username-error" event="blur" />
-					</p:inputText>
-					<p:message for="username" id="username-error" />
-
-
-					<p:outputLabel>密码(password):</p:outputLabel>
-					<p:password value="#{UserBean.password}" match="password2" feedback="true"
-						id="password" required="true" requiredMessage="需要密码" >
-						<f:validator validatorId="PasswordValidator"></f:validator>
-						<p:ajax update="password-error" event="blur" />
-					</p:password>
-					<p:message for="password" id="password-error" /> 
-					
-					
-					<p:outputLabel>再次输入密码(password2):</p:outputLabel>
-					<p:password feedback="true" 
-						id="password2" required="true" requiredMessage="重复输入密码不能为空"
-						>
-					
-						<p:ajax process="password password2" update=" password-error password2-error" event="blur" />
-					</p:password>
-					<p:message for="password2" id="password2-error" />
-					
-					<p:outputLabel>类型(type):</p:outputLabel>
-					<p:selectOneMenu value="#{UserBean.type}" size="1" id="type">
-						<f:selectItem itemValue="一般用户" itemLabel="一般用户"></f:selectItem>
-						<f:selectItem itemValue="收费管理单位" itemLabel="收费管理单位"></f:selectItem>
-					</p:selectOneMenu>
-					<p:message for="type" id="type-error" />
-
-					<p:outputLabel>邮箱(email):</p:outputLabel>
-					<p:inputText  value="#{UserBean.email}"
-						id="email" required="true" requiredMessage="邮箱不能为空">
-						<f:validator validatorId="EmailDuplicateCheckingValidator"></f:validator>
-						<p:ajax update="email-error" event="blur" />
-					</p:inputText>
-					<p:message for="email" id="email-error" />
-
-				</p:panelGrid>
-
-				<p:commandButton value="注册(Register)"
-					action="#{UserBean.doRegister}" process="@form"
-					update="username-error password-error email-error type-error" />
-				
-
-			</h:form>
-
+		
+		<p:fieldset legend="注册">
+			<p:tabView>
+				<p:tab title="一般用户注册">
+					<ui:include src="/WEB-INF/userPage/u_registration.xhtml"/>
+				</p:tab>
+				<p:tab title="管理用户注册">
+					<ui:include src="/WEB-INF/userPage/r_registration.xhtml"/>
+				</p:tab>
+			</p:tabView>
 		</p:fieldset>
 
 	</div>

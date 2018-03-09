@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-3-9 21:02:45 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="entity.R_Item" table="R_ITEM">
+        <id name="uid" type="int">
+            <column name="UID" />
+            <generator class="assigned" />
+        </id>
+        <property name="payment_name" type="java.lang.String">
+            <column name="PAYMENT_NAME" />
+        </property>
+        <property name="payment_statuts" type="java.lang.String">
+            <column name="PAYMENT_STATUTS" />
+        </property>
+        <many-to-one name="root" class="entity.Root" fetch="join">
+            <column name="ROOT" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

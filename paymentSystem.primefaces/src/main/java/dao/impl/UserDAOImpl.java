@@ -80,7 +80,7 @@ public class UserDAOImpl implements UserDAO{
 	/* (non-Javadoc)
 	 * @see dao.UserDAO#findByMailCode(java.lang.String)
 	 */
-	@Override
+	
 	//根据邮箱激活码查询用户
 	public User findByMailCode(String mailCode) {
 		// TODO Auto-generated method stub
@@ -119,7 +119,6 @@ public class UserDAOImpl implements UserDAO{
 	 * @author cz
 	 * @time 2018年2月2日下午4:07:05
 	 */
-	@Override
 	public void update(User user) {
 		// TODO Auto-generated method stub
 		Transaction tx = null;

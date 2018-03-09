@@ -25,10 +25,12 @@
 				<ui:include src="/WEB-INF/sinppets/personalInformation.xhtml"/>
 			</p:tab>
 			<p:tab title="待缴费项目">
-
+				<ui:include src="/WEB-INF/sinppets/paymentInformation.xhtml"/>
+			</p:tab>
+			<p:tab title="添加缴费项目">
+				<ui:include src="/WEB-INF/sinppets/addPaymentInformation.xhtml"></ui:include>
 			</p:tab>
 		</p:tabView>
-	
 	<div>
 		<p:outputLabel>账号状态：#{UserBean.active}</p:outputLabel>
 	</div>
