@@ -132,11 +132,11 @@ public class UserBean {
 			this.setActive(user_feedback.getActive());
 			this.setCertificationState(user_feedback.getCertificationState());
 			this.showActive(); //将账号状态加入FacesMessage
-			return "home?facesRedirect=true";
+			return "u_home?facesRedirect=true";
 		}else {
 			System.out.println(user.getUsername()+"login faliure!");
 			
-			return "/WEB-INF/userPage/login-error?facesRedirect=true";
+			return "/WEB-INF/userPage/u_login-error?facesRedirect=true";
 		}
 	}
 	
@@ -156,9 +156,9 @@ public class UserBean {
 		//调用业务层处理数据
 		UserDAO udao = new UserDAOImpl();
 		if(udao.userRegister(user))
-			return "/WEB-INF/userPage/registration-success?facesRedirect=true";
+			return "/WEB-INF/userPage/u_registration_success?facesRedirect=true";
 		else
-			return "/WEB-INF/userPage/registration-error?facesRedirect=true";
+			return "/WEB-INF/userPage/u_registration_error?facesRedirect=true";
 	}
 	
 	

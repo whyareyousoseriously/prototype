@@ -10,6 +10,11 @@
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
+	    <managed-bean-name>RootBean</managed-bean-name>
+	    <managed-bean-class>controller.RootBean</managed-bean-class>
+	    <managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 	    <managed-bean-name>OriginBean</managed-bean-name>
 	    <managed-bean-class>controller.OriginBean</managed-bean-class>
 	    <managed-bean-scope>request</managed-bean-scope>

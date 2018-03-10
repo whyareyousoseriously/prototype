@@ -15,5 +15,8 @@
             <property name="hbm2ddl.auto">update</property>
             <property name="current_session_context_class">thread</property>
         	<mapping resource="User.hbm.xml" />
+        	<mapping resource="Root.hbm.xml" />
+        	<mapping resource="U_Item.hbm.xml" />
+        	<mapping resource="R_Item.hbm.xml" />
         </session-factory>
 </hibernate-configuration>

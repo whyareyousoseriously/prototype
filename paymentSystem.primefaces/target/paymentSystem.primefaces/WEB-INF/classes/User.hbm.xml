@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-1-23 16:44:52 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-3-9 21:02:05 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="entity.User" table="USER">
         <id name="uid" type="int">
@@ -21,13 +21,13 @@
             <column name="TYPE" />
         </property>
         <property name="active" type="java.lang.String">
-            <column name="ACTIVE"></column>
+            <column name="ACTIVE" />
         </property>
         <property name="mailCode" type="java.lang.String">
-            <column name="MAILCODE"></column>
+            <column name="MAILCODE" />
         </property>
         <property name="certificationState" type="java.lang.String">
-            <column name="CERTIFICATIONSTATE"></column>
+            <column name="CERTIFICATIONSTATE" />
         </property>
     </class>
 </hibernate-mapping>

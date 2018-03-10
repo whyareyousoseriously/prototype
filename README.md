@@ -68,6 +68,16 @@ a javaWeb prototype<br>
 &emsp;&emsp;2018-3-7<br>
 &emsp;&emsp;&emsp;&emsp;project:message<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;annotation:previous project about mybatis<br>
+&emsp;&emsp;2018-3-8<br>
+&emsp;&emsp;&emsp;&emsp;project:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;annotation: modify the model of login and registration.<br>
+&emsp;&emsp;2018-3-9<br>
+&emsp;&emsp;&emsp;&emsp;project:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;annotation: separate the permission of user or root.<br>
+&emsp;&emsp;2018-3-10<br>
+&emsp;&emsp;&emsp;&emsp;project:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;annotation: complete the modification of login and registration.<br>
+
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -138,3 +148,12 @@ a javaWeb prototype<br>
 &emsp;&emsp;2018-3-7<br>
 &emsp;&emsp;&emsp;&emsp;项目:message<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;注释:归整以前的关于mybatis的一个小项目<br>
+&emsp;&emsp;2018-3-8<br>
+&emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;注释:修改登录注册模块<br>
+&emsp;&emsp;2018-3-9<br>
+&emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;注释:分离一般用户权限和管理用户权限<br>
+&emsp;&emsp;2018-3-10<br>
+&emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;注释:完成整个模块权限的重构<br>
