@@ -5,23 +5,24 @@
                 xmlns:p="http://primefaces.org/ui">
 
 <p:panelGrid>
-  	写一些介绍信息
+  	写一些介绍信息,
+  	管理注册，注册类型，收费管理单位
 </p:panelGrid>
 <h:form>
 				<p:panelGrid columns="3" styleClass="formTable">
 					<p:outputLabel>用户名(username):</p:outputLabel>
-					<p:inputText value="#{UserBean.username}" required="true"
+					<p:inputText value="#{RootBean.username}" required="true"
 						id="username" requiredMessage="用户名不能为空">
-						<f:validator validatorId="RegisterUsernameValidator"></f:validator>
+						<f:validator validatorId="R_RegisterUsernameValidator"></f:validator>
 						<p:ajax update="username-error" event="blur" />
 					</p:inputText>
 					<p:message for="username" id="username-error" />
 
 
 					<p:outputLabel>密码(password):</p:outputLabel>
-					<p:password value="#{UserBean.password}" match="password2" feedback="true"
+					<p:password value="#{RootBean.password}" match="password2" feedback="true"
 						id="password" required="true" requiredMessage="需要密码" >
-						<f:validator validatorId="PasswordValidator"></f:validator>
+						<f:validator validatorId="R_PasswordValidator"></f:validator>
 						<p:ajax update="password-error" event="blur" />
 					</p:password>
 					<p:message for="password" id="password-error" /> 
@@ -37,16 +38,16 @@
 					<p:message for="password2" id="password2-error" />
 					
 					<p:outputLabel>类型(type):</p:outputLabel>
-					<p:selectOneMenu value="#{UserBean.type}" size="1" id="type">
+					<p:selectOneMenu value="#{RootBean.type}" size="1" id="type">
 						
 						<f:selectItem itemValue="收费管理单位" itemLabel="收费管理单位"></f:selectItem>
 					</p:selectOneMenu>
 					<p:message for="type" id="type-error" />
 
 					<p:outputLabel>邮箱(email):</p:outputLabel>
-					<p:inputText  value="#{UserBean.email}"
+					<p:inputText  value="#{RootBean.email}"
 						id="email" required="true" requiredMessage="邮箱不能为空">
-						<f:validator validatorId="EmailDuplicateCheckingValidator"></f:validator>
+						<f:validator validatorId="R_EmailDuplicateCheckingValidator"></f:validator>
 						<p:ajax update="email-error" event="blur" />
 					</p:inputText>
 					<p:message for="email" id="email-error" />
@@ -54,7 +55,7 @@
 				</p:panelGrid>
 
 				<p:commandButton value="注册(Register)"
-					action="#{UserBean.doRegister}" process="@form"
+					action="#{RootBean.doRegister}" process="@form"
 					update="username-error password-error email-error type-error" />
 				
 

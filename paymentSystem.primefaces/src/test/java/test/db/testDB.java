@@ -11,19 +11,7 @@ import org.junit.Test;
 
 /*
  *test database
- *  drop table if exists USER
-
-    create table USER (
-        UID integer not null auto_increment,
-        USERNAME varchar(255),
-        PASSWORD varchar(255),
-        EMAIL varchar(255),
-        TYPE varchar(255),
-        ACTIVE varchar(255),
-        MAILCODE varchar(255),
-        CERTIFICATIONSTATE varchar(255),
-        primary key (UID)
-    )
+ * 
  *@author cz
  *2018-1-23
  * */

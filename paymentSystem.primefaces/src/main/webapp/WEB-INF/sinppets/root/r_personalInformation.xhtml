@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+<p:panelGrid columns="2"  >
+  <f:facet name="header">
+    	个人基本信息
+  </f:facet>
+  <p:panelGrid columns="2" styleClass="formTable">
+  	
+  	<p:outputLabel>用户名:</p:outputLabel>
+  	<p:outputLabel>#{RootBean.username}</p:outputLabel>
+  	
+  	<p:outputLabel>用户类型:</p:outputLabel>
+  	<p:outputLabel>#{RootBean.type}</p:outputLabel>
+  	
+  	<p:outputLabel>邮箱:</p:outputLabel>
+  	<p:outputLabel>#{RootBean.email}</p:outputLabel>
+  	
+  	<p:outputLabel>激活状态:</p:outputLabel>
+  	<p:outputLabel>#{RootBean.active}</p:outputLabel>
+ 	
+ 	<p:outputLabel>实名认证状态:</p:outputLabel>
+ 	<p:outputLabel>#{RootBean.certificationState}</p:outputLabel>
+  </p:panelGrid>
+</p:panelGrid>
+
+</ui:composition>

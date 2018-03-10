@@ -6,7 +6,7 @@
     <class name="entity.R_Item" table="R_ITEM">
         <id name="uid" type="int">
             <column name="UID" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <property name="payment_name" type="java.lang.String">
             <column name="PAYMENT_NAME" />
@@ -15,7 +15,7 @@
             <column name="PAYMENT_STATUTS" />
         </property>
         <many-to-one name="root" class="entity.Root" fetch="join">
-            <column name="ROOT" />
+            <column name="ROOTID" />
         </many-to-one>
     </class>
 </hibernate-mapping>

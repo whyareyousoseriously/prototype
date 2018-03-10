@@ -5,7 +5,8 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<p:panelGrid>
-  	写一些介绍信息
+  	写一些介绍信息,
+  	登录类型，管理类型，收费管理单位
 </p:panelGrid>
 	<h:form>
 
@@ -20,9 +21,9 @@
 					<p:outputLabel>用户名(username):</p:outputLabel>
 				</p:column>
 				<p:column>
-					<p:inputText value="#{UserBean.username}" required="true"
+					<p:inputText value="#{RootBean.username}" required="true"
 						id="username" requiredMessage="用户名不能为空">
-						<f:validator validatorId="LoginUsernameValidator"></f:validator>
+						<f:validator validatorId="R_LoginUsernameValidator"></f:validator>
 						<p:ajax update="username-error" event="blur" />
 					</p:inputText>
 				</p:column>
@@ -37,9 +38,9 @@
 					<p:outputLabel>密码(password):</p:outputLabel>
 				</p:column>
 				<p:column>
-					<p:password value="#{UserBean.password}" required="true"
+					<p:password value="#{RootBean.password}" required="true"
 						id="password" requiredMessage="密码不能为空">
-						<f:validator validatorId="PasswordValidator"></f:validator>
+						<f:validator validatorId="R_PasswordValidator"></f:validator>
 						<p:ajax update="password-error" event="blur" />
 					</p:password>
 				</p:column>
@@ -53,7 +54,7 @@
 				<p:column colspan="3" style="text-align:center">
 					<p:commandButton value="登录(login)" process="@form"
 						update="username-error password-error"
-						action="#{UserBean.doLogin}">
+						action="#{RootBean.doLogin}">
 					</p:commandButton>
 				</p:column>
 			</p:row>
