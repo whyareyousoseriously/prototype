@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-3-11 17:31:31 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="entity.Item" table="ITEM">
+        <id name="id" type="java.lang.String">
+            <column name="ID" />
+            <generator class="uuid" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="value" type="double">
+            <column name="VALUE" />
+        </property>
+        <property name="statuts" type="java.lang.String">
+            <column name="STATUTS" />
+        </property>
+        <set name="root" table="ROOT_ITEM">
+            <key>
+                <column name="I_ID" />
+            </key>
+            <many-to-many class="entity.Root" column = "R_ID"/>
+        </set>
+        <many-to-one name="user" class="entity.User" >
+            <column name="U_ID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -77,7 +77,10 @@ a javaWeb prototype<br>
 &emsp;&emsp;2018-3-10<br>
 &emsp;&emsp;&emsp;&emsp;project:paymentSystem.primefaces<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;annotation: complete the modification of login and registration.<br>
-
+&emsp;&emsp;2018-3-11<br>
+&emsp;&emsp;&emsp;&emsp;project:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;annotation: modify the file of ORM to make it can refect the relationshop about three entity<Br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; package the utils of DBOperation which can do all operation in database<br>
 # 原型  
 一个javaWeb项目的原型<br>
 &emsp;&emsp;2017-11-16<br>
@@ -157,3 +160,7 @@ a javaWeb prototype<br>
 &emsp;&emsp;2018-3-10<br>
 &emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;注释:完成整个模块权限的重构<br>
+&emsp;&emsp;2018-3-11<br>
+&emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;注释:修改hibernate映射文件，满足三实体互相之间的对应关系<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;将对数据库中各表的增删改查独立出来，封装成一个工具类DBOperation<br>
