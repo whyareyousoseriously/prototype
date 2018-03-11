@@ -4,6 +4,8 @@
  */
 package test.ItemDAOImpl;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import dao.ItemDAO;
@@ -43,5 +45,20 @@ public class testItemDAOImpl {
 		String conditionValue = "网费";
 		ItemDAO idao = new ItemDAOImpl();
 		idao.deleteItemByCondition(condition, conditionValue);
+	}
+	/**
+	 * 测试getItemByCondition
+	 * @author cz
+	 * @time 2018年3月11日下午8:19:57
+	 */
+	@Test
+	public void testGetItemByCondition() {
+		String searchCondition = "NAME";
+		String searchValue = "网费";
+		ItemDAO idao = new ItemDAOImpl();
+		List<Item> list = idao.getItemByCondition(searchCondition, searchValue);
+		for(Item i : list) {
+			System.out.println(i);
+		}
 	}
 }

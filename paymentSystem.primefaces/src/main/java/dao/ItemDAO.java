@@ -25,32 +25,36 @@ public interface ItemDAO {
 	
 	/**
 	 * 条件删除
-	 * @param condition 条件删除的条件
-	 * @param conditionValue 条件删除的条件的值
+	 * @param searchCondition 条件删除的条件
+	 * @param searchValue 条件删除的条件的值
 	 * @return 函数执行的结果
 	 * @author cz
 	 * @time 2018年3月11日下午6:35:50
 	 */
-	public String deleteItemByCondition(String condition, String conditionValue);
+	public String deleteItemByCondition(String SearchCondition, String SearchValue);
+	
 	
 	/**
 	 * 条件更新
-	 * @param condition
-	 * @param conditionValue
+	 * 先查找 再更新
+	 * @param searchCondition 条件更新的查找条件
+	 * @param searchValue 条件更新的查找条件的值
+	 * @param updateCondition 条件更新的条件
+	 * @param updateValue 条件更新的值
 	 * @return
 	 * @author cz
-	 * @time 2018年3月11日下午6:37:20
+	 * @time 2018年3月11日下午7:48:01
 	 */
-	public String updateItemByCondition(String condition, String conditionValue);
+	public String updateItemByCondition(String searchCondition, String searchValue, String updateCondition,String updateValue);
 	
 	/**
 	 * 条件查询
-	 * @param condition
-	 * @param conditionValue
-	 * @return
+	 * @param searchCondition
+	 * @param searchValue
+	 * @return 满足条件的集合
 	 * @author cz
 	 * @time 2018年3月11日下午6:40:22
 	 */
-	public List<Item> getItemByCondition(String condition, String conditionValue); 
+	public List<Item> getItemByCondition(String searchCondition, String searchValue); 
 	
 }

@@ -13,6 +13,7 @@ import org.hibernate.Transaction;
 import dao.ItemDAO;
 import db.MyHibernateSessionFactory;
 import entity.Item;
+import utils.db.DBOperation;
 
 /**
  * @author cz
@@ -52,7 +53,7 @@ public class ItemDAOImpl implements ItemDAO {
 	 * @time 2018年3月11日下午6:40:42
 	 */
 	@Override
-	public String deleteItemByCondition(String condition, String conditionValue) {
+	public String deleteItemByCondition(String searchCondition, String searchValue) {
 		// TODO Auto-generated method stub
 		//创建一个事务
 		Transaction t = null;
@@ -61,13 +62,13 @@ public class ItemDAOImpl implements ItemDAO {
 			t = session.beginTransaction();
 			String hql = "";
 			
-			hql = "from Item where "+condition+"=:conditionValue";
+			hql = "from Item where "+searchCondition+"=:searchValue";
 			Query query = session.createQuery(hql);
-			query.setParameter("conditionValue", conditionValue);
+			query.setParameter("searchValue", searchValue);
 			List<Item> list = query.list();
 			
 			if(list.size()>0) {
-				System.out.println("根据"+condition+"="+conditionValue+"查询成功");
+				System.out.println("根据"+searchCondition+"="+searchValue+"查询成功");
 				System.out.println(list.toString());
 				System.out.println("开始执行删除");
 				for(Item i:list) {
@@ -77,7 +78,7 @@ public class ItemDAOImpl implements ItemDAO {
 				t.commit();
 				return "delete_success";
 			}else {
-				System.out.println("根据"+condition+"="+conditionValue+"查询失败");
+				System.out.println("根据"+searchCondition+"="+searchValue+"查询失败");
 				System.out.println("未找到无法执行删除操作");
 				t.commit();
 				return "delete-failure";
@@ -91,14 +92,14 @@ public class ItemDAOImpl implements ItemDAO {
 		}
 		
 	}
-
 	/* (non-Javadoc)
-	 * @see dao.ItemDAO#updateItemByCondition(java.lang.String, java.lang.String)
+	 * @see dao.ItemDAO#updateItemByCondition(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 * @author cz
-	 * @time 2018年3月11日下午6:40:42
+	 * @time 2018年3月11日下午7:50:42
 	 */
 	@Override
-	public String updateItemByCondition(String condition, String conditionValue) {
+	public String updateItemByCondition(String searchCondition, String searchValue, String updateCondition,
+			String updateValue) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -106,12 +107,20 @@ public class ItemDAOImpl implements ItemDAO {
 	/* (non-Javadoc)
 	 * @see dao.ItemDAO#getItemByCondition(java.lang.String, java.lang.String)
 	 * @author cz
-	 * @time 2018年3月11日下午6:40:42
+	 * @time 2018年3月11日下午7:53:44
 	 */
 	@Override
-	public List<Item> getItemByCondition(String condition, String conditionValue) {
+	public List<Item> getItemByCondition(String searchCondition, String searchValue) {
 		// TODO Auto-generated method stub
-		return null;
+		//调用工具类dbOperation
+		List list = DBOperation.getDataByCondition("Item", searchCondition, searchValue);
+		if(list.size()>0) {
+			System.out.println("对表Item的查询操作成功"+"searchCondition="+searchCondition+"searchValue"+searchValue);
+			return list;
+		}else {
+			System.out.println("对表Item的查询操作失败"+"searchCondition="+searchCondition+"searchValue"+searchValue);
+			return null;
+		}
 	}
-
+	
 }
