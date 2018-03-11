@@ -18,7 +18,7 @@ public class testUserDAOImpl {
 	@Test
 	public void testUserDAOImplUpdate() {
 		User u = new User();
-		u.setUid(2);
+		
 		u.setUsername("222222");
 		u.setPassword("cz123456");
 		u.setEmail("cz826033956@126.com");
@@ -26,7 +26,7 @@ public class testUserDAOImpl {
 		u.setType("0");
 		u.setMailCode("d0030fe114bd496cb72cb31d391a9866");
 		UserDAO udao = new UserDAOImpl();
-		udao.findByMailCode(u.getMailCode());
-		udao.update(u);
+		
+		udao.userRegister(u);
 	}
 }

@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-3-9 21:02:45 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-3-11 17:31:31 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="entity.Root" table="ROOT">
-        <id name="uid" type="int">
-            <column name="UID" />
-            <generator class="native" />
+        <id name="id" type="java.lang.String">
+            <column name="ID" />
+            <generator class="uuid" />
         </id>
         <property name="username" type="java.lang.String">
             <column name="USERNAME" />
@@ -29,5 +29,17 @@
         <property name="certificationState" type="java.lang.String">
             <column name="CERTIFICATIONSTATE" />
         </property>
+        <set name="item" table="ROOT_ITEM" >
+            <key>
+                <column name="R_ID" />
+            </key>
+            <many-to-many class="entity.Item" column = "I_ID"/>
+        </set>
+        <set name="user" table="USER_ROOT" >
+            <key>
+                <column name="R_ID" />
+            </key>
+            <many-to-many class="entity.User" column = "U_ID"/>
+        </set>
     </class>
 </hibernate-mapping>
