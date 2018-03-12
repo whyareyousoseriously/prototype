@@ -47,41 +47,12 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public String deleteItemByCondition(String searchCondition, String searchValue) {
 		// TODO Auto-generated method stub
-		//创建一个事务
-		Transaction t = null;
-		try {
-			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
-			t = session.beginTransaction();
-			String hql = "";
-			
-			hql = "from Item where "+searchCondition+"=:searchValue";
-			Query query = session.createQuery(hql);
-			query.setParameter("searchValue", searchValue);
-			List<Item> list = query.list();
-			
-			if(list.size()>0) {
-				System.out.println("根据"+searchCondition+"="+searchValue+"查询成功");
-				System.out.println(list.toString());
-				System.out.println("开始执行删除");
-				for(Item i:list) {
-					session.delete(i);
-				}
-				System.out.println("删除成功");
-				t.commit();
-				return "delete_success";
-			}else {
-				System.out.println("根据"+searchCondition+"="+searchValue+"查询失败");
-				System.out.println("未找到无法执行删除操作");
-				t.commit();
-				return "delete-failure";
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
+		//调用工具类DBOperation
+		String delete_feedback = DBOperation.deleteDataByCondition("Item", searchCondition, searchValue);
+		if("delete_success".equals(delete_feedback))
+			return "delete_success";
+		else
 			return "delete_failure";
-		}finally {
-			if(t!=null)
-				t = null;
-		}
 		
 	}
 	/* (non-Javadoc)
