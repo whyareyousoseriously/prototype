@@ -7,10 +7,18 @@ package entity;
 import java.util.HashSet;
 import java.util.Set;
 
+
+
 /**
+ * Item实体类
+ * 属性:	String id
+ * 		String name
+ * 		double value
+ * 		String statuts
+ * 		Set<Root> root
+ * 		User	user;
  * @author cz
- * 支付条目实体
- * 2018年3月11日下午4:57:28
+ * 2018年3月12日下午2:17:24
  */
 public class Item {
 	private String id;

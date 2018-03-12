@@ -13,6 +13,7 @@ import org.hibernate.Transaction;
 import dao.ItemDAO;
 import db.MyHibernateSessionFactory;
 import entity.Item;
+import entity.Root;
 import utils.db.DBOperation;
 
 /**

@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 
 import dao.RootDAO;
 import db.MyHibernateSessionFactory;
+import entity.Item;
 import entity.Root;
 import utils.MailUtil;
 
@@ -139,6 +140,18 @@ public class RootDAOImpl implements RootDAO {
 			if(tx!=null)
 				tx = null;
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see dao.RootDAO#addSingleItem(entity.Root, entity.Item)
+	 * @author cz
+	 * @time 2018年3月12日下午2:28:49
+	 */
+	@Override
+	public String addSingleItem(Root root, Item item) {
+		// TODO Auto-generated method stub
+		
+		return null;
 	}
 
 }

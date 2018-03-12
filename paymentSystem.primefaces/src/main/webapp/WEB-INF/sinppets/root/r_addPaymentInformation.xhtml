@@ -1,21 +1,58 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-<p:panelGrid columns="2"  >
-  <f:facet name="header">
-    	
-  </f:facet>
-  <p:panelGrid>
-  	<p:button value="添加" onclick=""></p:button>
-  	<p:outputLabel>支付条目:</p:outputLabel>
-  	<p:outputLabel>#{ItemBean.payment_name}</p:outputLabel>
- 	
- 	<p:outputLabel>支付状态:</p:outputLabel>
- 	<p:outputLabel>#{ItemBean.payment_statuts}</p:outputLabel>
-  </p:panelGrid>
-</p:panelGrid>
+	<p:panelGrid>
+		<h:form>
+			<p:panelGrid>
+				<f:facet name="header">
+					<p:row>
+						<p:colum colspan="4">发起一条支付条目</p:colum>
+					</p:row>
+				</f:facet>
+					<p:row>
+						<p:colum>
+							<p:outputLabel>支付条目名称:</p:outputLabel>
+						</p:colum>
+						<p:colum>
+							<p:outputLabel>支付价格:</p:outputLabel>
+						</p:colum>
+						<p:colum>
+							<p:outputLabel>创建者:</p:outputLabel>
+						</p:colum>
+					</p:row>
+					<p:row>
+						<p:colum>
+							<p:inputText value = "#{ItemBean.name}" required="true"
+											id="name" requiredMessage="被添加的支付条目不能为空">
+										<p:ajax update="name-error" event="blur"></p:ajax>
+								
+							</p:inputText>
+						</p:colum>
+						<p:colum>
+							<p:inputText value = "#{ItemBean.value}" required = "true" 
+											id="value" requiredMessage="支付价格不能为空">
+										<p:ajax update="value-error" event="blur"></p:ajax>
+							
+							</p:inputText>
+						</p:colum>
+						<p:colum>
+							<p:outputText>#{RootBean.username}</p:outputText>
+						</p:colum>
+						<p:colum>
+							<p:commandButton value="创建" process="@form"
+												update="name-error value-error"
+												action="#{ItemBean.addSignleItem}">
+							
+							</p:commandButton>
+						</p:colum>
+					</p:row>
+				<p:message for="name" id="name-error"></p:message>
+				<p:message for="value" id="value-error"></p:message>
+			</p:panelGrid>
+		</h:form>
+	</p:panelGrid>
 
 </ui:composition>

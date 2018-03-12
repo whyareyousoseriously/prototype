@@ -7,6 +7,7 @@ package dao;
 import java.util.List;
 
 import entity.Item;
+import entity.Root;
 
 /**
  * @author cz
@@ -16,7 +17,7 @@ import entity.Item;
 public interface ItemDAO {
 	 /**
 	 * 增加支付条目
-	 * @param item
+	 * @param item 增加的条目
 	 * @return 函数执行的结果
 	 * @author cz
 	 * @time 2018年3月11日下午6:33:12

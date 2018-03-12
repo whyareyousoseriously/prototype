@@ -1,3 +1,6 @@
 test\db\testDB.class
 test\mailUtil\testMailUtil.class
 test\UserDAOImpl\testUserDAOImpl.class
+test\ItemDAOImpl\testItemDAOImpl.class
+test\utils\db\testDBOperation.class
+test\RootDAOImpl\testRootDAOImpl.class

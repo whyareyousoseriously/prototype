@@ -4,6 +4,9 @@
 package controller;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import dao.RootDAO;
@@ -19,7 +22,15 @@ import utils.MailUtil;
  *
  * 2018年3月9日下午8:48:26
  */
+/**
+ * 
+ * @author cz
+ * 2018年3月12日下午3:43:23
+ */
+@ManagedBean
+@RequestScoped
 public class RootBean {
+	private String id;
 	private String username;
 	private String password;
 	
@@ -28,12 +39,16 @@ public class RootBean {
 	private String active;
 	private String mailCode;
 	private String certificationState;
+	@ManagedProperty(value = "currentRoot")
+	private CurrentRoot currentRoot;
+	
 	public RootBean() {
 		super();
 	}
-	public RootBean(String username, String password, String email, String type, String active, String mailCode,
+	public RootBean(String id, String username, String password, String email, String type, String active, String mailCode,
 			String certificationState) {
 		super();
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -41,6 +56,13 @@ public class RootBean {
 		this.active = active;
 		this.mailCode = mailCode;
 		this.certificationState = certificationState;
+	}
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getUsername() {
 		return username;
@@ -105,10 +127,12 @@ public class RootBean {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage("注册成功","激活邮件已发送到您的注册邮箱"+this.email+"请尽快登陆激活"));
 	}
+	
 	@Override
 	public String toString() {
-		return "RootBean [username=" + username + ", password=" + password + ", email=" + email + ", type=" + type
-				+ ", active=" + active + ", mailCode=" + mailCode + ", certificationState=" + certificationState + "]";
+		return "RootBean [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", type=" + type + ", active=" + active + ", mailCode=" + mailCode + ", certificationState="
+				+ certificationState + "]";
 	}
 	/**
 	 * @return
@@ -132,6 +156,7 @@ public class RootBean {
 		
 		if(root_feedback!=null) {
 			System.out.println(root_feedback.toString()+"login success!");
+			this.setId(root_feedback.getId());
 			this.setUsername(root_feedback.getUsername());
 			this.setPassword(root_feedback.getPassword());
 			this.setActive(root_feedback.getActive());
@@ -140,6 +165,8 @@ public class RootBean {
 			this.setMailCode(root_feedback.getMailCode());
 			this.setType(root_feedback.getType());
 			this.showActive();
+			System.out.println("开始保存当前用户");
+			currentRoot.setCurrentRoot(root_feedback);
 			return "r_home?faceRedirect=true";
 			
 		}else{
