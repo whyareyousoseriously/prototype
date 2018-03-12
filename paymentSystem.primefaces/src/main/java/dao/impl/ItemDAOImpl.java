@@ -30,20 +30,12 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public String addItem(Item item) {
 		// TODO Auto-generated method stub
-		//创建一个事物
-		Transaction t = null;
-		try {
-			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
-			t = session.beginTransaction();
-			session.save(item);
-			t.commit();
+		//调用工具类DBOperation
+		String add_feedback = DBOperation.addData("item", item);
+		if("add_success".equals(add_feedback)) {
 			return "add_success";
-		}catch(Exception e) {
-			e.printStackTrace();
+		}else {
 			return "add_failure";
-		}finally {
-			if(t!=null)
-				t = null;
 		}
 	}
 
