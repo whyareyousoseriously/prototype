@@ -21,6 +21,7 @@ dao\impl\RootDAOImpl.class
 db\MyHibernateSessionFactory.class
 utils\db\DBOperation.class
 entity\User.class
+utils\CurrentRoot.class
 utils\dataValidator\root\R_RegisterUsernameValidator.class
 utils\dataValidator\root\R_EmailDuplicateChecking.class
 controller\CurrentRoot.class

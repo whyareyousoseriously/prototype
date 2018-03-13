@@ -6,13 +6,17 @@ package controller;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import dao.ItemDAO;
 import dao.impl.ItemDAOImpl;
 import entity.Item;
 import entity.Root;
 import entity.User;
+import utils.CurrentRoot;
 
 /**
  * @author cz
@@ -24,14 +28,15 @@ import entity.User;
  * @author cz
  * 2018年3月12日下午2:33:54
  */
+@ManagedBean
+@SessionScoped
 public class ItemBean {
 	private String name;
 	private Double value;
 	private String statuts;
 	private Set<Root> root;
 	private User user;
-	@ManagedProperty(value = "currentRoot")
-	private CurrentRoot currentRoot;
+	
 	public ItemBean() {
 		super();
 	}
@@ -85,9 +90,11 @@ public class ItemBean {
 	 * @author cz
 	 * @time 2018年3月12日下午3:40:36
 	 */
-	public void addSingleItem() {
+	public String addSingleItem() {
+		System.out.println(name);
+		System.out.println(statuts);
 		Set<Root> tempRoot = new HashSet<Root>();
-		tempRoot.add(currentRoot.getCurrentRoot());
+		tempRoot.add(CurrentRoot.getCurrentRoot());
 		this.setRoot(tempRoot);
 		//将页面属性封装到Item中
 		Item item = new Item();
@@ -101,8 +108,10 @@ public class ItemBean {
 		String idao_feedback = idao.addItem(item);
 		if("add_success".equals(idao_feedback)) {
 			System.out.println("添加成功");
+			return "r_home";
 		}else {
 			System.out.println("添加失败");
+			return "u_home";
 		}
 	}
 	//支付条目Item的删除

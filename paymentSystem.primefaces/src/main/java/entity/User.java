@@ -137,16 +137,4 @@ public class User {
 	public void setRoot(Set<Root> root) {
 		this.root = root;
 	}
-
-
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", type="
-				+ type + ", active=" + active + ", mailCode=" + mailCode + ", certificationState=" + certificationState
-				+ ", iteam=" + iteam + ", root=" + root + "]";
-	}
-
-	
-
 }

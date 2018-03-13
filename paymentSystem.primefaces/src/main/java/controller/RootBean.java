@@ -3,18 +3,28 @@
  */
 package controller;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
+import dao.ItemDAO;
 import dao.RootDAO;
 import dao.UserDAO;
+import dao.impl.ItemDAOImpl;
 import dao.impl.RootDAOImpl;
 import dao.impl.UserDAOImpl;
+import entity.Item;
 import entity.Root;
 import entity.User;
+import utils.CurrentRoot;
 import utils.MailUtil;
 
 /**
@@ -28,7 +38,7 @@ import utils.MailUtil;
  * 2018年3月12日下午3:43:23
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class RootBean {
 	private String id;
 	private String username;
@@ -39,14 +49,20 @@ public class RootBean {
 	private String active;
 	private String mailCode;
 	private String certificationState;
-	@ManagedProperty(value = "currentRoot")
-	private CurrentRoot currentRoot;
+	
+	
+	
+	//RootBean来操作Item
+	private Item singleItem = new Item();
+	
+	
 	
 	public RootBean() {
 		super();
 	}
-	public RootBean(String id, String username, String password, String email, String type, String active, String mailCode,
-			String certificationState) {
+	
+	public RootBean(String id, String username, String password, String email, String type, String active,
+			String mailCode, String certificationState, Item singleItem) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -56,8 +72,18 @@ public class RootBean {
 		this.active = active;
 		this.mailCode = mailCode;
 		this.certificationState = certificationState;
+		
+		this.singleItem = singleItem;
 	}
-	
+
+	public Item getSingleItem() {
+		return singleItem;
+	}
+
+	public void setSingleItem(Item singleItem) {
+		this.singleItem = singleItem;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -165,8 +191,13 @@ public class RootBean {
 			this.setMailCode(root_feedback.getMailCode());
 			this.setType(root_feedback.getType());
 			this.showActive();
+			
+			//记录当前登录者的信息
 			System.out.println("开始保存当前用户");
-			currentRoot.setCurrentRoot(root_feedback);
+			CurrentRoot current = new CurrentRoot(root_feedback);
+			System.out.println(CurrentRoot.getCurrentRoot());
+			System.out.println("保存成功");
+			
 			return "r_home?faceRedirect=true";
 			
 		}else{
@@ -194,5 +225,23 @@ public class RootBean {
 			return "/WEB-INF/rootPage/r_registration_success?facesRedirect=true";
 		else
 			return "/WEB-INF/rootPage/r_registration_error?facesRedirect=true";
+	}
+	
+	public void addSingleItem(ActionEvent e) {
+		System.out.println("开始写入一条Item");
+		System.out.println(CurrentRoot.getCurrentRoot());
+		System.out.println(this.singleItem.toString());
+		Set<Root> tempRoot = new HashSet<Root>();
+		tempRoot.add(CurrentRoot.getCurrentRoot());
+		singleItem.setRoot(tempRoot);
+		singleItem.setUser(null);
+		System.out.println(this.singleItem.toString());
+		ItemDAO idao = new ItemDAOImpl();
+		String idao_feedback = idao.addItem(singleItem);
+		if("add_success".equals(idao_feedback))
+			System.out.println("添加成功");
+		else {
+			System.out.println("添加失败");
+		}
 	}
 }

@@ -77,7 +77,7 @@ public class ItemDAOImpl implements ItemDAO {
 	public List<Item> getItemByCondition(String searchCondition, String searchValue) {
 		// TODO Auto-generated method stub
 		//调用工具类dbOperation
-		List list = DBOperation.getDataByCondition("Item", searchCondition, searchValue);
+		List<Item> list = DBOperation.getDataByCondition("Item", searchCondition, searchValue);
 		if(list.size()>0) {
 			System.out.println("对表Item的查询操作成功"+"searchCondition="+searchCondition+"searchValue"+searchValue);
 			return list;

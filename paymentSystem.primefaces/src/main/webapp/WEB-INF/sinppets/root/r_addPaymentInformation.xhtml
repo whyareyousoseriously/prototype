@@ -3,56 +3,52 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-
-	<p:panelGrid>
+	
+	<p:fieldset>
 		<h:form>
-			<p:panelGrid>
-				<f:facet name="header">
+			<p:commandButton value="添加一条支付条目" id="add_Item" onclick="PF('addItemDialog').show()"></p:commandButton>
+		</h:form>
+		
+		<p:dialog header="addItem" widgetVar="addItemDialog" modal="true">
+			<h:form id = "add_Item_form">
+				<p:panelGrid>
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="4">添加一条支付条目</p:column>
+						</p:row>
+					</f:facet>
 					<p:row>
-						<p:colum colspan="4">发起一条支付条目</p:colum>
-					</p:row>
-				</f:facet>
-					<p:row>
-						<p:colum>
-							<p:outputLabel>支付条目名称:</p:outputLabel>
-						</p:colum>
-						<p:colum>
-							<p:outputLabel>支付价格:</p:outputLabel>
-						</p:colum>
-						<p:colum>
-							<p:outputLabel>创建者:</p:outputLabel>
-						</p:colum>
-					</p:row>
-					<p:row>
-						<p:colum>
-							<p:inputText value = "#{ItemBean.name}" required="true"
+						<p:column>
+							<p:inputText value = "#{RootBean.singleItem.name}" required="true"
 											id="name" requiredMessage="被添加的支付条目不能为空">
 										<p:ajax update="name-error" event="blur"></p:ajax>
 								
 							</p:inputText>
-						</p:colum>
-						<p:colum>
-							<p:inputText value = "#{ItemBean.value}" required = "true" 
+						</p:column>
+						<p:column>
+							<p:inputText value = "#{RootBean.singleItem.value}" required = "true" 
 											id="value" requiredMessage="支付价格不能为空">
 										<p:ajax update="value-error" event="blur"></p:ajax>
 							
 							</p:inputText>
-						</p:colum>
-						<p:colum>
-							<p:outputText>#{RootBean.username}</p:outputText>
-						</p:colum>
-						<p:colum>
+						</p:column>
+						<p:column>
+							<p:outputLabel>#{RootBean.username}</p:outputLabel>
+						</p:column>
+						<p:column>
 							<p:commandButton value="创建" process="@form"
-												update="name-error value-error"
-												action="#{ItemBean.addSignleItem}">
+												update="name-error value-error add_Item_form"
+												actionListener="#{RootBean.addSingleItem}" oncomplete="PF('addItemDialog').hide()">
 							
 							</p:commandButton>
-						</p:colum>
+						</p:column>
 					</p:row>
 				<p:message for="name" id="name-error"></p:message>
 				<p:message for="value" id="value-error"></p:message>
-			</p:panelGrid>
-		</h:form>
-	</p:panelGrid>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+			
+	</p:fieldset>
 
 </ui:composition>
