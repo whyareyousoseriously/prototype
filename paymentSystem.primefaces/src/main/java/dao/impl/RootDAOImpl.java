@@ -13,6 +13,7 @@ import dao.RootDAO;
 import db.MyHibernateSessionFactory;
 import entity.Item;
 import entity.Root;
+import utils.CurrentRoot;
 import utils.MailUtil;
 
 /**
@@ -141,17 +142,39 @@ public class RootDAOImpl implements RootDAO {
 				tx = null;
 		}
 	}
-
 	/* (non-Javadoc)
-	 * @see dao.RootDAO#addSingleItem(entity.Root, entity.Item)
+	 * @see dao.RootDAO#getOwnItems()
 	 * @author cz
-	 * @time 2018年3月12日下午2:28:49
+	 * @time 2018年3月13日下午7:19:00
 	 */
 	@Override
-	public String addSingleItem(Root root, Item item) {
+	public Root getOwnRoot(String id) {
 		// TODO Auto-generated method stub
+		Transaction t = null;
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			t = session.beginTransaction();
+			String hql = "from Root where id=:id";
+			Query query = session.createQuery(hql);
+			query.setParameter("id", id);
+			List list = query.list();
+			if(list.size()>0) {
+				System.out.println("成功获取");
+				System.out.println(list.toString());
+				Root root = (Root) list.get(0);
+				return root;
+			}else {
+				System.out.println("获取失败");
+				return null;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			if(t!=null)
+				t = null;
+		}
 		
-		return null;
 	}
 
 }

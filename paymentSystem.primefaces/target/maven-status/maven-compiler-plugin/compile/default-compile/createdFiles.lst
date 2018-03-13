@@ -24,7 +24,6 @@ entity\User.class
 utils\CurrentRoot.class
 utils\dataValidator\root\R_RegisterUsernameValidator.class
 utils\dataValidator\root\R_EmailDuplicateChecking.class
-controller\CurrentRoot.class
 controller\RootBean.class
 utils\DataSearchUtil.class
 utils\dataValidator\user\LoginUsernameValidator.class

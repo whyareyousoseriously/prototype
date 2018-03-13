@@ -5,10 +5,17 @@
 	xmlns:p="http://primefaces.org/ui">
 	
 	<p:fieldset>
+		<h:form id="showItemsForm">
+			<p:dataTable var="ownItems" value="#{RootsBean.ownItems}" rows="10"
+				paginator="true" id="showTable1">
+				<p:column headerText="支付条目名称">#{ownItems.name}</p:column>
+				
+				<p:column headerText="价格">#{ownItems.value}</p:column>
+			</p:dataTable>
+		</h:form>
 		<h:form>
 			<p:commandButton value="添加一条支付条目" id="add_Item" onclick="PF('addItemDialog').show()"></p:commandButton>
 		</h:form>
-		
 		<p:dialog header="addItem" widgetVar="addItemDialog" modal="true">
 			<h:form id = "add_Item_form">
 				<p:panelGrid>
@@ -37,7 +44,7 @@
 						</p:column>
 						<p:column>
 							<p:commandButton value="创建" process="@form"
-												update="name-error value-error add_Item_form"
+												update=":#{p:component('showItemsForm')} name-error value-error add_Item_form"
 												actionListener="#{RootBean.addSingleItem}" oncomplete="PF('addItemDialog').hide()">
 							
 							</p:commandButton>

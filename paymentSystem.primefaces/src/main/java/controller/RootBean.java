@@ -55,25 +55,24 @@ public class RootBean {
 	//RootBean来操作Item
 	private Item singleItem = new Item();
 	
+	//自己的items
+	private Set<Item> ownItems = new HashSet<Item>();
 	
-	
-	public RootBean() {
-		super();
-	}
-	
-	public RootBean(String id, String username, String password, String email, String type, String active,
-			String mailCode, String certificationState, Item singleItem) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.type = type;
-		this.active = active;
-		this.mailCode = mailCode;
-		this.certificationState = certificationState;
+	public Set<Item> getOwnItems() {
+		/*
+		 * RootImplDAO
+		 * 
+		 * */
+		RootDAO rdao = new RootDAOImpl();
+		System.out.println(CurrentRoot.getCurrentRoot());
+		Root rdao_feedback = rdao.getOwnRoot("40288a876219902001621990b70c0000");
 		
-		this.singleItem = singleItem;
+		ownItems = rdao_feedback.getItem();
+		return ownItems;
+	}
+
+	public void setOwnItems(Set<Item> ownItems) {
+		this.ownItems = ownItems;
 	}
 
 	public Item getSingleItem() {

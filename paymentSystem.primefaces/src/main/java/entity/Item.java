@@ -98,4 +98,11 @@ public class Item {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", name=" + name + ", value=" + value + ", statuts=" + statuts + "]";
+	}
+	
+	
 }
