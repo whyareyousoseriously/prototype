@@ -160,10 +160,7 @@ public class Root {
 	public String toString() {
 		return "Root [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", type="
 				+ type + ", active=" + active + ", mailCode=" + mailCode + ", certificationState=" + certificationState
-				+ ", item=" + item + ", user=" + user + "]";
+				+ "]";
 	}
-
-
-	
 	
 }

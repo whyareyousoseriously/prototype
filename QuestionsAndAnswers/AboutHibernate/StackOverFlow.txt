@@ -1,0 +1,5 @@
+问题描述
+entity中加toString()方法，Bean中调用出现StackOverFlow，
+问题原因
+因为entitiy中三个类User,Root,Item,互相有关系，Hibernate的表表之间的关系，所以默认的toString方法会使三个对象之间的ToString方法互相调用
+陷入死循环，因此出现stackOverFlow Exception.

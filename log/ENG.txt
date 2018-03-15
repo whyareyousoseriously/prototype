@@ -1,0 +1,86 @@
+prototype  
+a javaWeb prototype<br>
+&emsp;&emsp;2017-11-16<br>
+&emsp;&emsp;&emsp;&emsp;The operation of maven review.<br>
+&emsp;&emsp;2017-11-18<br>
+&emsp;&emsp;&emsp;&emsp;Use maven to refactor the code about prototype.<br>
+&emsp;&emsp;2017-11-20<br>
+&emsp;&emsp;&emsp;&emsp;Complete the refactor about the prototype.<br>
+&emsp;&emsp;&emsp;&emsp;Complete the limit of authority in back-end.<br>
+&emsp;&emsp;&emsp;&emsp;Submit the questions and answers before.<br>
+&emsp;&emsp;2017-11-21<br>
+&emsp;&emsp;&emsp;&emsp;submit the questions and answers before.<br>
+&emsp;&emsp;2017-11-22<br>
+&emsp;&emsp;&emsp;&emsp;submit the questions and answers about why use utf8mb in mysql;<br>
+&emsp;&emsp;&emsp;&emsp;submit the questions and answers about review basic opration of mysql;<br>
+&emsp;&emsp;&emsp;&emsp;***The update of learning-log will be transferred to **QuestionsAndAnswers** directory***<br>
+&emsp;&emsp;&emsp;&emsp;update QuestionsAndAnswers about the data type of mysql;<br>
+&emsp;&emsp;2017-11-23<br>
+&emsp;&emsp;&emsp;&emsp;the method of tomcat charset.<br>
+&emsp;&emsp;&emsp;&emsp;solve the question about garbled Chinese character in jsp;<br>
+&emsp;&emsp;&emsp;&emsp;only one servlet can work in verificationCode project(unsolve)<br>
+&emsp;&emsp;2017-11-25<br>
+&emsp;&emsp;&emsp;&emsp;use maven to refactor the verificationCode and solve the servlet cann't work<br>
+&emsp;&emsp;&emsp;&emsp;maybe it is the problem about the running time environment. <br>
+&emsp;&emsp;&emsp;&emsp;try the method that use kaptcha to complete the verificationCode;<br>
+&emsp;&emsp;2017-11-26<br>
+&emsp;&emsp;&emsp;&emsp;add verificationCode into prototype-parent;<br>
+&emsp;&emsp;&emsp;&emsp;a more particular knowledge of Hibernate;<br>
+&emsp;&emsp;&emsp;&emsp;and other mainsteram ORM framwork--MyBatis,Toplink,EJB;<br>
+&emsp;&emsp;&emsp;&emsp;Understand the method chaining.<br>
+&emsp;&emsp;2017-12-14<br>
+&emsp;&emsp;&emsp;&emsp;JavaMail;<br>
+&emsp;&emsp;&emsp;&emsp;Incomplete implementation of registration;<br>
+&emsp;&emsp;&emsp;&emsp;Three ways to get the form data in struts2;<br>
+&emsp;&emsp;2017-12-15<br>
+&emsp;&emsp;&emsp;&emsp;QuestionsAndAnswers:Could not get constructor for org.hibernate.persister.entity.SingleTableEntityPersister;<br>
+&emsp;&emsp;2017-12-22<br>
+&emsp;&emsp;&emsp;&emsp;The problem that has plagued me for two days about the web page in the JSF framework dones not display various tags has be sloved.
+&emsp;&emsp;&emsp;&emsp;happy! ^.^! By the way, a new folder on JSF framework issues is created. <br>
+&emsp;&emsp;2017-12-23<br>
+&emsp;&emsp;&emsp;&emsp;begin a simple example about JSF framework which is about student information mangement.<br>
+&emsp;&emsp;&emsp;&emsp;update AboutHibernation sloved a problem about org.hibernate.MappingException: <br>
+&emsp;&emsp;&emsp;&emsp;Could not get constructor for org.hibernate.persister.entity.SingleT
+&emsp;&emsp;&emsp;&emsp;use jsf+hibernte4 to complete function about register and login in studentInformationManagement;<br>
+&emsp;&emsp;&emsp;&emsp;solve the problem that <f:selectItem/> donn't work.<br>
+&emsp;&emsp;2017-12-25<br>
+&emsp;&emsp;&emsp;&emsp;Notice: pay attention to the tag of <p:commandButton /> which has a attribute named "process";
+&emsp;&emsp;2017-12-26<br>
+&emsp;&emsp;&emsp;&emsp;validation of studentInformationManagement project.<br>
+&emsp;&emsp;2017-12-27<br>
+&emsp;&emsp;&emsp;&emsp;About lazy loadding in hibernate. Record it in QuestionsAndAnswers/AboutHibernate<br>
+&emsp;&emsp;&emsp;&emsp;The use of redirect and forward in jsf2.2(primefaces5.1).Record it in QuestionsAndAnswers/AboutJSF<br>
+&emsp;&emsp;2017-12-29<br>
+&emsp;&emsp;&emsp;&emsp;add a RootsBean in StudentInformationManagement<br>
+&emsp;&emsp;2017-12-30<br>
+&emsp;&emsp;&emsp;&emsp;StudentInformationManagement almost completed, but a question about page jump under folder make a crazy..<br>
+&emsp;&emsp;2018-1-23<br>
+&emsp;&emsp;&emsp;&emsp;back to work; refactor prototype-parent according to studentInformationManagement,and rename it to paymentSystem.<br>
+&emsp;&emsp;2018-1-30<br>
+&emsp;&emsp;&emsp;&emsp;mark~! add email feedback!<br>
+&emsp;&emsp;2018-2-2<br>
+&emsp;&emsp;&emsp;&emsp;solve the problem about the javaMail(553 Mail from must equal authorized user)<br>
+&emsp;&emsp;2018-2-4<br>
+&emsp;&emsp;&emsp;&emsp;delete the part of struts2 in paymentSystem.primefaces. add the eamil activation function.<br>
+&emsp;&emsp;2018-3-6<br>
+&emsp;&emsp;&emsp;&emsp;project: paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;action: the design of payment page.<br>
+&emsp;&emsp;2018-3-7<br>
+&emsp;&emsp;&emsp;&emsp;project:message<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;annotation:previous project about mybatis<br>
+&emsp;&emsp;2018-3-8<br>
+&emsp;&emsp;&emsp;&emsp;project:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;annotation: modify the model of login and registration.<br>
+&emsp;&emsp;2018-3-9<br>
+&emsp;&emsp;&emsp;&emsp;project:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;annotation: separate the permission of user or root.<br>
+&emsp;&emsp;2018-3-10<br>
+&emsp;&emsp;&emsp;&emsp;project:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;annotation: complete the modification of login and registration.<br>
+&emsp;&emsp;2018-3-11<br>
+&emsp;&emsp;&emsp;&emsp;project:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;annotation: modify the file of ORM to make it can refect the relationshop about three entity<Br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; package the utils of DBOperation which can do all operation in database<br>
+&emsp;&emsp;2018-3-12,13<br>
+&emsp;&emsp;&emsp;&emsp;project:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;annotation: entity toString() RootsBean StackOverFlow<br>

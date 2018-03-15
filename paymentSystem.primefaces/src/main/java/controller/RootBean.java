@@ -3,15 +3,28 @@
  */
 package controller;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+
+import dao.ItemDAO;
 import dao.RootDAO;
 import dao.UserDAO;
+import dao.impl.ItemDAOImpl;
 import dao.impl.RootDAOImpl;
 import dao.impl.UserDAOImpl;
+import entity.Item;
 import entity.Root;
 import entity.User;
+import utils.CurrentRoot;
 import utils.MailUtil;
 
 /**
@@ -19,7 +32,15 @@ import utils.MailUtil;
  *
  * 2018年3月9日下午8:48:26
  */
+/**
+ * 
+ * @author cz
+ * 2018年3月12日下午3:43:23
+ */
+@ManagedBean
+@SessionScoped
 public class RootBean {
+	private String id;
 	private String username;
 	private String password;
 	
@@ -28,19 +49,45 @@ public class RootBean {
 	private String active;
 	private String mailCode;
 	private String certificationState;
-	public RootBean() {
-		super();
+	
+	
+	
+	//RootBean来操作Item
+	private Item singleItem = new Item();
+	
+	//自己的items
+	private Set<Item> ownItems = new HashSet<Item>();
+	
+	public Set<Item> getOwnItems() {
+		/*
+		 * RootImplDAO
+		 * 
+		 * */
+		RootDAO rdao = new RootDAOImpl();
+		System.out.println(CurrentRoot.getCurrentRoot());
+		Root rdao_feedback = rdao.getOwnRoot("40288a876219902001621990b70c0000");
+		
+		ownItems = rdao_feedback.getItem();
+		return ownItems;
 	}
-	public RootBean(String username, String password, String email, String type, String active, String mailCode,
-			String certificationState) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.type = type;
-		this.active = active;
-		this.mailCode = mailCode;
-		this.certificationState = certificationState;
+
+	public void setOwnItems(Set<Item> ownItems) {
+		this.ownItems = ownItems;
+	}
+
+	public Item getSingleItem() {
+		return singleItem;
+	}
+
+	public void setSingleItem(Item singleItem) {
+		this.singleItem = singleItem;
+	}
+
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getUsername() {
 		return username;
@@ -105,10 +152,12 @@ public class RootBean {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(null, new FacesMessage("注册成功","激活邮件已发送到您的注册邮箱"+this.email+"请尽快登陆激活"));
 	}
+	
 	@Override
 	public String toString() {
-		return "RootBean [username=" + username + ", password=" + password + ", email=" + email + ", type=" + type
-				+ ", active=" + active + ", mailCode=" + mailCode + ", certificationState=" + certificationState + "]";
+		return "RootBean [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", type=" + type + ", active=" + active + ", mailCode=" + mailCode + ", certificationState="
+				+ certificationState + "]";
 	}
 	/**
 	 * @return
@@ -132,6 +181,7 @@ public class RootBean {
 		
 		if(root_feedback!=null) {
 			System.out.println(root_feedback.toString()+"login success!");
+			this.setId(root_feedback.getId());
 			this.setUsername(root_feedback.getUsername());
 			this.setPassword(root_feedback.getPassword());
 			this.setActive(root_feedback.getActive());
@@ -140,6 +190,13 @@ public class RootBean {
 			this.setMailCode(root_feedback.getMailCode());
 			this.setType(root_feedback.getType());
 			this.showActive();
+			
+			//记录当前登录者的信息
+			System.out.println("开始保存当前用户");
+			CurrentRoot current = new CurrentRoot(root_feedback);
+			System.out.println(CurrentRoot.getCurrentRoot());
+			System.out.println("保存成功");
+			
 			return "r_home?faceRedirect=true";
 			
 		}else{
@@ -167,5 +224,23 @@ public class RootBean {
 			return "/WEB-INF/rootPage/r_registration_success?facesRedirect=true";
 		else
 			return "/WEB-INF/rootPage/r_registration_error?facesRedirect=true";
+	}
+	
+	public void addSingleItem(ActionEvent e) {
+		System.out.println("开始写入一条Item");
+		System.out.println(CurrentRoot.getCurrentRoot());
+		System.out.println(this.singleItem.toString());
+		Set<Root> tempRoot = new HashSet<Root>();
+		tempRoot.add(CurrentRoot.getCurrentRoot());
+		singleItem.setRoot(tempRoot);
+		singleItem.setUser(null);
+		System.out.println(this.singleItem.toString());
+		ItemDAO idao = new ItemDAOImpl();
+		String idao_feedback = idao.addItem(singleItem);
+		if("add_success".equals(idao_feedback))
+			System.out.println("添加成功");
+		else {
+			System.out.println("添加失败");
+		}
 	}
 }

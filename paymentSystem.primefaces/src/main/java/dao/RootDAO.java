@@ -3,6 +3,9 @@
  */
 package dao;
 
+import java.util.List;
+
+import entity.Item;
 import entity.Root;
 
 /**
@@ -43,4 +46,12 @@ public interface RootDAO {
 	 */
 	public void update(Root root);
 	
+	/**
+	 * 拿到表中的属于自己的Root
+	 * 然后遍历Root.getItem(),即可得到自己所有的Item
+	 * @return Root
+	 * @author cz
+	 * @time 2018年3月13日下午7:19:10
+	 */
+	public Root getOwnRoot(String id);
 }

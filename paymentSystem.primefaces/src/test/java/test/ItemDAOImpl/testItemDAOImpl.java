@@ -4,13 +4,16 @@
  */
 package test.ItemDAOImpl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 
 import dao.ItemDAO;
 import dao.impl.ItemDAOImpl;
 import entity.Item;
+import entity.Root;
 
 /**
  * @author cz
@@ -30,6 +33,7 @@ public class testItemDAOImpl {
 		item.setName("网费");
 		item.setValue(100);
 		item.setUser(null);
+		
 		ItemDAO idao = new ItemDAOImpl();
 		idao.addItem(item);
 	}
@@ -60,5 +64,22 @@ public class testItemDAOImpl {
 		for(Item i : list) {
 			System.out.println(i);
 		}
+	}
+	
+	@Test
+	public void testAddItem2() {
+		Root root = new Root();
+		root.setId("40288a87621986220162198624fb0000");
+		root.setUsername("张三");
+		root.setPassword("cz123456");
+		Set<Root> tempRoot = new HashSet<Root>();
+		tempRoot.add(root);
+		Item item = new Item();
+		item.setName("网费");
+		item.setValue(100);
+		item.setUser(null);
+		item.setRoot(tempRoot);
+		ItemDAO idao = new ItemDAOImpl();
+		idao.addItem(item);
 	}
 }
