@@ -1,0 +1,68 @@
+-- Create table
+create table SPORTMONTHTOTAL
+(
+  id         NUMBER(10) not null,
+  mothid     NUMBER(13),
+  daily      DATE,
+  userid     NUMBER(8),
+  projectid  NUMBER(5),
+  sporttime  NUMBER(8),
+  sportscore NUMBER(8,2),
+  flag       NUMBER(1),
+  status     NUMBER(1) default 0
+)
+tablespace ZKWORKSPACE
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 24752K
+    next 104K
+    minextents 1
+    maxextents unlimited
+    pctincrease 0
+  );
+-- Add comments to the table 
+comment on table SPORTMONTHTOTAL
+  is '学生运动情况周统计表';
+-- Add comments to the columns 
+comment on column SPORTMONTHTOTAL.id
+  is '编号';
+comment on column SPORTMONTHTOTAL.weekid
+  is '月编号';
+comment on column SPORTMONTHTOTAL.daily
+  is '统计日期';
+comment on column SPORTMONTHTOTAL.userid
+  is '学生编号';
+comment on column SPORTMONTHTOTAL.projectid
+  is '项目编号';
+comment on column SPORTMONTHTOTAL.sporttime
+  is '运动时长(分钟)';
+comment on column SPORTMONTHTOTAL.sportscore
+  is '运动成绩';
+comment on column SPORTMONTHTOTAL.flag
+  is '是否达标 1：达标；0：未达标';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table SPORTMONTHTOTAL
+  add constraint PK_SPORTMONTHTOTAL primary key (ID)
+  using index 
+  tablespace ZKWORKSPACE
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 9256K
+    next 104K
+    minextents 1
+    maxextents unlimited
+    pctincrease 0
+  );
+alter table SPORTMONTHTOTAL
+  add constraint FK_SPORTMONTHTOTAL_PROJECTID foreign key (PROJECTID)
+  references PROJECT_TYPE_PARA (ID);
+-- Create/Recreate check constraints 
+alter table SPORTMONTHTOTAL
+  add constraint CKC_SPORTMONTHTOTAL_FLAG
+  check (Flag is not null or (Flag between 0 and 1));

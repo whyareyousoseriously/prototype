@@ -1,0 +1,32 @@
+查询数据31W条，花费时间4:29
+有点慢啊
+遍历周总计表45W条数据，花费时间5:30
+
+问题1：周总计表是如何更新数据的，
+	猜测1：日表插入一条数据，后触发器自动更新周表数据？
+	猜测2：日表插入一条数据，后每周对周表进行一次更新？
+	猜测3：没有采用触发器，实在业务逻辑层，每插入一条数据在日表，然后就对周表进行一次更新。
+2018-4-1
+	首次进行部署，出现异常，java.sql.SQLException: The url cannot be null
+	没一点注释，代码完全看不懂，更别说改了，GG
+2018-4-2
+	原来源代码中用了两次url。primary和secondary.
+	测试，前台有分页显示的功能，若不出现可能是兼容性问题，推荐使用fireFox或者chrome
+	测试1：	后台对数据库直接进行测试，寻找1S内可以显示的最大数据量。
+			初步估计，是1500条记录，
+			测试结果，查询1500条记录，耗时1.304s.
+	测试2:	查询整个年级的日运动的时候出现了程序卡死，后台一直输出SQL语句的情况
+			猜测1：数据库查询语句出现错误，出现死循环。
+			猜测2：数据库数据量太大，查询压力太大 。
+			后台输出的SQL语句
+				......
+				Hibernate: select * from ( select sporttotal0_.id as id1_8_, sporttotal0_.daily as daily2_8_, sporttotal0_.flag as flag3_8_, sporttotal0_.projectid as projectid7_8_, sporttotal0_.sportscore as sportscore4_8_, sporttotal0_.sporttime as sporttime5_8_, sporttotal0_.userid as userid6_8_ from sporttotal sporttotal0_ where sporttotal0_.userid=? and (sporttotal0_.daily between ? and ?) order by sporttotal0_.daily ) where rownum <= ?
+				Hibernate: select count(sporttotal0_.id) as col_0_0_ from sporttotal sporttotal0_ where sporttotal0_.userid=? and (sporttotal0_.daily between ? and ?)
+				Hibernate: select * from ( select sporttotal0_.id as id1_8_, sporttotal0_.daily as daily2_8_, sporttotal0_.flag as flag3_8_, sporttotal0_.projectid as projectid7_8_, sporttotal0_.sportscore as sportscore4_8_, sporttotal0_.sporttime as sporttime5_8_, sporttotal0_.userid as userid6_8_ from sporttotal sporttotal0_ where sporttotal0_.userid=? and (sporttotal0_.daily between ? and ?) order by sporttotal0_.daily ) where rownum <= ?
+				Hibernate: select count(sporttotal0_.id) as col_0_0_ from sporttotal sporttotal0_ where sporttotal0_.userid=? and (sporttotal0_.daily between ? and ?)
+				Hibernate: select * from ( select sporttotal0_.id as id1_8_, sporttotal0_.daily as daily2_8_, sporttotal0_.flag as flag3_8_, sporttotal0_.projectid as projectid7_8_, sporttotal0_.sportscore as sportscore4_8_, sporttotal0_.sporttime as sporttime5_8_, sporttotal0_.userid as userid6_8_ from sporttotal sporttotal0_ where sporttotal0_.userid=? and (sporttotal0_.daily between ? and ?) order by sporttotal0_.daily ) where rownum <= ?
+				Hibernate: select count(sporttotal0_.id) as col_0_0_ from sporttotal sporttotal0_ where sporttotal0_.userid=? and (sporttotal0_.daily between ? and ?)
+				Hibernate: select * from ( select sporttotal0_.id as id1_8_, sporttotal0_.daily as daily2_8_, sporttotal0_.flag as flag3_8_, sporttotal0_.projectid as projectid7_8_, sporttotal0_.sportscore as sportscore4_8_, sporttotal0_.sporttime as sporttime5_8_, sporttotal0_.userid as userid6_8_ from sporttotal sporttotal0_ where sporttotal0_.userid=? and (sporttotal0_.daily between ? and ?) order by sporttotal0_.daily ) where rownum <= ?
+				Hibernate: select count(sporttotal0_.id) as col_0_0_ from sporttotal sporttotal0_ where sporttotal0_.userid=? and (sporttotal0_.daily between ? and ?)
+				Hibernate: select * from ( select sporttotal0_.id as id1_8_, sporttotal0_.daily as daily2_8_, sporttotal0_.flag as flag3_8_, sporttotal0_.projectid as projectid7_8_, sporttotal0_.sportscore as sportscore4_8_, sporttotal0_.sporttime as sporttime5_8_, sporttotal0_.userid as userid6_8_ from sporttotal sporttotal0_ where sporttotal0_.userid=? and (sporttotal0_.daily between ? and ?) order by sporttotal0_.daily ) where rownum <= ?
+				......
