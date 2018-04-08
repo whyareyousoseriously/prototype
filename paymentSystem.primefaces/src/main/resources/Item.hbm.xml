@@ -17,13 +17,13 @@
         <property name="statuts" type="java.lang.String">
             <column name="STATUTS" />
         </property>
-        <set name="root" table="ROOT_ITEM">
+        <set name="root" table="ROOT_ITEM" lazy="false">
             <key>
                 <column name="I_ID" />
             </key>
-            <many-to-many class="entity.Root" column = "R_ID"/>
+            <many-to-many class="entity.Root" column = "R_ID" lazy="false"/>
         </set>
-        <many-to-one name="user" class="entity.User" >
+        <many-to-one name="user" class="entity.User" lazy="false" >
             <column name="U_ID" />
         </many-to-one>
     </class>

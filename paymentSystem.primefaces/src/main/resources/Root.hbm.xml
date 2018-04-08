@@ -29,17 +29,17 @@
         <property name="certificationState" type="java.lang.String">
             <column name="CERTIFICATIONSTATE" />
         </property>
-        <set name="item" table="ROOT_ITEM" >
+        <set name="item" table="ROOT_ITEM" lazy="false">
             <key>
                 <column name="R_ID" />
             </key>
-            <many-to-many class="entity.Item" column = "I_ID"/>
+            <many-to-many class="entity.Item" column = "I_ID" lazy="false"/>
         </set>
-        <set name="user" table="USER_ROOT" >
+        <set name="user" table="USER_ROOT" lazy="false">
             <key>
                 <column name="R_ID" />
             </key>
-            <many-to-many class="entity.User" column = "U_ID"/>
+            <many-to-many class="entity.User" column = "U_ID" lazy="false"/>
         </set>
     </class>
 </hibernate-mapping>
