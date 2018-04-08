@@ -1,6 +1,6 @@
 # 
-#原型 
-一个javaWeb项目的原型<br>
+#javaWeb原型<br>
+一个编程菜鸟的javaWeb项目的原型探索构建过程<br>
 &emsp;&emsp;2017-11-16<br>
 &emsp;&emsp;&emsp;&emsp;项目:无(前期准备工作)<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;进行:关于maven的复习<br>
@@ -71,7 +71,7 @@
 &emsp;&emsp;&emsp;&emsp;&emsp;进行:添加了超级管理员bean在StudentInformation<br>
 &emsp;&emsp;2017-12-30<br>
 &emsp;&emsp;&emsp;&emsp;项目:studentInformation(前期准备工作)<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;进行:差不多完成studentInformation,WebContent各文件夹里路径跳转问题搞得人头大,没时间了索性全部放在WebContent下，加个过滤器。
+&emsp;&emsp;&emsp;&emsp;&emsp;进行:差不多完成studentInformation,WebContent各文件夹里路径跳转问题搞得人头大,没时间了索性全部放在WebContent下，加个过滤器。<br>
 &emsp;&emsp;2018-1-23<br>
 &emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces , studentInformation<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;进行:正式着手构建paymentSystem<br>
