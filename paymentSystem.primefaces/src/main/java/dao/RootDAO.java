@@ -4,6 +4,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Set;
 
 import entity.Item;
 import entity.Root;
@@ -54,4 +55,14 @@ public interface RootDAO {
 	 * @time 2018年3月13日下午7:19:10
 	 */
 	public Root getOwnRoot(String id);
+	
+	/**
+	 * 由于hibernate接管session,而且属于懒加载，所以在bean中进行双表查询出现，nosession异常
+	 * 所以在一次交互中拿到items的数据
+	 * @param id
+	 * @return
+	 * @author cz
+	 * @time 2018年3月14日下午7:28:18
+	 */
+	public Set<Item> getOwnItem(String id);
 }

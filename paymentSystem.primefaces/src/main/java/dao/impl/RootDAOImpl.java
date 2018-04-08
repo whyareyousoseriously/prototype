@@ -4,6 +4,7 @@
 package dao.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -162,9 +163,11 @@ public class RootDAOImpl implements RootDAO {
 				System.out.println("成功获取");
 				System.out.println(list.toString());
 				Root root = (Root) list.get(0);
+				t.commit();
 				return root;
 			}else {
 				System.out.println("获取失败");
+				t.commit();
 				return null;
 			}
 		}catch(Exception e) {
@@ -176,5 +179,40 @@ public class RootDAOImpl implements RootDAO {
 		}
 		
 	}
-
+	/**
+	 * @param rootID
+	 * @return
+	 * @author cz
+	 * @time 2018年3月14日下午7:22:27
+	 */
+	public Set<Item> getOwnItem(String rootID) {
+		Transaction t = null;
+		try {
+			System.out.println("当前要拉取的item集合的rootid"+rootID);
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			t = session.beginTransaction();
+			String hql ="from Root where id=:rootID";
+			Query query = session.createQuery(hql);
+			query.setParameter("rootID", rootID);
+			List list = query.list();
+			if(list.size()>0) {
+				System.out.println("成功获取");
+				System.out.println(list.toString());
+				Root root = (Root)list.get(0);
+				Set<Item> item = root.getItem();
+				t.commit();
+				return item;
+			}else {
+				System.out.println("获取失败");
+				t.commit();
+				return null;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			if(t!=null)
+				t = null;
+		}
+	}
 }

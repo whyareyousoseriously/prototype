@@ -38,7 +38,7 @@ import utils.MailUtil;
  * 2018年3月12日下午3:43:23
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class RootBean {
 	private String id;
 	private String username;
@@ -56,7 +56,7 @@ public class RootBean {
 	private Item singleItem = new Item();
 	
 	//自己的items
-	private Set<Item> ownItems = new HashSet<Item>();
+	private Set<Item> ownItems;
 	
 	public Set<Item> getOwnItems() {
 		/*
@@ -64,10 +64,12 @@ public class RootBean {
 		 * 
 		 * */
 		RootDAO rdao = new RootDAOImpl();
-		System.out.println(CurrentRoot.getCurrentRoot());
-		Root rdao_feedback = rdao.getOwnRoot("40288a876219902001621990b70c0000");
+		/*System.out.println(CurrentRoot.getCurrentRoot());
+		Root rdao_feedback = rdao.getOwnRoot(id);
 		
-		ownItems = rdao_feedback.getItem();
+		ownItems = rdao_feedback.getItem();*/
+		ownItems = rdao.getOwnItem(CurrentRoot.getCurrentRoot().getId());
+		//ownItems = rdao.getOwnItem(id);
 		return ownItems;
 	}
 
@@ -228,8 +230,13 @@ public class RootBean {
 	
 	public void addSingleItem(ActionEvent e) {
 		System.out.println("开始写入一条Item");
-		System.out.println(CurrentRoot.getCurrentRoot());
-		System.out.println(this.singleItem.toString());
+		
+		//查看当前的root
+		System.out.println("当前的root用户"+CurrentRoot.getCurrentRoot());
+		
+		//查看当前要存储的Item
+		System.out.println("当前要存储的item信息"+this.singleItem.toString());
+		
 		Set<Root> tempRoot = new HashSet<Root>();
 		tempRoot.add(CurrentRoot.getCurrentRoot());
 		singleItem.setRoot(tempRoot);
@@ -238,9 +245,9 @@ public class RootBean {
 		ItemDAO idao = new ItemDAOImpl();
 		String idao_feedback = idao.addItem(singleItem);
 		if("add_success".equals(idao_feedback))
-			System.out.println("添加成功");
+			System.out.println("item添加成功");
 		else {
-			System.out.println("添加失败");
+			System.out.println("item添加失败");
 		}
 	}
 }
