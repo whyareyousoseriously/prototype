@@ -6,3 +6,6 @@ Blob image = Hibernate.getLobCreator(session).createBlob(bFile);
 /* ? Your actions with Blob ? */
 
 session.getTransaction().commit();
+
+
+Ô­Ìû£ºhttps://stackoverflow.com/questions/18051290/method-hibernate-createblob-is-deprecated-from-hibernate-4-0-1-and-moved-to-hi
