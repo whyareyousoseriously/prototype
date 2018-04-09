@@ -10,6 +10,7 @@ import entity.Item;
 import entity.Root;
 
 /**
+ * 支付条目的操作接口
  * @author cz
  *
  * 2018年3月10日下午6:42:08

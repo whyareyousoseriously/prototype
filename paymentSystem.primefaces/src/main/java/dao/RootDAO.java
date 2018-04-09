@@ -3,9 +3,10 @@
  */
 package dao;
 
-import java.util.List;
+
 import java.util.Set;
 
+import entity.ExcelFile;
 import entity.Item;
 import entity.Root;
 
@@ -22,7 +23,7 @@ public interface RootDAO {
 	 * @author cz
 	 * @time 2018年3月9日下午9:28:06
 	 */
-	public Root rootLogin(Root root);
+	Root rootLogin(Root root);
 	
 	/**
 	 * @param root
@@ -30,7 +31,7 @@ public interface RootDAO {
 	 * @author cz
 	 * @time 2018年3月9日下午9:28:10
 	 */
-	public boolean rootRegister(Root root);
+	boolean rootRegister(Root root);
 	
 	/**
 	 * @param mailCode
@@ -38,14 +39,14 @@ public interface RootDAO {
 	 * @author cz
 	 * @time 2018年3月9日下午9:28:12
 	 */
-	public Root findByMailCode(String mailCode);
+	Root findByMailCode(String mailCode);
 	
 	/**
 	 * @param root
 	 * @author cz
 	 * @time 2018年3月9日下午9:28:15
 	 */
-	public void update(Root root);
+	void update(Root root);
 	
 	/**
 	 * 拿到表中的属于自己的Root
@@ -54,7 +55,7 @@ public interface RootDAO {
 	 * @author cz
 	 * @time 2018年3月13日下午7:19:10
 	 */
-	public Root getOwnRoot(String id);
+	Root getOwnRoot(String id);
 	
 	/**
 	 * 由于hibernate接管session,而且属于懒加载，所以在bean中进行双表查询出现，nosession异常
@@ -64,5 +65,14 @@ public interface RootDAO {
 	 * @author cz
 	 * @time 2018年3月14日下午7:28:18
 	 */
-	public Set<Item> getOwnItem(String id);
+	Set<Item> getOwnItem(String id);
+	
+	/**
+	 * 拿到root用户从属的所有文件
+	 * @param rootID
+	 * @return
+	 * @author cz
+	 * @time 2018年4月8日下午5:25:23
+	 */
+	Set<ExcelFile> getOwnFile(String rootID);
 }
