@@ -1,0 +1,8 @@
+Session session = HibernateUtil.getSessionFactory().openSession();
+session.beginTransaction();
+
+byte[] bFile = /* load image into byte array */;
+Blob image = Hibernate.getLobCreator(session).createBlob(bFile);
+/* ? Your actions with Blob ? */
+
+session.getTransaction().commit();
