@@ -41,5 +41,16 @@
             </key>
             <many-to-many class="entity.User" column = "U_ID" lazy="false"/>
         </set>
+        <set name="file" table="FILE" lazy="false">
+        <!-- 
+          	  一对多建表，有外键
+            hibernate机制：双向维护外键，在一和多两方都配置外键。
+            column属性值：外键名称。这里的外键名称可以随便写。
+         -->
+            <key>
+                <column name="R_ID" />
+            </key>
+            <one-to-many class="entity.ExcelFile" />
+        </set>
     </class>
 </hibernate-mapping>

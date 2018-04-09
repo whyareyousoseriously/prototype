@@ -17,5 +17,6 @@
         	<mapping resource="User.hbm.xml" />
         	<mapping resource="Root.hbm.xml" />
         	<mapping resource="Item.hbm.xml" />
+        	<mapping resource="ExcelFile.hbm.xml" />
         </session-factory>
 </hibernate-configuration>

@@ -136,3 +136,8 @@
 &emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;进行:***项目开发恢复正常不过还是有点别的事，未全速***<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;问题:偶遇Eclipse导包后依然有红叉，已解决。<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题:文件上传模块，出现B cannot be cast to java.sql.Blob异常。二进制byte[]数组转化为blob<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行:hibernate4中丢弃了Hibernate.createBlob。<br>
+&emsp;&emsp;2018-4-9<br>
+&emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决:解决昨天的hibernate.createBlob在hibernate4中被抛弃的问题。解决方案:查看QuestionsAndAnswers<br>

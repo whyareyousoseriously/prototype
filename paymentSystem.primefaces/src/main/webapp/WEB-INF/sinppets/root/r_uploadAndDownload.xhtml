@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:form id="showExcelFileForm">
+		<p:dataTable var="ownExcelFiles" value="#{RootBean.ownExcelFiles}"
+			rows="10" paginator="true" id="showExcelFilesTable">
+			<p:column headerText="文件名称">#{ownExcelFiles.name}</p:column>
+
+			<p:column>
+				<p:commandButton value="解析并导入库" id="add_Item" onclick=""></p:commandButton>
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+	<h:form>
+		<p:fileUpload uploadLabel="上传" label="选择" cancelLabel="取消"
+			fileUploadListener="#{fileUploadBean.handleFileUpload}"
+			mode="advanced" dragDropSupport="false" update="messages"
+			sizeLimit="100000" fileLimit="3"
+			allowTypes="/(\.|\/)(gif|jpg|jpe?g|png|xlsx)$/" />
+
+		<p:growl id="messages" showDetail="true" />
+	</h:form>
+
+</ui:composition>

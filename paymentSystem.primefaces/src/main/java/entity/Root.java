@@ -32,6 +32,11 @@ public class Root {
 	 * */
 	private Set<User> user = new HashSet<User>();
 	
+	/*
+	 * hibernate
+	 * 一对多关系: 管理用户VS文件
+	 * */
+	private Set<ExcelFile> file = new HashSet<ExcelFile>();
 	
 	public Root() {
 		super();
@@ -153,6 +158,17 @@ public class Root {
 
 	public void setUser(Set<User> user) {
 		this.user = user;
+	}
+
+	
+
+	public Set<ExcelFile> getFile() {
+		return file;
+	}
+
+
+	public void setFile(Set<ExcelFile> file) {
+		this.file = file;
 	}
 
 

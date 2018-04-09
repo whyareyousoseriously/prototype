@@ -9,21 +9,19 @@ import java.util.Set;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
+import dao.ExcelFileDAO;
 import dao.ItemDAO;
 import dao.RootDAO;
-import dao.UserDAO;
+import dao.impl.ExcelFileDAOImpl;
 import dao.impl.ItemDAOImpl;
 import dao.impl.RootDAOImpl;
-import dao.impl.UserDAOImpl;
+import entity.ExcelFile;
 import entity.Item;
 import entity.Root;
-import entity.User;
 import utils.CurrentRoot;
 import utils.MailUtil;
 
@@ -58,6 +56,38 @@ public class RootBean {
 	//自己的items
 	private Set<Item> ownItems;
 	
+	//自己的excelFiles
+	private Set<ExcelFile> ownExcelFiles;
+	//RootBean来操作excelFile
+	private ExcelFile singleExcelFile = new ExcelFile();
+	
+	
+
+	public Set<ExcelFile> getOwnExcelFiles() {
+		//TODO 获取自己的ExcelFiles
+		/*
+		 * RootImplDAO
+		 * 
+		 * */
+		RootDAO rdao = new RootDAOImpl();
+		
+		ownExcelFiles = rdao.getOwnFile(CurrentRoot.getCurrentRoot().getId());
+		
+		return ownExcelFiles;
+	}
+
+	public void setOwnExcelFiles(Set<ExcelFile> ownExcelFiles) {
+		this.ownExcelFiles = ownExcelFiles;
+	}
+
+	public ExcelFile getSingleExcelFile() {
+		return singleExcelFile;
+	}
+
+	public void setSingleExcelFile(ExcelFile singleExcelFile) {
+		this.singleExcelFile = singleExcelFile;
+	}
+
 	public Set<Item> getOwnItems() {
 		/*
 		 * RootImplDAO
@@ -248,6 +278,28 @@ public class RootBean {
 			System.out.println("item添加成功");
 		else {
 			System.out.println("item添加失败");
+		}
+	}
+	
+	public void addSingleFile(ActionEvent e) {
+		System.out.println("开始写入一条File");
+		
+		//查看当前的root
+		System.out.println("当前的root用户"+CurrentRoot.getCurrentRoot());
+		
+		
+		
+		
+		singleExcelFile.setRoot(CurrentRoot.getCurrentRoot());
+		
+		System.out.println(this.singleExcelFile.toString());
+		
+		ExcelFileDAO efdao = new ExcelFileDAOImpl();
+		String efdao_feedback = efdao.addFile(singleExcelFile);
+		if("add_success".equals(efdao_feedback))
+			System.out.println("excelFile添加成功");
+		else {
+			System.out.println("excelFile添加失败");
 		}
 	}
 }
