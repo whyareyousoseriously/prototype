@@ -4,6 +4,7 @@
  */
 package dao.impl;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -40,7 +41,7 @@ public class ExcelFileDAOImpl implements ExcelFileDAO {
 	 */
 	public Set<ExcelFile> ListExcelFilesByCurrentRootID(String rootId){
 		// 调用工具类DBOperation
-		Set<ExcelFile> excelFiles = (Set<ExcelFile>) DBOperation.getDataByCondition("ExcelFile", "r_id", rootId);
+		Set<ExcelFile> excelFiles = new HashSet<ExcelFile>(DBOperation.getDataByCondition("ExcelFile", "r_id", rootId));
 		return excelFiles == null ? null : excelFiles;
 	}
 
