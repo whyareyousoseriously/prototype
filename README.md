@@ -148,3 +148,5 @@
 &emsp;&emsp;&emsp;&emsp;&emsp;进行:数组、List、Set、Map相互转换。详情查看QuestionsAndAnswers<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;问题:nested transactions not supported<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;解决:hibernate事务忘记提交，复习一下<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题:使用primefaces的组件p:fileUpload进行文件上传的时候，出现中文乱码<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;尝试:写一个过滤类,未能解决<br>
