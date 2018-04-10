@@ -146,3 +146,5 @@
 &emsp;&emsp;&emsp;&emsp;&emsp;问题:Hibernate not mapped<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;解决:HQL语句中表名应该是ORM映射的类名.详情查看QuestionsAndAnswers<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;进行:数组、List、Set、Map相互转换。详情查看QuestionsAndAnswers<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题:nested transactions not supported<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决:hibernate事务忘记提交，复习一下<br>
