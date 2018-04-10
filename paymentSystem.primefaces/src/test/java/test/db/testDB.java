@@ -11,7 +11,7 @@ import org.junit.Test;
 
 /*
  *test database
- * 
+ * 数据库表的初始化
  *@author cz
  *2018-1-23
  * */

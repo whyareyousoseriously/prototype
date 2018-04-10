@@ -25,7 +25,7 @@ public class User {
 	 * 并提供getter和setter方法
 	 * 
 	 * */
-	private Set<Item> iteam = new HashSet<Item>();
+	private Set<Item> item = new HashSet<Item>();
 	
 	/*
 	 * hibernate
@@ -50,7 +50,7 @@ public class User {
 		this.active = active;
 		this.mailCode = mailCode;
 		this.certificationState = certificationState;
-		this.iteam = u_Iteam;
+		this.item = u_Iteam;
 		this.root = root;
 	}
 
@@ -116,14 +116,14 @@ public class User {
 	
 	
 
-	public Set<Item> getIteam() {
-		return iteam;
+	public Set<Item> getItem() {
+		return item;
 	}
 
 
 
-	public void setIteam(Set<Item> iteam) {
-		this.iteam = iteam;
+	public void setItem(Set<Item> iteam) {
+		this.item = iteam;
 	}
 
 

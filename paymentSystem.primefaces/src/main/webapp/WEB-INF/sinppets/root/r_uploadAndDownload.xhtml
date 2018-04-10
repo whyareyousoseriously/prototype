@@ -5,12 +5,13 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<h:form id="showExcelFileForm">
-		<p:dataTable var="ownExcelFiles" value="#{RootBean.ownExcelFiles}"
+		<p:dataTable var="excelFiles" value="#{fileUploadBean.excelFiles}"
 			rows="10" paginator="true" id="showExcelFilesTable">
-			<p:column headerText="文件名称">#{ownExcelFiles.name}</p:column>
-
+			<p:column headerText="文件名称">#{excelFiles.filename}</p:column>
+			<p:column headerText="创建者">#{excelFiles.root.id}</p:column>
+			<p:column headerText="创建时间">#{excelFiles.createTime}</p:column>
 			<p:column>
-				<p:commandButton value="解析并导入库" id="add_Item" onclick=""></p:commandButton>
+				<p:button value="解析" id="add_Item" onclick=""></p:button>
 			</p:column>
 
 		</p:dataTable>

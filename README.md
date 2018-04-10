@@ -141,3 +141,8 @@
 &emsp;&emsp;2018-4-9<br>
 &emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;解决:解决昨天的hibernate.createBlob在hibernate4中被抛弃的问题。解决方案:查看QuestionsAndAnswers<br>
+&emsp;&emsp;2018-4-10<br>
+&emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题:Hibernate not mapped<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决:HQL语句中表名应该是ORM映射的类名.详情查看QuestionsAndAnswers<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题:
