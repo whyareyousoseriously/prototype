@@ -6,6 +6,7 @@ package controller;
 
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -15,22 +16,47 @@ import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.primefaces.event.FileUploadEvent;
 import dao.ExcelFileDAO;
+
 import dao.impl.ExcelFileDAOImpl;
+
 import db.MyHibernateSessionFactory;
 import entity.ExcelFile;
 import utils.CurrentRoot;
 
 /**
- * 
+ * 文件上传的bean
  * @author cz 2018年4月8日下午6:20:26
  */
 
 @ManagedBean
 public class FileUploadBean {
+	
+	private Set<ExcelFile> excelFiles;
+	
+	
+
+	public Set<ExcelFile> getExcelFiles() {
+		//TODO 获取当前用户的ExcelFiles
+		ExcelFileDAO efdao = new ExcelFileDAOImpl();
+		excelFiles = efdao.ListExcelFilesByCurrentRootID(CurrentRoot.getCurrentRoot().getId());
+		System.out.println("当前root用户为"+CurrentRoot.getCurrentRoot().toString());
+		return excelFiles;
+	}
+
+
+
+	public void setExcelFiles(Set<ExcelFile> excelFiles) {
+		this.excelFiles = excelFiles;
+	}
+
+
 
 	public void handleFileUpload(FileUploadEvent event) {
 		ExcelFileDAO efdao = new ExcelFileDAOImpl();
 		ExcelFile efile = new ExcelFile();
+		
+		//检查乱码问题，打印上传文件名字，看是否是乱码
+		System.out.println(event.getFile().getFileName());
 		efile.setFileName(event.getFile().getFileName());
 		efile.setRoot(CurrentRoot.getCurrentRoot());
 		efile.setCreateTime(new Date());

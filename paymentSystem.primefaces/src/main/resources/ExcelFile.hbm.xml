@@ -9,7 +9,7 @@
             <generator class="uuid" />
         </id>
         <many-to-one name="root" class="entity.Root" fetch="join">
-            <column name="ROOT" />
+            <column name="R_ID" />
         </many-to-one>
         <property name="fileName" type="java.lang.String">
             <column name="FILENAME"></column>

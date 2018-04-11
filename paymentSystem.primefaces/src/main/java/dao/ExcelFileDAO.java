@@ -4,6 +4,8 @@
  */
 package dao;
 
+import java.util.Set;
+
 import entity.ExcelFile;
 
 /**
@@ -20,4 +22,13 @@ public interface ExcelFileDAO {
 	 * @time 2018年4月8日下午5:57:02
 	 */
 	String addFile(ExcelFile excelFile);
+	
+	/**
+	 * 查看当前的root所属的所有文件
+	 * @param rootId 当前root用户的id
+	 * @return Set<ExcelFile> set集合
+	 * @author cz
+	 * @time 2018年4月10日上午11:28:11
+	 */
+	Set<ExcelFile> ListExcelFilesByCurrentRootID(String rootId);
 }

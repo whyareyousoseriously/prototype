@@ -141,3 +141,15 @@
 &emsp;&emsp;2018-4-9<br>
 &emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;解决:解决昨天的hibernate.createBlob在hibernate4中被抛弃的问题。解决方案:查看QuestionsAndAnswers<br>
+&emsp;&emsp;2018-4-10<br>
+&emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题:Hibernate not mapped<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决:HQL语句中表名应该是ORM映射的类名.详情查看QuestionsAndAnswers<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行:数组、List、Set、Map相互转换。详情查看QuestionsAndAnswers<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题:nested transactions not supported<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决:hibernate事务忘记提交，复习一下<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题:使用primefaces的组件p:fileUpload进行文件上传的时候，出现中文乱码<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;尝试:写一个过滤类,未能解决<br>
+&emsp;&emsp;2018-4-11<br>
+&emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决:重新熟悉filter的配置，解决昨天的文件上传的中文乱码,详情查看QuestionsAndAnswers<br>

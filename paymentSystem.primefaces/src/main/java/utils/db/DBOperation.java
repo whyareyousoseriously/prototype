@@ -5,6 +5,7 @@
 package utils.db;
 
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -45,11 +46,14 @@ public class DBOperation {
 			List list = query.list();
 			if(list.size()>0) {
 				System.out.println("成功获得满足条件的集合");
+				t.commit();
 				return list;
 			}else {
 				System.out.println("未找到满足条件的集合");
+				t.commit();
 				return null;
 			}
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 			return null;

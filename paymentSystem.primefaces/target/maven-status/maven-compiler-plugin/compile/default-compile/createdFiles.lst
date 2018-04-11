@@ -22,6 +22,7 @@ utils\dataValidator\root\R_LoginUsernameValidator.class
 dao\impl\RootDAOImpl.class
 db\MyHibernateSessionFactory.class
 utils\db\DBOperation.class
+filter\CharacterEncodingFilter.class
 entity\User.class
 utils\CurrentRoot.class
 utils\dataValidator\root\R_RegisterUsernameValidator.class

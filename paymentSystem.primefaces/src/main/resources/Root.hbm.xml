@@ -41,7 +41,7 @@
             </key>
             <many-to-many class="entity.User" column = "U_ID" lazy="false"/>
         </set>
-        <set name="file" table="FILE" lazy="false">
+        <set name="file" table="EXCELFILE" lazy="false">
         <!-- 
           	  一对多建表，有外键
             hibernate机制：双向维护外键，在一和多两方都配置外键。
