@@ -42,7 +42,7 @@ public class ExcelFileDAOImpl implements ExcelFileDAO {
 	public Set<ExcelFile> ListExcelFilesByCurrentRootID(String rootId){
 		// 调用工具类DBOperation
 		Set<ExcelFile> excelFiles = new HashSet<ExcelFile>(DBOperation.getDataByCondition("ExcelFile", "r_id", rootId));
-		return excelFiles == null ? null : excelFiles;
+		return excelFiles = (excelFiles == null ? new HashSet<ExcelFile>() : excelFiles);
 	}
 
 }

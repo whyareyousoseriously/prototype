@@ -4,10 +4,11 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
+	<p:button value="刷新" id="refresh" onclick=""></p:button>
 	<h:form id="showExcelFileForm">
 		<p:dataTable var="excelFiles" value="#{fileUploadBean.excelFiles}"
 			rows="10" paginator="true" id="showExcelFilesTable">
-			<p:column headerText="文件名称">#{excelFiles.filename}</p:column>
+			<p:column headerText="文件名称">#{excelFiles.fileName}</p:column>
 			<p:column headerText="创建者">#{excelFiles.root.id}</p:column>
 			<p:column headerText="创建时间">#{excelFiles.createTime}</p:column>
 			<p:column>
@@ -19,8 +20,8 @@
 	<h:form>
 		<p:fileUpload uploadLabel="上传" label="选择" cancelLabel="取消"
 			fileUploadListener="#{fileUploadBean.handleFileUpload}"
-			mode="advanced" dragDropSupport="false" update="messages"
-			sizeLimit="100000" fileLimit="3"
+			mode="advanced" dragDropSupport="false" update="messages :#{p:component('showExcelFileForm')}"
+			sizeLimit="100000" fileLimit="3" 
 			allowTypes="/(\.|\/)(gif|jpg|jpe?g|png|xlsx)$/" />
 
 		<p:growl id="messages" showDetail="true" />

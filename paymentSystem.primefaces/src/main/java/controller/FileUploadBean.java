@@ -54,6 +54,9 @@ public class FileUploadBean {
 	public void handleFileUpload(FileUploadEvent event) {
 		ExcelFileDAO efdao = new ExcelFileDAOImpl();
 		ExcelFile efile = new ExcelFile();
+		
+		//检查乱码问题，打印上传文件名字，看是否是乱码
+		System.out.println(event.getFile().getFileName());
 		efile.setFileName(event.getFile().getFileName());
 		efile.setRoot(CurrentRoot.getCurrentRoot());
 		efile.setCreateTime(new Date());
