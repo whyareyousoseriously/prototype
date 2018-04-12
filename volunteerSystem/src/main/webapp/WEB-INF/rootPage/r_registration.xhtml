@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panelGrid>
+  	写一些介绍信息,
+</p:panelGrid>
+	<h:form>
+		<p:panelGrid columns="3" styleClass="formTable">
+			<p:outputLabel>管理名(rootname):</p:outputLabel>
+			<p:inputText value="#{RootBean.rootname}" required="true"
+				id="rootname" requiredMessage="用户名不能为空">
+				<p:ajax update="rootname-error" event="blur" />
+			</p:inputText>
+			<p:message for="rootname" id="rootname-error" />
+
+
+			<p:outputLabel>密码(password):</p:outputLabel>
+			<p:password value="#{RootBean.password}" match="password2"
+				feedback="true" id="password" required="true" requiredMessage="需要密码">
+
+				<p:ajax update="password-error" event="blur" />
+			</p:password>
+			<p:message for="password" id="password-error" />
+
+
+			<p:outputLabel>再次输入密码(password2):</p:outputLabel>
+			<p:password feedback="true" id="password2" required="true"
+				requiredMessage="重复输入密码不能为空">
+
+				<p:ajax process="password password2"
+					update=" password-error password2-error" event="blur" />
+			</p:password>
+			<p:message for="password2" id="password2-error" />
+
+		</p:panelGrid>
+
+		<p:commandButton value="注册(Register)" action="#{RootBean.doRegister}"
+			process="@form"
+			update="rootname-error password-error" />
+
+
+	</h:form>
+</ui:composition>

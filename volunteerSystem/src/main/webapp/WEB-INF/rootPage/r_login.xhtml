@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panelGrid>
+  	写一些介绍信息,
+</p:panelGrid>
+	<h:form>
+
+		<p:panelGrid>
+			<f:facet name="header">
+				<p:row>
+					<p:column colspan="3">管理登陆(login)</p:column>
+				</p:row>
+			</f:facet>
+			<p:row>
+				<p:column>
+					<p:outputLabel>用户名(rootname):</p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:inputText value="#{RootBean.rootname}" required="true"
+						id="rootname" requiredMessage="用户名不能为空">
+						
+						<p:ajax update="rootname-error" event="blur" />
+					</p:inputText>
+				</p:column>
+				<p:column>
+					<p:message for="rootname" id="rootname-error" />
+				</p:column>
+
+			</p:row>
+
+			<p:row>
+				<p:column>
+					<p:outputLabel>密码(password):</p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:password value="#{RootBean.password}" required="true"
+						id="password" requiredMessage="密码不能为空">
+						
+						<p:ajax update="password-error" event="blur" />
+					</p:password>
+				</p:column>
+				<p:column>
+					<p:message for="password" id="password-error" />
+				</p:column>
+
+			</p:row>
+
+			<p:row>
+				<p:column colspan="3" style="text-align:center">
+					<p:commandButton value="登录(login)" process="@form"
+						update="rootname-error password-error"
+						action="#{RootBean.doLogin}">
+					</p:commandButton>
+				</p:column>
+			</p:row>
+
+		</p:panelGrid>
+
+
+
+	</h:form>
+</ui:composition>
