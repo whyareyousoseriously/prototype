@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panelGrid>
+  	写一些介绍信息,
+  	一般用户注册
+	</p:panelGrid>
+	<h:form>
+		<p:panelGrid columns="3" styleClass="formTable">
+			<p:outputLabel>用户名(username):</p:outputLabel>
+			<p:inputText value="#{UserBean.username}" required="true"
+				id="username" requiredMessage="用户名不能为空">
+				
+				<p:ajax update="username-error" event="blur" />
+			</p:inputText>
+			<p:message for="username" id="username-error" />
+
+
+			<p:outputLabel>密码(password):</p:outputLabel>
+			<p:password value="#{UserBean.password}" match="password2"
+				feedback="true" id="password" required="true" requiredMessage="需要密码">
+				
+				<p:ajax update="password-error" event="blur" />
+			</p:password>
+			<p:message for="password" id="password-error" />
+
+
+			<p:outputLabel>再次输入密码(password2):</p:outputLabel>
+			<p:password feedback="true" id="password2" required="true"
+				requiredMessage="重复输入密码不能为空">
+
+				<p:ajax process="password password2"
+					update=" password-error password2-error" event="blur" />
+			</p:password>
+			<p:message for="password2" id="password2-error" />
+
+			
+			<p:outputLabel>邮箱(email):</p:outputLabel>
+			<p:inputText value="#{UserBean.email}" id="email" required="true"
+				requiredMessage="邮箱不能为空">
+				
+				<p:ajax update="email-error" event="blur" />
+			</p:inputText>
+			<p:message for="email" id="email-error" />
+
+		</p:panelGrid>
+
+		<p:commandButton value="注册(Register)" action="#{UserBean.doRegister}"
+			process="@form"
+			update="username-error password-error email-error" />
+
+
+	</h:form>
+</ui:composition>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-4-12 17:00:23 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="pojo.Donation" table="DONATION">
+        <id name="donationId" type="java.lang.String">
+            <column name="DONATIONID" />
+            <generator class="uuid" />
+        </id>
+        <property name="userId" type="java.lang.String">
+            <column name="USERID" />
+        </property>
+        <property name="itemId" type="java.lang.String">
+            <column name="ITEMID" />
+        </property>
+        <property name="count" type="java.lang.String">
+            <column name="COUNT" />
+        </property>
+        <property name="detail" type="java.lang.String">
+            <column name="DETAIL" />
+        </property>
+    </class>
+</hibernate-mapping>

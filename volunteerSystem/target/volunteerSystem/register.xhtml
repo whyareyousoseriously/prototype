@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>volunteerSystem</title>
+</h:head>
+<h:body>
+	
+	<p:growl id="growl" showDetail="true" sticky = "true"></p:growl>
+	<div align="center">
+		<h1 class="ui-widget-header ui-corner-all">志愿管理</h1>
+		<p:fieldset legend="注册">
+			<p:tabView>
+				<p:tab title="一般用户注册">
+					<ui:include src="/WEB-INF/userPage/u_registration.xhtml"/>
+				</p:tab>
+				<p:tab title="管理用户注册">
+					<ui:include src="/WEB-INF/rootPage/r_registration.xhtml"/>
+				</p:tab>
+			</p:tabView>
+		</p:fieldset>
+
+	</div>
+</h:body>
+</html>

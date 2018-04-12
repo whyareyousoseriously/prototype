@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-4-12 17:00:23 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="pojo.VolunteerItem" table="VOLUNTEERITEM">
+        <id name="id" type="java.lang.String">
+            <column name="ID" />
+            <generator class="uuid" />
+        </id>
+        <property name="userId" type="java.lang.String">
+            <column name="USERID" />
+        </property>
+        <property name="itemName" type="java.lang.String">
+            <column name="ITEMNAME" />
+        </property>
+        <property name="itemDetail" type="java.lang.String">
+            <column name="ITEMDETAIL" />
+        </property>
+        <property name="count" type="int">
+            <column name="COUNT" />
+        </property>
+        <property name="status" type="int">
+            <column name="STATUS" />
+        </property>
+        <property name="createTime" type="java.util.Date" access="field">
+            <column name="CREATETIME" />
+        </property>
+        <property name="updateTime" type="java.util.Date" access="field">
+            <column name="UPDATETIME" />
+        </property>
+    </class>
+</hibernate-mapping>
