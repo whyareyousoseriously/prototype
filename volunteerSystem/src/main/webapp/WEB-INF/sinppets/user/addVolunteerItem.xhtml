@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panelGrid>
+  	发起一条求助条目
+	</p:panelGrid>
+	<h:form>
+		<p:growl id="messages" showDetail="true" />
+		<p:panelGrid columns="3" styleClass="formTable">
+			<p:outputLabel>求助名称:</p:outputLabel>
+			<p:inputText value="#{volunteerItemBean.itemName}" required="true"
+				id="itemName" requiredMessage="求助条目名称不能为空">
+				<p:ajax update="itemName-error" event="blur" />
+			</p:inputText>
+			<p:message for="itemName" id="itemName-error" />
+			<p:outputLabel>求助细节:</p:outputLabel>
+			<p:inputTextarea value="#{volunteerItemBean.itemDetail}" required="true"
+				id="itemDetail" requiredMessage="求助条目细节不能为空">
+				<p:ajax update="itemDetail-error" event="blur" />
+			</p:inputTextarea>
+			<p:message for="itemDetail" id="itemDetail-error" />
+		</p:panelGrid>
+		<p:commandButton value="发起" action="#{volunteerItemBean.addVolunteerItem}"
+			process="@form"
+			update=":#{p:component('showPersonalVolunteerItemform')}  :#{p:component('showVolunteerItemform')} @form itemName-error itemDetail-error" />
+	</h:form>
+</ui:composition>

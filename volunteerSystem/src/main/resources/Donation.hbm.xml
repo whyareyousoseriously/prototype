@@ -14,11 +14,17 @@
         <property name="itemId" type="java.lang.String">
             <column name="ITEMID" />
         </property>
-        <property name="count" type="java.lang.String">
+        <property name="count" type="int">
             <column name="COUNT" />
         </property>
         <property name="detail" type="java.lang.String">
             <column name="DETAIL" />
+        </property>
+        <property name="createTime" type="java.util.Date">
+            <column name="CREATETIME" />
+        </property>
+        <property name="updateTime" type="java.util.Date">
+            <column name="UPDATETIME" />
         </property>
     </class>
 </hibernate-mapping>

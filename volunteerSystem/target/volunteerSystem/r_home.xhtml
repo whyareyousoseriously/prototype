@@ -15,14 +15,14 @@
 
 
 	<div align="center" id="div1">
-		<h1 class="ui-widget-header ui-corner-all">欢迎用户#{RootBean.rootname}</h1>
+		<h2 class="ui-widget-header ui-corner-all">求助平台欢迎管理员：#{RootBean.rootname}</h2>
 	</div>
 	<p:tabView>
 		<p:tab title="所有待批准的志愿条目">
-			<ui:include src="/WEB-INF/sinppets/root/r_wait.xhtml" />
+			<ui:include src="/WEB-INF/sinppets/root/allVolunteerItem_wait.xhtml" />
 		</p:tab>
 		<p:tab title="所有已经批准的志愿项目">
-			<ui:include src="/WEB-INF/sinppets/root/r_permition.xhtml" />
+			<ui:include src="/WEB-INF/sinppets/root/allVolunteerItem.xhtml" />
 		</p:tab>
 	</p:tabView>
 </h:body>
