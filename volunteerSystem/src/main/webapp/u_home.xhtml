@@ -11,22 +11,25 @@
 <h:body>
 
 	<p:growl id="growl" showDetail="true" sticky="true"></p:growl>
-
-
-
 	<div align="center" id="div1">
-		<h1 class="ui-widget-header ui-corner-all">欢迎用户#{UserBean.username}</h1>
+		<h2 class="ui-widget-header ui-corner-all">求助平台欢迎用户：#{UserBean.username}</h2>
 	</div>
 	<p:tabView>
 
 		<p:tab title="个人信息">
-
+			<ui:include src="/WEB-INF/sinppets/user/personalInformation.xhtml" />
 		</p:tab>
-		<p:tab title="所有志愿信息">
-
+		<p:tab title="所有求助信息">
+			<ui:include src="/WEB-INF/sinppets/user/allVolunteerItem.xhtml" />
 		</p:tab>
-		<p:tab title="个人志愿发起">
-
+		<p:tab title="个人求助发起">
+			<ui:include src="/WEB-INF/sinppets/user/addVolunteerItem.xhtml" />
+		</p:tab>
+		<p:tab title="待审批个人求助信息">
+			<ui:include src="/WEB-INF/sinppets/user/personalVolunteerItem_wait.xhtml" />
+		</p:tab>
+		<p:tab title="已通过个人求助信息">
+			<ui:include src="/WEB-INF/sinppets/user/personalVolunteerItem.xhtml" />
 		</p:tab>
 	</p:tabView>
 </h:body>

@@ -2,10 +2,12 @@ C:\Users\power\maven-project-workspace\volunteerSystem\src\main\java\dao\impl\IR
 C:\Users\power\maven-project-workspace\volunteerSystem\src\main\java\pojo\VolunteerItem.java
 C:\Users\power\maven-project-workspace\volunteerSystem\src\main\java\controller\UserBean.java
 C:\Users\power\maven-project-workspace\volunteerSystem\src\main\java\dao\impl\ICreationDaoImpl.java
+C:\Users\power\maven-project-workspace\volunteerSystem\src\main\java\controller\VolunteerItemBean.java
 C:\Users\power\maven-project-workspace\volunteerSystem\src\main\java\dao\impl\IVolunteerItemDaoImpl.java
 C:\Users\power\maven-project-workspace\volunteerSystem\src\main\java\dao\IRootDao.java
 C:\Users\power\maven-project-workspace\volunteerSystem\src\main\java\pojo\User.java
 C:\Users\power\maven-project-workspace\volunteerSystem\src\main\java\pojo\Root.java
+C:\Users\power\maven-project-workspace\volunteerSystem\src\main\java\controller\VolunteerItemGridView.java
 C:\Users\power\maven-project-workspace\volunteerSystem\src\main\java\dao\IDonationDao.java
 C:\Users\power\maven-project-workspace\volunteerSystem\src\main\java\dao\impl\IPermitionDaoImpl.java
 C:\Users\power\maven-project-workspace\volunteerSystem\src\main\java\dao\IPermitionDao.java

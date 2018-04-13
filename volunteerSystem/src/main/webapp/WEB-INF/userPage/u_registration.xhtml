@@ -45,6 +45,30 @@
 				<p:ajax update="email-error" event="blur" />
 			</p:inputText>
 			<p:message for="email" id="email-error" />
+			
+			<p:outputLabel>手机(phone):</p:outputLabel>
+			<p:inputText value="#{UserBean.phone}" id="phone" required="true"
+				requiredMessage="手机不能为空">
+				
+				<p:ajax update="phone-error" event="blur" />
+			</p:inputText>
+			<p:message for="phone" id="phone-error" />
+			
+			<p:outputLabel>密码问题(question):</p:outputLabel>
+			<p:inputText value="#{UserBean.question}" id="question" required="true"
+				requiredMessage="密码不能为空">
+				
+				<p:ajax update="question-error" event="blur" />
+			</p:inputText>
+			<p:message for="question" id="question-error" />
+			
+			<p:outputLabel>密码答案(answer):</p:outputLabel>
+			<p:inputText value="#{UserBean.answer}" id="answer" required="true"
+				requiredMessage="密码答案不能为空">
+				
+				<p:ajax update="answer-error" event="blur" />
+			</p:inputText>
+			<p:message for="answer" id="answer-error" />
 
 		</p:panelGrid>
 

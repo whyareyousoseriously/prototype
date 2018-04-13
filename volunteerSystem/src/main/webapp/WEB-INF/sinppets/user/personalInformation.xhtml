@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+<p:panelGrid columns="2"  >
+  <f:facet name="header">
+    	个人基本信息
+  </f:facet>
+  <p:panelGrid columns="2" styleClass="formTable">
+  	<p:outputLabel>用户名:</p:outputLabel>
+  	<p:outputLabel>#{UserBean.username}</p:outputLabel>
+  	
+  	<p:outputLabel>email:</p:outputLabel>
+  	<p:outputLabel>#{UserBean.email}</p:outputLabel>
+  	
+  	<p:outputLabel>phone:</p:outputLabel>
+  	<p:outputLabel>#{UserBean.phone}</p:outputLabel>
+  	
+  	<p:outputLabel>密码问题:</p:outputLabel>
+  	<p:outputLabel>#{UserBean.question}</p:outputLabel>
+  	
+  	<p:outputLabel>密码答案::</p:outputLabel>
+  	<p:outputLabel>#{UserBean.answer}</p:outputLabel>
+  	
+  	<p:outputLabel>创建时间:</p:outputLabel>
+  	<p:outputLabel>#{UserBean.createTime}</p:outputLabel>
+  	
+  	<p:outputLabel>最后一次更新时间:</p:outputLabel>
+  	<p:outputLabel>#{UserBean.updateTime}</p:outputLabel>
+  </p:panelGrid>
+</p:panelGrid>
+
+</ui:composition>

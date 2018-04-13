@@ -40,7 +40,7 @@ public class IUserDaoImpl implements IUserDao {
 	@Override
 	public User register(User user) {
 		//调用DBOPeration工具类
-		User registerUser = (User)DBOperation.addData("User", user);
+		User registerUser = (User)DBOperation.saveOrUpdateData("User", user);
 		if(registerUser!=null) {
 			return registerUser;
 		}else {

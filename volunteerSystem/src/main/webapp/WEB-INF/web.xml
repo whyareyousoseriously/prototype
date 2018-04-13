@@ -26,6 +26,7 @@
 		<servlet-name>ActiveServlet</servlet-name>
 		<url-pattern>/ActiveServlet</url-pattern>
 	</servlet-mapping>
+	
 	<!-- 配置JSF程序状态的保存位置，如果设置成server则保存在session中， 如果保存在client中可以保证服务器重启应用状态也不会丢失 -->
 	<context-param>
 		<description>

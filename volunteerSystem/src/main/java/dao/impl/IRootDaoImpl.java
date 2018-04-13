@@ -38,7 +38,7 @@ public class IRootDaoImpl implements IRootDao {
 	 */
 	@Override
 	public Root register(Root root) {
-		Root rootRegister = (Root)DBOperation.addData("Root", root);
+		Root rootRegister = (Root)DBOperation.saveOrUpdateData("Root", root);
 		if(rootRegister!=null) {
 			return rootRegister;
 		}else {
