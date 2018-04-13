@@ -156,3 +156,7 @@
 &emsp;&emsp;2018-4-12<br>
 &emsp;&emsp;&emsp;&emsp;项目:volunteerSystem<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;进行:对paymentSystem.primefaces尝试初次代码优化，并应用到volunteerSystem<br>
+&emsp;&emsp;2018-4-13<br>
+&emsp;&emsp;&emsp;&emsp;项目:volunteerSystem<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题:p:dialog中p:commandButton的action不起作用<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决:是controller种域的选择造成的,由于dialog在dataGrid中,所以对应的controller应该为session域,详情查看QuestionsAndAnswers<br>
