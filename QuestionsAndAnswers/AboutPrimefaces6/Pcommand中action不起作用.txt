@@ -1,0 +1,7 @@
+f your h:commandLink is inside a h:dataTable there is another reason why the h:commandLink might not work:
+
+The underlying data-source which is bound to the h:dataTable must also be available in the second JSF-Lifecycle that is triggered when the link is clicked.
+
+So if the underlying data-source is request scoped, the h:commandLink does not work!
+
+Ф­Мы:https://stackoverflow.com/questions/2118656/commandbutton-commandlink-ajax-action-listener-method-not-invoked-or-input-value
