@@ -160,3 +160,16 @@
 &emsp;&emsp;&emsp;&emsp;项目:volunteerSystem<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;问题:p:dialog中p:commandButton的action不起作用<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;解决:是controller种域的选择造成的,由于dialog在dataGrid中,所以对应的controller应该为session域,详情查看QuestionsAndAnswers<br>
+&emsp;&emsp;2018-4-22<br>
+&emsp;&emsp;&emsp;&emsp;项目:volunteerSystem<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题:图片存入数据库，用primefaces读取识别失效。<br>
+&emsp;&emsp;2018-4-23<br>
+&emsp;&emsp;&emsp;&emsp;项目:volunteerSystem<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题:在封装VO的时候，出现了多条数据，只重复最后一条数据的情况<br>
+&emsp;&emsp;2018-4-24<br>
+&emsp;&emsp;&emsp;&emsp;项目:volunteerSystem<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行:排除前端显示的造成的只显示最后一条数据的情况<br>
+&emsp;&emsp;2018-4-25<br>
+&emsp;&emsp;&emsp;&emsp;项目:volunteerSystem<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决:造成重复只显示最后一条数据的原因是，在ArrayList中add数据的时候，add的是引用，<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决：本来是想将申请空间放在循环外，提高效率结果造成了这种后果。<br>
