@@ -88,6 +88,8 @@ public class VolunteerItemBean {
 		//写入VolunteerItem表
 		IVolunteerItemDao ivolunteerItemDao = new IVolunteerItemDaoImpl();
 		VolunteerItem volunteerItem_feedback = ivolunteerItemDao.saveOrUpdateVolunteerItem(volunteerItem);
+		//保存volunteerItem在session中
+		session.setAttribute("CurrentVolunteerItem", volunteerItem_feedback);
 		if(volunteerItem_feedback!=null) {
 			FacesMessage message = new FacesMessage(volunteerItem_feedback.getItemName()+ "成功申请，等待管理员批复");
             FacesContext.getCurrentInstance().addMessage(null, message);

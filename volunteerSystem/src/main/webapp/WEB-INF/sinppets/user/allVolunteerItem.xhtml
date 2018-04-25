@@ -3,17 +3,17 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	<h:form id="showVolunteerItemform">
+	<h:form id="showVolunteerItemVoform">
 		<p:growl id="messages" showDetail="true" />
-		<p:dataGrid var="volunteerItem"
-			value="#{volunteerItemGridView.volunteerItems}" columns="3"
-			layout="grid" rows="12" paginator="true" id="volunteerItems"
+		<p:dataGrid var="volunteerItemVo"
+			value="#{volunteerItemGridView.volunteerItemsVo}" columns="3"
+			layout="grid" rows="12" paginator="true" id="volunteerItemsVo"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 			rowsPerPageTemplate="6,12,16">
 
 			<f:facet name="header">所有求助条目</f:facet>
 
-			<p:panel header="#{volunteerItem.id}" style="text-align:center">
+			<p:panel header="#{volunteerItemVo.itemName}" style="text-align:center">
 				<h:panelGrid columns="1" style="width:100%">
 
 					<p:row>
@@ -21,7 +21,15 @@
 							<h:outputText value="发起者id:  " />
 						</p:column>
 						<p:column>
-							<h:outputText value="#{volunteerItem.userId}" />
+							<h:outputText value="#{volunteerItemVo.userId}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="发起条目id:  " />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{volunteerItemVo.id}" />
 						</p:column>
 					</p:row>
 					<p:row>
@@ -29,7 +37,7 @@
 							<h:outputText value="发起条目名称:  " />
 						</p:column>
 						<p:column>
-							<h:outputText value="#{volunteerItem.itemName}" />
+							<h:outputText value="#{volunteerItemVo.itemName}" />
 						</p:column>
 					</p:row>
 					<p:row>
@@ -37,76 +45,85 @@
 							<h:outputText value="条目获得的帮助数:  " />
 						</p:column>
 						<p:column>
-							<h:outputText value="#{volunteerItem.count}" />
+							<h:outputText value="#{volunteerItemVo.count}" />
+						</p:column>
+					</p:row>
+					
+					<p:row>
+						<p:column>
+							<h:outputText value="图片:  " />
+						</p:column>
+						<p:column>
+							<p:graphicImage width="200px" height="300px" url="http://image.imooc.com/#{volunteerItemVo.userId}/#{volunteerItemVo.fileName}"/> 
 						</p:column>
 					</p:row>
 
 
 					<p:commandLink
-						update=":#{p:component('showVolunteerItemform')} :#{p:component('volunteerItemDetail')}"
-						oncomplete="PF('volunteerItemDialog').show()"
-						title="View volunteerItem Detail">
+						update=":#{p:component('showVolunteerItemVoform')} :#{p:component('volunteerItemVoDetail')}"
+						oncomplete="PF('volunteerItemVoDialog').show()"
+						title="View volunteerItemVo Detail">
 						<h:outputText value="查看详情" />
 						<h:outputText styleClass="ui-icon ui-icon-search"
 							style="margin:0 auto;" />
-						<f:setPropertyActionListener value="#{volunteerItem}"
-							target="#{volunteerItemGridView.selectedVolunteerItem}" />
+						<f:setPropertyActionListener value="#{volunteerItemVo}"
+							target="#{volunteerItemGridView.selectedVolunteerItemVo}" />
 					</p:commandLink>
 					<p:commandLink
-						update=":#{p:component('showVolunteerItemform')} :#{p:component('volunteerItemDetail')}"
-						oncomplete="PF('donationVolunteerItemDialog').show()"
-						title="View volunteerItem Detail">
+						update=":#{p:component('showVolunteerItemVoform')} :#{p:component('volunteerItemVoDetail')}"
+						oncomplete="PF('donationVolunteerItemVoDialog').show()"
+						title="View volunteerItemVo Detail">
 						<h:outputText value="捐赠" />
-						<f:setPropertyActionListener value="#{volunteerItem}"
-							target="#{volunteerItemGridView.selectedVolunteerItem}" />
+						<f:setPropertyActionListener value="#{volunteerItemVo}"
+							target="#{volunteerItemGridView.selectedVolunteerItemVo}" />
 					</p:commandLink>
 				</h:panelGrid>
 			</p:panel>
 
 		</p:dataGrid>
 
-		<p:dialog header="捐献信息详情" widgetVar="donationVolunteerItemDialog"
+		<p:dialog header="捐献信息详情" widgetVar="donationVolunteerItemVoDialog"
 			modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-			<p:outputPanel id="donationVolunteerItemDetail"
+			<p:outputPanel id="donationVolunteerItemVoDetail"
 				style="text-align:center;">
 				<p:panelGrid columns="2"
-					rendered="#{not empty volunteerItemGridView.selectedVolunteerItem}"
+					rendered="#{not empty volunteerItemGridView.selectedVolunteerItemVo}"
 					columnClasses="label,value">
 					<f:facet name="header">
-						<!-- <p:graphicImage
-							name="demo/images/car/#{dataGridView.selectedCar.brand}-big.gif" /> -->
+						<p:graphicImage width="300px" height="400px"
+							url="http://image.imooc.com/#{volunteerItemGridView.selectedVolunteerItemVo.userId}/#{volunteerItemGridView.selectedVolunteerItemVo.fileName}" />
 					</f:facet>
 
 					<h:outputText value="捐献条目id:" />
 					<h:outputText
-						value="#{volunteerItemGridView.selectedVolunteerItem.id}" />
+						value="#{volunteerItemGridView.selectedVolunteerItemVo.id}" />
 
 					<h:outputText value="发起者id:" />
 					<h:outputText
-						value="#{volunteerItemGridView.selectedVolunteerItem.userId}" />
+						value="#{volunteerItemGridView.selectedVolunteerItemVo.userId}" />
 					<h:outputText value="求助条目名字:" />
 					<h:outputText
-						value="#{volunteerItemGridView.selectedVolunteerItem.itemName}" />
+						value="#{volunteerItemGridView.selectedVolunteerItemVo.itemName}" />
 
 					<h:outputText value="求助条目细节:" />
 					<h:outputText
-						value="#{volunteerItemGridView.selectedVolunteerItem.itemDetail}" />
+						value="#{volunteerItemGridView.selectedVolunteerItemVo.itemDetail}" />
 
 					<h:outputText value="求助条目获得帮助次数:" />
 					<h:outputText
-						value="#{volunteerItemGridView.selectedVolunteerItem.count}" />
+						value="#{volunteerItemGridView.selectedVolunteerItemVo.count}" />
 
 					<h:outputText value="求助条目状态:" />
 					<h:outputText
-						value="#{volunteerItemGridView.selectedVolunteerItem.status}" />
+						value="#{volunteerItemGridView.selectedVolunteerItemVo.status}" />
 
 					<h:outputText value="求助条目创建时间:" />
 					<h:outputText
-						value="#{volunteerItemGridView.selectedVolunteerItem.createTime}" />
+						value="#{volunteerItemGridView.selectedVolunteerItemVo.createTime}" />
 
 					<h:outputText value="求助条目更新时间:" />
 					<h:outputText
-						value="#{volunteerItemGridView.selectedVolunteerItem.updateTime}" />
+						value="#{volunteerItemGridView.selectedVolunteerItemVo.updateTime}" />
 
 					<p:outputLabel>提供的帮助:</p:outputLabel>
 					<p:inputText value="#{volunteerItemGridView.donationDetail}"
@@ -117,56 +134,56 @@
 					<p:message for="donationDetail" id="detail_error" />
 					<p:commandButton value="确定"
 						action="#{volunteerItemGridView.doDonation}"
-						update="detail_error :#{p:component('showVolunteerItemform')}  :#{p:component('donationVolunteerItemDetail')} :#{p:component('volunteerItemDetail')}">
+						update="detail_error :#{p:component('showVolunteerItemVoform')}  :#{p:component('donationVolunteerItemVoDetail')} :#{p:component('volunteerItemVoDetail')}">
 
 					</p:commandButton>
 				</p:panelGrid>
 			</p:outputPanel>
 		</p:dialog>
-		<p:dialog header="求助信息详情" widgetVar="volunteerItemDialog" modal="true"
+		<p:dialog header="求助信息详情" widgetVar="volunteerItemVoDialog" modal="true"
 			showEffect="fade" hideEffect="fade" resizable="false">
-			<p:outputPanel id="volunteerItemDetail" style="text-align:center;">
+			<p:outputPanel id="volunteerItemVoDetail" style="text-align:center;">
 				<p:panelGrid columns="2"
-					rendered="#{not empty volunteerItemGridView.selectedVolunteerItem}"
+					rendered="#{not empty volunteerItemGridView.selectedVolunteerItemVo}"
 					columnClasses="label,value">
 					<f:facet name="header">
-						<!-- <p:graphicImage
-							name="demo/images/car/#{dataGridView.selectedCar.brand}-big.gif" /> -->
+						<p:graphicImage
+							name="E:/#{volunteerItemGridView.selectedVolunteerItemVo.id}/#{volunteerItemGridView.selectedVolunteerItemVo.fileName}" /> 
 					</f:facet>
 
 					<h:outputText value="志愿条目id:" />
 					<h:outputText
-						value="#{volunteerItemGridView.selectedVolunteerItem.id}" />
+						value="#{volunteerItemGridView.selectedVolunteerItemVo.id}" />
 
 					<h:outputText value="发起者id:" />
 					<h:outputText
-						value="#{volunteerItemGridView.selectedVolunteerItem.userId}" />
+						value="#{volunteerItemGridView.selectedVolunteerItemVo.userId}" />
 
 
 
 					<h:outputText value="求助条目名字:" />
 					<h:outputText
-						value="#{volunteerItemGridView.selectedVolunteerItem.itemName}" />
+						value="#{volunteerItemGridView.selectedVolunteerItemVo.itemName}" />
 
 					<h:outputText value="求助条目细节:" />
 					<h:outputText
-						value="#{volunteerItemGridView.selectedVolunteerItem.itemDetail}" />
+						value="#{volunteerItemGridView.selectedVolunteerItemVo.itemDetail}" />
 
 					<h:outputText value="求助条目获得帮助次数:" />
 					<h:outputText
-						value="#{volunteerItemGridView.selectedVolunteerItem.count}" />
+						value="#{volunteerItemGridView.selectedVolunteerItemVo.count}" />
 
 					<h:outputText value="求助条目状态:" />
 					<h:outputText
-						value="#{volunteerItemGridView.selectedVolunteerItem.status}" />
+						value="#{volunteerItemGridView.selectedVolunteerItemVo.status}" />
 
 					<h:outputText value="求助条目创建时间:" />
 					<h:outputText
-						value="#{volunteerItemGridView.selectedVolunteerItem.createTime}" />
+						value="#{volunteerItemGridView.selectedVolunteerItemVo.createTime}" />
 
 					<h:outputText value="求助条目更新时间:" />
 					<h:outputText
-						value="#{volunteerItemGridView.selectedVolunteerItem.updateTime}" />
+						value="#{volunteerItemGridView.selectedVolunteerItemVo.updateTime}" />
 
 				</p:panelGrid>
 			</p:outputPanel>

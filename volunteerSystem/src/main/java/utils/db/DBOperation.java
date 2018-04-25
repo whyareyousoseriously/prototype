@@ -4,6 +4,7 @@
  */
 package utils.db;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -92,6 +93,36 @@ public class DBOperation {
 
 	}
 
+	public static List listAllData(String table) {
+		// 创建一个事务
+		Transaction t = null;
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			t = session.beginTransaction();
+			String hql = "";
+			hql = "from " + table;
+			Query query = session.createQuery(hql);
+			List list = query.list();
+			if (list.size() > 0) {
+				System.out.println("成功获得满足条件的集合");
+				t.commit();
+				return list;
+			} else {
+				System.out.println("未找到满足条件的集合");
+				t.commit();
+				return new ArrayList();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ArrayList();
+		} finally {
+			if (t != null)
+				t = null;
+		}
+
+	}
+
 	public static List listDataByTwoCondition(String table, String firstCondition, String firstConditionValue,
 			String secondCondition, int secondConditionValue) {
 		// 创建一个事务
@@ -100,7 +131,8 @@ public class DBOperation {
 			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
 			t = session.beginTransaction();
 			String hql = "";
-			hql = "from " + table + " where " + firstCondition + "=:firstConditionValue and "+secondCondition+"=:secondConditionValue";
+			hql = "from " + table + " where " + firstCondition + "=:firstConditionValue and " + secondCondition
+					+ "=:secondConditionValue";
 			Query query = session.createQuery(hql);
 			query.setParameter("firstConditionValue", firstConditionValue);
 			query.setParameter("secondConditionValue", secondConditionValue);
@@ -112,12 +144,45 @@ public class DBOperation {
 			} else {
 				System.out.println("未找到满足条件的集合");
 				t.commit();
-				return null;
+				return new ArrayList();
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return new ArrayList();
+		} finally {
+			if (t != null)
+				t = null;
+		}
+
+	}
+	public static List listDataByTwoCondition(String table, String firstCondition, String firstConditionValue,
+			String secondCondition, String secondConditionValue) {
+		// 创建一个事务
+		Transaction t = null;
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			t = session.beginTransaction();
+			String hql = "";
+			hql = "from " + table + " where " + firstCondition + "=:firstConditionValue and " + secondCondition
+					+ "=:secondConditionValue";
+			Query query = session.createQuery(hql);
+			query.setParameter("firstConditionValue", firstConditionValue);
+			query.setParameter("secondConditionValue", secondConditionValue);
+			List list = query.list();
+			if (list.size() > 0) {
+				System.out.println("成功获得满足条件的集合");
+				t.commit();
+				return list;
+			} else {
+				System.out.println("未找到满足条件的集合");
+				t.commit();
+				return new ArrayList();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ArrayList();
 		} finally {
 			if (t != null)
 				t = null;
@@ -156,12 +221,12 @@ public class DBOperation {
 			} else {
 				System.out.println("未找到满足条件的集合");
 				t.commit();
-				return null;
+				return new ArrayList();
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return new ArrayList();
 		} finally {
 			if (t != null)
 				t = null;
@@ -196,12 +261,12 @@ public class DBOperation {
 			} else {
 				System.out.println("未找到满足条件的集合");
 				t.commit();
-				return null;
+				return new ArrayList();
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return new ArrayList();
 		} finally {
 			if (t != null)
 				t = null;
@@ -230,7 +295,7 @@ public class DBOperation {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(data.toString() + "插入失败");
-			return null;
+			return new Object();
 		} finally {
 			if (t != null) {
 				t = null;

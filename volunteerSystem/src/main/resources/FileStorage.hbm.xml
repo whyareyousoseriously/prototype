@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-4-23 9:55:45 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="pojo.FileStorage" table="FILESTORAGE">
+        <id name="id" type="java.lang.String">
+            <column name="ID" />
+            <generator class="uuid" />
+        </id>
+        <property name="userId" type="java.lang.String">
+            <column name="USERID" />
+        </property>
+         <property name="volunteerItemId" type="java.lang.String">
+            <column name="VOLUNTEERITEMID" />
+        </property>
+        <property name="fileName" type="java.lang.String">
+            <column name="FILENAME" />
+        </property>
+        <property name="fileDetails" type="java.sql.Blob">
+            <column name="FILEDETAILS" />
+        </property>
+        <property name="createTime" type="java.util.Date">
+            <column name="CREATETIME" />
+        </property>
+        <property name="updateTime" type="java.util.Date">
+            <column name="UPDATETIME" />
+        </property>
+    </class>
+</hibernate-mapping>
