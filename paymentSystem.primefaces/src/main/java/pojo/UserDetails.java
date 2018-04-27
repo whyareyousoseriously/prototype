@@ -8,19 +8,20 @@ import java.util.Date;
 
 /**
  * 
- * @author cz
- * 2018年4月25日下午4:08:55
+ * @author cz 2018年4月25日下午4:08:55
  */
 public class UserDetails {
-	private String userId;//用户id;
-	private String realName;//真实姓名;
-	private String idNumber;//身份证号
-	private Integer sex;//性别；
-	private String occupation;//职业
-	private Integer phone;//手机号
-	private String address;//地址
-	private Date createTime;//创建时间
-	private Date updateTime;//最近一次更新时间
+	
+	private String userId;// 用户id;
+	private String realName;// 真实姓名;
+	private String idNumber;// 身份证号
+	private Integer sex;// 性别；
+	private String occupation;// 职业
+	private String phone;// 手机号
+	private String address;// 地址
+	private Date createTime;// 创建时间
+	private Date updateTime;// 最近一次更新时间
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -51,10 +52,10 @@ public class UserDetails {
 	public void setOccupation(String occupation) {
 		this.occupation = occupation;
 	}
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getAddress() {
@@ -75,8 +76,7 @@ public class UserDetails {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-	
-	
+
 	
 
 }

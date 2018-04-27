@@ -8,6 +8,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 
 import common.Const;
 import common.ServerResponse;
@@ -25,9 +26,25 @@ import vo.UserVo;
 public class UserVoController {
 	private UserVo userVo;
 
-	private IUserService iUserService = new UserServiceImpl();
+	private IUserService iUserService;
 
+	private UserDetails userDetails;
 	
+	
+
+	public UserVoController() {
+		this.userVo= new UserVo();
+		this.iUserService = new UserServiceImpl();
+		this.userDetails = new UserDetails();
+	}
+
+	public UserDetails getUserDetails() {
+		return userDetails;
+	}
+
+	public void setUserDetails(UserDetails userDetails) {
+		this.userDetails = userDetails;
+	}
 
 	public UserVo getUserVo() {
 		return userVo;
@@ -39,6 +56,7 @@ public class UserVoController {
 
 	/**
 	 * 获取用户详细信息
+	 * 
 	 * @author cz
 	 * @time 2018年4月27日上午11:39:42
 	 */
@@ -48,17 +66,46 @@ public class UserVoController {
 		// 进行判断
 		if (user == null) {
 			ServerResponse.createByErrorMessage("用户未登录，无法获取详细信息");
-			//返回登陆界面
-			return "login";
+			// 返回登陆界面
+			return "login?faces-redirect=true";
 		} else {
 			// 调用iUserService,获得详细信息
-			UserDetails userDetails = iUserService.listUserDetailsByUserId(user.getUserId());
+			userDetails = iUserService.listUserDetailsByUserId(user.getUserId());
 			if (userDetails == null) {
 				userDetails = new UserDetails();
 			}
 			userVo = this.Combine(user, userDetails);
 		}
-		return "u_home";
+		return "u_home?faces-redirect=true";
+	}
+
+	public String saveUserDetails() {
+		// 获得当前session中的当前用户
+		User user = (User) this.getCurrentSession().getAttribute(Const.CURRENT_USER);
+		// 进行判断
+		if (user == null) {
+			ServerResponse.createByErrorMessage("用户未登录，无法完善详细信息");
+			// 返回登陆界面
+			return "login?faces-redirect=true";
+		}else {
+			//调用iUserService.获取详细信息
+			userDetails = iUserService.saveUserDetials(this.change(userVo,user)).getData();
+			return "u_home?faces-redirect=true";
+		}	
+	}
+	
+	private UserDetails change(UserVo userVo,User currentUser) {
+		//将userVo中的属于userDetails中的字段给予userDetails
+		UserDetails userDetails = new UserDetails();
+		userDetails.setUserId(currentUser.getUserId());
+		userDetails.setAddress(userVo.getAddress());
+		userDetails.setIdNumber(userVo.getIdNumber());
+		userDetails.setOccupation(userVo.getOccupation());
+		userDetails.setPhone(userVo.getPhone());
+		userDetails.setRealName(userVo.getRealName());
+		userDetails.setSex(StringUtils.equals("男", userVo.getSex())?Const.MAN:Const.FEMALE);
+		
+		return userDetails;
 	}
 
 	/**

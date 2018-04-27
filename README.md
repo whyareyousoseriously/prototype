@@ -183,3 +183,12 @@
 &emsp;&emsp;&emsp;&emsp;&emsp;解决:p:growl添加到xhtml页面即可<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;问题：服务器重定向失败<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;解决：faces-redirect=true,而不是facesRedirect=true;<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题：p:growl没法正常显示<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;原因:服务器重定向导致信息丢失<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题：Target Unreachable,returned null,该问题出现在完善具体信息的页面<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决:在bean中空构造方法中，new变量的初始对象。<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题：[20:03:52.323][INFO][org.hibernate.cfg.Configuration][main] HHH000071: Duplicate import: pojo.UserDetails -> pojo.UserDetails<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;[20:03:52.323][INFO][org.hibernate.cfg.Configuration][main] HHH000071: Duplicate import: pojo.UserDetails -> UserDetails<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决：hibernate.cfg.xml中对userDetails.hbm.xml重复读取导致。<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决：解决了在页面redirect的时候FacesContext中提示信息的丢失<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;方法简述：FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);<br>

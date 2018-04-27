@@ -77,4 +77,13 @@ public interface IUserDao {
 	 * @time 2018年4月26日下午7:09:05
 	 */
 	UserDetails listUserDetailsByUserId(String userId);
+
+	/**
+	 * 保存用户详细信息
+	 * @param userDetails
+	 * @return
+	 * @author cz
+	 * @time 2018年4月27日下午5:13:27
+	 */
+	UserDetails saveOrUpdate(UserDetails userDetails);
 }

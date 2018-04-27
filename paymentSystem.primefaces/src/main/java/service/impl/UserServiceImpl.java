@@ -63,13 +63,13 @@ public class UserServiceImpl implements IUserService {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ServerResponse<String> register(User user) {
-		ServerResponse validResponse = this.checkValid(user.getUsername(), Const.USERNAME);
-		if (!validResponse.isSuccess()) {
-			return validResponse;
+		ServerResponse validResponse = this.checkExist(user.getUsername(), Const.USERNAME);
+		if (validResponse.isSuccess()) {
+			return ServerResponse.createByErrorMessage("用户名已存在，无法注册");
 		}
-		validResponse = this.checkValid(user.getEmail(), Const.EMAIL);
-		if (!validResponse.isSuccess()) {
-			return validResponse;
+		validResponse = this.checkExist(user.getEmail(), Const.EMAIL);
+		if (validResponse.isSuccess()) {
+			return ServerResponse.createByErrorMessage("邮箱已存在，无法注册");
 		}
 
 		// MD5加密
@@ -108,7 +108,7 @@ public class UserServiceImpl implements IUserService {
 		}
 	}
 
-	public ServerResponse<User> checkValid(String str, String type) {
+	public ServerResponse<User> checkExist(String str, String type) {
 
 		// 判断type是否为空
 		if (StringUtils.isNotBlank(type)) {
@@ -117,17 +117,17 @@ public class UserServiceImpl implements IUserService {
 				//校验用户名
 				User result = iUserDao.checkUsername(str);
 				if (result!=null) {
-					return ServerResponse.createBySuccess("用户名存在",result);
+					return ServerResponse.createBySuccess(result);
 				}
-				return ServerResponse.createByErrorMessage("用户名"+"不存在");
+				return ServerResponse.createByError();
 			}
 			if (Const.EMAIL.equals(type)) {
 				//校验email
 				User result = iUserDao.checkEmail(str);
 				if (result!=null) {
-					return ServerResponse.createBySuccess("Email存在",result);
+					return ServerResponse.createBySuccess(result);
 				}
-				return ServerResponse.createByErrorMessage("邮箱"+"不存在");
+				return ServerResponse.createByError();
 			}
 			return ServerResponse.createByErrorMessage(type+"验证类型不在此列");
 
@@ -149,7 +149,7 @@ public class UserServiceImpl implements IUserService {
 			return ServerResponse.createByErrorMessage("参数错误，邮箱验证码不能为空");
 		}
 		//校验username
-		ServerResponse<User> validResponser = this.checkValid(username, Const.USERNAME);
+		ServerResponse<User> validResponser = this.checkExist(username, Const.USERNAME);
 		if(!validResponser.isSuccess()) {
 			//用户不存在
 			return ServerResponse.createByErrorMessage("用户不存在");
@@ -215,5 +215,22 @@ public class UserServiceImpl implements IUserService {
 			return userDetails;
 		}
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see service.IUserService#saveUserDetials(pojo.UserDetails)
+	 * @author cz
+	 * @time 2018年4月27日下午5:10:30
+	 */
+	@Override
+	public ServerResponse<UserDetails> saveUserDetials(UserDetails userDetails) {
+		//设置更新时间
+		userDetails.setUpdateTime(new Date());
+		UserDetails userDetails_feedback = iUserDao.saveOrUpdate(userDetails);
+		if(userDetails_feedback==null) {
+			return ServerResponse.createByErrorMessage("用户详细信息保存失败");
+		}else {
+			return ServerResponse.createBySuccess("用户详细信息保存成功", userDetails_feedback);
+		}
 	}
 }

@@ -154,7 +154,7 @@ public class UserController {
 		} else {
 			
 			logger.info("账号:" + this.user.getUsername() + "登陆失败");
-			return "/WEB-INF/userPage/u_login-error?faces-redirect=true";
+			return "/WEB-INF/userPage/u_login-error";
 		}
 
 	}
@@ -177,12 +177,12 @@ public class UserController {
 
 		if (response.isSuccess()) {
 			
-			return "/WEB-INF/userPage/u_registration_success?faces-redirect=true";
+			return "/WEB-INF/userPage/u_registration_success";
 		}
 			
 		else {
 			
-			return "/WEB-INF/userPage/u_registration_error?faces-redirect=true";
+			return "/WEB-INF/userPage/u_registration_error";
 		}
 			
 	}

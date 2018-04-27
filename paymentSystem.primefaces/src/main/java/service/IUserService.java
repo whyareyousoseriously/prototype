@@ -41,7 +41,7 @@ public interface IUserService {
 	 * @author cz
 	 * @time 2018年4月25日下午7:55:47
 	 */
-	ServerResponse<User> checkValid(String str, String type);
+	ServerResponse<User> checkExist(String str, String type);
 	
 	/**
 	 * 账户的激活
@@ -82,4 +82,13 @@ public interface IUserService {
 	 * @time 2018年4月27日下午3:07:46
 	 */
 	ServerResponse<String> forgetRestPassword(String username, String passwordNew, String restPasswordCheckCode);
+
+	/**
+	 * 保存用户的详细信息
+	 * @param userDetails
+	 * @return
+	 * @author cz
+	 * @time 2018年4月27日下午5:07:02
+	 */
+	ServerResponse<UserDetails> saveUserDetials(UserDetails userDetails);
 }

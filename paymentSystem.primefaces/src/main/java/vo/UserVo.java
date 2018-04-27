@@ -23,7 +23,7 @@ public class UserVo {
 	private String idNumber;//身份证号
 	private String sex;//性别；同激活状态一样，sex字段也采用String字段，方便理解和显示
 	private String occupation;//职业
-	private Integer phone;//手机号
+	private String phone;//手机号
 	private String address;//地址
 	
 	private Date loginTime; //登陆时间
@@ -86,11 +86,13 @@ public class UserVo {
 		this.occupation = occupation;
 	}
 
-	public Integer getPhone() {
+	
+
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

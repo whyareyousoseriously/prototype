@@ -51,7 +51,7 @@
 				<p:commandButton value="发送验证码"
 					process="@form"
 					action="#{userController.sendCheckCodeEmail}"
-					update="username-error email-error growl" />
+					update="username-error email-error :#{p:component('growl')}" />
 
 
 			</h:form>
