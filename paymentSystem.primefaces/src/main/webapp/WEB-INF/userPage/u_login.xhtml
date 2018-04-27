@@ -8,6 +8,7 @@
   	写一些介绍信息,
   	登录类型，一般用户
 </p:panelGrid>
+	<p:growl id="growl" showDetail="true" sticky = "true"></p:growl>
 	<h:form>
 
 		<p:panelGrid>
@@ -21,7 +22,7 @@
 					<p:outputLabel>用户名(username):</p:outputLabel>
 				</p:column>
 				<p:column>
-					<p:inputText value="#{UserBean.username}" required="true"
+					<p:inputText value="#{userController.username}" required="true"
 						id="username" requiredMessage="用户名不能为空">
 						<f:validator validatorId="LoginUsernameValidator"></f:validator>
 						<p:ajax update="username-error" event="blur" />
@@ -38,7 +39,7 @@
 					<p:outputLabel>密码(password):</p:outputLabel>
 				</p:column>
 				<p:column>
-					<p:password value="#{UserBean.password}" required="true"
+					<p:password value="#{userController.password}" required="true"
 						id="password" requiredMessage="密码不能为空">
 						<f:validator validatorId="PasswordValidator"></f:validator>
 						<p:ajax update="password-error" event="blur" />
@@ -54,9 +55,10 @@
 				<p:column colspan="3" style="text-align:center">
 					<p:commandButton value="登录(login)" process="@form"
 						update="username-error password-error"
-						action="#{UserBean.doLogin}">
+						action="#{userController.doLogin}">
 					</p:commandButton>
 				</p:column>
+				
 			</p:row>
 
 		</p:panelGrid>

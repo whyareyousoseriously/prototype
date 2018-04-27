@@ -11,19 +11,32 @@
   <p:panelGrid columns="2" styleClass="formTable">
   	
   	<p:outputLabel>用户名:</p:outputLabel>
-  	<p:outputLabel>#{UserBean.username}</p:outputLabel>
-  	
-  	<p:outputLabel>用户类型:</p:outputLabel>
-  	<p:outputLabel>#{UserBean.type}</p:outputLabel>
+  	<p:outputLabel>#{userVoController.userVo.username}</p:outputLabel>
   	
   	<p:outputLabel>邮箱:</p:outputLabel>
-  	<p:outputLabel>#{UserBean.email}</p:outputLabel>
+  	<p:outputLabel>#{userVoController.userVo.email}</p:outputLabel>
   	
   	<p:outputLabel>激活状态:</p:outputLabel>
-  	<p:outputLabel>#{UserBean.active}</p:outputLabel>
- 	
- 	<p:outputLabel>实名认证状态:</p:outputLabel>
- 	<p:outputLabel>#{UserBean.certificationState}</p:outputLabel>
+  	<p:outputLabel>#{userVoController.userVo.active}</p:outputLabel>
+  	
+  	<p:outputLabel>真实姓名:</p:outputLabel>
+  	<p:outputLabel>#{userVoController.userVo.realName}</p:outputLabel>
+  	
+  	<p:outputLabel>身份证号:</p:outputLabel>
+  	<p:outputLabel>#{userVoController.userVo.idNumber}</p:outputLabel>
+  	
+  	<p:outputLabel>性别:</p:outputLabel>
+  	<p:outputLabel>#{userVoController.userVo.sex}</p:outputLabel>
+  	
+  	<p:outputLabel>职业:</p:outputLabel>
+  	<p:outputLabel>#{userVoController.userVo.occupation}</p:outputLabel>
+  	
+  	<p:outputLabel>手机号:</p:outputLabel>
+  	<p:outputLabel>#{userVoController.userVo.phone}</p:outputLabel>
+  	
+  	<p:outputLabel>地址:</p:outputLabel>
+  	<p:outputLabel>#{userVoController.userVo.address}</p:outputLabel>
+ 
   </p:panelGrid>
 </p:panelGrid>
 

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-4-25 16:53:29 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="pojo.UserDetails" table="USERDETAILS">
+        <id name="userId" type="java.lang.String">
+            <column name="USERID" />
+            <generator class="uuid" />
+        </id>
+        <property name="realName" type="java.lang.String">
+            <column name="REALNAME" />
+        </property>
+        <property name="idNumber" type="java.lang.String">
+            <column name="IDNUMBER" />
+        </property>
+        <property name="sex" type="java.lang.Integer">
+            <column name="SEX" />
+        </property>
+        <property name="occupation" type="java.lang.String">
+            <column name="OCCUPATION" />
+        </property>
+        <property name="phone" type="java.lang.Integer">
+            <column name="PHONE" />
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="ADDRESS" />
+        </property>
+        <property name="createTime" type="java.util.Date">
+            <column name="CREATETIME" />
+        </property>
+        <property name="updateTime" type="java.util.Date">
+            <column name="UPDATETIME" />
+        </property>
+    </class>
+</hibernate-mapping>

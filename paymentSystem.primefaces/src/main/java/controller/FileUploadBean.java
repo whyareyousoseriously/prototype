@@ -18,10 +18,9 @@ import org.primefaces.event.FileUploadEvent;
 import dao.ExcelFileDAO;
 
 import dao.impl.ExcelFileDAOImpl;
-
-import db.MyHibernateSessionFactory;
 import entity.ExcelFile;
 import utils.CurrentRoot;
+import utils.db.MyHibernateSessionFactory;
 
 /**
  * 文件上传的bean

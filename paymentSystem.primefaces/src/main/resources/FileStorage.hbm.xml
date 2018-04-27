@@ -1,21 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-4-8 16:43:17 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2018-4-25 16:53:29 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="entity.ExcelFile" table="EXCELFILE">
-        <id name="id" type="java.lang.String">
-            <column name="ID" />
+    <class name="pojo.FileStorage" table="FILESTORAGE">
+        <id name="fileId" type="java.lang.String">
+            <column name="FILEID" />
             <generator class="uuid" />
         </id>
-        <many-to-one name="root" class="entity.Root" fetch="join">
-            <column name="R_ID" />
-        </many-to-one>
-        <property name="fileName" type="java.lang.String">
-            <column name="FILENAME"></column>
+        <property name="managerId" type="java.lang.String">
+            <column name="MANAGERID" />
         </property>
-        <property name="fileDetails" type ="java.sql.Blob">
-            <column name="FILEDETAILS"></column>
+        <property name="fileDetails" type="java.sql.Blob">
+            <column name="FILEDETAILS" />
         </property>
         <property name="createTime" type="java.util.Date">
             <column name="CREATETIME" />

@@ -6,7 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import db.MyHibernateSessionFactory;
+import utils.db.MyHibernateSessionFactory;
 
 /*
  * 数据查询

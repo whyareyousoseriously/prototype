@@ -11,7 +11,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import db.MyHibernateSessionFactory;
 import entity.Item;
 import entity.Root;
 import entity.User;

@@ -1,3 +1,7 @@
+/**
+ * 下午5:56:16
+ * power
+ */
 package dao.impl;
 
 import java.util.List;
@@ -5,85 +9,139 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import dao.UserDAO;
-import db.MyHibernateSessionFactory;
-import entity.User;
-import utils.MailUtil;
-/*
- * 用户逻辑层接口实现类
- * @author cz
- * @date 2018-1-23
- * */
-public class UserDAOImpl implements UserDAO{
+import dao.IUserDao;
+import pojo.User;
+import pojo.UserDetails;
+import utils.db.MyHibernateSessionFactory;
 
-	public User userLogin(User user) {
-		// TODO Auto-generated method stub
-		/*
-		 * 用户登录方法
-		 * */
-		Transaction tx = null;
-		String hql = "";
+/**
+ * 结合hibernate与数据库进行交互 交互对象User表
+ * 
+ * @author cz 2018年4月25日下午5:56:16
+ */
+public class UserDaoImpl implements IUserDao {
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
+	@SuppressWarnings("unchecked")
+	public Integer checkUsername(String username) {
+		// 创建一个事务
+		Transaction t = null;
 		try {
 			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
-			tx = session.beginTransaction();
-			hql = "from User where username =:username and password =:password";
+			t = session.beginTransaction();
+			String hql = "";
+			hql = "from User where username =:searchValue";
 			Query query = session.createQuery(hql);
-			query.setParameter("username", user.getUsername());
-			query.setParameter("password", user.getPassword());
+			query.setParameter("searchValue", username);
+
 			List<User> list = query.list();
-			System.out.println(list.toString());
-			tx.commit();
-			if(list.size()>0) {
-				User u = (User)(list.get(0));
-				return u;
-			}else {
-				return null;
-			}
-		}catch(Exception e) {
+			t.commit();
+			return list.size();
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-		}finally {
-			if(tx!=null)
-				tx = null;
+		} finally {
+			if (t != null)
+				t = null;
 		}
 	}
 
-	public boolean userRegister(User user) {
-		// TODO Auto-generated method stub
-		/*
-		 * 用户注册方法
-		 * */
-		//将数据存入数据库
-		Transaction tx = null;
-	
+	@SuppressWarnings("unchecked")
+	public User selectLogin(String username, String md5Password) {
+		Transaction t = null;
 		try {
 			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
-			tx = session.beginTransaction();
-			session.save(user);
-			tx.commit();
-			//发送激活邮件
-			MailUtil.sendMail(user.getEmail(),user.getMailCode());
-			return true;
-		}catch(Exception e) {
+			t = session.beginTransaction();
+			String hql = "";
+			hql = "from User where username =:username and password=:md5Password";
+			Query query = session.createQuery(hql);
+			query.setParameter("username", username);
+			query.setParameter("md5Password", md5Password);
+			List<User> list = query.list();
+			t.commit();
+			return list.get(0);
+		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
-		}finally {
-			if(tx!=null) {
-				tx = null;
+			return null;
+		} finally {
+			if (t != null)
+				t = null;
+		}
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see dao.IUserDao#checkEmail(java.lang.String)
+	 * 
+	 * @author cz
+	 * 
+	 * @time 2018年4月25日下午7:41:24
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Integer checkEmail(String email) {
+		// 创建一个事务
+		Transaction t = null;
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			t = session.beginTransaction();
+			String hql = "";
+			hql = "from User where email =:email";
+			Query query = session.createQuery(hql);
+			query.setParameter("email", email);
+
+			List<User> list = query.list();
+			t.commit();
+			return list.size();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			if (t != null)
+				t = null;
+		}
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see dao.IUserDao#saveOrUpdate(pojo.User)
+	 * @author cz
+	 * @time 2018年4月25日下午9:26:55
+	 */
+	@Override
+	public Integer saveOrUpdate(User user) {
+		// 创建一个事务
+		Transaction t = null;
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			t = session.beginTransaction();
+			session.saveOrUpdate(user);
+			t.commit();
+			logger.info(user.toString() + "插入成功");
+			return 1;//插入成功
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(user.toString() + "插入失败");
+			return 0;//插入失败
+		} finally {
+			if (t != null) {
+				t = null;
 			}
 		}
-		
-		
 	}
 
 	/* (non-Javadoc)
-	 * @see dao.UserDAO#findByMailCode(java.lang.String)
+	 * @see dao.IUserDao#findByMailCode(java.lang.String)
+	 * @author cz
+	 * @time 2018年4月25日下午9:27:34
 	 */
-	
-	//根据邮箱激活码查询用户
+	@Override
 	public User findByMailCode(String mailCode) {
-		// TODO Auto-generated method stub
 		Transaction tx =null;
 		String hql = "";
 		try {
@@ -97,11 +155,74 @@ public class UserDAOImpl implements UserDAO{
 			System.out.println(list.toString());
 			tx.commit();
 			if(list.size()>0) {
-				System.out.println("已找到待激活用户");
+				logger.info("已找到待激活用户");
 				User u = (User)(list.get(0));
 				return u;
 			}else {
-				System.out.println("未找到待激活用户，激活失败");
+				logger.info("未找到待激活用户，激活失败");
+				return null;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			if(tx!=null)
+				tx = null;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see dao.IUserDao#checkUsernameAndEmail(java.lang.String, java.lang.String)
+	 * @author cz
+	 * @time 2018年4月26日下午5:00:01
+	 */
+	@Override
+	public int checkUsernameAndEmail(String username, String email) {
+		Transaction tx =null;
+		String hql = "";
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			tx = session.beginTransaction();
+			hql = "from User Where username =:username and email =:email";
+			Query query = session.createQuery(hql);
+			query.setParameter("username", username);
+			query.setParameter("email", email);
+			List<User> list = query.list();
+			tx.commit();
+			logger.info("邮箱及身份查询");
+			return list.size();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return 0;
+		}finally {
+			if(tx!=null)
+				tx = null;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see dao.IUserDao#listUserDetailsByUserId(java.lang.String)
+	 * @author cz
+	 * @time 2018年4月26日下午7:09:27
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public UserDetails listUserDetailsByUserId(String userId) {
+		Transaction tx =null;
+		String hql = "";
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			tx = session.beginTransaction();
+			hql = "from UserDetails Where userId =:userId";
+			Query query = session.createQuery(hql);
+			query.setParameter("userId", userId);
+			List<UserDetails> list = query.list();
+			tx.commit();
+			if(list.size()>0) {
+				logger.info("已找到用户的详细信息");
+				return (UserDetails)list.get(0);
+			}else {
+				logger.info("未找到用户的详细信息");
 				return null;
 			}
 		}catch(Exception e) {
@@ -113,31 +234,5 @@ public class UserDAOImpl implements UserDAO{
 		}
 		
 	}
-
-	/* (non-Javadoc)
-	 * @see dao.UserDAO#update(entity.User)
-	 * @author cz
-	 * @time 2018年2月2日下午4:07:05
-	 */
-	public void update(User user) {
-		// TODO Auto-generated method stub
-		Transaction tx = null;
-		try {
-			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
-			tx = session.beginTransaction();
-			System.out.println("开始执行激活操作,将激活后的数据写入数据库");
-			System.out.println(user.toString());
-			session.update(user);
-			tx.commit();
-			System.out.println("激活完成！");
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			if(tx!=null)
-				tx = null;
-		}
-	}
-
-	
 
 }

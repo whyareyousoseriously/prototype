@@ -173,3 +173,7 @@
 &emsp;&emsp;&emsp;&emsp;项目:volunteerSystem<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;解决:造成重复只显示最后一条数据的原因是，在ArrayList中add数据的时候，add的是引用，<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;解决：本来是想将申请空间放在循环外，提高效率结果造成了这种后果。<br>
+&emsp;&emsp;2018-4-26<br>
+&emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行:代码结构重构，加入常数类，高复用信息提示类，等<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：初步完成一般用户模块的代码重构<br>

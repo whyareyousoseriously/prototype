@@ -29,11 +29,28 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.primefaces.themes/all-themes -->
 
-
-
-
-
-
+		<!-- guava中缓存cache的使用 -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>20.0</version>
+		</dependency>
+		<!-- logback依赖 -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.12</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.activation/activation -->
 		<!-- https://mvnrepository.com/artifact/javax.activation/activation -->
 		<dependency>
