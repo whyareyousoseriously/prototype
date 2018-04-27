@@ -86,7 +86,7 @@ public class MailUtil {
 		}
 		
 	}
-public static void sendCheckCode(String to,String mailCode) {
+public static boolean sendCheckCode(String to,String mailCode) {
 		
 		//链接pop3服务器的主机名，协议，用户名，密码
 		String pop3Server = "smtp.126.com";
@@ -124,13 +124,13 @@ public static void sendCheckCode(String to,String mailCode) {
 			
 			message.setFrom("cz826033956@126.com");
 			Transport.send(message);
-			
+			return true;
 		} catch (AddressException e) {
-			
 			e.printStackTrace();
+			return false;
 		} catch (MessagingException e) {
-			
 			e.printStackTrace();
+			return false;
 		}
 		
 	}

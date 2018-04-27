@@ -4,7 +4,7 @@
  */
 package controller.user;
 
-import javax.faces.application.FacesMessage;
+
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -67,7 +67,7 @@ public class UserController {
 		if(user==null) {
 			ServerResponse.createByErrorMessage("用户未登录，无法获取当前用户的信息");
 		}
-		ServerResponse.createBySuccess("获取当前用户信息成功");
+		ServerResponse.createBySuccessMessage("获取当前用户信息成功");
 		return currentUser;
 	}
 
@@ -150,11 +150,11 @@ public class UserController {
 			session.setAttribute(Const.CURRENT_USER, response.getData());
 			logger.info("当前user写入session成功");
 			this.showActive();// 将账号状态加入FacesMessage
-			return "u_home?facesRedirect=true";
+			return "u_home?faces-redirect=true";
 		} else {
 			
 			logger.info("账号:" + this.user.getUsername() + "登陆失败");
-			return "/WEB-INF/userPage/u_login-error?facesRedirect=true";
+			return "/WEB-INF/userPage/u_login-error?faces-redirect=true";
 		}
 
 	}
@@ -177,12 +177,12 @@ public class UserController {
 
 		if (response.isSuccess()) {
 			
-			return "/WEB-INF/userPage/u_registration_success?facesRedirect=true";
+			return "/WEB-INF/userPage/u_registration_success?faces-redirect=true";
 		}
 			
 		else {
 			
-			return "/WEB-INF/userPage/u_registration_error?facesRedirect=true";
+			return "/WEB-INF/userPage/u_registration_error?faces-redirect=true";
 		}
 			
 	}
@@ -207,9 +207,15 @@ public class UserController {
 	 * @return 
 	 * @time 2018年4月26日下午4:49:58
 	 */
-	public void sendEmail() {
+	public String sendCheckCodeEmail() {
 		//发送验证码邮件
-		ServerResponse<String> response = iUserService.sendEmail(username,email);
+		ServerResponse<String> response = iUserService.sendCheckCodeEmail(username,email);
+		if(response.isSuccess()) {
+			//发送修改密码验证码成功
+			return "resetPassword?faces-redirect=true";
+		}else {
+			return "sendCheckCodeEmail?faces-redirect=true";
+		}
 	}
 	/**
 	 * 重置密码通过邮箱
@@ -217,13 +223,13 @@ public class UserController {
 	 * @time 2018年4月26日下午12:20:08
 	 */
 	public String forgetRestPassword() {
-		ServerResponse<String> response = iUserService.forgetRestPassword(this.getCurrentUser(),passwordNew,restPasswordCheckCode);
+		ServerResponse<String> response = iUserService.forgetRestPassword(username,passwordNew,restPasswordCheckCode);
 		if(response.isSuccess()) {
 			//提示信息，已经在forgetRestPassword方法中加了
-			return "/WEB-INF/userPage/login?facesRedirect=true";
+			return "login?faces-redirect=true";
 		}else {
 			//什么也不做，停留在原界面
-			return "/WEB-INF/userPage/u_forgetRestPassword?facesRedirect=true";
+			return "resetPassword?faces-redirect=true";
 		}
 	}
 

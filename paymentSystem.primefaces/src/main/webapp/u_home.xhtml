@@ -9,27 +9,25 @@
 	<title>paymentSystem</title>
 </h:head>
 <h:body>
-	
-		<p:growl id="growl" showDetail="true" sticky = "true"></p:growl>
-		
-	
-	
+
+	<p:growl id="growl" showDetail="true" sticky="true"></p:growl>
+
+
+
 	<div align="center" id="div1">
-		<h1 class="ui-widget-header ui-corner-all">欢迎用户#{UserBean.username}</h1>
+		<h2 class="ui-widget-header ui-corner-all">当前登录用户：#{userController.username}</h2>
 	</div>
-		<p:tabView>
-			<p:tab title="主页">
-				<ui:include src="/WEB-INF/sinppets/user/u_introduce.xhtml"/>
-			</p:tab>
-			<p:tab title="个人基本信息">
-				<ui:include src="/WEB-INF/sinppets/user/u_personalInformation.xhtml"/>
-			</p:tab>
-			<p:tab title="待缴费项目">
-				<ui:include src="/WEB-INF/sinppets/user/u_paymentInformation.xhtml"/>
-			</p:tab>
-		</p:tabView>
-	<div>
-		<p:outputLabel>账号状态：#{userVoController.userVo.active}</p:outputLabel>
-	</div>
+	<p:tabView>
+		<p:tab title="主页">
+			<ui:include src="/WEB-INF/sinppets/user/u_introduce.xhtml" />
+		</p:tab>
+		<p:tab title="个人基本信息">
+			<ui:include src="/WEB-INF/sinppets/user/u_personalInformation.xhtml" />
+		</p:tab>
+		<p:tab title="待缴费项目">
+			<ui:include src="/WEB-INF/sinppets/user/u_paymentInformation.xhtml" />
+		</p:tab>
+	</p:tabView>
+	
 </h:body>
 </html>

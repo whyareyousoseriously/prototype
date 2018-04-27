@@ -41,7 +41,7 @@ public interface IUserService {
 	 * @author cz
 	 * @time 2018年4月25日下午7:55:47
 	 */
-	ServerResponse<String> checkValid(String str, String type);
+	ServerResponse<User> checkValid(String str, String type);
 	
 	/**
 	 * 账户的激活
@@ -53,24 +53,16 @@ public interface IUserService {
 	ServerResponse<String> active(String mailCode);
 
 	
+	
 	/**
-	 * @param user
-	 * @param passwordNew
-	 * @param restPasswordCheckCode
-	 * @return
-	 * @author cz
-	 * @time 2018年4月26日下午12:50:30
-	 */
-	ServerResponse<String> forgetRestPassword(User user, String passwordNew, String restPasswordCheckCode);
-
-	/**
+	 * 向邮箱发送验证码，用于密码的修改
 	 * @param username
 	 * @param email
 	 * @return
 	 * @author cz
-	 * @time 2018年4月26日下午4:52:40
+	 * @time 2018年4月27日下午1:30:30
 	 */
-	ServerResponse<String> sendEmail(String username, String email);
+	ServerResponse<String> sendCheckCodeEmail(String username, String email);
 
 	/**
 	 * 查询用户的详细信息
@@ -80,4 +72,14 @@ public interface IUserService {
 	 * @time 2018年4月26日下午7:04:19
 	 */
 	UserDetails listUserDetailsByUserId(String userId);
+
+	/**
+	 * @param username
+	 * @param passwordNew
+	 * @param restPasswordCheckCode
+	 * @return
+	 * @author cz
+	 * @time 2018年4月27日下午3:07:46
+	 */
+	ServerResponse<String> forgetRestPassword(String username, String passwordNew, String restPasswordCheckCode);
 }

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>paymentSystem</title>
+</h:head>
+<h:body>
+	<p:growl id="growl" showDetail="true" sticky="true"></p:growl>
+	<div align="center">
+		<p:fieldset legend="sendCheckCodeEmail">
+			<h1>修改密码,发送邮箱验证码</h1>
+			<h:form id="sendCheckCodeEmail">
+				<p:panelGrid styleClass="formTable">
+					<p:row>
+						<p:column>
+							<p:outputLabel>用户名:</p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:inputText value="#{userController.username}" required="true"
+								id="username" requiredMessage="用户名不能为空">
+								<f:validator validatorId="LoginUsernameValidator"></f:validator>
+								<p:ajax update="username-error" event="blur" />
+							</p:inputText>
+						</p:column>
+						<p:column>
+							<p:message for="username" id="username-error" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel>邮箱:</p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:inputText value="#{userController.email}" id="email"
+								required="true" requiredMessage="邮箱不能为空">
+								<f:validator validatorId="EmailExistValidator"></f:validator>
+								<p:ajax update="email-error" event="blur" />
+							</p:inputText>
+						</p:column>
+
+						<p:column>
+							<p:message for="email" id="email-error" />
+						</p:column>
+					</p:row>
+					
+				</p:panelGrid>
+				<p:commandButton value="发送验证码"
+					process="@form"
+					action="#{userController.sendCheckCodeEmail}"
+					update="username-error email-error growl" />
+
+
+			</h:form>
+		</p:fieldset>
+
+	</div>
+</h:body>
+</html>

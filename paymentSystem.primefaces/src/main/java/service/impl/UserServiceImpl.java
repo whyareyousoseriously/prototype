@@ -43,8 +43,8 @@ public class UserServiceImpl implements IUserService {
 	 */
 	public ServerResponse<User> login(String username, String password) {
 		// 调用Dao层的方法查询数据库当前用户是否存在
-		int resultCount = iUserDao.checkUsername(username);
-		if (resultCount == 0) {
+		User result = iUserDao.checkUsername(username);
+		if (result == null) {
 			return ServerResponse.createByErrorMessage("用户名不存在");
 		}
 		// 用户存在，则将密码MD5加密，并调用Dao层方法进行查询登陆
@@ -108,26 +108,26 @@ public class UserServiceImpl implements IUserService {
 		}
 	}
 
-	public ServerResponse<String> checkValid(String str, String type) {
+	public ServerResponse<User> checkValid(String str, String type) {
 
 		// 判断type是否为空
 		if (StringUtils.isNotBlank(type)) {
 			// 开始校验
 			if (Const.USERNAME.equals(type)) {
 				//校验用户名
-				int resultCount = iUserDao.checkUsername(str);
-				if (resultCount > 0) {
-					return ServerResponse.createByErrorMessage("用户名已存在");
+				User result = iUserDao.checkUsername(str);
+				if (result!=null) {
+					return ServerResponse.createBySuccess("用户名存在",result);
 				}
-				return ServerResponse.createBySuccessMessage("用户名"+"校验成功");
+				return ServerResponse.createByErrorMessage("用户名"+"不存在");
 			}
 			if (Const.EMAIL.equals(type)) {
 				//校验email
-				int resultCount = iUserDao.checkEmail(str);
-				if (resultCount > 0) {
-					return ServerResponse.createByErrorMessage("Email已存在");
+				User result = iUserDao.checkEmail(str);
+				if (result!=null) {
+					return ServerResponse.createBySuccess("Email存在",result);
 				}
-				return ServerResponse.createBySuccessMessage("邮箱"+"校验成功");
+				return ServerResponse.createByErrorMessage("邮箱"+"不存在");
 			}
 			return ServerResponse.createByErrorMessage(type+"验证类型不在此列");
 
@@ -143,33 +143,34 @@ public class UserServiceImpl implements IUserService {
 	 * @time 2018年4月26日下午12:27:49
 	 */
 	@Override
-	public ServerResponse<String> forgetRestPassword(User user, String passwordNew,
+	public ServerResponse<String> forgetRestPassword(String username, String passwordNew,
 			String restPasswordCheckCode) {
 		if(StringUtils.isBlank(restPasswordCheckCode)) {
 			return ServerResponse.createByErrorMessage("参数错误，邮箱验证码不能为空");
 		}
 		//校验username
-		ServerResponse<String> validResponser = this.checkValid(user.getUsername(), Const.USERNAME);
-		if(validResponser.isSuccess()) {
+		ServerResponse<User> validResponser = this.checkValid(username, Const.USERNAME);
+		if(!validResponser.isSuccess()) {
 			//用户不存在
 			return ServerResponse.createByErrorMessage("用户不存在");
 		}
 		//从cache中获取token
-		String token = TokenCache.getKey(TokenCache.TOKEN_PREFIX+user.getUsername());
+		String token = TokenCache.getKey(TokenCache.TOKEN_PREFIX+username);
 		//校验token
 		if(StringUtils.isBlank(token)) {
-			ServerResponse.createByErrorMessage("邮箱验证码无效，或者已过期");
+			return ServerResponse.createByErrorMessage("邮箱验证码无效，或者已过期");
 		}
 		if(StringUtils.equals(token, restPasswordCheckCode)) {
 			//比对成功，开始修改密码
 			String md5Password = MD5Util.MD5EncodeUtf8(passwordNew);
+			User user = validResponser.getData();
 			user.setPassword(md5Password);
 			int resultCount = iUserDao.saveOrUpdate(user);
 			if(resultCount>0) {
-				ServerResponse.createBySuccessMessage("修改密码成功");
+				return ServerResponse.createBySuccessMessage("修改密码成功");
 			}
 		}else {
-			ServerResponse.createByErrorMessage("邮箱验证码错误,请重新获取修改密码的邮箱验证码");
+			return ServerResponse.createByErrorMessage("邮箱验证码错误,请重新获取修改密码的邮箱验证码");
 		}
 		return ServerResponse.createByErrorMessage("密码修改失败");
 	}
@@ -180,17 +181,19 @@ public class UserServiceImpl implements IUserService {
 	 * @time 2018年4月26日下午4:52:56
 	 */
 	@Override
-	public ServerResponse<String> sendEmail(String username, String email) {
-		int resultCount = iUserDao.checkUsernameAndEmail(username,email);
-		if(resultCount>0) {
+	public ServerResponse<String> sendCheckCodeEmail(String username, String email) {
+		User result = iUserDao.checkUsernameAndEmail(username,email);
+		if(result!=null) {
 			//说明email是此用户的
 			//给邮箱验证码
 			String checkCode = UUID.randomUUID().toString();
-			//TODO 发送邮件
-			MailUtil.sendCheckCode(email, checkCode);
-			//将邮箱验证码防止在本地cache中并设置有效期
+			//发送邮件
+			if(!MailUtil.sendCheckCode(email, checkCode)) {
+				return ServerResponse.createByErrorMessage("验证码邮件发送失败");
+			}
+			//将邮箱验证码放在在本地cache中并设置有效期
 			TokenCache.setKey(TokenCache.TOKEN_PREFIX+username, checkCode);
-			return ServerResponse.createBySuccess();
+			return ServerResponse.createBySuccessMessage("验证码邮件发送成功");
 		}
 		return ServerResponse.createByErrorMessage("发送验证码失败");
 	}

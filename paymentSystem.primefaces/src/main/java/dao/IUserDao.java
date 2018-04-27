@@ -20,7 +20,7 @@ public interface IUserDao {
 	 * @author cz
 	 * @time 2018年4月25日下午6:04:47
 	 */
-	Integer checkUsername(String username);
+	User checkUsername(String username);
 	
 	/**
 	 * 登陆方法
@@ -39,7 +39,7 @@ public interface IUserDao {
 	 * @author cz
 	 * @time 2018年4月25日下午7:40:51
 	 */
-	Integer checkEmail(String email);
+	User checkEmail(String email);
 	
 	/**
 	 * 向数据库插入或更新一条数据，注册方法
@@ -67,7 +67,7 @@ public interface IUserDao {
 	 * @author cz
 	 * @time 2018年4月26日下午4:59:29
 	 */
-	int checkUsernameAndEmail(String username, String email);
+	User checkUsernameAndEmail(String username, String email);
 
 	/**
 	 * 获取用户的详细信息

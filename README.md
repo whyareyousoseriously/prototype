@@ -177,3 +177,9 @@
 &emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;进行:代码结构重构，加入常数类，高复用信息提示类，等<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;进行：初步完成一般用户模块的代码重构<br>
+&emsp;&emsp;2018-4-27<br>
+&emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题:获取用户的详细信息的错误提示，没有显示<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决:p:growl添加到xhtml页面即可<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题：服务器重定向失败<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决：faces-redirect=true,而不是facesRedirect=true;<br>

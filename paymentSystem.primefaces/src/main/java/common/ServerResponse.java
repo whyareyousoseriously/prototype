@@ -13,14 +13,19 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 /**
- * 
+ * 高复用信息提示类
  * @author cz
  * 2018年4月25日下午5:20:48
  */
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 //保证序列化json的时候，如果是null的对象，key也会消失
 public class ServerResponse<T> implements Serializable{
-  private  int status;
+  /**
+	 * 下午4:25:55
+	 * power
+	 */
+	private static final long serialVersionUID = -5092122805512762977L;
+private  int status;
   private String msg;
   private T data;
 
@@ -81,20 +86,18 @@ public class ServerResponse<T> implements Serializable{
   }
 
   public static <T> ServerResponse<T> createByError(){
-	  FacesContext context = FacesContext.getCurrentInstance();
-	  context.addMessage(null, new FacesMessage("提示", ResponseCode.ERROR.getDesc()));
       return new ServerResponse<T>(ResponseCode.ERROR.getCode(),ResponseCode.ERROR.getDesc());
   }
 
   public static <T> ServerResponse<T> createByErrorMessage(String errorMessage){
 	  FacesContext context = FacesContext.getCurrentInstance();
-	  context.addMessage(null, new FacesMessage("提示", errorMessage));
+	  context.addMessage(null, new FacesMessage("发生错误", errorMessage));
       return new ServerResponse<T>(ResponseCode.ERROR.getCode(),errorMessage);
   }
 
   public static <T> ServerResponse<T> createByErrorCodeMessage(int errorCode,String errorMessage){
 	  FacesContext context = FacesContext.getCurrentInstance();
-	  context.addMessage(null, new FacesMessage("提示", errorMessage));
+	  context.addMessage(null, new FacesMessage("发生错误", errorMessage));
       return new ServerResponse<T>(errorCode,errorMessage);
   }
 }

@@ -26,7 +26,8 @@ public class UserDaoImpl implements IUserDao {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
 	@SuppressWarnings("unchecked")
-	public Integer checkUsername(String username) {
+	public User checkUsername(String username) {
+		logger.info("待检查的用户名:"+username);
 		// 创建一个事务
 		Transaction t = null;
 		try {
@@ -39,7 +40,7 @@ public class UserDaoImpl implements IUserDao {
 
 			List<User> list = query.list();
 			t.commit();
-			return list.size();
+			return list.get(0);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -51,6 +52,8 @@ public class UserDaoImpl implements IUserDao {
 
 	@SuppressWarnings("unchecked")
 	public User selectLogin(String username, String md5Password) {
+		logger.info("登录请求用户名:"+username);
+		logger.info("登陆请求的密码:"+md5Password);
 		Transaction t = null;
 		try {
 			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
@@ -84,7 +87,8 @@ public class UserDaoImpl implements IUserDao {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public Integer checkEmail(String email) {
+	public User checkEmail(String email) {
+		logger.info("待检查的邮箱:"+email);
 		// 创建一个事务
 		Transaction t = null;
 		try {
@@ -97,7 +101,7 @@ public class UserDaoImpl implements IUserDao {
 
 			List<User> list = query.list();
 			t.commit();
-			return list.size();
+			return list.get(0);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -140,8 +144,10 @@ public class UserDaoImpl implements IUserDao {
 	 * @author cz
 	 * @time 2018年4月25日下午9:27:34
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public User findByMailCode(String mailCode) {
+		logger.info("待查找的邮箱验证码:"+mailCode);
 		Transaction tx =null;
 		String hql = "";
 		try {
@@ -176,8 +182,10 @@ public class UserDaoImpl implements IUserDao {
 	 * @author cz
 	 * @time 2018年4月26日下午5:00:01
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public int checkUsernameAndEmail(String username, String email) {
+	public User checkUsernameAndEmail(String username, String email) {
+		logger.info("邮箱："+email+"身份："+username);
 		Transaction tx =null;
 		String hql = "";
 		try {
@@ -189,11 +197,12 @@ public class UserDaoImpl implements IUserDao {
 			query.setParameter("email", email);
 			List<User> list = query.list();
 			tx.commit();
-			logger.info("邮箱及身份查询");
-			return list.size();
+			logger.info("邮箱及身份查询,已查到");
+			return list.get(0);
 		}catch(Exception e) {
 			e.printStackTrace();
-			return 0;
+			logger.info("邮箱及身份查询,未查到");
+			return null;
 		}finally {
 			if(tx!=null)
 				tx = null;
@@ -208,6 +217,7 @@ public class UserDaoImpl implements IUserDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public UserDetails listUserDetailsByUserId(String userId) {
+		logger.info("待查找的userId:"+userId);
 		Transaction tx =null;
 		String hql = "";
 		try {
