@@ -4,14 +4,22 @@
  */
 package pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 
+ * 为了实现联合主键，必须满足两个条件
+ * 1.实现序列号接口
+ * 2.重写equals和hashCode方法
  * @author cz
  * 2018年4月25日下午4:18:31
  */
-public class ManagerDetails {
+public class ManagerDetails implements Serializable{
+	/**
+	 * 下午8:21:10
+	 * power
+	 */
+	private static final long serialVersionUID = 4483327113626192159L;
 	private String managerId;//管理员Id;
 	private Integer accountType;//支付账户类型;
 	private String accountId;//支付账户Id
@@ -57,6 +65,28 @@ public class ManagerDetails {
 		this.updateTime = updateTime;
 	}
 	
-	
+	@Override
+	public int hashCode() {  
+        return getAccountId().hashCode()*11 +   
+                getManagerId().hashCode();  
+    }  
+      
+	@Override
+    public boolean equals(Object obj) {  
+        if(null == obj){  
+            return false;  
+        }  
+        if(this == obj){  
+            return true;  
+        }  
+        if(obj.getClass() == ManagerDetails.class){  
+            ManagerDetails m = (ManagerDetails)obj;  
+            if(m.getAccountId().equals(getAccountId()) &&  
+                    m.getManagerId().equals(getManagerId())){  
+                return true;  
+            }  
+        }  
+        return false;  
+    }  
 
 }

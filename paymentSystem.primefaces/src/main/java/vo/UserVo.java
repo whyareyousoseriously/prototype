@@ -4,6 +4,7 @@
  */
 package vo;
 
+import java.sql.Blob;
 import java.util.Date;
 
 /**
@@ -12,13 +13,14 @@ import java.util.Date;
  * 2018年4月26日下午6:45:40
  */
 public class UserVo {
-	//private String userId;	//用户id,视图中此字段也不用存在
+	private String userId;	//用户id,视图中此字段存在,用于定位图片
 	private String username; //用户名
 	//private String password; //用户密码,视图中密码不用存在
 	private String email; //邮箱账号
 	private String active; //邮箱激活状态 ,在视图中active采用String字段方便理解和显示
 	//private String mailCode; //邮箱激活码，视图中邮箱激活码也不用存在
-	
+	private String photoName;//头像名称
+	private Blob photoDetails;//头像细节
 	private String realName;//真实姓名;
 	private String idNumber;//身份证号
 	private String sex;//性别；同激活状态一样，sex字段也采用String字段，方便理解和显示
@@ -27,6 +29,31 @@ public class UserVo {
 	private String address;//地址
 	
 	private Date loginTime; //登陆时间
+
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getPhotoName() {
+		return photoName;
+	}
+
+	public void setPhotoName(String photoName) {
+		this.photoName = photoName;
+	}
+
+	public Blob getPhotoDetails() {
+		return photoDetails;
+	}
+
+	public void setPhotoDetails(Blob photoDetails) {
+		this.photoDetails = photoDetails;
+	}
 
 	public String getUsername() {
 		return username;

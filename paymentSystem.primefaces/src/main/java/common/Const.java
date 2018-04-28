@@ -11,11 +11,54 @@ package common;
  */
 public class Const {
 	public static final String CURRENT_USER="currentUser";
+	public static final String CURRENT_MANAGER="currentManager";
 	public static final String USERNAME="username";
+	public static final String MANAGERNAME="managerName";
 	public static final String EMAIL="email";
+	public static final String ACCOUNTID="accountId";
 	public static final Integer UN_ACTIVE=0;
 	public static final Integer ACTIVE=1;
 	public static final Integer MAN = 1;
 	public static final Integer FEMALE = 0;
+	
+	public enum ActiveStatus{
+		ACTIVE(1,"已激活"),
+		UNACTIVE(0,"未激活");
+		ActiveStatus(int code,String value){
+			this.code=code;
+			this.value=value;
+		}
+		private String value;
+		private int code;
+		public String getValue() {
+			return value;
+		}
+		
+		public int getCode() {
+			return code;
+		}
+		
+		
+	}
+	public enum PayPlatformEnum{
+        
+		ALIPAY(1,"支付宝"),
+		WECHAT(0,"微信");
+		
+        PayPlatformEnum(int code,String value){
+            this.code = code;
+            this.value = value;
+        }
+        private String value;
+        private int code;
+
+        public String getValue() {
+            return value;
+        }
+
+        public int getCode() {
+            return code;
+        }
+    }
 
 }

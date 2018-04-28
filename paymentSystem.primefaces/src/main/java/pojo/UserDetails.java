@@ -4,6 +4,7 @@
  */
 package pojo;
 
+import java.sql.Blob;
 import java.util.Date;
 
 /**
@@ -15,6 +16,8 @@ public class UserDetails {
 	private String userId;// 用户id;
 	private String realName;// 真实姓名;
 	private String idNumber;// 身份证号
+	private String photoName; // 个人头像名字
+	private Blob photoDetails; // 个人头像内容
 	private Integer sex;// 性别；
 	private String occupation;// 职业
 	private String phone;// 手机号
@@ -22,6 +25,19 @@ public class UserDetails {
 	private Date createTime;// 创建时间
 	private Date updateTime;// 最近一次更新时间
 	
+	
+	public String getPhotoName() {
+		return photoName;
+	}
+	public void setPhotoName(String photoName) {
+		this.photoName = photoName;
+	}
+	public Blob getPhotoDetails() {
+		return photoDetails;
+	}
+	public void setPhotoDetails(Blob photoDetails) {
+		this.photoDetails = photoDetails;
+	}
 	public String getUserId() {
 		return userId;
 	}

@@ -192,3 +192,10 @@
 &emsp;&emsp;&emsp;&emsp;&emsp;解决：hibernate.cfg.xml中对userDetails.hbm.xml重复读取导致。<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;解决：解决了在页面redirect的时候FacesContext中提示信息的丢失<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;方法简述：FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题：头像上传功能失效<br>
+&emsp;&emsp;2018-4-28<br>
+&emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;猜测:多个h:form造成,最后一个form失效<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决：不是多个h:form造成的，而是p:panelGrid标签位置错误导致<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决：头像上传功能完成<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：管理用户模块重构完成，包括注册登陆更改密码发送激活邮件完善详细信息添加支付账户<br>

@@ -32,7 +32,7 @@ public class UserController {
 	private String passwordNew;//修改密码用的
 	private String restPasswordCheckCode;//重置密码所需的验证码
 	
-	private User currentUser;// 当前session中的user
+	
 	private static Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	// WCF Interface oriented programming
@@ -56,25 +56,7 @@ public class UserController {
 		this.restPasswordCheckCode = restPasswordCheckCode;
 	}
 
-	/**
-	 * 查询当前用户信息
-	 * @return
-	 * @author cz
-	 * @time 2018年4月26日下午12:18:49
-	 */
-	public User getCurrentUser() {
-		user = (User)this.getCurrentSession().getAttribute(Const.CURRENT_USER);
-		if(user==null) {
-			ServerResponse.createByErrorMessage("用户未登录，无法获取当前用户的信息");
-		}
-		ServerResponse.createBySuccessMessage("获取当前用户信息成功");
-		return currentUser;
-	}
-
-	public void setCurrentUser(User currentUser) {
-		this.currentUser = currentUser;
-	}
-
+	
 	public User getUser() {
 		return user;
 	}
@@ -150,7 +132,7 @@ public class UserController {
 			session.setAttribute(Const.CURRENT_USER, response.getData());
 			logger.info("当前user写入session成功");
 			this.showActive();// 将账号状态加入FacesMessage
-			return "u_home?faces-redirect=true";
+			return "/user/u_home?faces-redirect=true";
 		} else {
 			
 			logger.info("账号:" + this.user.getUsername() + "登陆失败");
@@ -193,12 +175,14 @@ public class UserController {
 	 * @author cz
 	 * @time 2018年4月26日上午11:26:30
 	 */
-	public void logout() {
+	public String logout() {
 		// 获取当前session
 		HttpSession session = this.getCurrentSession();
 		// 移除当前session中的当前用户
 		session.removeAttribute(Const.CURRENT_USER);
 		ServerResponse.createBySuccessMessage("用户登出成功");
+		//返回初始页面
+		return "/index?faces-redirect=true";
 	}
 	
 	/**
@@ -212,9 +196,9 @@ public class UserController {
 		ServerResponse<String> response = iUserService.sendCheckCodeEmail(username,email);
 		if(response.isSuccess()) {
 			//发送修改密码验证码成功
-			return "resetPassword?faces-redirect=true";
+			return "/user/resetPassword?faces-redirect=true";
 		}else {
-			return "sendCheckCodeEmail?faces-redirect=true";
+			return "/user/sendCheckCodeEmail?faces-redirect=true";
 		}
 	}
 	/**
@@ -222,14 +206,29 @@ public class UserController {
 	 * @author cz
 	 * @time 2018年4月26日下午12:20:08
 	 */
-	public String forgetRestPassword() {
-		ServerResponse<String> response = iUserService.forgetRestPassword(username,passwordNew,restPasswordCheckCode);
+	public String forgetResetPassword() {
+		ServerResponse<String> response = iUserService.forgetResetPassword(username,passwordNew,restPasswordCheckCode);
 		if(response.isSuccess()) {
 			//提示信息，已经在forgetRestPassword方法中加了
-			return "login?faces-redirect=true";
+			return "/login?faces-redirect=true";
 		}else {
 			//什么也不做，停留在原界面
-			return "resetPassword?faces-redirect=true";
+			return "/user/resetPassword?faces-redirect=true";
+		}
+	}
+	
+	public String resetPasswordDirect() {
+		User user = (User) this.getCurrentSession().getAttribute(Const.CURRENT_USER);
+		if(user==null) {
+			//当前session中用户为空，所以未登录，跳转到登录页面
+			ServerResponse.createByErrorMessage("用户未登录，无法进行直接修改密码操作,跳转登录界面");
+			return "/login?faces-redirect=true";
+		}
+		ServerResponse<String> response = iUserService.restPasswordDirect(user.getUsername(),passwordNew);
+		if(response.isSuccess()) {
+			return "/user/u_home?face-redirect=true";
+		}else {
+			return "/user/resetPasswordDirect?faces-redirect=true";
 		}
 	}
 

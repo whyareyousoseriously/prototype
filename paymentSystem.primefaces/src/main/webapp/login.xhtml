@@ -14,15 +14,21 @@
 		<p:fieldset legend="(登陆)Welcome to login">
 			<p:accordionPanel>
 				<p:tab title="一般用户登陆">
-					<ui:include src="/WEB-INF/userPage/u_login.xhtml"/>
-					<a href="sendCheckCodeEmail.jsf">忘记密码?</a>
+					<ui:include src="/WEB-INF/userPage/u_login.xhtml" />
+					<h:form>
+						<p:commandButton value="忘记密码"
+							action="/user/sendCheckCodeEmail.xhtml?faces-redirect=true"></p:commandButton>
+					</h:form>
 				</p:tab>
 				<p:tab title="管理用户登陆">
-					<ui:include src="/WEB-INF/rootPage/r_login.xhtml"/>
-					<a href="sendCheckCodeEmail.jsf">忘记密码?</a>
+					<ui:include src="/WEB-INF/rootPage/r_login.xhtml" />
+					<h:form>
+						<p:commandButton value="忘记密码"
+							action="/manager/sendCheckCodeEmail.xhtml?faces-redirect=true"></p:commandButton>
+					</h:form>
 				</p:tab>
 			</p:accordionPanel>
-			
+
 		</p:fieldset>
 
 

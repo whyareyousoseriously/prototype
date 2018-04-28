@@ -81,7 +81,7 @@ public interface IUserService {
 	 * @author cz
 	 * @time 2018年4月27日下午3:07:46
 	 */
-	ServerResponse<String> forgetRestPassword(String username, String passwordNew, String restPasswordCheckCode);
+	ServerResponse<String> forgetResetPassword(String username, String passwordNew, String restPasswordCheckCode);
 
 	/**
 	 * 保存用户的详细信息
@@ -91,4 +91,14 @@ public interface IUserService {
 	 * @time 2018年4月27日下午5:07:02
 	 */
 	ServerResponse<UserDetails> saveUserDetials(UserDetails userDetails);
+
+	/**
+	 * 直接修改密码，前提是用户已登录
+	 * @param username
+	 * @param passwordNew
+	 * @return
+	 * @author cz
+	 * @time 2018年4月28日下午1:50:16
+	 */
+	ServerResponse<String> restPasswordDirect(String username, String passwordNew);
 }

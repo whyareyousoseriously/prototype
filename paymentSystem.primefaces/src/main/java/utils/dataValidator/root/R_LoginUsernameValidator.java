@@ -60,7 +60,7 @@ public class R_LoginUsernameValidator implements Validator, ClientValidator{
 		}
 		if((arg2.toString()).length()<4||(arg2.toString()).length()>8) {
 			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Validation Error",arg2+"用户名长度必须为4-8字符"));
-		}else if(!DataSearchUtil.duplicateCheckingData("Root","username",arg2.toString())) {
+		}else if(!DataSearchUtil.duplicateCheckingData("Manager","managerName",arg2.toString())) {
 			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"Validation Error",arg2+"不存在"));
 		}
 			

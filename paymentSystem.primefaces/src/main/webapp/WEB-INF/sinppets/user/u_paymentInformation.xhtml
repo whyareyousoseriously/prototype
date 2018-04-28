@@ -1,21 +1,42 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<div class="ui-g">
+		<div class="ui-g-10" align="right">
+			<h:form>
+				<p:commandButton value="刷新"
+					action="addUserDetails.xhtml?faces-redirect=true"
+					update=":#{p:component('showItemVo')}">
+				</p:commandButton>
+			</h:form>
+		</div>
+		<div class="ui-g-2" align="right">
+			<h:form>
+				<p:commandButton value="前去支付"
+					action="addUserDetails.xhtml?faces-redirect=true"
+					update=":#{p:component('showItemVo')}">
+				</p:commandButton>
+			</h:form>
+		</div>
+	</div>
+	<div align="center">
+		<p:panelGrid columns="2" id="showItemVo">
+			<f:facet name="header">
+				<p:outputLabel value="缴费详情"></p:outputLabel>
+			</f:facet>
 
-<p:panelGrid columns="2"  >
-  <f:facet name="header">
-    	缴费信息
-  </f:facet>
-  <p:panelGrid columns="2" styleClass="formTable">
-  	<p:button onclick="#{ItemBean.showItem}">查询</p:button>
-  	<p:outputLabel>支付条目:</p:outputLabel>
-  	<p:outputLabel>#{ItemBean.payment_name}</p:outputLabel>
- 	
- 	<p:outputLabel>支付状态:</p:outputLabel>
- 	<p:outputLabel>#{ItemBean.payment_statuts}</p:outputLabel>
-  </p:panelGrid>
-</p:panelGrid>
+			<p:panelGrid columns="2" styleClass="formTable">
+				<p:outputLabel>支付条目:</p:outputLabel>
+				<p:outputLabel>#{ItemBean.payment_name}</p:outputLabel>
+
+				<p:outputLabel>支付状态:</p:outputLabel>
+				<p:outputLabel>#{ItemBean.payment_statuts}</p:outputLabel>
+			</p:panelGrid>
+		</p:panelGrid>
+	</div>
+
+
 
 </ui:composition>

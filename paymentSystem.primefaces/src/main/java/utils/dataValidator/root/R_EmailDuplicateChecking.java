@@ -66,7 +66,7 @@ public class R_EmailDuplicateChecking implements Validator, ClientValidator{
 			return;
 		}else if(!pattern.matcher(arg2.toString()).matches()){
 			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"validator error",arg2+"不合法"));
-		}else if(DataSearchUtil.duplicateCheckingData("Root", "email", arg2.toString())){
+		}else if(DataSearchUtil.duplicateCheckingData("Manager", "email", arg2.toString())){
 			throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,"validator error",arg2+"已被注册"));
 		}
 				

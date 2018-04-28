@@ -70,7 +70,9 @@ public interface IUserDao {
 	User checkUsernameAndEmail(String username, String email);
 
 	/**
+	 * 用来查询数据库该数据是否存在，通过userId
 	 * 获取用户的详细信息
+	 * 并且给更新和创建提供判断支持
 	 * @param userId
 	 * @return
 	 * @author cz
@@ -86,4 +88,6 @@ public interface IUserDao {
 	 * @time 2018年4月27日下午5:13:27
 	 */
 	UserDetails saveOrUpdate(UserDetails userDetails);
+
+	
 }
