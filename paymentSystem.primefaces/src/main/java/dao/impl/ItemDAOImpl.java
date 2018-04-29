@@ -1,5 +1,5 @@
 /**
- * 下午6:42:35
+ * 下午11:07:25
  * power
  */
 package dao.impl;
@@ -9,82 +9,149 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import dao.ItemDAO;
-import entity.Item;
-import entity.Root;
-import utils.db.DBOperation;
+import dao.IItemDao;
+import pojo.Item;
+
 import utils.db.MyHibernateSessionFactory;
 
 /**
- * @author cz
- *
- * 2018年3月10日下午6:42:35
+ * 
+ * @author cz 2018年4月28日下午11:07:25
  */
-public class ItemDAOImpl implements ItemDAO {
+public class ItemDaoImpl implements IItemDao {
 
-	/* (non-Javadoc)
-	 * @see dao.ItemDAO#addItem(entity.Item)
+	private static final Logger logger = LoggerFactory.getLogger(ItemDaoImpl.class);
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see dao.IItemDao#saveOrUpdate(pojo.Item)
+	 * 
 	 * @author cz
-	 * @time 2018年3月11日下午6:40:42
+	 * 
+	 * @time 2018年4月28日下午11:08:25
 	 */
 	@Override
-	public String addItem(Item item) {
-		// TODO Auto-generated method stub
-		//调用工具类DBOperation
-		String add_feedback = DBOperation.addData("item", item);
-		if("add_success".equals(add_feedback)) {
-			return "add_success";
-		}else {
-			return "add_failure";
+	public Item saveOrUpdate(Item item) {
+		// 创建一个事务
+		Transaction t = null;
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			t = session.beginTransaction();
+			session.saveOrUpdate(item);
+			t.commit();
+			logger.info(item.toString() + "插入成功");
+			return item;// 插入成功
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(item.toString() + "插入失败");
+			return null;// 插入失败
+		} finally {
+			if (t != null) {
+				t = null;
+			}
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see dao.ItemDAO#deleteItemByCondition(java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see dao.IItemDao#listItemByManagerId(java.lang.String)
+	 * 
 	 * @author cz
-	 * @time 2018年3月11日下午6:40:42
+	 * 
+	 * @time 2018年4月28日下午11:29:14
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public String deleteItemByCondition(String searchCondition, String searchValue) {
-		// TODO Auto-generated method stub
-		//调用工具类DBOperation
-		String delete_feedback = DBOperation.deleteDataByCondition("Item", searchCondition, searchValue);
-		if("delete_success".equals(delete_feedback))
-			return "delete_success";
-		else
-			return "delete_failure";
-		
-	}
-	/* (non-Javadoc)
-	 * @see dao.ItemDAO#updateItemByCondition(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
-	 * @author cz
-	 * @time 2018年3月11日下午7:50:42
-	 */
-	@Override
-	public String updateItemByCondition(String searchCondition, String searchValue, String updateCondition,
-			String updateValue) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see dao.ItemDAO#getItemByCondition(java.lang.String, java.lang.String)
-	 * @author cz
-	 * @time 2018年3月11日下午7:53:44
-	 */
-	@Override
-	public List<Item> getItemByCondition(String searchCondition, String searchValue) {
-		// TODO Auto-generated method stub
-		//调用工具类dbOperation
-		List<Item> list = DBOperation.getDataByCondition("Item", searchCondition, searchValue);
-		if(list.size()>0) {
-			System.out.println("对表Item的查询操作成功"+"searchCondition="+searchCondition+"searchValue"+searchValue);
+	public List<Item> listItemByManagerId(String managerId) {
+		logger.info("待查找的管理员id:" + managerId);
+		// 创建一个事务
+		Transaction t = null;
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			t = session.beginTransaction();
+			String hql = "";
+			hql = "from Item where managerId =:searchValue";
+			Query query = session.createQuery(hql);
+			query.setParameter("searchValue", managerId);
+			List<Item> list = query.list();
+			t.commit();
 			return list;
-		}else {
-			System.out.println("对表Item的查询操作失败"+"searchCondition="+searchCondition+"searchValue"+searchValue);
+		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
+		} finally {
+			if (t != null)
+				t = null;
 		}
 	}
+
+	/* (non-Javadoc)
+	 * @see dao.IItemDao#selectItemByItemId(java.lang.String)
+	 * @author cz
+	 * @time 2018年4月29日上午12:34:40
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Item selectItemByItemId(String itemId) {
+		logger.info("待查找的条目id:" + itemId);
+		// 创建一个事务
+		Transaction t = null;
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			t = session.beginTransaction();
+			String hql = "";
+			hql = "from Item where itemId =:searchValue";
+			Query query = session.createQuery(hql);
+			query.setParameter("searchValue", itemId);
+			List<Item> list = query.list();
+			t.commit();
+			return list.get(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			if (t != null)
+				t = null;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see dao.IItemDao#deleteItemByItemId(java.lang.String)
+	 * @author cz
+	 * @time 2018年4月29日上午1:27:00
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Item deleteItemByItemId(String itemId) {
+		logger.info("待查找的条目id:" + itemId);
+		// 创建一个事务
+		Transaction t = null;
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			t = session.beginTransaction();
+			String hql = "";
+			hql = "from Item where itemId =:searchValue";
+			Query query = session.createQuery(hql);
+			query.setParameter("searchValue", itemId);
+			List<Item> list = query.list();
+			//再删除
+			session.delete(list.get(0));
+			t.commit();
+			return list.get(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			if (t != null)
+				t = null;
+		}
+	}
+
 	
+
 }

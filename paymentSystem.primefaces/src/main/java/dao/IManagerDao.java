@@ -93,4 +93,21 @@ public interface IManagerDao {
 	 */
 	ManagerDetails checkExistByAccountIdAndManagerId(String accountId, String managerId);
 
+	/**
+	 * @param managerId
+	 * @param code
+	 * @return
+	 * @author cz
+	 * @time 2018年4月29日上午11:58:05
+	 */
+	List<ManagerDetails> listManagerDetailsByManagerIdAndActive(String managerId, int code);
+
+	/**
+	 * @param accountId
+	 * @return
+	 * @author cz
+	 * @time 2018年4月29日下午1:33:45
+	 */
+	ManagerDetails selectManagerDetailsByAccountId(String accountId);
+
 }

@@ -297,4 +297,37 @@ public class ManagerServiceImpl implements IManagerService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see service.IManagerService#listManagerDetailsByManagerIdAndActive(java.lang.String, int)
+	 * @author cz
+	 * @time 2018年4月29日上午11:56:49
+	 */
+	@Override
+	public ServerResponse<List<ManagerDetails>> listManagerDetailsByManagerIdAndActive(String managerId, int code) {
+		List<ManagerDetails> managerDetailsList = iManagerDao.listManagerDetailsByManagerIdAndActive(managerId,code);
+		if(managerDetailsList.isEmpty()) {
+			//获取信息失败
+			return ServerResponse.createByErrorMessage("获取支付账户信息失败没有存储支付账户或没有已经激活的账户");
+		}else {
+			return ServerResponse.createBySuccess("获取支付账户信息成功", managerDetailsList);
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see service.IManagerService#listManagerDetailsByAccountId(java.lang.String)
+	 * @author cz
+	 * @time 2018年4月29日下午1:32:45
+	 */
+	@Override
+	public ServerResponse<ManagerDetails> selectManagerDetailsByAccountId(String accountId) {
+		ManagerDetails managerDetailsList = iManagerDao.selectManagerDetailsByAccountId(accountId);
+		if(managerDetailsList==null) {
+			//获取信息失败
+			//这个只是查找账户是不是存在，用在给itemView中的itemVo赋值,集合遍历，所以不用重复提示错误信息
+			return ServerResponse.createByError();
+		}else {
+			return ServerResponse.createBySuccess(managerDetailsList);
+		}
+	}
+
 }

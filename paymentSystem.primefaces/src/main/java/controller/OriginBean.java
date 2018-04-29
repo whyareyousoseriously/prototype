@@ -4,7 +4,7 @@
  */
 package controller;
 
-import javax.faces.bean.ManagedBean;
+
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -47,6 +47,7 @@ public class OriginBean {
 	public String toString() {
 		return "OriginBean [originID=" + originID + ", dbName=" + dbName + "]";
 	}
+	@SuppressWarnings("unused")
 	public  String createTable() {
 		//create a configuration object;
 		Configuration config = new Configuration().configure();

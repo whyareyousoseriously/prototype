@@ -4,6 +4,7 @@
 <!-- Generated 2018-4-25 16:53:29 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="pojo.Item" table="ITEM">
+        
         <id name="itemId" type="java.lang.String">
             <column name="ITEMID" />
             <generator class="uuid" />
@@ -16,6 +17,12 @@
         </property>
         <property name="price" type="java.math.BigDecimal">
             <column name="PRICE" />
+        </property>
+         <property name="accountId" type="java.lang.String">
+            <column name="ACCOUNTID" />
+        </property>
+        <property name="active" type="java.lang.Integer">
+            <column name="ACTIVE" />
         </property>
         <property name="createTime" type="java.util.Date">
             <column name="CREATETIME" />

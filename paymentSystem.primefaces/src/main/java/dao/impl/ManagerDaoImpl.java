@@ -331,4 +331,72 @@ public class ManagerDaoImpl implements IManagerDao {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.IManagerDao#listManagerDetailsByManagerIdAndActive(java.lang.String, int)
+	 * @author cz
+	 * @time 2018年4月29日上午11:59:17
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ManagerDetails> listManagerDetailsByManagerIdAndActive(String managerId, int code) {
+		logger.info("管理Id：" + managerId + "支付账号激活状态：" + code);
+		Transaction tx = null;
+		String hql = "";
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			tx = session.beginTransaction();
+			hql = "from ManagerDetails Where managerId =:managerId and active =:active";
+			Query query = session.createQuery(hql);
+			query.setParameter("managerId", managerId);
+			query.setParameter("active", code);
+			List<ManagerDetails> list = query.list();
+			tx.commit();
+			logger.info("该管理用户已经激活的支付账号信息已查到");
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.info("没有找到该管理用户的已经激活的支付账号,未查到");
+			return null;
+		} finally {
+			if (tx != null)
+				tx = null;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see dao.IManagerDao#selectManagerDetailsByAccountId(java.lang.String)
+	 * @author cz
+	 * @time 2018年4月29日下午1:35:02
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public ManagerDetails selectManagerDetailsByAccountId(String accountId) {
+		logger.info("账户Id：" + accountId);
+		Transaction tx = null;
+		String hql = "";
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			tx = session.beginTransaction();
+			hql = "from ManagerDetails Where accountId =:accountId";
+			Query query = session.createQuery(hql);
+			query.setParameter("accountId", accountId);
+			List<ManagerDetails> list = query.list();
+			tx.commit();
+			if(list.isEmpty()) {
+				logger.info("根据accountId没有找到该管理用户,未查到");
+				return null;
+			}else {
+				return list.get(0);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.info("根据accountId没有找到该管理用户,未查到");
+			return null;
+		} finally {
+			if (tx != null)
+				tx = null;
+		}
+	}
+
 }

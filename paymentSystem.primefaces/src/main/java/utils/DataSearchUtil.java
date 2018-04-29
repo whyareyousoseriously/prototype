@@ -14,6 +14,7 @@ import utils.db.MyHibernateSessionFactory;
  * @date 2018-1-23
  * */
 public class DataSearchUtil {
+	@SuppressWarnings("rawtypes")
 	public static boolean duplicateCheckingData(String table,String condition,String conditionValue) {
 		/*
 		 * 数据查重

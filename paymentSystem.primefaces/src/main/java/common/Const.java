@@ -21,10 +21,10 @@ public class Const {
 	public static final Integer MAN = 1;
 	public static final Integer FEMALE = 0;
 	
-	public enum ActiveStatus{
+	public enum AccountStatus{
 		ACTIVE(1,"已激活"),
 		UNACTIVE(0,"未激活");
-		ActiveStatus(int code,String value){
+		AccountStatus(int code,String value){
 			this.code=code;
 			this.value=value;
 		}
@@ -38,6 +38,24 @@ public class Const {
 			return code;
 		}
 		
+		
+	}
+	public enum ItemStatus{
+		ACTIVE(1,"已上线"),
+		UNACTIVE(0,"未上线");
+		
+		ItemStatus(int code,String value){
+			this.code=code;
+			this.value=value;
+		}
+		private String value;
+		private int code;
+		public String getValue() {
+			return value;
+		}
+		public int getCode() {
+			return code;
+		}
 		
 	}
 	public enum PayPlatformEnum{

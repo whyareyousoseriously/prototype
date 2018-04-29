@@ -9,7 +9,7 @@ import java.util.List;
 import common.ServerResponse;
 import pojo.Manager;
 import pojo.ManagerDetails;
-import vo.ManagerDetailsVo;
+
 
 /**
  * 
@@ -80,5 +80,24 @@ public interface IManagerService {
 	 * @time 2018年4月28日下午6:39:56
 	 */
 	ServerResponse<ManagerDetails> saveManagerDetials(ManagerDetails managerDetails);
+
+	/**
+	 * 根据managerId和code查找集合
+	 * @param managerId
+	 * @param code
+	 * @return
+	 * @author cz
+	 * @time 2018年4月29日上午11:56:23
+	 */
+	ServerResponse<List<ManagerDetails>> listManagerDetailsByManagerIdAndActive(String managerId, int code);
+
+	/**
+	 * 根据accountId查找
+	 * @param accountId
+	 * @return
+	 * @author cz
+	 * @time 2018年4月29日下午1:32:06
+	 */
+	ServerResponse<ManagerDetails> selectManagerDetailsByAccountId(String accountId);
 
 }

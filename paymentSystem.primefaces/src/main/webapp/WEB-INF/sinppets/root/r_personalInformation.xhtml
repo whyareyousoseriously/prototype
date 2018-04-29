@@ -3,45 +3,79 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
+	<div class="ui-g">
+		<div class="ui-g-3">
+			<h:form>
+				<p:commandButton value="获取个人信息"
+					action="#{managerView.listManagerView}"
+					update=":#{p:component('showManagerView')}">
+				</p:commandButton>
+			</h:form>
+		</div>
+		<div class="ui-g-6"></div>
+		<div class="ui-g-3">
+			<h:form>
+				<p:commandButton value="添加支付账户"
+					action="addManagerDetails.xhtml?faces-redirect=true"
+					update=":#{p:component('showManagerView')}">
+				</p:commandButton>
+			</h:form>
+		</div>
+	</div>
+
+
 	<div align="center">
-		<p:panelGrid columns="2">
-			<f:facet name="header">
-				<p:outputLabel value="个人信息"></p:outputLabel>
-			</f:facet>
-			<p:panelGrid id="showManagerView" columns="2" styleClass="formTable">
 
-				<p:outputLabel>用户名:</p:outputLabel>
-				<p:outputLabel>#{managerView.managerVo.managerName}</p:outputLabel>
+		<h:form>
+			<p:dataTable id="showManagerView" styleClass="formTable"  var="ownManagerVo" value="#{managerView.managerVo}">
+				<f:facet name="header">
+					<p:outputLabel value="个人信息"></p:outputLabel>
+				</f:facet>
+				<p:column headerText="用户名">
+					<p:outputLabel value="#{ownManagerVo.managerName}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="用户类型">
+					<p:outputLabel value="管理用户"></p:outputLabel>
+				</p:column>
+				<p:column headerText="邮箱">
+					<p:outputLabel value="#{ownManagerVo.email}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="激活状态">
+					<p:outputLabel value="#{ownManagerVo.active}"></p:outputLabel>
+				</p:column>
 
-				<p:outputLabel>用户类型:</p:outputLabel>
-				<p:outputLabel value="管理用户"></p:outputLabel>
 
-				<p:outputLabel>邮箱:</p:outputLabel>
-				<p:outputLabel>#{managerView.managerVo.email}</p:outputLabel>
+			</p:dataTable>
+		</h:form>
 
-				<p:outputLabel>激活状态:</p:outputLabel>
-				<p:outputLabel>#{managerView.managerVo.active}</p:outputLabel>
 
-			</p:panelGrid>
-		</p:panelGrid>
 
 		<h:form id="showAccout">
-			<p:dataList value="#{managerView.managerDetailsVoList}" var="managerDetailsVo" type="unordered"
-				itemType="none" paginator="true" rows="10" styleClass="paginated">
+			<p:dataGrid value="#{managerView.managerDetailsVoList}" layout="grid"
+				var="managerDetailsVo" type="unordered" itemType="none"
+				paginator="true" rows="10" styleClass="paginated">
 				<f:facet name="header">
 
 				</f:facet>
-				<p:commandLink update="@form #{p:component('managerDetailsVoDetail')}"
-					oncomplete="PF('detailsVoDialog').show()" title="View Detail"
-					styleClass="ui-icon ui-icon-search"
-					style="float:left;margin-right:10px">
-					<f:setPropertyActionListener value="#{managerDetailsVo}"
-						target="#{managerView.managerDetailsVo}" />
-					<h:outputText value="#{car.brand}, #{car.year}" />
-				</p:commandLink>
-				<h:outputText value="账户id:#{managerDetailsVo.accountId}, 账户类型:#{managerDetailsVo.accountType}, 激活状态:#{managerDetailsVo.active}"
-					style="display:inline-block" />
-			</p:dataList>
+				<p:panel header="#{managerDetailsVo.accountType}"
+					style="text-align:center">
+					<h:panelGrid columns="1" style="width:100%">
+						<h:outputText value="账户id:#{managerDetailsVo.accountId}"
+							style="display:inline-block" />
+						<h:outputText value="激活状态:#{managerDetailsVo.active}"></h:outputText>
+						<h:outputText value="账户类型:#{managerDetailsVo.accountType}"></h:outputText>
+						<p:commandLink
+							update="@form #{p:component('managerDetailsVoDetail')}"
+							oncomplete="PF('detailsVoDialog').show()" title="View Detail"
+							styleClass="ui-icon ui-icon-search"
+							style="float:left;margin-right:10px">
+							<f:setPropertyActionListener value="#{managerDetailsVo}"
+								target="#{managerView.managerDetailsVo}" />
+						</p:commandLink>
+
+					</h:panelGrid>
+				</p:panel>
+			</p:dataGrid>
 
 			<p:dialog header="managerDetailsVo Info" widgetVar="detailsVoDialog"
 				modal="true" showEffect="fade" hideEffect="fade" resizable="false">
@@ -80,18 +114,7 @@
 		</h:form>
 
 
-		<h:form>
-			<p:commandButton value="获取个人信息"
-				action="#{managerView.listManagerView}"
-				update=":#{p:component('showManagerView')}">
-			</p:commandButton>
-		</h:form>
-		<h:form>
-			<p:commandButton value="添加账户"
-				action="addManagerDetails.xhtml?faces-redirect=true"
-				update=":#{p:component('showManagerView')}">
-			</p:commandButton>
-		</h:form>
+
 	</div>
 
 
