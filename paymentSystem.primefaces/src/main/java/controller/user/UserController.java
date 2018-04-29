@@ -5,6 +5,8 @@
 package controller.user;
 
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -21,6 +23,8 @@ import service.impl.UserServiceImpl;
  * 
  * @author cz 2018年4月25日下午5:30:20
  */
+@ManagedBean(name="userController")
+@SessionScoped
 public class UserController {
 	private String username;// 对应页面表格中username;
 	private String password;// 对应页面表格中password;

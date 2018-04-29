@@ -69,4 +69,20 @@ public interface IItemService {
 	 */
 	ServerResponse<Item> outLineItem(Item item);
 
+	/**
+	 * @param code
+	 * @return
+	 * @author cz
+	 * @time 2018年4月29日下午6:57:38
+	 */
+	ServerResponse<List<Item>> listItemByStatus(int code);
+
+	/**
+	 * @param itemId
+	 * @return
+	 * @author cz
+	 * @time 2018年4月29日下午7:59:52
+	 */
+	ServerResponse<Item> selectItemByItemId(String itemId);
+
 }

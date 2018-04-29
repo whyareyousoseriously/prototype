@@ -5,8 +5,6 @@
 package vo;
 
 
-import java.util.Date;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -24,9 +22,9 @@ public class ManagerVo {
 	private String email;//管理员邮箱
 	private String mailCode;//邮箱验证码；
 	private String active;//激活状态
-	private Date loginTime;//登录时间
-	private Date createTime;//创建时间
-	private Date updateTime;//最近一次登陆时间
+	private String loginTime;//登录时间
+	private String createTime;//创建时间
+	private String updateTime;//最近一次登陆时间
 	public String getManagerId() {
 		return managerId;
 	}
@@ -63,24 +61,25 @@ public class ManagerVo {
 	public void setActive(String active) {
 		this.active = active;
 	}
-	public Date getLoginTime() {
+	public String getLoginTime() {
 		return loginTime;
 	}
-	public void setLoginTime(Date loginTime) {
-		this.loginTime = loginTime;
-	}
-	public Date getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-	public Date getUpdateTime() {
+	public String getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(Date updateTime) {
+	public void setLoginTime(String loginTime) {
+		this.loginTime = loginTime;
+	}
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
 	}
+	
 	
 	
 	

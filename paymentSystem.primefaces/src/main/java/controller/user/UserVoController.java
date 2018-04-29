@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.IOException;
 import javax.faces.FacesException;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.imageio.stream.FileImageOutputStream;
@@ -25,6 +27,7 @@ import pojo.User;
 import pojo.UserDetails;
 import service.IUserService;
 import service.impl.UserServiceImpl;
+import utils.DateTimeUtil;
 import utils.db.MyHibernateSessionFactory;
 import vo.UserVo;
 
@@ -33,6 +36,8 @@ import vo.UserVo;
  * 
  * @author cz 2018年4月26日下午6:53:46
  */
+@ManagedBean(name="userVoController")
+@SessionScoped
 public class UserVoController {
 	private UserVo userVo;
 
@@ -217,7 +222,7 @@ public class UserVoController {
 		userVo.setAddress(userDetails.getAddress());
 		userVo.setEmail(user.getEmail());
 		userVo.setIdNumber(userDetails.getIdNumber());
-		userVo.setLoginTime(user.getLoginTime());
+		userVo.setLoginTime(DateTimeUtil.dateToStr(user.getLoginTime()));
 		userVo.setOccupation(userDetails.getOccupation());
 		userVo.setPhone(userDetails.getPhone());
 		userVo.setRealName(userDetails.getRealName());

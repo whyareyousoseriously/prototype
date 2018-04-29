@@ -4,14 +4,20 @@
  */
 package pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 
+ * 因为要存session所以最好实现序列化接口
  * @author cz
  * 2018年4月25日下午4:01:51
  */
-public class Manager {
+public class Manager implements Serializable{
+	/**
+	 * 下午10:07:57
+	 * power
+	 */
+	private static final long serialVersionUID = -7356332366349247399L;
 	private String managerId;//管理员id
 	private String managerName;//管理员昵称
 	private String managerPassword;//管理员密码;

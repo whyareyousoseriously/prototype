@@ -202,3 +202,4 @@
 &emsp;&emsp;2018-4-29<br>
 &emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;进行：完成支付条目的创建，更新，删除，发布上线和下线<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：完成用户的获取可支付条目，和进行支付的操作<br>

@@ -22,6 +22,7 @@ import pojo.ManagerDetails;
 
 import service.IManagerService;
 import service.impl.ManagerServiceImpl;
+import utils.DateTimeUtil;
 import utils.VoUtil;
 import vo.ManagerDetailsVo;
 import vo.ManagerVo;
@@ -90,12 +91,12 @@ public class ManagerView {
 			// 装填基本信息
 			// 给managerVo装填值
 			managerVo.setActive(VoUtil.readAccountStatus(manager.getActive()));
-			managerVo.setCreateTime(manager.getCreateTime());
+			managerVo.setCreateTime(DateTimeUtil.dateToStr(manager.getCreateTime()));
 			managerVo.setEmail(manager.getEmail());
-			managerVo.setLoginTime(manager.getLoginTime());
+			managerVo.setLoginTime(DateTimeUtil.dateToStr(manager.getLoginTime()));
 			managerVo.setManagerId(manager.getManagerId());
 			managerVo.setManagerName(manager.getManagerName());
-			managerVo.setUpdateTime(manager.getUpdateTime());
+			managerVo.setUpdateTime(DateTimeUtil.dateToStr(manager.getUpdateTime()));
 
 			// 调用iManagerService,获得详细信息，主要是支付账户
 			ServerResponse<List<ManagerDetails>> response = iManagerService
@@ -114,9 +115,9 @@ public class ManagerView {
 					managerDetailsVo.setAccountId(managerDetails.getAccountId());
 					managerDetailsVo.setAccountType(VoUtil.readAccountType(managerDetails.getAccountType()));
 					managerDetailsVo.setActive(VoUtil.readAccountStatus(managerDetails.getActive()));
-					managerDetailsVo.setCreateTime(managerDetails.getCreateTime());
+					managerDetailsVo.setCreateTime(DateTimeUtil.dateToStr(managerDetails.getCreateTime()));
 					managerDetailsVo.setManagerId(managerDetails.getManagerId());
-					managerDetailsVo.setUpdateTime(managerDetails.getUpdateTime());
+					managerDetailsVo.setUpdateTime(DateTimeUtil.dateToStr(managerDetails.getUpdateTime()));
 					managerDetailsVoList.add(managerDetailsVo);
 				}
 			}

@@ -12,6 +12,8 @@ import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.collect.Lists;
+
 import dao.IItemDao;
 import pojo.Item;
 
@@ -80,10 +82,17 @@ public class ItemDaoImpl implements IItemDao {
 			query.setParameter("searchValue", managerId);
 			List<Item> list = query.list();
 			t.commit();
-			return list;
+			if(list.isEmpty()) {
+				logger.error("根据管理员id"+managerId+"查找失败");
+				return Lists.newArrayList();
+			}else {
+				logger.info("根据管理员id"+managerId+"查找成功");
+				return list;
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return Lists.newArrayList();
 		} finally {
 			if (t != null)
 				t = null;
@@ -146,6 +155,43 @@ public class ItemDaoImpl implements IItemDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			if (t != null)
+				t = null;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see dao.IItemDao#listItemByStatus(int)
+	 * @author cz
+	 * @time 2018年4月29日下午6:59:38
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Item> listItemByStatus(int code) {
+		logger.info("待查找的条目状态:" + code);
+		// 创建一个事务
+		Transaction t = null;
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			t = session.beginTransaction();
+			String hql = "";
+			hql = "from Item where active =:searchValue";
+			Query query = session.createQuery(hql);
+			query.setParameter("searchValue", code);
+			List<Item> list = query.list();
+			t.commit();
+			if(list.isEmpty()) {
+				//查找失败
+				logger.error("没有已经激活的可支付条目");
+				return Lists.newArrayList();
+			}else {
+				logger.info("已找到激活的可支付条目");
+				return list;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Lists.newArrayList();
 		} finally {
 			if (t != null)
 				t = null;

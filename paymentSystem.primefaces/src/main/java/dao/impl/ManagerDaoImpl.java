@@ -14,6 +14,7 @@ import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.collect.Lists;
 
 import dao.IManagerDao;
 import pojo.Manager;
@@ -351,12 +352,18 @@ public class ManagerDaoImpl implements IManagerDao {
 			query.setParameter("active", code);
 			List<ManagerDetails> list = query.list();
 			tx.commit();
-			logger.info("该管理用户已经激活的支付账号信息已查到");
-			return list;
+			if(list.isEmpty()) {
+				logger.error("没有找到该管理用户的已经激活的支付账号,未查到");
+				return Lists.newArrayList();
+			}else {
+				logger.info("该管理用户已经激活的支付账号信息已查到");
+				return list;
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.info("没有找到该管理用户的已经激活的支付账号,未查到");
-			return null;
+			return Lists.newArrayList();
 		} finally {
 			if (tx != null)
 				tx = null;

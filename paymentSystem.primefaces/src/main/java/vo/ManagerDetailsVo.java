@@ -4,7 +4,6 @@
  */
 package vo;
 
-import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -22,8 +21,8 @@ public class ManagerDetailsVo {
 	private String accountType;//支付账户类型;
 	private String accountId;//支付账户Id
 	private String active;//支付账号是否启用
-	private Date createTime;//创建时间
-	private Date updateTime;//更新时间
+	private String createTime;//创建时间
+	private String updateTime;//更新时间
 	public String getManagerId() {
 		return managerId;
 	}
@@ -48,18 +47,19 @@ public class ManagerDetailsVo {
 	public void setActive(String active) {
 		this.active = active;
 	}
-	public Date getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-	public Date getUpdateTime() {
+	public String getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(Date updateTime) {
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
 	}
+	
 	
 	
 

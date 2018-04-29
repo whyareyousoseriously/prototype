@@ -51,4 +51,12 @@ public interface IItemDao {
 	 */
 	Item deleteItemByItemId(String itemId);
 
+	/**
+	 * @param code
+	 * @return
+	 * @author cz
+	 * @time 2018年4月29日下午6:59:32
+	 */
+	List<Item> listItemByStatus(int code);
+
 }

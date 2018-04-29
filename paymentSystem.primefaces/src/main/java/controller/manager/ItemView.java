@@ -302,9 +302,9 @@ public class ItemView {
 				managerDetailsVo.setAccountId(managerDetails.getAccountId());
 				managerDetailsVo.setAccountType(VoUtil.readAccountType(managerDetails.getAccountType()));
 				managerDetailsVo.setActive(VoUtil.readAccountStatus(managerDetails.getActive()));
-				managerDetailsVo.setCreateTime(managerDetails.getCreateTime());
+				managerDetailsVo.setCreateTime(DateTimeUtil.dateToStr(managerDetails.getCreateTime()));
 				managerDetailsVo.setManagerId(managerDetails.getManagerId());
-				managerDetailsVo.setUpdateTime(managerDetails.getUpdateTime());
+				managerDetailsVo.setUpdateTime(DateTimeUtil.dateToStr(managerDetails.getUpdateTime()));
 				managerDetailsVoList.add(managerDetailsVo);
 			}
 		}

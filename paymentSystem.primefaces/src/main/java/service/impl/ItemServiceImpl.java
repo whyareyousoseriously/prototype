@@ -123,5 +123,36 @@ public class ItemServiceImpl implements IItemService {
 			return ServerResponse.createByErrorMessage("下线支付条目失败");
 		}
 	}
+	/* (non-Javadoc)
+	 * @see service.IItemService#listItemByStatus(int)
+	 * @author cz
+	 * @time 2018年4月29日下午6:57:58
+	 */
+	@Override
+	public ServerResponse<List<Item>> listItemByStatus(int code) {
+		List<Item> itemList = iItemDao.listItemByStatus(code);
+		if(itemList.isEmpty()) {
+			//获取可以支付的条目成功
+			return ServerResponse.createByError();
+		}else {
+			//获取可支付 的条目成功
+			return ServerResponse.createBySuccess(itemList);
+		}
+	}
+	/* (non-Javadoc)
+	 * @see service.IItemService#selectItemByItemId(java.lang.String)
+	 * @author cz
+	 * @time 2018年4月29日下午8:00:21
+	 */
+	@Override
+	public ServerResponse<Item> selectItemByItemId(String itemId) {
+		Item item = iItemDao.selectItemByItemId(itemId);
+		if(item ==null) {
+			//查找失败
+			return ServerResponse.createByError();
+		}else {
+			return ServerResponse.createBySuccess(item);
+		}
+	}
 
 }

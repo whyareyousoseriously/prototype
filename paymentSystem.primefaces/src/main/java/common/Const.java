@@ -37,8 +37,23 @@ public class Const {
 		public int getCode() {
 			return code;
 		}
-		
-		
+	}
+	public enum PayStatus{
+		NO_PAY(10,"未支付"),
+		PAID(20,"已付款"),
+		UNKNOWN(0,"未知");
+		PayStatus(int code,String value){
+			this.code=code;
+			this.value=value;
+		}
+		private String value;
+		private int code;
+		public String getValue() {
+			return value;
+		}
+		public int getCode() {
+			return code;
+		}
 	}
 	public enum ItemStatus{
 		ACTIVE(1,"已上线"),

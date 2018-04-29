@@ -22,7 +22,7 @@
         	<mapping resource="UserDetails.hbm.xml" />
         	<mapping resource="ManagerDetails.hbm.xml"></mapping>
         	<mapping resource="ManagerUser.hbm.xml"></mapping>
-        	<mapping resource="UserItem.hbm.xml"></mapping>
+        	<mapping resource="PayInfo.hbm.xml"></mapping>
         	
         </session-factory>
 </hibernate-configuration>

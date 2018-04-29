@@ -4,9 +4,17 @@
  */
 package utils;
 
+
+
 import org.apache.commons.lang3.StringUtils;
 
 import common.Const;
+
+import pojo.Item;
+import pojo.ManagerDetails;
+import service.IManagerService;
+import service.impl.ManagerServiceImpl;
+import vo.ItemVo;
 
 /**
  * 给前后端数据转换，提供支持
@@ -14,6 +22,8 @@ import common.Const;
  * 2018年4月29日上午11:53:09
  */
 public class VoUtil {
+	private static IManagerService iManagerService = new ManagerServiceImpl();
+
 	/**
 	 * 给前端显示提供支持 暂时只识别微信，支付宝 0代表微信，1代表支付宝，非0非1，默认为支付宝 识别账户类型
 	 * 
@@ -113,5 +123,55 @@ public class VoUtil {
 		} else {
 			return Const.ItemStatus.UNACTIVE.getCode();
 		}
+	}
+	
+	public static String writePayStatus(Integer status) {
+		if(Const.PayStatus.PAID.getCode() ==status) {
+			return Const.PayStatus.PAID.getValue();
+		}
+		if(Const.PayStatus.NO_PAY.getCode()==status) {
+			return Const.PayStatus.NO_PAY.getValue();
+		}
+		return Const.PayStatus.UNKNOWN.getValue();
+	}
+	
+	public static Integer readPayStatus(String status) {
+		if(StringUtils.equals(Const.PayStatus.PAID.getValue(), status)) {
+			return Const.PayStatus.PAID.getCode();
+		}
+		if(StringUtils.equals(Const.PayStatus.NO_PAY.getValue(), status)) {
+			return Const.PayStatus.NO_PAY.getCode();
+		}
+		return Const.PayStatus.UNKNOWN.getCode();
+	}
+
+	/**
+	 * @param data
+	 * @return
+	 * @author cz
+	 * @time 2018年4月29日下午8:03:19
+	 */
+	public static ItemVo ItemToItemVo(Item data) {
+		if(data==null) {
+			return new ItemVo();
+		}
+		ItemVo itemVo = new ItemVo();
+		itemVo.setAccountId(data.getAccountId());
+		ManagerDetails managerDetails = iManagerService .selectManagerDetailsByAccountId(data.getAccountId())
+				.getData();
+		if (managerDetails == null) {
+			// 判空，防止出错
+			itemVo.setAccountType(null);
+		} else {
+			itemVo.setAccountType(VoUtil.readAccountType(managerDetails.getAccountType()));
+		}
+		itemVo.setActive(VoUtil.readAccountStatus(data.getActive()));
+		itemVo.setCreateTime(DateTimeUtil.dateToStr(data.getCreateTime()));
+		itemVo.setItemId(data.getItemId());
+		itemVo.setItemName(data.getItemName());
+		itemVo.setManagerId(data.getManagerId());
+		itemVo.setPrice(data.getPrice().toString());
+		itemVo.setUpdateTime(DateTimeUtil.dateToStr(data.getUpdateTime()));
+		return itemVo;
 	}
 }

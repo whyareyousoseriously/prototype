@@ -5,29 +5,4 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
 	
-	<managed-bean>
-	    <managed-bean-name>RootBean</managed-bean-name>
-	    <managed-bean-class>controller.RootBean</managed-bean-class>
-	    <managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-	    <managed-bean-name>OriginBean</managed-bean-name>
-	    <managed-bean-class>controller.OriginBean</managed-bean-class>
-	    <managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-	    <managed-bean-name>userController</managed-bean-name>
-	    <managed-bean-class>controller.user.UserController</managed-bean-class>
-	    <managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-	    <managed-bean-name>userVoController</managed-bean-name>
-	    <managed-bean-class>controller.user.UserVoController</managed-bean-class>
-	    <managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-	    <managed-bean-name>userVo</managed-bean-name>
-	    <managed-bean-class>vo.UserVo</managed-bean-class>
-	    <managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
 </faces-config>

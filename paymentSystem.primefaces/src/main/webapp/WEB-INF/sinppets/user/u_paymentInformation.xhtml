@@ -6,36 +6,178 @@
 	<div class="ui-g">
 		<div class="ui-g-10" align="right">
 			<h:form>
-				<p:commandButton value="刷新"
-					action="addUserDetails.xhtml?faces-redirect=true"
-					update=":#{p:component('showItemVo')}">
+				<p:commandButton value="刷新可支付的条目"
+					action = "#{userPayView.listItemVo}"
+					update=":#{p:component('showItemsForm_user')}">
 				</p:commandButton>
 			</h:form>
 		</div>
 		<div class="ui-g-2" align="right">
 			<h:form>
-				<p:commandButton value="前去支付"
-					action="addUserDetails.xhtml?faces-redirect=true"
-					update=":#{p:component('showItemVo')}">
+				<p:commandButton value="刷新已支付的条目"
+					action = "#{userPayView.listPayInfoVo}"
+					update=":#{p:component('showItemsForm_user_pay')}">
 				</p:commandButton>
 			</h:form>
 		</div>
 	</div>
-	<div align="center">
-		<p:panelGrid columns="2" id="showItemVo">
-			<f:facet name="header">
-				<p:outputLabel value="缴费详情"></p:outputLabel>
-			</f:facet>
+	<h:form id="showItemsForm_user_pay">
+		<p:growl id="growl" showDetail="true" sticky="true"></p:growl>
+		<p:dataTable var="payInfoVo" value="#{userPayView.payInfoVoList}"
+			rows="10" paginator="true" id="showItemsTable_user_pay">
+			<p:column headerText="支付条目名称">
+				<p:outputLabel value="#{payInfoVo.ownItemVo.itemName}"></p:outputLabel>
+			</p:column>
 
-			<p:panelGrid columns="2" styleClass="formTable">
-				<p:outputLabel>支付条目:</p:outputLabel>
-				<p:outputLabel>#{ItemBean.payment_name}</p:outputLabel>
+			<p:column headerText="价格">
+				<p:outputLabel value="#{payInfoVo.ownItemVo.price}"></p:outputLabel>
+			</p:column>
+			<p:column headerText="支付状态">
+				<p:outputLabel value="#{payInfoVo.status}"></p:outputLabel>
+			</p:column>
+			<p:column>
+				<p:outputLabel value="查看详情"></p:outputLabel>
+				<p:commandLink update="#{p:component('ownItemsdetails_user_pay')}"
+					oncomplete="PF('detailsDialog_user_pay').show()" title="View Detail"
+					styleClass="ui-icon ui-icon-search"
+					style="float:left;margin-right:10px">
+					<f:setPropertyActionListener value="#{payInfoVo}"
+						target="#{userPayView.payInfoVo}" />
+				</p:commandLink>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	<p:dialog header="已支付支付条目详细信息" widgetVar="detailsDialog_user_pay" modal="true"
+		showEffect="blind" hideEffect="explode" resizable="false">
+		<p:outputPanel id="ownItemsdetails_user_pay" style="text-align:center;">
+			<p:panelGrid columns="2" rendered="#{not empty itemView.itemVo}"
+				columnClasses="label,value">
 
-				<p:outputLabel>支付状态:</p:outputLabel>
-				<p:outputLabel>#{ItemBean.payment_statuts}</p:outputLabel>
+				<h:outputText value="支付条目名称:" />
+				<h:outputText value="#{userPayView.payInfoVo.ownItemVo.itemName}" />
+
+				<h:outputText value="支付条目价格:" />
+				<h:outputText value="$#{userPayView.payInfoVo.ownItemVo.price}" style="color:Red" />
+
+				<h:outputText value="支付条目管理者id:" />
+				<h:outputText value="#{userPayView.payInfoVo.ownItemVo.managerId}" />
+
+				<h:outputText value="支付条目状态:" />
+				<h:outputText value="#{userPayView.payInfoVo.status}" />
+
+				<h:outputText value="支付条目到账账户:" />
+				<h:outputText value="#{userPayView.payInfoVo.ownItemVo.accountId}" />
+
+				<h:outputText value="支付条目到账账户类型:" />
+				<h:outputText value="#{userPayView.payInfoVo.ownItemVo.accountType}" />
+
+				<h:outputText value="支付条目创建时间:" />
+				<h:outputText value="#{userPayView.payInfoVo.ownItemVo.createTime}" />
+
+				<h:outputText value="支付条目更新时间:" />
+				<h:outputText value="#{userPayView.payInfoVo.ownItemVo.updateTime}" />
+
 			</p:panelGrid>
-		</p:panelGrid>
-	</div>
+		</p:outputPanel>
+	</p:dialog>
+
+	<h:form id="showItemsForm_user">
+		<p:growl id="growl" showDetail="true" sticky="true"></p:growl>
+		<p:dataTable var="ownItems" value="#{userPayView.itemVoList}"
+			rows="10" paginator="true" id="showItemsTable_user">
+			<p:column headerText="支付条目名称">
+				<p:outputLabel value="#{ownItems.itemName}"></p:outputLabel>
+			</p:column>
+
+			<p:column headerText="价格">
+				<p:outputLabel value="#{ownItems.price}"></p:outputLabel>
+			</p:column>
+			<p:column headerText="状态">
+				<p:outputLabel value="待付款"></p:outputLabel>
+				<p:commandLink update="#{p:component('ownItemsdetails_user')}"
+					oncomplete="PF('detailsDialog_user').show()" title="View Detail"
+					styleClass="ui-icon ui-icon-search"
+					style="float:left;margin-right:10px">
+					<f:setPropertyActionListener value="#{ownItems}"
+						target="#{userPayView.itemVo}" />
+				</p:commandLink>
+			</p:column>
+			<p:column headerText="操作">
+				<p:commandButton value="支付" id="pay_Item"
+					update="#{p:component('payItemPanelGrid')}"
+					onclick="PF('payItemDialog').show()">
+					<f:setPropertyActionListener value="#{ownItems}"
+						target="#{userPayView.itemVo}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+	<p:dialog header="payItem" widgetVar="payItemDialog" modal="true">
+		<h:form id="pay_Item_form">
+
+			<p:panelGrid id="payItemPanelGrid">
+				<f:facet name="header">
+					<p:row>
+						<p:column colspan="4">支付</p:column>
+					</p:row>
+				</f:facet>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="#{userPayView.itemVo.itemName}"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:outputLabel value="#{userPayView.itemVo.price}"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:outputLabel value="#{userPayView.itemVo.active}"></p:outputLabel>
+					</p:column>
+
+				</p:row>
+			</p:panelGrid>
+			<p:commandButton value="确认支付" process="@form"
+				action="#{userPayView.pay}"
+				update=":#{p:component('showItemsForm_user')} pay_Item_form "
+				oncomplete="PF('payItemDialog').hide()">
+
+			</p:commandButton>
+		</h:form>
+	</p:dialog>
+
+	<p:dialog header="支付条目详细信息" widgetVar="detailsDialog_user" modal="true"
+		showEffect="blind" hideEffect="explode" resizable="false">
+		<p:outputPanel id="ownItemsdetails_user" style="text-align:center;">
+			<p:panelGrid columns="2" rendered="#{not empty itemView.itemVo}"
+				columnClasses="label,value">
+
+				<h:outputText value="支付条目名称:" />
+				<h:outputText value="#{userPayView.itemVo.itemName}" />
+
+				<h:outputText value="支付条目价格:" />
+				<h:outputText value="$#{userPayView.itemVo.price}" style="color:Red" />
+
+				<h:outputText value="支付条目管理者id:" />
+				<h:outputText value="#{userPayView.itemVo.managerId}" />
+
+				<h:outputText value="支付条目状态:" />
+				<h:outputText value="#{userPayView.itemVo.active}" />
+
+				<h:outputText value="支付条目到账账户:" />
+				<h:outputText value="#{userPayView.itemVo.accountId}" />
+
+				<h:outputText value="支付条目到账账户类型:" />
+				<h:outputText value="#{userPayView.itemVo.accountType}" />
+
+				<h:outputText value="支付条目创建时间:" />
+				<h:outputText value="#{userPayView.itemVo.createTime}" />
+
+				<h:outputText value="支付条目更新时间:" />
+				<h:outputText value="#{userPayView.itemVo.updateTime}" />
+
+			</p:panelGrid>
+		</p:outputPanel>
+	</p:dialog>
+
 
 
 

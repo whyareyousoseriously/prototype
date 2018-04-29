@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-4-29 16:13:52 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+	<class name="pojo.PayInfo" table="PAYINFO">
+		<composite-id>
+			<key-property name="userId" type="java.lang.String">
+				<column name="USERID"></column>
+			</key-property>
+			<key-property name="itemId" type="java.lang.String">
+				<column name="ITEMID"></column>
+			</key-property>
+			<generator class="assigned"></generator>
+		</composite-id>
+
+		<property name="payInfoDetailsId" type="java.lang.String">
+			<column name="PAYINFODETAILSID" />
+		</property>
+		<property name="status" type="java.lang.Integer">
+			<column name="STATUS" />
+		</property>
+		<property name="qrCode" type="java.lang.String">
+			<column name="QRCODE" />
+		</property>
+		<property name="createTime" type="java.util.Date">
+			<column name="CREATETIME" />
+		</property>
+		<property name="updateTime" type="java.util.Date">
+			<column name="UPDATETIME" />
+		</property>
+		<property name="payTime" type="java.util.Date">
+			<column name="PAYTIME" />
+		</property>
+	</class>
+</hibernate-mapping>

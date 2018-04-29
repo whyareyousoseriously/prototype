@@ -5,13 +5,18 @@
 package vo;
 
 import java.sql.Blob;
-import java.util.Date;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
 
 /**
  * 用户的view,供前端显示
  * @author cz
  * 2018年4月26日下午6:45:40
  */
+@ManagedBean
+@SessionScoped
 public class UserVo {
 	private String userId;	//用户id,视图中此字段存在,用于定位图片
 	private String username; //用户名
@@ -28,7 +33,7 @@ public class UserVo {
 	private String phone;//手机号
 	private String address;//地址
 	
-	private Date loginTime; //登陆时间
+	private String loginTime; //登陆时间
 
 	
 	public String getUserId() {
@@ -131,13 +136,15 @@ public class UserVo {
 		this.address = address;
 	}
 
-	public Date getLoginTime() {
+	public String getLoginTime() {
 		return loginTime;
 	}
 
-	public void setLoginTime(Date loginTime) {
+	public void setLoginTime(String loginTime) {
 		this.loginTime = loginTime;
 	}
+
+	
 	
 	
 
