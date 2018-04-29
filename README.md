@@ -160,3 +160,47 @@
 &emsp;&emsp;&emsp;&emsp;项目:volunteerSystem<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;问题:p:dialog中p:commandButton的action不起作用<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;解决:是controller种域的选择造成的,由于dialog在dataGrid中,所以对应的controller应该为session域,详情查看QuestionsAndAnswers<br>
+&emsp;&emsp;2018-4-22<br>
+&emsp;&emsp;&emsp;&emsp;项目:volunteerSystem<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题:图片存入数据库，用primefaces读取识别失效。<br>
+&emsp;&emsp;2018-4-23<br>
+&emsp;&emsp;&emsp;&emsp;项目:volunteerSystem<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题:在封装VO的时候，出现了多条数据，只重复最后一条数据的情况<br>
+&emsp;&emsp;2018-4-24<br>
+&emsp;&emsp;&emsp;&emsp;项目:volunteerSystem<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行:排除前端显示的造成的只显示最后一条数据的情况<br>
+&emsp;&emsp;2018-4-25<br>
+&emsp;&emsp;&emsp;&emsp;项目:volunteerSystem<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决:造成重复只显示最后一条数据的原因是，在ArrayList中add数据的时候，add的是引用，<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决：本来是想将申请空间放在循环外，提高效率结果造成了这种后果。<br>
+&emsp;&emsp;2018-4-26<br>
+&emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行:代码结构重构，加入常数类，高复用信息提示类，等<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：初步完成一般用户模块的代码重构<br>
+&emsp;&emsp;2018-4-27<br>
+&emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题:获取用户的详细信息的错误提示，没有显示<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决:p:growl添加到xhtml页面即可<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题：服务器重定向失败<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决：faces-redirect=true,而不是facesRedirect=true;<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题：p:growl没法正常显示<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;原因:服务器重定向导致信息丢失<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题：Target Unreachable,returned null,该问题出现在完善具体信息的页面<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决:在bean中空构造方法中，new变量的初始对象。<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题：[20:03:52.323][INFO][org.hibernate.cfg.Configuration][main] HHH000071: Duplicate import: pojo.UserDetails -> pojo.UserDetails<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;[20:03:52.323][INFO][org.hibernate.cfg.Configuration][main] HHH000071: Duplicate import: pojo.UserDetails -> UserDetails<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决：hibernate.cfg.xml中对userDetails.hbm.xml重复读取导致。<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决：解决了在页面redirect的时候FacesContext中提示信息的丢失<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;方法简述：FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;问题：头像上传功能失效<br>
+&emsp;&emsp;2018-4-28<br>
+&emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;猜测:多个h:form造成,最后一个form失效<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决：不是多个h:form造成的，而是p:panelGrid标签位置错误导致<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;解决：头像上传功能完成<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：管理用户模块重构完成，包括注册，登陆，更改密码，发送激活邮件，完善详细信息，添加支付账户<br>
+&emsp;&emsp;2018-4-29<br>
+&emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：完成支付条目的创建，更新，删除，发布上线和下线<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：完成用户的获取可支付条目，和进行支付的操作<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：添加数据库初始，前端远程操作origin<br>

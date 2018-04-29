@@ -20,5 +20,6 @@
         	<mapping resource="Donation.hbm.xml" />
         	<mapping resource="Root.hbm.xml" />
         	<mapping resource="Permition.hbm.xml" />
+        	<mapping resource="FileStorage.hbm.xml" />
         </session-factory>
 </hibernate-configuration>

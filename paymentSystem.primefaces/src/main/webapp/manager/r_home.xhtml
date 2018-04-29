@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>paymentSystem</title>
+</h:head>
+<h:body>
+
+	<p:growl id="growl" showDetail="true" sticky="true"></p:growl>
+	<div class="ui-g ui-widget-header ui-corner-all">
+
+		<div class="ui-g-9">
+			<div align="center">
+				<p:outputLabel>当前登录用户：#{managerController.managerName}</p:outputLabel>
+			</div>
+		</div>
+		<div class="ui-g-2">
+			<div align="right">
+				<h:form>
+					<p:commandButton value="密码修改"
+						action="/manager/resetPasswordDirect.xhtml?faces-redirect=true">
+					</p:commandButton>
+				</h:form>
+			</div>
+		</div>
+		<div class="ui-g-1">
+			<div align="center">
+				<h:form>
+					<p:commandButton value="注销" action="#{managerController.logout}"></p:commandButton>
+				</h:form>
+			</div>
+
+		</div>
+	</div>
+
+	<p:accordionPanel>
+
+		<p:tab title="主页">
+			<ui:include src="/WEB-INF/sinppets/root/r_introduce.xhtml" />
+		</p:tab>
+		<p:tab title="个人基本信息">
+			<ui:include src="/WEB-INF/sinppets/root/r_personalInformation.xhtml" />
+		</p:tab>
+
+		<p:tab title="发起缴费项目">
+			<ui:include
+				src="/WEB-INF/sinppets/root/r_addPaymentInformation.xhtml"></ui:include>
+		</p:tab>
+
+		<!-- <p:tab title="文件上传">
+			<ui:include src="/WEB-INF/sinppets/root/r_uploadAndDownload.xhtml"></ui:include>
+		</p:tab> -->
+	</p:accordionPanel>
+
+</h:body>
+</html>

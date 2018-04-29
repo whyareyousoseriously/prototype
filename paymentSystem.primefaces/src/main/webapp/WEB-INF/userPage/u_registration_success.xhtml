@@ -12,9 +12,10 @@
 	<div align="center">
 		<h2 class ="ui-widget-header ui-corner-all">成功注册</h2>
 		<p:fieldset legend="Successfully Registered">
-			<h1>恭喜你 #{UserBean.username},成功注册,账户类型:#{UserBean.type}请尽快激活</h1>
-			<p:outputLabel>账号为:#{UserBean.username}</p:outputLabel>
-			<a href="login.jsf">返回去登陆(back to login)</a>
+			<h1>恭喜你 #{userController.username},成功注册请尽快激活</h1>
+			<p:outputLabel>账号为:#{userController.username}</p:outputLabel>
+			<a href="login.jsf">返回去登陆</a>
+			<a href="register.jsf">继续注册</a>
 		</p:fieldset>
 		
 	</div>

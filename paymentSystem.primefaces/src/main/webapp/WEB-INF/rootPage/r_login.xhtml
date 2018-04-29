@@ -13,39 +13,39 @@
 		<p:panelGrid>
 			<f:facet name="header">
 				<p:row>
-					<p:column colspan="3">管理登陆(login)</p:column>
+					<p:column colspan="3">管理登陆</p:column>
 				</p:row>
 			</f:facet>
 			<p:row>
 				<p:column>
-					<p:outputLabel>用户名(username):</p:outputLabel>
+					<p:outputLabel>用户名:</p:outputLabel>
 				</p:column>
 				<p:column>
-					<p:inputText value="#{RootBean.username}" required="true"
-						id="username" requiredMessage="用户名不能为空">
+					<p:inputText value="#{managerController.managerName}"
+						required="true" id="managerName" requiredMessage="用户名不能为空">
 						<f:validator validatorId="R_LoginUsernameValidator"></f:validator>
-						<p:ajax update="username-error" event="blur" />
+						<p:ajax update="managerName-error" event="blur" />
 					</p:inputText>
 				</p:column>
 				<p:column>
-					<p:message for="username" id="username-error" />
+					<p:message for="managerName" id="managerName-error" />
 				</p:column>
 
 			</p:row>
 
 			<p:row>
 				<p:column>
-					<p:outputLabel>密码(password):</p:outputLabel>
+					<p:outputLabel>密码:</p:outputLabel>
 				</p:column>
 				<p:column>
-					<p:password value="#{RootBean.password}" required="true"
-						id="password" requiredMessage="密码不能为空">
+					<p:password value="#{managerController.managerPassword}"
+						required="true" id="managerPassword" requiredMessage="密码不能为空">
 						<f:validator validatorId="R_PasswordValidator"></f:validator>
-						<p:ajax update="password-error" event="blur" />
+						<p:ajax update="managerPassword-error" event="blur" />
 					</p:password>
 				</p:column>
 				<p:column>
-					<p:message for="password" id="password-error" />
+					<p:message for="managerPassword" id="managerPassword-error" />
 				</p:column>
 
 			</p:row>
@@ -53,8 +53,8 @@
 			<p:row>
 				<p:column colspan="3" style="text-align:center">
 					<p:commandButton value="登录(login)" process="@form"
-						update="username-error password-error"
-						action="#{RootBean.doLogin}">
+						update="managerName-error managerPassword-error"
+						action="#{managerController.doLogin}">
 					</p:commandButton>
 				</p:column>
 			</p:row>

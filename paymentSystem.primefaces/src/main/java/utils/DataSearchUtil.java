@@ -6,7 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import db.MyHibernateSessionFactory;
+import utils.db.MyHibernateSessionFactory;
 
 /*
  * 数据查询
@@ -14,6 +14,7 @@ import db.MyHibernateSessionFactory;
  * @date 2018-1-23
  * */
 public class DataSearchUtil {
+	@SuppressWarnings("rawtypes")
 	public static boolean duplicateCheckingData(String table,String condition,String conditionValue) {
 		/*
 		 * 数据查重

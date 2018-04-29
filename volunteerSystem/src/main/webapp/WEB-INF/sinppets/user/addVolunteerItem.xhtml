@@ -7,7 +7,7 @@
 	<p:panelGrid>
   	发起一条求助条目
 	</p:panelGrid>
-	<h:form>
+	<h:form id="form112">
 		<p:growl id="messages" showDetail="true" />
 		<p:panelGrid columns="3" styleClass="formTable">
 			<p:outputLabel>求助名称:</p:outputLabel>
@@ -17,14 +17,25 @@
 			</p:inputText>
 			<p:message for="itemName" id="itemName-error" />
 			<p:outputLabel>求助细节:</p:outputLabel>
-			<p:inputTextarea value="#{volunteerItemBean.itemDetail}" required="true"
-				id="itemDetail" requiredMessage="求助条目细节不能为空">
+			<p:inputTextarea value="#{volunteerItemBean.itemDetail}"
+				required="true" id="itemDetail" requiredMessage="求助条目细节不能为空">
 				<p:ajax update="itemDetail-error" event="blur" />
 			</p:inputTextarea>
 			<p:message for="itemDetail" id="itemDetail-error" />
+
+			<h:form>
+				<p:fileUpload uploadLabel="上传" label="选择" cancelLabel="取消"
+					fileUploadListener="#{fileBean.handleFileUpload}"
+					mode="advanced" dragDropSupport="false"
+					update="messages"
+					sizeLimit="100000" fileLimit="3"
+					allowTypes="/(\.|\/)(gif|jpg|jpe?g|png|xlsx)$/" />
+
+				<p:growl id="messages" showDetail="true" />
+			</h:form>
 		</p:panelGrid>
-		<p:commandButton value="发起" action="#{volunteerItemBean.addVolunteerItem}"
-			process="@form"
-			update=":#{p:component('showPersonalVolunteerItemform')}  :#{p:component('showVolunteerItemform')} @form itemName-error itemDetail-error" />
+		<p:commandButton value="发起" process=":#{p:component('form112')}"
+			action="#{volunteerItemBean.addVolunteerItem}" 
+			update=" :#{p:component('showPersonalVolunteerItemWaitVoform')} :#{p:component('showPersonalVolunteerItemVoform')}  :#{p:component('showVolunteerItemVoform')} @form itemName-error itemDetail-error" />
 	</h:form>
 </ui:composition>

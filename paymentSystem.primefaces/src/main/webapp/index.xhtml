@@ -7,12 +7,64 @@
 	<title>paymentSystem</title>
 </h:head>
 <h:body>
-	<h1 class="ui-widget-header ui-corner-all">支付系统</h1>
-	<p:fieldset legend="paymentSystem">
-		<ul>
-			<li><a href="login.jsf">登录(login)</a></li>
-			<li><a href="register.jsf">注册(register)</a></li>
-		</ul>
-	</p:fieldset>
+	<p:growl id="growl" showDetail="true" sticky="true"></p:growl>
+	<div class="ui-g ui-widget-header ui-corner-all">
+
+		<div class="ui-g-10">
+			<div align="center">
+				<p:outputLabel>支付管理系统</p:outputLabel>
+			</div>
+		</div>
+		<div class="ui-g-1">
+			<div align="center">
+				<h:form>
+					<p:commandButton value="登录"
+						action="login.xhtml?faces-redirect=true"></p:commandButton>
+				</h:form>
+			</div>
+		</div>
+		<div class="ui-g-1">
+			<div align="center">
+				<h:form>
+					<p:commandButton value="注册"
+						action="register.xhtml?faces-redirect=true"></p:commandButton>
+				</h:form>
+			</div>
+		</div>
+	</div>
+	<p:notificationBar position="bottom" effect="slide" styleClass="top"
+		widgetVar="bar">
+		<h:outputText value="欢迎你!" style="font-size:36px;" />
+	</p:notificationBar>
+
+	<h:form>
+		<p:commandButton value="Show" onclick="PF('bar').show()" type="button"
+			icon="ui-icon-arrow-1-s" />
+		<p:commandButton value="Hide" onclick="PF('bar').hide()" type="button"
+			icon="ui-icon-arrow-1-n" />
+	</h:form>
+
+	<h:form>
+		<h:panelGrid columns="3" cellpadding="5">
+			<p:photoCam widgetVar="pc" listener="#{photoCamView.oncapture}"
+				update="photo" />
+			<p:commandButton type="button" value="抓拍"
+				onclick="PF('pc').capture()" />
+			<p:outputPanel id="photo">
+				<p:graphicImage
+					url="http://image.imooc.com/demo/images/photocam/#{photoCamView.filename}.jpeg"
+					rendered="#{not empty photoCamView.filename}" />
+			</p:outputPanel>
+		</h:panelGrid>
+	</h:form>
+
+	<p:contentFlow value="#{imagesView.images}" var="image">
+		<!-- <p:graphicImage name="demo/images/nature/#{image}"
+			styleClass="content" /> -->
+		<p:graphicImage url="http://image.imooc.com/nature/#{image}"
+			styleClass="content" />
+		<div class="caption">#{image}</div>
+	</p:contentFlow>
+
 </h:body>
 </html>

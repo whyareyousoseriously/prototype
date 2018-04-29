@@ -24,4 +24,9 @@
 	    <managed-bean-class>controller.VolunteerItemBean</managed-bean-class>
 	    <managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+	    <managed-bean-name>fileBean</managed-bean-name>
+	    <managed-bean-class>controller.FileBean</managed-bean-class>
+	    <managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
 </faces-config>

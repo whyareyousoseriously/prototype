@@ -5,6 +5,28 @@
 	id="WebApp_ID" version="3.0">
 	
 	
+	<filter>
+		<description>
+		</description>
+		<display-name>CharacterEncodingFilter</display-name>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>filter.CharacterEncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+	
+	
 	
 	<servlet>
 		<description>
@@ -26,7 +48,6 @@
 		<servlet-name>ActiveServlet</servlet-name>
 		<url-pattern>/ActiveServlet</url-pattern>
 	</servlet-mapping>
-	
 	<!-- 配置JSF程序状态的保存位置，如果设置成server则保存在session中， 如果保存在client中可以保证服务器重启应用状态也不会丢失 -->
 	<context-param>
 		<description>
@@ -46,7 +67,7 @@
 		<param-value>Development</param-value>
 	</context-param>
 	
-	<display-name>volunteerSystem</display-name>
+	<display-name>paymentSystem</display-name>
 	<welcome-file-list>
 		<welcome-file>index.jsf</welcome-file>
 	</welcome-file-list>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-4-25 16:53:29 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="pojo.ManagerDetails" table="MANAGERDETAILS">
+        <composite-id>
+            <key-property name="accountId" type="java.lang.String">
+                <column name="ACCOUNTID"></column>
+            </key-property>
+            <key-property name="managerId" type="java.lang.String">
+                <column name="MANAGERID"></column>
+            </key-property>
+            <generator class="assigned"></generator>
+        </composite-id>
+        <property name="accountType" type="java.lang.Integer">
+            <column name="ACCOUNTTYPE" />
+        </property>
+        <property name="active" type="java.lang.Integer">
+            <column name="ACTIVE" />
+        </property>
+        <property name="createTime" type="java.util.Date">
+            <column name="CREATETIME" />
+        </property>
+        <property name="updateTime" type="java.util.Date">
+            <column name="UPDATETIME" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -3,8 +3,8 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
-	
-	
+
+
 	<filter>
 		<description>
 		</description>
@@ -25,12 +25,12 @@
 		<filter-name>PrimeFaces FileUpload Filter</filter-name>
 		<servlet-name>Faces Servlet</servlet-name>
 	</filter-mapping>
-	
+
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
 		<param-value>glass-x</param-value>
 	</context-param>
-	
+
 	<servlet>
 		<description>
 		</description>
@@ -69,7 +69,7 @@
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
 	</context-param>
-	
+
 	<display-name>paymentSystem</display-name>
 	<welcome-file-list>
 		<welcome-file>index.jsf</welcome-file>

@@ -11,17 +11,29 @@
 	<div align="center">
 		<h1 class="ui-widget-header ui-corner-all">paymentSystem起源</h1>
 		<p:fieldset legend="Father of all of set">
-			<!-- <p:inputText value="#{OriginBean.originID}"></p:inputText> -->
 			<h:form>
-				<p:commandButton  value="重建paymentSystem数据库的表" 
-					process="@form"
-					action="#{OriginBean.createTable}">
+				<p:growl id="growl" showDetail="true" sticky="true"></p:growl>
+				<p:commandButton value="重建paymentSystem数据库的表"
+					update="#{p:component('beginOfTheWorld')}"
+					oncomplete="PF('beginOfTheWorldDialog').show()">
 				</p:commandButton>
 			</h:form>
-			
+			<p:dialog header="起源" widgetVar="beginOfTheWorldDialog" modal="true"
+				showEffect="blind" hideEffect="explode" resizable="false">
+				<h:form>
+					<p:outputPanel id="beginOfTheWorld" style="text-align:center;">
+						<p:panelGrid columns="2">
+							<h:outputText value="起源ID(originID):" style="color:Red" />
+							<p:password value="#{originBean.originID}"></p:password>
+						</p:panelGrid>
+					</p:outputPanel>
+					<p:commandButton value="开始重启" update="#{p:component('growl')}"
+						oncomplete="PF('beginOfTheWorldDialog').hide()"
+						action="#{originBean.createTable}">
+					</p:commandButton>
+				</h:form>
+			</p:dialog>
 		</p:fieldset>
-
-
 	</div>
 </h:body>
 </html>

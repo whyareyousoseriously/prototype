@@ -14,9 +14,15 @@
             <property name="format_sql">true</property>
             <property name="hbm2ddl.auto">update</property>
             <property name="current_session_context_class">thread</property>
+            
         	<mapping resource="User.hbm.xml" />
-        	<mapping resource="Root.hbm.xml" />
+        	<mapping resource="Manager.hbm.xml" />
         	<mapping resource="Item.hbm.xml" />
-        	<mapping resource="ExcelFile.hbm.xml" />
+        	<mapping resource="FileStorage.hbm.xml" />
+        	<mapping resource="UserDetails.hbm.xml" />
+        	<mapping resource="ManagerDetails.hbm.xml"></mapping>
+        	<mapping resource="ManagerUser.hbm.xml"></mapping>
+        	<mapping resource="PayInfo.hbm.xml"></mapping>
+        	
         </session-factory>
 </hibernate-configuration>

@@ -1,7 +1,2 @@
-test\UserDAOImpl\testUserDAOImpl.class
-test\RootDAOImpl\testRootDAOImpl.class
 test\db\testDB.class
 test\mailUtil\testMailUtil.class
-test\ExcelFileDAOImpl\testExcelFileDAOImpl.class
-test\ItemDAOImpl\testItemDAOImpl.class
-test\utils\db\testDBOperation.class
