@@ -47,9 +47,11 @@ public class PhotoCamView implements Serializable{
         byte[] data = captureEvent.getData();
  
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        String newFileName = externalContext.getRealPath("") + File.separator + "resources" + File.separator + "demo" +
+        @SuppressWarnings("unused")
+		String newFileName = externalContext.getRealPath("") + File.separator + "resources" + File.separator + "demo" +
                                     File.separator + "images" + File.separator + "photocam" + File.separator + filename + ".jpeg";
-        String newFileName2 = "e:" + File.separator + "resources" + File.separator + "demo" +
+        @SuppressWarnings("unused")
+		String newFileName2 = "e:" + File.separator + "resources" + File.separator + "demo" +
                 File.separator + "images" + File.separator + "photocam" + File.separator + filename + ".jpeg";
         String newFilepath2 = "d:\\ftpFile\\img\\demo\\images\\photocam\\";
         File fileDir = new File(newFilepath2);

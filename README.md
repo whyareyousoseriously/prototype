@@ -198,7 +198,7 @@
 &emsp;&emsp;&emsp;&emsp;&emsp;猜测:多个h:form造成,最后一个form失效<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;解决：不是多个h:form造成的，而是p:panelGrid标签位置错误导致<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;解决：头像上传功能完成<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;进行：管理用户模块重构完成，包括注册登陆更改密码发送激活邮件完善详细信息添加支付账户<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：管理用户模块重构完成，包括注册，登陆，更改密码，发送激活邮件，完善详细信息，添加支付账户<br>
 &emsp;&emsp;2018-4-29<br>
 &emsp;&emsp;&emsp;&emsp;项目:paymentSystem.primefaces<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;进行：完成支付条目的创建更新发布<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：完成支付条目的创建，更新，删除，发布上线和下线<br>
