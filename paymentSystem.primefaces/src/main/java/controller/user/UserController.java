@@ -132,6 +132,7 @@ public class UserController {
 		if (response.isSuccess()) {
 			
 			logger.info("账号:" + this.user.getUsername() + "登陆成功");
+			ServerResponse.createBySuccessMessage("账号:" + this.user.getUsername() + "登陆成功");
 			HttpSession session = this.getCurrentSession();
 			session.setAttribute(Const.CURRENT_USER, response.getData());
 			logger.info("当前user写入session成功");

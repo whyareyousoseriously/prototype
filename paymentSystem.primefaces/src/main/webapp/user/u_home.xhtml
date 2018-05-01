@@ -10,7 +10,7 @@
 </h:head>
 <h:body>
 
-	<p:growl id="growl" showDetail="true" sticky="true"></p:growl>
+	
 	<div class="ui-g ui-widget-header ui-corner-all">
 
 		<div class="ui-g-9">
@@ -46,6 +46,9 @@
 		</p:tab>
 		<p:tab title="缴费项目">
 			<ui:include src="/WEB-INF/sinppets/user/u_paymentInformation.xhtml" />
+		</p:tab>
+		<p:tab title="我的订单">
+			<ui:include src="/WEB-INF/sinppets/user/u_personalOrder.xhtml"/>
 		</p:tab>
 	</p:accordionPanel>
 

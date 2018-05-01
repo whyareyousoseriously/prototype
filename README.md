@@ -204,3 +204,11 @@
 &emsp;&emsp;&emsp;&emsp;&emsp;进行：完成支付条目的创建，更新，删除，发布上线和下线<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;进行：完成用户的获取可支付条目，和进行支付的操作<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;进行：添加数据库初始，前端远程操作origin<br>
+&emsp;&emsp;2018-4-30,5-1<br>
+&emsp;&emsp;&emsp;&emsp;项目：paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：文件服务器的搭建<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：spring的集成<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：VO的创建，以及VO的转换和逆转换<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：订单类，订单接口，订单创建，订单取消，订单查询的设计<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：支付宝接口的对接，支付宝的回调测试<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：内网穿透，端口映射，辅助进行支付宝的回调<br>

@@ -8,12 +8,13 @@
 			<h:form>
 				<p:commandButton value="刷新可支付的条目"
 					action = "#{userPayView.listItemVo}"
-					update=":#{p:component('showItemsForm_user')}">
+					update=":#{p:component('showItemsForm_user')} :#{p:component('growl')}">
 				</p:commandButton>
 			</h:form>
 		</div>
 		<div class="ui-g-2" align="right">
 			<h:form>
+				
 				<p:commandButton value="刷新已支付的条目"
 					action = "#{userPayView.listPayInfoVo}"
 					update=":#{p:component('showItemsForm_user_pay')}">
@@ -109,10 +110,47 @@
 					<f:setPropertyActionListener value="#{ownItems}"
 						target="#{userPayView.itemVo}" />
 				</p:commandButton>
+				<p:commandButton value="生成订单" id="save_one_order"
+					update="#{p:component('saveOneOrderPanelGrid')}"
+					onclick="PF('saveOneOrderDialog').show()">
+					<f:setPropertyActionListener value="#{ownItems}"
+						target="#{userPayView.itemVo}" />
+				</p:commandButton>
 			</p:column>
 		</p:dataTable>
 
 	</h:form>
+	<p:dialog header="saveOneOrder" widgetVar="saveOneOrderDialog" modal="true">
+		<h:form id="save_one_order_form">
+
+			<p:panelGrid id="saveOneOrderPanelGrid">
+				<f:facet name="header">
+					<p:row>
+						<p:column colspan="4">生成订单</p:column>
+					</p:row>
+				</f:facet>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="#{userPayView.itemVo.itemName}"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:outputLabel value="#{userPayView.itemVo.price}"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:outputLabel value="#{userPayView.itemVo.active}"></p:outputLabel>
+					</p:column>
+
+				</p:row>
+			</p:panelGrid>
+			<p:commandButton value="确认生成" process="@form"
+				action="#{userPayView.saveOneUserOrder}"
+				update=":#{p:component('showItemsForm_user')} save_one_order_form "
+				oncomplete="PF('saveOneOrderDialog').hide()">
+
+			</p:commandButton>
+		</h:form>
+	</p:dialog>
+	
 	<p:dialog header="payItem" widgetVar="payItemDialog" modal="true">
 		<h:form id="pay_Item_form">
 
