@@ -43,7 +43,7 @@
         </filter>
     </appender>
 
-    <logger  additivity="false" level="INFO" >
+    <logger name="controller" additivity="false" level="INFO" >
         <appender-ref ref="paymentSystem" />
         <appender-ref ref="console"/>
     </logger>
@@ -52,7 +52,7 @@
 
     <!-- geelynote  log 日志 -->
 
-    <logger  level="DEBUG"/>
+    <logger name="service"  level="DEBUG"/>
 
     <!--<logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" >-->
         <!--<appender-ref ref="console"/>-->

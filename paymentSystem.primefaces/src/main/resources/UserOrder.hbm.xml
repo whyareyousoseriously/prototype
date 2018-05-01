@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-4-30 17:37:14 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="pojo.UserOrder" table="USERORDER">
+        <id name="id" type="java.lang.String">
+            <column name="ID" />
+            <generator class="uuid" />
+        </id>
+        <property name="orderNo" type="java.lang.Long">
+            <column name="ORDERNO" />
+        </property>
+        <property name="userId" type="java.lang.String">
+            <column name="USERID" />
+        </property>
+        <property name="shippingId" type="java.lang.Integer">
+            <column name="SHIPPINGID" />
+        </property>
+        <property name="payment" type="java.math.BigDecimal">
+            <column name="PAYMENT" />
+        </property>
+        <property name="paymentType" type="java.lang.Integer">
+            <column name="PAYMENTTYPE" />
+        </property>
+        <property name="postage" type="java.lang.Integer">
+            <column name="POSTAGE" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="STATUS" />
+        </property>
+        <property name="paymentTime" type="java.util.Date">
+            <column name="PAYMENTTIME" />
+        </property>
+        <property name="sendTime" type="java.util.Date">
+            <column name="SENDTIME" />
+        </property>
+        <property name="endTime" type="java.util.Date">
+            <column name="ENDTIME" />
+        </property>
+        <property name="closeTime" type="java.util.Date">
+            <column name="CLOSETIME" />
+        </property>
+        <property name="createTime" type="java.util.Date">
+            <column name="CREATETIME" />
+        </property>
+        <property name="updateTime" type="java.util.Date">
+            <column name="UPDATETIME" />
+        </property>
+    </class>
+</hibernate-mapping>

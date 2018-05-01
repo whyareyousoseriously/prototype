@@ -58,7 +58,7 @@ public class UserServiceImpl implements IUserService {
 		iUserDao.saveOrUpdate(user);
 		// 将用户的密码移除，返回
 		user.setPassword(org.apache.commons.lang3.StringUtils.EMPTY);
-		return ServerResponse.createBySuccess("登录成功", user);
+		return ServerResponse.createBySuccess(user);
 	}
 
 	@SuppressWarnings({ "rawtypes" })

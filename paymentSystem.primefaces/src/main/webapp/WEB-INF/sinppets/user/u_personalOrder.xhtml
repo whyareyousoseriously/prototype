@@ -1,0 +1,124 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<div class="ui-g">
+		<div class="ui-g-10" align="right">
+			<h:form>
+				<p:commandButton value="刷新我的所有订单"
+					action="#{userOrderView.listUserOrderVo}"
+					update=":#{p:component('showOrdersForm_user')}">
+				</p:commandButton>
+			</h:form>
+		</div>
+		<div class="ui-g-2" align="right">
+			<h:form>
+				<p:selectOneMenu id="selectStatus" value="#{userOrderView.status}"
+					effect="fold" editable="true">
+					<f:selectItem itemLabel="已取消" itemValue="已取消"></f:selectItem>
+					<f:selectItem itemLabel="未付款" itemValue="未付款"></f:selectItem>
+					<f:selectItem itemLabel="已付款" itemValue="已付款"></f:selectItem>
+					<f:selectItem itemLabel="已发货" itemValue="已发货"></f:selectItem>
+					<f:selectItem itemLabel="交易成功" itemValue="交易成功"></f:selectItem>
+					<f:selectItem itemLabel="交易关闭" itemValue="交易关闭"></f:selectItem>
+				</p:selectOneMenu>
+				<p:commandButton value="获取" process="@form"
+					action="#{userOrderView.listUserOrderVoByStatus}"
+					update=":#{p:component('showOrdersForm_user')}">
+				</p:commandButton>
+			</h:form>
+		</div>
+	</div>
+	<h:form id="showOrdersForm_user">
+		<p:growl id="growl" showDetail="true" sticky="false"></p:growl>
+		<p:dataTable var="orderVo" value="#{userOrderView.userOrderVoList}"
+			rows="10" paginator="true" id="showOrdersTable_user">
+			<p:column headerText="订单号">
+				<p:outputLabel value="#{orderVo.orderNo}"></p:outputLabel>
+			</p:column>
+
+			<p:column headerText="订单状态">
+				<p:outputLabel value="#{orderVo.status}"></p:outputLabel>
+			</p:column>
+			<p:column headerText="订单总价">
+				<p:outputLabel value="#{orderVo.payment}"></p:outputLabel>
+			</p:column>
+			<p:column>
+				<p:outputLabel value="查看详情"></p:outputLabel>
+				<p:commandLink update="#{p:component('ownOrderDetails_user')}"
+					oncomplete="PF('orderDetailsDialog_user').show()"
+					styleClass="ui-icon ui-icon-search"
+					style="float:left;margin-right:10px">
+					<f:setPropertyActionListener value="#{orderVo}"
+						target="#{userOrderView.userOrderVo}" />
+				</p:commandLink>
+				<div align="right">
+					<p:commandLink value="包括的物品"></p:commandLink>
+				</div>
+
+			</p:column>
+			<p:column headerText="操作">
+				<p:commandButton value="取消订单"
+					action="#{userOrderView.cancelOneOrder}"
+					update=":#{p:component('showOrdersForm_user')}">
+					<f:setPropertyActionListener value="#{orderVo}"
+						target="#{userOrderView.userOrderVo}" />
+				</p:commandButton>
+				<p:commandButton value="支付宝付款" action="#{userOrderView.alipay}"
+					update=":#{p:component('showOrdersForm_user')}">
+					<f:setPropertyActionListener value="#{orderVo}"
+						target="#{userOrderView.userOrderVo}" />
+				</p:commandButton>
+
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	<p:dialog header="订单详细信息" widgetVar="orderDetailsDialog_user"
+		modal="true" showEffect="blind" hideEffect="explode" resizable="false">
+		<p:outputPanel id="ownOrderDetails_user" style="text-align:center;">
+			<p:panelGrid columns="2">
+
+				<h:outputText value="订单号:" />
+				<h:outputText value="#{userOrderView.userOrderVo.id}" />
+
+				<h:outputText value="订单总价:" />
+				<h:outputText value="$#{userOrderView.userOrderVo.payment}"
+					style="color:Red" />
+
+				<h:outputText value="用户id:" />
+				<h:outputText value="#{userOrderView.userOrderVo.userId}" />
+
+				<h:outputText value="支付类型:" />
+				<h:outputText value="#{userOrderView.userOrderVo.paymentType}" />
+
+				<h:outputText value="运费:" />
+				<h:outputText value="#{userOrderView.userOrderVo.postage}" />
+
+				<h:outputText value="订单状态:" />
+				<h:outputText value="#{userOrderView.userOrderVo.status}" />
+
+				<h:outputText value="支付时间:" />
+				<h:outputText value="#{userOrderView.userOrderVo.paymentTime}" />
+
+				<h:outputText value="发货时间:" />
+				<h:outputText value="#{userOrderView.userOrderVo.sendTime}" />
+
+				<h:outputText value="交易完成时间:" />
+				<h:outputText value="#{userOrderView.userOrderVo.endTime}" />
+
+				<h:outputText value="交易关闭时间:" />
+				<h:outputText value="#{userOrderView.userOrderVo.closeTime}" />
+
+				<h:outputText value="创建时间:" />
+				<h:outputText value="#{userOrderView.userOrderVo.createTime}" />
+
+				<h:outputText value="更新时间:" />
+				<h:outputText value="#{userOrderView.userOrderVo.updateTime}" />
+
+			</p:panelGrid>
+		</p:outputPanel>
+	</p:dialog>
+
+</ui:composition>

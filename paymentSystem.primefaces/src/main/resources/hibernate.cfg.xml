@@ -23,6 +23,9 @@
         	<mapping resource="ManagerDetails.hbm.xml"></mapping>
         	<mapping resource="ManagerUser.hbm.xml"></mapping>
         	<mapping resource="PayInfo.hbm.xml"></mapping>
-        	
+        	<mapping resource="UserOrder.hbm.xml"></mapping>
+        	<mapping resource="UserOrderItem.hbm.xml"></mapping>
+        	<mapping resource="PayInfoDetails.hbm.xml"></mapping>
+        	<mapping resource="QRCode.hbm.xml"></mapping>
         </session-factory>
 </hibernate-configuration>

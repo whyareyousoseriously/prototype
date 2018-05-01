@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>paymentSystem</title>
+</h:head>
+<h:body>
+	<div class="ui-g">
+		<div class="ui-g-10" align="right">
+			<h:form>
+				<p:commandButton value="返回" action="/user/u_home.jsf">
+				</p:commandButton>
+			</h:form>
+		</div>
+	</div>
+	<div align="center">
+		<div class="ui-g-12">
+			<p:outputLabel value="请扫码支付"></p:outputLabel>
+			<p:outputLabel value="订单号:#{userOrderView.qRCodeVo.orderNo}"></p:outputLabel>
+		</div>
+		<div class="ui-g-12">
+			<p:graphicImage url="#{userOrderView.qRCodeVo.qrCode}"></p:graphicImage>
+		</div>
+	</div>
+</h:body>
+</html>

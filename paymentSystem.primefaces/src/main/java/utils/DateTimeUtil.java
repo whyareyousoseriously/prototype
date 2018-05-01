@@ -43,6 +43,9 @@ public class DateTimeUtil {
     }
 
     public static Date strToDate(String dateTimeStr){
+    	if(StringUtils.isEmpty(dateTimeStr)) {
+    		return null;
+    	}
         DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(STANDARD_FORMAT);
         DateTime dateTime = dateTimeFormatter.parseDateTime(dateTimeStr);
         return dateTime.toDate();
