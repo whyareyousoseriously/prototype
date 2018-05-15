@@ -212,3 +212,6 @@
 &emsp;&emsp;&emsp;&emsp;&emsp;进行：订单类，订单接口，订单创建，订单取消，订单查询的设计<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;进行：支付宝接口的对接，支付宝的回调测试<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;进行：内网穿透，端口映射，辅助进行支付宝的回调<br>
+&emsp;&emsp;2018-5-15<br>
+&emsp;&emsp;&emsp;&emsp;项目：paymentSystem.primefaces<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;进行：补上管理用户查询订单信息的功能。<br>

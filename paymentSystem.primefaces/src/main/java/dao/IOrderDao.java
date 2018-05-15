@@ -65,4 +65,12 @@ public interface IOrderDao {
 	 */
 	UserOrder selectById(String id);
 
+	/**
+	 * @param readOrderStatus
+	 * @return
+	 * @author cz
+	 * @time 2018年5月15日下午2:05:13
+	 */
+	List<UserOrder> listByStatus(Integer readOrderStatus);
+
 }

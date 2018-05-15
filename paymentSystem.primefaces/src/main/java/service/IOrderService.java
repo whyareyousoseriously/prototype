@@ -19,7 +19,9 @@ import pojo.UserOrderItem;
  */
 public interface IOrderService {
 	ServerResponse<Map<String,String>> pay(Long orderNo, String userId, String path);
+	@SuppressWarnings("rawtypes")
 	ServerResponse aliCallback(Map<String,String> params);
+	@SuppressWarnings("rawtypes")
 	ServerResponse queryOrderPayStatus(String userId,Long orderNo);
 	/**
 	 * @param userId
@@ -58,4 +60,11 @@ public interface IOrderService {
 	 * @time 2018年5月1日下午4:09:54
 	 */
 	ServerResponse<UserOrder> cancelOneUserOrder(UserOrder toUserOrder);
+	/**
+	 * @param readOrderStatus
+	 * @return
+	 * @author cz
+	 * @time 2018年5月15日下午2:00:54
+	 */
+	ServerResponse<List<UserOrder>> listUserOrderByStatus(Integer readOrderStatus);
 }

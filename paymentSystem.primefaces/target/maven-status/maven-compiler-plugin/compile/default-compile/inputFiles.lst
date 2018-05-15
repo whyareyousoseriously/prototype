@@ -6,6 +6,7 @@ I:\imoocLearningCode\JavaEE\prototype\paymentSystem.primefaces\src\main\java\con
 I:\imoocLearningCode\JavaEE\prototype\paymentSystem.primefaces\src\main\java\utils\DateTimeUtil.java
 I:\imoocLearningCode\JavaEE\prototype\paymentSystem.primefaces\src\main\java\controller\manager\ManagerController.java
 I:\imoocLearningCode\JavaEE\prototype\paymentSystem.primefaces\src\main\java\dao\IManagerDao.java
+I:\imoocLearningCode\JavaEE\prototype\paymentSystem.primefaces\src\main\java\controller\manager\ManagerOrderView.java
 I:\imoocLearningCode\JavaEE\prototype\paymentSystem.primefaces\src\main\java\pojo\PayInfo.java
 I:\imoocLearningCode\JavaEE\prototype\paymentSystem.primefaces\src\main\java\alipay\demo\trade\Main.java
 I:\imoocLearningCode\JavaEE\prototype\paymentSystem.primefaces\src\main\java\vo\ItemVo.java

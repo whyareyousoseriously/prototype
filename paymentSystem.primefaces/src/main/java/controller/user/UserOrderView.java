@@ -137,7 +137,7 @@ public class UserOrderView {
 						.redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath()
 								+ "login.jsf");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		}

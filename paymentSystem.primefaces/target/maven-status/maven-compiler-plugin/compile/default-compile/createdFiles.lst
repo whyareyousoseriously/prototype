@@ -39,6 +39,7 @@ controller\user\UserPayView.class
 controller\user\ImagesView.class
 vo\PayInfoDetailsVo.class
 vo\UserVo.class
+controller\manager\ManagerOrderView.class
 pojo\PayInfoDetails.class
 service\impl\OrderServiceImpl$1.class
 vo\ManagerVo.class

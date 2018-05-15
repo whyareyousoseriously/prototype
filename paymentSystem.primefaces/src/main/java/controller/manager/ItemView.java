@@ -262,7 +262,7 @@ public class ItemView {
 			item.setPrice(new BigDecimal(itemVo.getPrice()));
 			item.setCreateTime(DateTimeUtil.strToDate(this.itemVo.getCreateTime()));
 			item.setUpdateTime(DateTimeUtil.strToDate(this.itemVo.getUpdateTime()));
-			// 设置支付账号,设置激活状态
+			// 
 			item.setAccountId(null);
 			item.setActive(Const.ItemStatus.UNACTIVE.getCode());
 			// 上线item
