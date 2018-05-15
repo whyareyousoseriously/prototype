@@ -369,4 +369,20 @@ public class OrderServiceImpl implements IOrderService {
 			return ServerResponse.createByErrorMessage("未找到订单");
 		}
 	}
+
+	/* (non-Javadoc)
+	 * @see service.IOrderService#listUserOrderByStatus(java.lang.Integer)
+	 * @author cz
+	 * @time 2018年5月15日下午2:01:08
+	 */
+	@Override
+	public ServerResponse<List<UserOrder>> listUserOrderByStatus(Integer readOrderStatus) {
+		List<UserOrder> listUserOrder = iOrderDao.listByStatus(readOrderStatus);
+		if(listUserOrder==null) {
+			//未找到
+			return ServerResponse.createByError();
+		}
+		return ServerResponse.createBySuccess(listUserOrder);
+		
+	}
 }

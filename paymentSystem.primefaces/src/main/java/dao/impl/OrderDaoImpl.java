@@ -293,4 +293,41 @@ public class OrderDaoImpl implements IOrderDao {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.IOrderDao#listByStatus(java.lang.Integer)
+	 * @author cz
+	 * @time 2018年5月15日下午2:05:22
+	 */
+	@Override
+	public List<UserOrder> listByStatus(Integer readOrderStatus) {
+		logger.info("待查找的订单的状态:" + readOrderStatus);
+		// 创建一个事务
+		Transaction t = null;
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			t = session.beginTransaction();
+			String hql = "";
+			hql = "from UserOrder where status =:status";
+			Query query = session.createQuery(hql);
+
+			query.setParameter("status", readOrderStatus);
+			@SuppressWarnings("unchecked")
+			List<UserOrder> list = query.list();
+			t.commit();
+			if (list.isEmpty()) {
+				logger.error("未查找到满足条件的订单");
+				return null;
+			} else {
+				logger.error("已查找到满足条件的订单");
+				return list;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			if (t != null)
+				t = null;
+		}
+	}
+
 }
